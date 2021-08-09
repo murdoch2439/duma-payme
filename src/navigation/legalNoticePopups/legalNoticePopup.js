@@ -7,8 +7,7 @@ import {
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import NoticeDialog from './noticeDialog';
-// import NoticeDialog from "./NoticeDialog";
-// import { setCookie, getCookie } from "../../constants/functions";
+
 
 const LegalNoticePopup = () => {
 
