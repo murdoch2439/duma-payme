@@ -2,15 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
-import { useStateValue } from '../../context';
-import { getUrlParams, 
-    // transformToUpCase, 
-} from './helperFunctions';
-import { ADMIN_ID_STRING, API_PAYMENT_INIT, PAYER_ID_STRING } from './variableNames';
+import { useStateValue } from '../context';
+import { getUrlParams,
 
-// import {
-//   useParams
-// } from "react-router-dom";
+} from '../utils/helperFunctions';
+import { ADMIN_ID_STRING, API_PAYMENT_INIT, PAYER_ID_STRING } from '../constants/variableNames';
 
 
 const useStyles = makeStyles({
@@ -26,7 +22,7 @@ const useStyles = makeStyles({
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
-    
+
   },
   button: {
     height:50,
@@ -39,40 +35,15 @@ const paymentMethod =[
         value:'debit card',
         label:'Debit card'
     },
-    // {
-    //     value:'mobile money',
-    //     label:'Mobile money'
-    // }
 ]
-// const CurrencyList =[
-//     {
-//         value:'usd',
-//         label:'USD'
-//     },
-//     {
-//         value:'eur',
-//         label:'EUR'
-//     },
-//     {
-//         value:'cad',
-//         label:'CAD'
-//     },
-//     {
-//         value:'gbp',
-//         label:'GBP'
-//     }
-// ]
 
-const SenderFormStepOne =()=> {
+
+const FormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-    // const [clientIpAdress, setClientIpAdress] = useState({});
-    // const [logo, setLogo] = useState('')
-    // const [receiverName, setReceiverName] = useState('')
-    // const [paymentMet, setPaymentMet] = useState('debit card')
+
     const [paymentMeth, setPaymentMeth] = useState('')
-    // let { adminId, payerId } = useParams();
 
      const adminId = getUrlParams()[ADMIN_ID_STRING]
      const  payerId = getUrlParams()[PAYER_ID_STRING]
@@ -96,36 +67,28 @@ const SenderFormStepOne =()=> {
 const getIpAdress = () =>{
 
     try{
-        //   axios.get('https://geolocation-db.com/json')
-        //  .then((response)=>{
-            // setClientIpAdress(response.data.IPv4)
-            // formValues.ip = response.data.IPv4
+
             const paymentInfo = {  adminId, payerId }
-            // console.log('payment Info ====>', paymentInfo)
+
             axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
                 console.log('response Data ====>', response.data)
                 setCurrency(response.data.currency)
                 formValues.currency = response.data.currency
-                // console.log('currency ===>', response.data.currency)
-                // console.log('currency from formValues', formValues.currency)
                 formValues.rate = response.data.rate
                 formValues.transactionReference = response.data.reference
                 formValues.receiverLogo = response.data.clientLogo
                 formValues.receiverName = response.data.clientName
-                // formValues.receiver = response.data.receiver
-                // formValues.receiver_logo = response.data.logo
+
              })
-        // }
-        // )
 
     }catch(error){
-        console.error(error)
-        console.log('it works not!')
+        console.error('Error : ',error)
+
         }
 }
 
   return (
-  
+
       <Grid   style={{display:'flex', justifyContent:'space-between' }}>
 
       <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
@@ -136,7 +99,6 @@ const getIpAdress = () =>{
       <Grid item xs={12} sm={4} md={6} >
             <TextField
             inputProps={{className:classes.input}}
-                // InputLabelProps={{className:classes.textfiel_label}}
                 label="Name on the card"
                 name="name"
                 variant="outlined"
@@ -152,7 +114,7 @@ const getIpAdress = () =>{
                 }
             />
           </Grid>
-      
+
         <Grid item xs={12} sm={4} md={6}>
             <TextField
                 label="Email adress"
@@ -187,11 +149,11 @@ const getIpAdress = () =>{
                 }
             />
         </Grid>
-              
+
         <Grid item xs={12} sm={6} md={6}>
-           <FormControl 
+           <FormControl
            required
-           
+
            style={{minWidth: '100%',}}>
         <TextField
           label="Currency"
@@ -209,7 +171,7 @@ const getIpAdress = () =>{
                     })
                 }}
 
-          
+
         >
           <MenuItem value='USD'>{currency}</MenuItem>
           <MenuItem value='EUR'>{currency}</MenuItem>
@@ -217,62 +179,11 @@ const getIpAdress = () =>{
           <MenuItem value='GBP'>{currency}</MenuItem>
         </TextField>
       </FormControl>
-            {/* <Autocomplete
-                options={currencies}
-                // getOptionLabel={option => option.code}
-                renderOption={option => <> {option.code}</>}
-                renderInput={params =>
-                    <TextField
-                        label="Currency"
-                        name="currency"
-                        variant="standard"
-                        fullWidth
-                        required
-                        {...params}
-                    />
-                }
-                value={formValues.currency.code}
-                onChange={(event, value) => {
-                    dispatch({
-                        type: "editFormValue",
-                        key: "currency",
-                        value:  value
-                    })
-                }}
-            /> */}
+
         </Grid>
-        {/* <Grid item xs={12} sm={6} md={6}> */}
-           {/* <FormControl 
-           required
-           
-           style={{minWidth: '100%',}}>
-        <InputLabel >Payment method</InputLabel>
-        <Select
-          label="paymentMethod"
-          name="paymentMethod"
-          variant="outlined"
-          required
-          value={formValues.paymentMethod}
-          onChange={(e) => {
-                    dispatch({
-                        type: "editFormValue",
-                        key: "paymentMethod",
-                        value: e.target.value
-                    })
-                }}
-          
-        >
-          <MenuItem value='Debit card'>Debit card</MenuItem>
-          <MenuItem value='Mobile money'>Mobile money</MenuItem>
-           <MenuItem value='cad'>{makeCurrencyMaj(currency)}</MenuItem>
-          <MenuItem value='gbp'>{makeCurrencyMaj(currency)}</MenuItem>
-          
-        </Select> 
-      </FormControl> */}
-           
-        {/* </Grid> */}
+
         <Grid item xs={12} sm={6} md={6}>
-        <FormControl 
+        <FormControl
            style={{minWidth: '100%',}}>
             <TextField
                 required
@@ -305,12 +216,12 @@ const getIpAdress = () =>{
                 fullWidth
                 value={formValues.amount}
                 onChange={e =>
-                    
+
                     dispatch({
                         type: "editFormValue",
                         key: "amount",
                         value: e.target.value.replace(/[^0-9,.]/g, ''),
-                        
+
                     })
                 }
             />
@@ -336,14 +247,14 @@ const getIpAdress = () =>{
         </Grid>
 
        </Grid>
-      
 
-        
+
+
    </Grid>
-      
 
-    
+
+
   );
 }
 
-export default SenderFormStepOne
+export default FormStepOne
