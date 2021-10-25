@@ -79,7 +79,6 @@ const SuccessPage =({paymentID})=>{
 
             <Grid container item justify='center' style={{marginTop:30}}>
 
-
         </Grid>
 
           </Paper>
