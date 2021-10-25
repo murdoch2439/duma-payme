@@ -62,7 +62,7 @@ const GetStepContent = ({step}) => {
   switch (step) {
     case 0:
       return <SenderFormStepOne />;
-      // return <FormikComponent />
+      // return <SenderFormStepOne />
     case 1:
       return <ReviewAndPayForm />;
     default:
@@ -85,7 +85,7 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
 
   const backgroundChanger = () =>{
     if(!loading){
-      return '#009CDE'
+      return '#F6B402'
     }else{
       return '#F5F5F5'
     }
@@ -188,7 +188,7 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
 
          if (paymentIntent && paymentIntent.status === "succeeded") {
            formValues.paymentIntent = paymentIntent.id
-           const paymentIntentObjet ={reference:formValues.transactionReference, sendingAmount:formValues.amount, receivingAmount:parseInt(formValues.amount) + formValues.fees, paymentIntentId:paymentIntent.id, payerId:formValues.payerId, fee: formValues.fees}
+           const paymentIntentObjet ={reference:formValues.transactionReference, receivingAmount:formValues.amount, sendingAmount:parseInt(formValues.amount) + formValues.fees, paymentIntentId:paymentIntent.id, payerId:formValues.payerId, fee: formValues.fees}
 
            console.log('Succeed ====>', paymentIntentObjet)
           //  setCardMessage(paymentIntent.id)
@@ -204,9 +204,7 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
 
                           }else{
                             onFailedCheckout()
-
                           }
-                          
                         })
                     // console.log('it succeeded')
                     //       setLoading(false);
@@ -224,7 +222,6 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
             return;
         }
         handleReset()
-
         
     }catch(error){
         console.error('error from the catch', error.message)

@@ -81,7 +81,7 @@ const FailurePage =({paymentID})=>{
           <Paper className={classes.paper}>
             
 
-            <Grid container  justify='center' className={classes.boxTitle}>
+            <Grid container  justifyContent='center' className={classes.boxTitle}>
 
           <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Failure</p>
             </Grid>

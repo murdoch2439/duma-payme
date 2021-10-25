@@ -114,7 +114,7 @@ const  ReviewAndPayForm =()=> {
           </ListItem>:null}
           
         {/* ))} */}
-        <ListItem className={classes.listItem} style={{backgroundColor:'#E8F0FE',  borderRadius:5,}}>
+        <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>
           <ListItemText  primary="Total:" className={classes.total}/>
           <Typography variant="subtitle1" className={classes.total}>
          {` ${currencyManager(formValues.currency, total )}.00 ${formValues.currency}`}

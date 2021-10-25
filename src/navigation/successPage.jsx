@@ -31,14 +31,14 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:10
     },
     boxTitle:{
-      backgroundColor:'green',
+      backgroundColor:'#F6B402',
       borderTopLeftRadius:10, 
       borderTopRightRadius:10
     },
     boxIcon:{
       height:100,
       width:100, 
-      backgroundColor:'green', 
+      backgroundColor:'green',
       margin:'auto',
       borderRadius:50, 
       // justifyContent:'center', 
@@ -74,7 +74,7 @@ const SuccessPage =({paymentID})=>{
           <Paper className={classes.paper}>
             
 
-            <Grid container  justify='center' className={classes.boxTitle}>
+            <Grid container  justifyContent='center' className={classes.boxTitle}>
 
           <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Confirmation</p>
             </Grid>

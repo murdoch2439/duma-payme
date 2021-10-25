@@ -79,6 +79,8 @@ const SenderFormStepOne =()=> {
      formValues.receiverEmail = adminId
      formValues.payerId = payerId
 
+     const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate))
+
 
   useEffect(()=>{
       if(formValues.currency === ''){
@@ -89,7 +91,7 @@ const SenderFormStepOne =()=> {
       }
 
 
-    },[])
+    },[formValues.currency, formValues.paymentMethod,])
 
 const getIpAdress = () =>{
 
@@ -277,10 +279,11 @@ const getIpAdress = () =>{
                 variant="outlined"
                 select
                 label="Payment method"
-                value={paymentMeth}
+                value={formValues.paymentMethod === '' ?paymentMeth: formValues.paymentMethod}
                 onChange={(e) => {
                             setPaymentMeth(e.target.value)
-                            formValues.paymentMethod = e.target.values
+                            formValues.paymentMethod = e.target.value
+                            console.log('payment methode ...',formValues.paymentMethod)
                         }}
         >
           {paymentMethod.map((option) => (
@@ -321,7 +324,7 @@ const getIpAdress = () =>{
                 disabled
                 type="number"
                 fullWidth
-                value={formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate)}
+                value={receivingAmount}
                 onChange={e =>
                     dispatch({
                         type: "editFormValue",
