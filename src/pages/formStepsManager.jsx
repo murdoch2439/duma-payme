@@ -13,12 +13,12 @@ import { API_CREATE_PAYMENT_INTENT, API_VALIDATE_PAYMENT_INTENT } from '../const
 
 const useStyles = makeStyles(() => ({
   layout: {
-        width:'100%',
-        borderTopRightRadius:10,
-        borderBottomRightRadius:10,
-        paddingLeft:20,
-        paddingRight:20,
-        paddingBottom:10
+    width:'100%',
+    borderTopRightRadius:10,
+    borderBottomRightRadius:10,
+    paddingLeft:20,
+    paddingRight:20,
+    paddingBottom:10
   },
   form: {
 
@@ -160,7 +160,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
     }catch(error){
         console.error('error from the catch', error.message)
-        setError(error.message);
+        setError('Something went wrong, check your infos, your network and retry');
         setLoading(false);
         setDisabled(true)
 
