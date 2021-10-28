@@ -11,7 +11,6 @@ import { API_CREATE_PAYMENT_INTENT, API_VALIDATE_PAYMENT_INTENT } from '../const
 
 
 
-
 const useStyles = makeStyles(() => ({
   layout: {
         width:'100%',
