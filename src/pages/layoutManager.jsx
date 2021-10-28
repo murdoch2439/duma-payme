@@ -6,7 +6,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 
 import FormManager from './formStepsManager'
 import { useStateValue } from "../context";
-import cover from '../assets/Icash.jpg'
+import cover from '../assets/dumaLogo.png'
 
 const useStyles = makeStyles(() => ({
 
@@ -70,7 +70,7 @@ const LayoutManager = () => {
              <Container maxWidth="md" alignItems='center' >
             <Paper elevation={3}  className={classes.container} >
               <Box className={classes.coverSection} display={{ xs: 'none',sm:'inline', md:'block' }} m={1} >
-                <div style={{backgroundColor:'#E1E2E3', backgroundImage:`url(${cover})`, height:'100%',  borderTopLeftRadius:10,
+                <div style={{backgroundColor:'white', backgroundImage:`url(${cover})`, height:'100%',  borderTopLeftRadius:10,
         borderBottomLeftRadius:10,}} >
                     <img src={cover} alt='logo' className={classes.image} />
               {/*{*/}

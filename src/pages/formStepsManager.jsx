@@ -61,7 +61,7 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
 
   const backgroundChanger = () =>{
     if(!loading){
-      return '#F6B402'
+      return '#FBB900'
     }else{
       return '#F5F5F5'
     }
