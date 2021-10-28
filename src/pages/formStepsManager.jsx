@@ -50,7 +50,7 @@ const GetStepContent = ({step}) => {
   }
 }
 
-const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
+const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [{ formValues }, dispatch] = useStateValue();
@@ -117,7 +117,7 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
 
             setError(paymentMethodReq.error.message);
             setLoading(false);
-            onFailedCheckout()
+            onFailCheckout()
             return;
         }
 
@@ -144,17 +144,17 @@ const  FormManager =({onSuccessfulCheckout, onFailedCheckout}) => {
                           setLoading(false);
                           setDisabled(true)
                           setError(false);
-                          onSuccessfulCheckout()
+                          onSuccessCheckout()
 
                           }else{
-                            onFailedCheckout()
+                            onFailCheckout()
                           }
                         })
         }
            else if (error) {
             setError(error.message);
             setLoading(false);
-            onFailedCheckout()
+            onFailCheckout()
             return;
         }
         handleReset()
