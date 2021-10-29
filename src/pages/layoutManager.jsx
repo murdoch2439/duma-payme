@@ -12,7 +12,6 @@ import logDuma from '../assets/duma1.png'
 const useStyles = makeStyles(() => ({
 
     container: {
-        // backgroundColor:'#F1F9FE',
         backgroundColor:'white',
         // backgroundImage:`url(https://cdn.goodao.net/easypetgarden/H6dd2a1363c0042738024ab6ee5ffb470G.jpg)`,
         height:'100%',
@@ -55,6 +54,7 @@ const LayoutManager = () => {
     const [logo, setLogo] = useState('')
     useEffect(()=>{
          if(formValues.receiverLogo === ''){
+
            console.log('formValues.receiverLogo is empty...')
          }else{
            setLogo(formValues.receiverLogo)
@@ -96,7 +96,7 @@ const LayoutManager = () => {
                               </div>
 
 
-                            
+
 
                               <Grid item xs={12} sm={12} md={12} style={{ marginTop:50, textAlign:'center',}} >
                                 {cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)}

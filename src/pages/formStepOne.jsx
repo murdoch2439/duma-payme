@@ -94,7 +94,7 @@ const getIpAdress = () =>{
       <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
 
       <Grid item  xs={12} >
-            <Typography variant="h6">Contact Information</Typography>
+            <Typography variant="h6">Payer Information</Typography>
         </Grid>
       <Grid item xs={12} sm={4} md={6} >
             <TextField
