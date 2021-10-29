@@ -82,14 +82,14 @@ const getIpAdress = () =>{
              })
 
     }catch(error){
-        console.error('Error : ',error)
+        console.error('Error on payment init : ',error)
 
         }
 }
 
   return (
 
-      <Grid   style={{display:'flex', justifyContent:'space-between' }}>
+      <Grid>
 
       <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
 
@@ -228,7 +228,7 @@ const getIpAdress = () =>{
         </Grid>
          <Grid item xs={12} sm={6} md={3}>
             <TextField
-                label={`Received`}
+                label={`Receive`}
                 name="received"
                 variant="outlined"
                 required

@@ -20,9 +20,7 @@ const useStyles = makeStyles(() => ({
     paddingRight:20,
     paddingBottom:10
   },
-  form: {
 
-  },
   buttons: {
     height:50,
     color:'black',
@@ -41,7 +39,6 @@ const GetStepContent = ({step}) => {
   switch (step) {
     case 0:
       return <FormStepOne />;
-      // return <FormStepOne />
     case 1:
       return <FormStepTwo />;
     default:
@@ -62,7 +59,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
     if(!loading){
       return '#FBB900'
     }else{
-      return '#F5F5F5'
+      return '#f5f5f5'
     }
   }
 
@@ -139,7 +136,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
                         .then(response =>{
                           console.log('Confirmation ===>',response.data)
                           if(response.data.status === 'success'){
-                            console.log('it succeeded')
+                            console.log('payment process succeeded')
                           setLoading(false);
                           setDisabled(true)
                           setError(false);

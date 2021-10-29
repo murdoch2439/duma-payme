@@ -117,16 +117,11 @@ const  FormStepTwo =()=> {
 
             </Grid>
 
-      <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}}gutterBottom>
+      <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterBottom>
         Card details
       </Typography>
       <Grid spacing={3} >
-        {/* <Grid container item xs={12} style={{marginTop:30, justifyContent:'center'}}>
 
-            <Grid container item xs={12} sm={9} justify="space-between">
-                {cardsLogo.map(e => <img key={e} src={`./cards/${e}.png`} alt={e} width="50px" align="bottom" style={{ padding: "0 5px" }} />)}
-            </Grid>
-        </Grid> */}
         <Grid  xs={12} sm={12} >
 
         <CardElement onChange={handleChange}  options={CARD_ELEMENT_OPTIONS}  />
