@@ -104,7 +104,7 @@ const LayoutManager = () => {
                         </div>
                       </Box>
 
-                      <FormManager onSuccessfulCheckout ={()=> history.replace('/success')} onFailedCheckout ={()=>history.replace('/failure')} />
+                      <FormManager onSuccessfulCheckout ={()=> history.replace('/success')} onFailedCheckout ={()=>history.replace('/failure')} onPendingCheckout={()=>history.replace('/payment-pending')} />
                 </Paper>
           </Container>
 

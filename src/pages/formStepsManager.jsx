@@ -10,7 +10,6 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
     API_VALIDATE_PAYMENT_INTENT,
-    DEBIT_CARD,
     MOBILE_MONEY
 } from '../constants/variableNames';
 
@@ -51,7 +50,7 @@ const GetStepContent = ({step}) => {
   }
 }
 
-const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout}) => {
+const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [{ formValues }, dispatch] = useStateValue();
@@ -100,24 +99,36 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
         phone:formValues.phone,
 
         }
-       const billingDetailsMobileMoney = {
-           email:formValues.email,
-           name:formValues.name,
-           receiverPhoneNumber:formValues.receiver,
-           amount: formValues.amount,
-           currency: formValues.currency,
-
-       }
+       // const billingDetailsMobileMoney = {
+       //     email:formValues.email,
+       //     name:formValues.name,
+       //     receiverPhoneNumber:formValues.receiver,
+       //     amount: formValues.amount,
+       //     currency: formValues.currency,
+       //
+       // }
 
     try{
 
 
+
         if(formValues.paymentMethod === MOBILE_MONEY ){
 
+            // console.log('loading',loading)
+            // setLoading(true);
 
-            alert(JSON.stringify(billingDetailsMobileMoney))
+            setTimeout(()=>{
+                // setLoading(true);
+                onPendingCheckout()
+                setLoading(false);
+            }, 3000)
+
+
+
+            // alert(JSON.stringify(billingDetailsMobileMoney))
 
         }else{
+
             const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
                 amount: formValues.amount,
                 currency: formValues.currency,
@@ -178,7 +189,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
                     })
             } else if (error) {
                 setError(error.message);
-                setLoading(false);
+                // setLoading(false);
                 onFailCheckout()
                 return;
             }
@@ -190,12 +201,13 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
         setError('Something went wrong, check your infos, your network and retry');
         setLoading(false);
         setDisabled(true)
+        console.log('loading in the error',loading)
 
     }
 
             dispatch({ type: 'emptyFormValue'});
 
-        setLoading(false);
+        // setLoading(false);
         // onSuccessfulCheckout()
     }
 

@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import SuccessPage from './pages/successPage';
 import FailurePage from './pages/failurePage';
+import PendingPage from "./pages/pendingPage";
 
 const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2cp3ZI4cDSTWJ15AHTy1HWREb7HrObRwXcsneRfbLXvo5IQKQWM2000bkx3L5tB")
 
@@ -54,6 +55,7 @@ const  App =()=> {
 
               <Route path="/success" component={SuccessPage} />
               <Route path="/failure" component={FailurePage} />
+              <Route path="/payment-pending" component={PendingPage} />
 
             </Switch>
             </Elements>
