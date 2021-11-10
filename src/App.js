@@ -44,7 +44,10 @@ const  App =()=> {
       <Router>
         <div className="App">
           {
-            loading ? <div className='Loading'><LoadingComponent /></div>:
+            loading ?
+                <div className='Loading'>
+                  <LoadingComponent />
+                </div>:
             <Elements stripe={stripePromise}>
             <Switch>
               <Route path="/" exact component={LayoutManager} />

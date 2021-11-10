@@ -7,7 +7,12 @@ import FormStepOne from './formStepOne';
 import FormStepTwo from './formStepTwo';
 import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
-import { API_CREATE_PAYMENT_INTENT, API_VALIDATE_PAYMENT_INTENT } from '../constants/variableNames';
+import {
+    API_CREATE_PAYMENT_INTENT,
+    API_VALIDATE_PAYMENT_INTENT,
+    DEBIT_CARD,
+    MOBILE_MONEY
+} from '../constants/variableNames';
 
 
 
@@ -95,65 +100,90 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
         phone:formValues.phone,
 
         }
+       const billingDetailsMobileMoney = {
+           email:formValues.email,
+           name:formValues.name,
+           receiverPhoneNumber:formValues.receiver,
+           amount: formValues.amount,
+           currency: formValues.currency,
+
+       }
 
     try{
 
 
-        const {data:clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {amount:formValues.amount , currency:formValues.currency, receipt_email:formValues.receiverEmail} )
-        console.log('total ====>', parseInt(formValues.amount) + formValues.fees)
-        const paymentMethodReq = await stripe.createPaymentMethod({
-            type:'card',
-            card:formValues.card,
-            billing_details: billingDetails,
-
-        })
-
-         if (paymentMethodReq.error) {
-           console.error('paymentMethod Error!')
-
-            setError(paymentMethodReq.error.message);
-            setLoading(false);
-            onFailCheckout()
-            return;
-        }
-
-        const {paymentIntent, error} =await stripe.confirmCardPayment(clientSecret,{
-            payment_method:paymentMethodReq.paymentMethod.id,
-
-        })
-        console.log(paymentIntent)
-        setError(false);
-        setDisabled(true)
+        if(formValues.paymentMethod === MOBILE_MONEY ){
 
 
-         if (paymentIntent && paymentIntent.status === "succeeded") {
-           formValues.paymentIntent = paymentIntent.id
-           const paymentIntentObjet ={reference:formValues.transactionReference, receivingAmount:formValues.amount, sendingAmount:parseInt(formValues.amount) + formValues.fees, paymentIntentId:paymentIntent.id, payerId:formValues.payerId, fee: formValues.fees}
+            alert(JSON.stringify(billingDetailsMobileMoney))
 
-           console.log('Succeed ====>', paymentIntentObjet)
-          //  setCardMessage(paymentIntent.id)
-                        await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
-                        .then(response =>{
-                          console.log('Confirmation ===>',response.data)
-                          if(response.data.status === 'success'){
+        }else{
+            const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
+                amount: formValues.amount,
+                currency: formValues.currency,
+                receipt_email: formValues.receiverEmail
+            })
+            console.log('total ====>', parseInt(formValues.amount) + formValues.fees)
+            const paymentMethodReq = await stripe.createPaymentMethod({
+                type: 'card',
+                card: formValues.card,
+                billing_details: billingDetails,
+
+            })
+
+            if (paymentMethodReq.error) {
+                console.error('paymentMethod Error!')
+
+                setError(paymentMethodReq.error.message);
+                setLoading(false);
+                onFailCheckout()
+                return;
+            }
+
+            const {paymentIntent, error} = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: paymentMethodReq.paymentMethod.id,
+
+            })
+            console.log(paymentIntent)
+            setError(false);
+            setDisabled(true)
+
+
+            if (paymentIntent && paymentIntent.status === "succeeded") {
+                formValues.paymentIntent = paymentIntent.id
+                const paymentIntentObjet = {
+                    reference: formValues.transactionReference,
+                    receivingAmount: formValues.amount,
+                    sendingAmount: parseInt(formValues.amount) + formValues.fees,
+                    paymentIntentId: paymentIntent.id,
+                    payerId: formValues.payerId,
+                    fee: formValues.fees
+                }
+
+                console.log('Succeed ====>', paymentIntentObjet)
+                //  setCardMessage(paymentIntent.id)
+                await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
+                    .then(response => {
+                        console.log('Confirmation ===>', response.data)
+                        if (response.data.status === 'success') {
                             console.log('payment process succeeded')
-                          setLoading(false);
-                          setDisabled(true)
-                          setError(false);
-                          onSuccessCheckout()
+                            setLoading(false);
+                            setDisabled(true)
+                            setError(false);
+                            onSuccessCheckout()
 
-                          }else{
+                        } else {
                             onFailCheckout()
-                          }
-                        })
+                        }
+                    })
+            } else if (error) {
+                setError(error.message);
+                setLoading(false);
+                onFailCheckout()
+                return;
+            }
+            handleReset()
         }
-           else if (error) {
-            setError(error.message);
-            setLoading(false);
-            onFailCheckout()
-            return;
-        }
-        handleReset()
 
     }catch(error){
         console.error('error from the catch', error.message)

@@ -1,22 +1,24 @@
 const initialState = {
     formValues: {
+        receiver:"",
         name: "",
         email: "",
         phone: "",
-        currency: "",
+        currency: "USD",
         amount: "1",
         received:"",
         paymentMethod:"",
-        receiverName:"",
+        receiverName:"James Heller",
         payerId:"",
         receiverEmail:"",
         transactionReference:"",
         paymentIntent:"",
-        rate:"",
+        rate:"1",
         ip:'',
         card:null,
         receiverLogo:"",
         fees:4,
+
     },
 };
 
@@ -32,7 +34,7 @@ const reducer = (state, action) => {
                 formValues: initialState.formValues
             };
         default:
-    };
+    }
     return state;
 };
 

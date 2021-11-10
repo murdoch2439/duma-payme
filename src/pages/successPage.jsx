@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:10
     },
     boxTitle:{
-      backgroundColor:'#F6B402',
+      backgroundColor:'green',
       borderTopLeftRadius:10,
       borderTopRightRadius:10
     },

@@ -6,7 +6,8 @@ import { useStateValue } from '../context';
 import { getUrlParams,
 
 } from '../utils/helperFunctions';
-import { ADMIN_ID_STRING, API_PAYMENT_INIT, PAYER_ID_STRING } from '../constants/variableNames';
+import {ADMIN_ID_STRING, API_PAYMENT_INIT, DEBIT_CARD, MOBILE_MONEY, PAYER_ID_STRING} from '../constants/variableNames';
+import localLogo from '../assets/test4.svg'
 
 
 const useStyles = makeStyles({
@@ -32,8 +33,12 @@ const useStyles = makeStyles({
 
 const paymentMethod =[
     {
-        value:'debit card',
-        label:'Debit card'
+        value:DEBIT_CARD,
+        label:'Debit card',
+    },
+    {
+        value:MOBILE_MONEY,
+        label:'Mobile Money',
     },
 ]
 
@@ -41,7 +46,7 @@ const paymentMethod =[
 const FormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
-    const [currency, setCurrency] = useState('')
+    const [currency, setCurrency] = useState('USD')
 
     const [paymentMeth, setPaymentMeth] = useState('')
 
@@ -83,6 +88,12 @@ const getIpAdress = () =>{
 
     }catch(error){
         console.error('Error on payment init : ',error)
+        setCurrency('USD')
+        formValues.currency = 'USD'
+        formValues.rate = '1'
+        formValues.transactionReference = 'hdiiei8783'
+        formValues.receiverLogo = localLogo
+        formValues.receiverName = 'Pierre Gomez'
 
         }
 }
@@ -120,6 +131,7 @@ const getIpAdress = () =>{
                 label="Email adress"
                 name="email"
                 variant="outlined"
+                type="email"
                 required
                 fullWidth
                 value={formValues.email}
@@ -137,6 +149,7 @@ const getIpAdress = () =>{
                 label="Phone Number"
                 name="phone"
                 variant="outlined"
+                type="tel"
                 required
                 fullWidth
                 value={formValues.phone}
@@ -190,7 +203,7 @@ const getIpAdress = () =>{
                 variant="outlined"
                 select
                 label="Payment method"
-                value={formValues.paymentMethod === '' ?paymentMeth: formValues.paymentMethod}
+                value={formValues.paymentMethod === '' ? paymentMeth : formValues.paymentMethod}
                 onChange={(e) => {
                             setPaymentMeth(e.target.value)
                             formValues.paymentMethod = e.target.value

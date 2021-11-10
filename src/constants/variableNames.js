@@ -3,3 +3,5 @@ export const PAYER_ID_STRING = "payerId"
 export const API_PAYMENT_INIT =  '/api/payment-init'
 export const API_VALIDATE_PAYMENT_INTENT = '/api/validate'
 export const API_CREATE_PAYMENT_INTENT = "/api/create-payment-intent"
+export const DEBIT_CARD = "debit card"
+export const MOBILE_MONEY = "mobile money"
