@@ -110,8 +110,6 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
     try{
 
-
-
         if(formValues.paymentMethod === MOBILE_MONEY ){
 
             // console.log('loading',loading)
