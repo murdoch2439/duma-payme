@@ -53,7 +53,7 @@ const  FormStepTwo =()=> {
 
 
 
-      //
+
       // const stripe = useStripe();
       // const elements = useElements();
 
@@ -135,7 +135,7 @@ const  FormStepTwo =()=> {
         <Grid item  xs={12} sm={12} >
             {
                 formValues.paymentMethod === DEBIT_CARD ?
-                   null:
+                    null:
                     <Grid item container spacing={5} style={{marginTop:5, display:'flex'}}>
                         {/*<Grid item xs={12} sm={4} md={6} >*/}
                         {/*    <TextField*/}

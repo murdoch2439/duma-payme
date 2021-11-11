@@ -8,6 +8,9 @@ import FormManager from './formStepsManager'
 import { useStateValue } from "../context";
 import cover from '../assets/Trip-assurances (4).png'
 import logDuma from '../assets/duma1.png'
+import SuccessPage from "./successPage";
+import FailurePage from "./failurePage";
+import PendingPage from "./pendingPage";
 
 const useStyles = makeStyles(() => ({
 
@@ -48,11 +51,16 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LayoutManager = () => {
+    const [{ formValues, modalStates  }, dispatch] = useStateValue();
     const classes = useStyles();
+    // const [showSuccessModal, setShowSuccessModal] = useState(modalStates.showSuccessModal)
+    // const [showFailModal, setShowFailModal] = useState(modalStates.showFailModal)
+    // const [showPendingModal, setShowPendingModal] = useState(modalStates.showPendingModal)
     const history = useHistory()
-    const [{ formValues }, dispatch] = useStateValue();
+
     const [logo, setLogo] = useState('')
     useEffect(()=>{
+        // console.log('shoeeee', showPendingModal)
          if(formValues.receiverLogo === ''){
 
            console.log('formValues.receiverLogo is empty...')
@@ -80,6 +88,7 @@ const LayoutManager = () => {
 
     return (
       <>
+          { modalStates.showsuccessmodal ? <SuccessPage />:  modalStates.showfailmodal ? <FailurePage />:  modalStates.showpendingmodal ? <PendingPage />:
           <Container maxWidth="md" >
                 <Paper elevation={3}  className={classes.container} >
                       <Box className={classes.imagesBoxWrapper} display={{ xs: 'none',sm:'inline', md:'block' }} m={1} >
@@ -107,6 +116,7 @@ const LayoutManager = () => {
                       <FormManager onSuccessfulCheckout ={()=> history.replace('/success')} onFailedCheckout ={()=>history.replace('/failure')} onPendingCheckout={()=>history.replace('/payment-pending')} />
                 </Paper>
           </Container>
+          }
 
       </>
 

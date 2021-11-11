@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Paper, Grid,
 } from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
@@ -67,7 +67,7 @@ const FailurePage =({paymentID})=>{
 
             <Grid container  justifyContent='center' className={classes.boxTitle}>
 
-          <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Failure</p>
+          <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Information</p>
             </Grid>
 
             <div style={{height:40}} />
@@ -78,7 +78,8 @@ const FailurePage =({paymentID})=>{
 
             </Grid>
 
-            <p style={{textAlign:'center', fontSize:25}}>Your payment to: <br /> <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span> <br /> did not successfully pass, for the following reason... :(</p>
+            <p style={{textAlign:'center', fontSize:25}}>Your payment to: <br /> <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span> <br /> has failed, please check informations and retry.
+            </p>
 
             <Grid container item justify='center' style={{marginTop:30}}>
 

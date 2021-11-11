@@ -20,6 +20,11 @@ const initialState = {
         fees:4,
 
     },
+    modalStates:{
+        showsuccessmodal:false,
+        showfailmodal:false,
+        showpendingmodal:false,
+    }
 };
 
 const reducer = (state, action) => {
@@ -33,6 +38,9 @@ const reducer = (state, action) => {
                 ...state,
                 formValues: initialState.formValues
             };
+        case 'changeModalState':
+            state.modalStates[action.key.toLowerCase()] = action.value
+            return {...state}
         default:
     }
     return state;

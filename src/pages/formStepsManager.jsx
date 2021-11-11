@@ -53,7 +53,7 @@ const GetStepContent = ({step}) => {
 const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const [{ formValues }, dispatch] = useStateValue();
+  const [{ formValues,  }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
@@ -99,14 +99,9 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
         phone:formValues.phone,
 
         }
-       // const billingDetailsMobileMoney = {
-       //     email:formValues.email,
-       //     name:formValues.name,
-       //     receiverPhoneNumber:formValues.receiver,
-       //     amount: formValues.amount,
-       //     currency: formValues.currency,
-       //
-       // }
+
+
+
 
     try{
 
@@ -117,7 +112,13 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
             setTimeout(()=>{
                 // setLoading(true);
-                onPendingCheckout()
+                dispatch({
+                    type: 'changeModalState',
+                    key: "showpendingmodal",
+                    value: true
+                })
+
+                // onPendingCheckout()
                 setLoading(false);
             }, 3000)
 
@@ -179,7 +180,12 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
                             setLoading(false);
                             setDisabled(true)
                             setError(false);
-                            onSuccessCheckout()
+                            dispatch({
+                                type: 'changeModalState',
+                                key: "showsuccessmodal",
+                                value: true
+                            })
+                            // onSuccessCheckout()
 
                         } else {
                             onFailCheckout()
@@ -203,7 +209,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
     }
 
-            dispatch({ type: 'emptyFormValue'});
+            // dispatch({ type: 'emptyFormValue'});
 
         // setLoading(false);
         // onSuccessfulCheckout()

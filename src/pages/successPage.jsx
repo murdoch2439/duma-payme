@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Container, Paper, Grid,
+import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
 
@@ -46,6 +46,24 @@ const useStyles = makeStyles(() => ({
 const SuccessPage =({paymentID})=>{
   const [{ formValues }, dispatch] = useStateValue();
 
+  const onClick =() =>{
+      dispatch({
+          type: 'emptyFormValue',
+
+      })
+      dispatch({
+          type: 'changeModalState',
+          key: "showsuccessmodal",
+          value: false
+      })
+      dispatch({
+          type: 'changeModalState',
+          key: "showpendingmodal",
+          value: false
+      })
+
+  }
+
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
   useEffect(()=>{
@@ -78,8 +96,11 @@ const SuccessPage =({paymentID})=>{
             <p style={{textAlign:'center', fontSize:25}}>Your payment to: <br /> <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span> <br /> passed successfully, thank you for reaching out! You can order another payment link and pay out :)</p>
 
             <Grid container item justify='center' style={{marginTop:30}}>
+                <Button onClick={onClick} style={{backgroundColor:  'green', color:'white', height:50, width:220, }}>
+                    FINISH
+                </Button>
 
-        </Grid>
+            </Grid>
 
           </Paper>
 

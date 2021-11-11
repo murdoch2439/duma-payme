@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
-import CheckIcon from '@material-ui/icons/Check';
+import UpdateIcon from '@material-ui/icons/Update';
 import {  useHistory
 } from "react-router-dom";
 
@@ -9,21 +9,22 @@ import { makeStyles, } from '@material-ui/core/styles';
 
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
-import {height} from "@material-ui/system";
+
 
 
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
+        // backgroundColor:'red',
         width:450,
-        height:690,
+        height:560,
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
 
     },
     paper: {
-        height:500,
+        height:530,
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
@@ -31,14 +32,14 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:10
     },
     boxTitle:{
-        backgroundColor:'grey',
+        backgroundColor:'#FBB900',
         borderTopLeftRadius:10,
         borderTopRightRadius:10
     },
     boxIcon:{
         height:100,
         width:100,
-        backgroundColor:'grey',
+        backgroundColor:'#FBB900',
         margin:'auto',
         borderRadius:50,
     }
@@ -63,7 +64,17 @@ const PendingPage =({paymentID,})=>{
     const onClick = () =>{
         setLoading(true)
         setTimeout(()=>{
-            history.replace('/success')
+
+            dispatch({
+                type: 'changeModalState',
+                key: "showsuccessmodal",
+                value: true
+            })
+            dispatch({
+                type: 'changeModalState',
+                key: "showpendingmodal",
+                value: false
+            })
             setLoading(false)
         },3000)
 
@@ -84,14 +95,14 @@ const PendingPage =({paymentID,})=>{
 
 
                     <Grid  item className={classes.boxIcon}>
-                        <CheckIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                        <UpdateIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
 
                     </Grid>
 
                     <p style={{textAlign:'center', fontSize:25}}>Your payment to: <br /> <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span> <br /> is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)</p>
 
                     <Grid container item justify='center' style={{marginTop:30, paddingBottom:50}}>
-                        <Button onClick={onClick} style={{backgroundColor: loading ? 'grey': 'green', color:'white', height:40}} disabled={loading}  >
+                        <Button onClick={onClick} style={{backgroundColor: loading ? '#f5f5f5': '#FBB900', color:loading ? '#FBB900':'white', height:50, width:220, }} disabled={loading}  >
                             {loading?'REFRESHING STATUS...': 'CLICK TO REFRESH'}
                         </Button>
 
