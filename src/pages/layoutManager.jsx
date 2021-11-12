@@ -11,6 +11,7 @@ import logDuma from '../assets/duma1.png'
 import SuccessPage from "./successPage";
 import FailurePage from "./failurePage";
 import PendingPage from "./pendingPage";
+import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
 
@@ -70,7 +71,25 @@ const LayoutManager = () => {
        }, [formValues.receiverLogo])
 
 
-
+    // const onSuccessfulCheckout =() =>{
+    //
+    // }
+    // const onFailedCheckout = () =>{
+    //     dispatch({
+    //         type: CHANGE_MODAL_STATES,
+    //         key: SHOW_FAIL_MODAL,
+    //         value: true
+    //     })
+    //
+    // }
+    // const onPendingCheckout =()=>{
+    //     dispatch({
+    //         type: CHANGE_MODAL_STATES,
+    //         key: SHOW_PENDING_MODAL,
+    //         value: true
+    //     })
+    //
+    // }
 
 
           const cardsLogo = [
@@ -88,34 +107,51 @@ const LayoutManager = () => {
 
     return (
       <>
-          { modalStates.showsuccessmodal ? <SuccessPage />:  modalStates.showfailmodal ? <FailurePage />:  modalStates.showpendingmodal ? <PendingPage />:
-          <Container maxWidth="md" >
-                <Paper elevation={3}  className={classes.container} >
-                      <Box className={classes.imagesBoxWrapper} display={{ xs: 'none',sm:'inline', md:'block' }} m={1} >
-                        <div className={classes.imagesBox}>
-                              <img src={logDuma} alt='logo' className={classes.logoDuma} />
-                              <div style={{height:300, backgroundColor:'white'}}>
+          {
+              modalStates.showsuccessmodal ? <SuccessPage />:
+              modalStates.showfailmodal ? <FailurePage />:
+              modalStates.showpendingmodal ? <PendingPage />:
+              <Container maxWidth="md" >
+                    <Paper elevation={3}  className={classes.container} >
+                          <Box
+                              className={classes.imagesBoxWrapper}
+                              display={{ xs: 'none',sm:'inline', md:'block' }}
+                              m={1}
+                          >
+                            <div className={classes.imagesBox}>
+                                  <img src={logDuma} alt='logo' className={classes.logoDuma} />
+                                  <div style={{height:300, backgroundColor:'white'}}>
 
-                                  {/*CLIENT LOGO GOES HERE */}
-                                  {/*{*/}
-                                  {/*formValues.receiverLogo === '' ? 'Loading...':*/}
-                                  {/*<img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
-                                  {/* }*/}
-                                  <img src={cover} alt='logo' className={classes.clientLogo} />
-                              </div>
+                                      {/*CLIENT LOGO GOES HERE */}
+                                      {/*{*/}
+                                      {/*formValues.receiverLogo === '' ? 'Loading...':*/}
+                                      {/*<img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
+                                      {/* }*/}
+                                      <img src={cover} alt='logo' className={classes.clientLogo} />
+                                  </div>
 
 
+                                  <Grid
+                                      item
+                                      xs={12}
+                                      sm={12}
+                                      md={12}
+                                      style={{ marginTop:50, textAlign:'center',}}
+                                  >
+                                    {
+                                        cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
+                                    }
+                                  </Grid>
+                            </div>
+                          </Box>
 
-
-                              <Grid item xs={12} sm={12} md={12} style={{ marginTop:50, textAlign:'center',}} >
-                                {cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)}
-                              </Grid>
-                        </div>
-                      </Box>
-
-                      <FormManager onSuccessfulCheckout ={()=> history.replace('/success')} onFailedCheckout ={()=>history.replace('/failure')} onPendingCheckout={()=>history.replace('/payment-pending')} />
-                </Paper>
-          </Container>
+                          <FormManager
+                              onSuccessfulCheckout ={()=> history.replace('/success')}
+                              onFailedCheckout ={()=>history.replace('/failure')}
+                              onPendingCheckout={()=>history.replace('/payment-pending')}
+                          />
+                    </Paper>
+              </Container>
           }
 
       </>

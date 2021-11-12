@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Paper, Grid,
+import {
+    Container, Paper, Grid, Button,
 } from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles, } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
+import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
 
 
 
@@ -39,6 +41,9 @@ const useStyles = makeStyles(() => ({
       backgroundColor:'#d10c02',
       margin:'auto',
       borderRadius:50,
+    },
+    icon:{
+
     }
 }));
 
@@ -58,37 +63,50 @@ const FailurePage =({paymentID})=>{
     setChecked(true);
   };
 
+    const onClick =() =>{
+        // dispatch({
+        //     type: 'emptyFormValue',
+        //
+        // })
+
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_FAIL_MODAL,
+            value: false
+        })
+
+    }
+
 
   return(
      <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
         <Container className={classes.boxWrapper}>
           <Paper className={classes.paper}>
-
-
             <Grid container  justifyContent='center' className={classes.boxTitle}>
-
-          <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Information</p>
+                <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Information</p>
             </Grid>
-
-            <div style={{height:40}} />
-
-
-            <Grid  item className={classes.boxIcon}>
-              <ClearIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
-
-            </Grid>
-
-            <p style={{textAlign:'center', fontSize:25}}>Your payment to: <br /> <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span> <br /> has failed, please check informations and retry.
-            </p>
+                <div style={{height:40}} />
+                <Grid  item className={classes.boxIcon}>
+                  <ClearIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                </Grid>
+                <p style={{textAlign:'center', fontSize:25}}>
+                    Your payment to: <br />
+                    <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
+                    <br />
+                    has failed, please check informations and retry.
+                </p>
 
             <Grid container item justify='center' style={{marginTop:30}}>
-
-        </Grid>
-
+                <Button
+                    onClick={onClick}
+                    style={{backgroundColor:  'red', color:'white', height:50, width:220, }}
+                >
+                    RETRY
+                </Button>
+            </Grid>
           </Paper>
-
         </Container>
-    </Zoom>
+     </Zoom>
   )
 }
 

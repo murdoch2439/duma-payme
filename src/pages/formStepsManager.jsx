@@ -10,7 +10,7 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
-    MOBILE_MONEY, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL
+    MOBILE_MONEY, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL
 } from '../constants/variableNames';
 
 
@@ -140,6 +140,11 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
                 setError(paymentMethodReq.error.message);
                 setLoading(false);
+                // dispatch({
+                //     type: CHANGE_MODAL_STATES,
+                //     key: SHOW_FAIL_MODAL,
+                //     value: true
+                // })
                 onFailCheckout()
                 return;
             }

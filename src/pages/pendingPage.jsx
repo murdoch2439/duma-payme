@@ -85,32 +85,36 @@ const PendingPage =({paymentID,})=>{
         <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
-
-
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
-
                         <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Information</p>
                     </Grid>
-
                     <div style={{height:40}} />
-
-
                     <Grid  item className={classes.boxIcon}>
                         <UpdateIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
-
                     </Grid>
 
-                    <p style={{textAlign:'center', fontSize:25}}>Your payment to: <br /> <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span> <br /> is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)</p>
+                    <p style={{textAlign:'center', fontSize:25}}>
+                        Your payment to: <br />
+                        <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
+                        <br />
+                        is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)
+                    </p>
 
                     <Grid container item justify='center' style={{marginTop:30, paddingBottom:50}}>
-                        <Button onClick={onClick} style={{backgroundColor: loading ? '#f5f5f5': '#FBB900', color:loading ? '#FBB900':'white', height:50, width:220, }} disabled={loading}  >
+                        <Button
+                            onClick={onClick}
+                            style={{
+                                backgroundColor: loading ? '#f5f5f5': '#FBB900',
+                                color:loading ? '#FBB900':'white',
+                                height:50,
+                                width:220,
+                            }}
+                            disabled={loading}
+                        >
                             {loading?'REFRESHING STATUS...': 'CLICK TO REFRESH'}
                         </Button>
-
                     </Grid>
-
                 </Paper>
-
             </Container>
         </Zoom>
     )
