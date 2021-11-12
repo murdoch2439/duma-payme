@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-// import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -54,8 +54,8 @@ const  FormStepTwo =()=> {
 
 
 
-      // const stripe = useStripe();
-      // const elements = useElements();
+      const stripe = useStripe();
+      const elements = useElements();
 
 
     const handleChange = async(event) =>{
@@ -65,11 +65,11 @@ const  FormStepTwo =()=> {
     setError(event.error ? event.error.message : "");
 
   }
-  //     formValues.card = elements.getElement(CardElement)
-  // if (!stripe || !elements) {
-  //     // setCardMessage('Stripe has not yet loaded')
-  //     return ;
-  //   }
+      formValues.card = elements.getElement(CardElement)
+  if (!stripe || !elements) {
+      // setCardMessage('Stripe has not yet loaded')
+      return ;
+    }
     const fees = parseInt(formValues.fees)
 
     const total = parseInt(formValues.amount) + fees
@@ -135,7 +135,7 @@ const  FormStepTwo =()=> {
         <Grid item  xs={12} sm={12} >
             {
                 formValues.paymentMethod === DEBIT_CARD ?
-                    null:
+                    <CardElement onChange={handleChange}  options={CARD_ELEMENT_OPTIONS}  />:
                     <Grid item container spacing={5} style={{marginTop:5, display:'flex'}}>
                         {/*<Grid item xs={12} sm={4} md={6} >*/}
                         {/*    <TextField*/}
