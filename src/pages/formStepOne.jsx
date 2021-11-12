@@ -6,7 +6,14 @@ import { useStateValue } from '../context';
 import { getUrlParams,
 
 } from '../utils/helperFunctions';
-import {ADMIN_ID_STRING, API_PAYMENT_INIT, DEBIT_CARD, MOBILE_MONEY, PAYER_ID_STRING} from '../constants/variableNames';
+import {
+    ADMIN_ID_STRING,
+    API_PAYMENT_INIT,
+    DEBIT_CARD,
+    EDIT_FORM_VALUES,
+    MOBILE_MONEY,
+    PAYER_ID_STRING
+} from '../constants/variableNames';
 import localLogo from '../assets/test4.svg'
 
 
@@ -118,7 +125,7 @@ const getIpAdress = () =>{
                 value={formValues.name}
                 onChange={e =>
                     dispatch({
-                        type: 'editFormValue',
+                        type: EDIT_FORM_VALUES,
                         key: "name",
                         value: e.target.value
                     })
@@ -137,7 +144,7 @@ const getIpAdress = () =>{
                 value={formValues.email}
                 onChange={e =>
                     dispatch({
-                        type: 'editFormValue',
+                        type: EDIT_FORM_VALUES,
                         key: "email",
                         value: e.target.value
                     })
@@ -155,7 +162,7 @@ const getIpAdress = () =>{
                 value={formValues.phone}
                 onChange={e =>
                     dispatch({
-                        type: 'editFormValue',
+                        type: EDIT_FORM_VALUES,
                         key: "phone",
                         value: e.target.value
                     })
@@ -178,7 +185,7 @@ const getIpAdress = () =>{
           value={currency}
           onChange={(e) => {
                     dispatch({
-                        type: "editFormValue",
+                        type: EDIT_FORM_VALUES,
                         key: "currency",
                         value: e.target.value.currency
                     })
@@ -231,7 +238,7 @@ const getIpAdress = () =>{
                 onChange={e =>
 
                     dispatch({
-                        type: "editFormValue",
+                        type: EDIT_FORM_VALUES,
                         key: "amount",
                         value: e.target.value.replace(/[^0-9,.]/g, ''),
 
@@ -251,7 +258,7 @@ const getIpAdress = () =>{
                 value={receivingAmount}
                 onChange={e =>
                     dispatch({
-                        type: "editFormValue",
+                        type: EDIT_FORM_VALUES,
                         key: "received",
                         value: e.target.value.replace(/[^0-9,.]/g, '')
                     })

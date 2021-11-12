@@ -9,6 +9,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
+import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
 
@@ -66,13 +67,13 @@ const PendingPage =({paymentID,})=>{
         setTimeout(()=>{
 
             dispatch({
-                type: 'changeModalState',
-                key: "showsuccessmodal",
+                type: CHANGE_MODAL_STATES,
+                key: SHOW_SUCCESS_MODAL,
                 value: true
             })
             dispatch({
-                type: 'changeModalState',
-                key: "showpendingmodal",
+                type: CHANGE_MODAL_STATES,
+                key: SHOW_PENDING_MODAL,
                 value: false
             })
             setLoading(false)

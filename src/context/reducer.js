@@ -1,3 +1,5 @@
+import {EDIT_FORM_VALUES, CHANGE_MODAL_STATES, FORM_EMPTY_VALUES} from "../constants/variableNames";
+
 const initialState = {
     formValues: {
         receiver:"",
@@ -29,16 +31,16 @@ const initialState = {
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'editFormValue':
+        case EDIT_FORM_VALUES:
             state.formValues[action.key.toLowerCase()] = action.value;
             return { ...state };
 
-        case 'emptyFormValue':
+        case FORM_EMPTY_VALUES:
             return {
                 ...state,
                 formValues: initialState.formValues
             };
-        case 'changeModalState':
+        case CHANGE_MODAL_STATES:
             state.modalStates[action.key.toLowerCase()] = action.value
             return {...state}
         default:

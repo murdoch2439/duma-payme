@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
+import {  useHistory
+} from "react-router-dom";
 
 import { makeStyles, } from '@material-ui/core/styles';
 
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
+import {CHANGE_MODAL_STATES} from "../constants/variableNames";
 
 
 
@@ -45,22 +48,24 @@ const useStyles = makeStyles(() => ({
 
 const SuccessPage =({paymentID})=>{
   const [{ formValues }, dispatch] = useStateValue();
+    const history = useHistory()
 
   const onClick =() =>{
+      // dispatch({
+      //     type: 'emptyFormValue',
+      //
+      // })
       dispatch({
-          type: 'emptyFormValue',
-
-      })
-      dispatch({
-          type: 'changeModalState',
+          type: CHANGE_MODAL_STATES,
           key: "showsuccessmodal",
           value: false
       })
       dispatch({
-          type: 'changeModalState',
+          type: CHANGE_MODAL_STATES,
           key: "showpendingmodal",
           value: false
       })
+      // history.Redirect('/')
 
   }
 

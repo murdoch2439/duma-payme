@@ -10,7 +10,7 @@ import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
 import { currencyManager, nameFormating } from '../utils/helperFunctions';
 import {TextField} from "@material-ui/core";
-import {DEBIT_CARD} from "../constants/variableNames";
+import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 
 
 const CARD_ELEMENT_OPTIONS = {
@@ -166,7 +166,7 @@ const  FormStepTwo =()=> {
                                 value={formValues.receiver}
                                 onChange={e =>
                                     dispatch({
-                                        type: 'editFormValue',
+                                        type: EDIT_FORM_VALUES,
                                         key: "receiver",
                                         value: e.target.value
                                     })

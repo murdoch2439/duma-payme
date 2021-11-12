@@ -9,8 +9,8 @@ import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT,
-    MOBILE_MONEY
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
+    MOBILE_MONEY, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL
 } from '../constants/variableNames';
 
 
@@ -107,22 +107,16 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
         if(formValues.paymentMethod === MOBILE_MONEY ){
 
-            // console.log('loading',loading)
-            // setLoading(true);
-
             setTimeout(()=>{
-                // setLoading(true);
+
                 dispatch({
-                    type: 'changeModalState',
-                    key: "showpendingmodal",
+                    type: CHANGE_MODAL_STATES,
+                    key: SHOW_PENDING_MODAL,
                     value: true
                 })
 
-                // onPendingCheckout()
                 setLoading(false);
             }, 3000)
-
-
 
             // alert(JSON.stringify(billingDetailsMobileMoney))
 
@@ -234,7 +228,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
                     type="submit"
                     disabled={loading||disabled}
 
-                    style={{backgroundColor:backgroundChanger(),  width:'100%', height:50, marginTop:5, color:loading? 'black':'white'}}
+                    style={{backgroundColor:backgroundChanger(),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                   >
                     { loading ? 'Processing...' :
                       activeStep === steps.length-1  ?  'Pay now' : 'Next'
