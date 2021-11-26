@@ -51,7 +51,7 @@ const  App =()=> {
                 </div>:
             <Elements stripe={stripePromise}>
             <Switch>
-              <Route path="/" exact component={LayoutManager} />
+              <Route path="/" component={LayoutManager} />
 
               <Route path="/success" component={SuccessPage} />
               <Route path="/failure" component={FailurePage} />
