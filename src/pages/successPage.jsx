@@ -44,8 +44,8 @@ const useStyles = makeStyles(() => ({
 
 
 
-const SuccessPage =({paymentID})=>{
-  const [{ formValues }, dispatch] = useStateValue();
+const SuccessPage =()=>{
+  const [{ formValues }] = useStateValue();
 
 
   const onClick =() =>{

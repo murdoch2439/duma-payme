@@ -11,7 +11,7 @@ import logDuma from '../assets/duma1.png'
 import SuccessPage from "./successPage";
 import FailurePage from "./failurePage";
 import PendingPage from "./pendingPage";
-import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
+// import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
 
@@ -21,7 +21,8 @@ const useStyles = makeStyles(() => ({
         height:'100%',
         borderRadius:10,
         margin:'auto',
-        marginTop:'7%',
+        marginTop:'25%',
+        alignItems:'center',
         display:'flex',
     },
     imagesBoxWrapper:{
@@ -52,7 +53,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LayoutManager = () => {
-    const [{ formValues, modalStates  }, dispatch] = useStateValue();
+    const [{ formValues, modalStates  },] = useStateValue();
     const classes = useStyles();
     // const [showSuccessModal, setShowSuccessModal] = useState(modalStates.showSuccessModal)
     // const [showFailModal, setShowFailModal] = useState(modalStates.showFailModal)
@@ -125,9 +126,9 @@ const LayoutManager = () => {
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
                                       {/*formValues.receiverLogo === '' ? 'Loading...':*/}
-                                      {/*<img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
+                                      <img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />
                                       {/* }*/}
-                                      <img src={cover} alt='logo' className={classes.clientLogo} />
+                                      {/*<img src={cover} alt='logo' className={classes.clientLogo} />*/}
                                   </div>
 
 

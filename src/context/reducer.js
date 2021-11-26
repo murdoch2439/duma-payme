@@ -6,11 +6,11 @@ const initialState = {
         name: "",
         email: "",
         phone: "",
-        currency: "USD",
+        currency: "",
         amount: "1",
         received:"",
         paymentMethod:"",
-        receiverName:"James Heller",
+        receiverName:"",
         payerId:"",
         receiverEmail:"",
         transactionReference:"",
@@ -18,8 +18,9 @@ const initialState = {
         rate:"1",
         ip:'',
         card:null,
-        receiverLogo:"",
+        receiverLogo:"prince.ilunga@businesslighthouse.tech",
         fees:4,
+
 
     },
     modalStates:{

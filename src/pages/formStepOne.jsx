@@ -3,7 +3,8 @@ import {Grid,Typography, TextField, FormControl, MenuItem } from '@material-ui/c
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import { useStateValue } from '../context';
-import { getUrlParams,
+import {
+    getUrlParams, getUrlPath,
 
 } from '../utils/helperFunctions';
 import {
@@ -53,14 +54,27 @@ const paymentMethod =[
 const FormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
-    const [currency, setCurrency] = useState('USD')
+    const [currency, setCurrency] = useState('')
+    // const [errors, setErrors] = useState({})
+    const [errorName, setErrorName] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+    const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    const mailFormatVerifer = (email) =>{
+
+        return emailFormat.test(email)
+
+    }
+
 
     const [paymentMeth, setPaymentMeth] = useState('')
+
 
      const adminId = getUrlParams()[ADMIN_ID_STRING]
      const  payerId = getUrlParams()[PAYER_ID_STRING]
      formValues.receiverEmail = adminId
      formValues.payerId = payerId
+    getUrlPath()
 
      const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate))
 
@@ -74,7 +88,7 @@ const FormStepOne =()=> {
       }
 
 
-    },[formValues.currency, formValues.paymentMethod,])
+    },[formValues.currency, formValues.paymentMethod])
 
 const getIpAdress = () =>{
 
@@ -95,12 +109,12 @@ const getIpAdress = () =>{
 
     }catch(error){
         console.error('Error on payment init : ',error)
-        setCurrency('USD')
-        formValues.currency = 'USD'
-        formValues.rate = '1'
-        formValues.transactionReference = 'hdiiei8783'
-        formValues.receiverLogo = localLogo
-        formValues.receiverName = 'Pierre Gomez'
+        // setCurrency('USD')
+        // formValues.currency = 'USD'
+        // formValues.rate = '1'
+        // formValues.transactionReference = 'hdiiei8783'
+        // formValues.receiverLogo = localLogo
+        // formValues.receiverName = 'Pierre Gomez'
 
         }
 }
@@ -118,17 +132,31 @@ const getIpAdress = () =>{
             <TextField
             inputProps={{className:classes.input}}
                 label="Name on the card"
+
                 name="name"
                 variant="outlined"
                 required
                 fullWidth
+                // helperText={errorName? 'this field cannot be empty':null}
                 value={formValues.name}
-                onChange={e =>
+                onChange={e =>{
                     dispatch({
                         type: EDIT_FORM_VALUES,
                         key: "name",
                         value: e.target.value
                     })
+                    // if(e.target.value === ''){
+                    //     setErrorName(true)
+                    // }else{
+                    //     setErrorName(false)
+                    // }
+                }
+
+
+
+
+
+
                 }
             />
           </Grid>
@@ -137,17 +165,29 @@ const getIpAdress = () =>{
             <TextField
                 label="Email adress"
                 name="email"
+
                 variant="outlined"
                 type="email"
                 required
                 fullWidth
+                error={errorName}
+                helperText={ errorName ? `${errorMessage}`:null}
                 value={formValues.email}
-                onChange={e =>
+                onChange={e =>{
                     dispatch({
                         type: EDIT_FORM_VALUES,
                         key: "email",
                         value: e.target.value
                     })
+                    if(!emailFormat.test(e.target.value)){
+                        setErrorName(true)
+                        setErrorMessage('mail not valid')
+
+                    }else{
+                        setErrorName(false)
+                    }
+                }
+
                 }
             />
         </Grid>
@@ -160,12 +200,14 @@ const getIpAdress = () =>{
                 required
                 fullWidth
                 value={formValues.phone}
-                onChange={e =>
+                onChange={e =>{
                     dispatch({
                         type: EDIT_FORM_VALUES,
                         key: "phone",
                         value: e.target.value
                     })
+                }
+
                 }
             />
         </Grid>
@@ -214,7 +256,7 @@ const getIpAdress = () =>{
                 onChange={(e) => {
                             setPaymentMeth(e.target.value)
                             formValues.paymentMethod = e.target.value
-                            console.log('payment methode ...',formValues.paymentMethod)
+                            // console.log('payment methode ...',formValues.paymentMethod)
                         }}
         >
           {paymentMethod.map((option) => (
@@ -235,14 +277,16 @@ const getIpAdress = () =>{
                 type="number"
                 fullWidth
                 value={formValues.amount}
-                onChange={e =>
-
+                onChange={e => {
                     dispatch({
                         type: EDIT_FORM_VALUES,
                         key: "amount",
                         value: e.target.value.replace(/[^0-9,.]/g, ''),
 
                     })
+                }
+
+
                 }
             />
         </Grid>
@@ -256,12 +300,14 @@ const getIpAdress = () =>{
                 type="number"
                 fullWidth
                 value={receivingAmount}
-                onChange={e =>
+                onChange={e =>{
                     dispatch({
                         type: EDIT_FORM_VALUES,
                         key: "received",
                         value: e.target.value.replace(/[^0-9,.]/g, '')
                     })
+                }
+
                 }
             />
         </Grid>

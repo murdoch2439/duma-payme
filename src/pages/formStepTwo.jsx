@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const  FormStepTwo =()=> {
   const classes = useStyles();
   const [error, setError] = useState(null);
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
   const [{ formValues }, dispatch] = useStateValue();
 
 
@@ -61,7 +61,7 @@ const  FormStepTwo =()=> {
     const handleChange = async(event) =>{
 
 
-    setDisabled(event.empty);
+    // setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
 
   }

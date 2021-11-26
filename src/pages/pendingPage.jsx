@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 import UpdateIcon from '@material-ui/icons/Update';
-import {  useHistory
-} from "react-router-dom";
+// import {  useHistory
+// } from "react-router-dom";
 
 import { makeStyles, } from '@material-ui/core/styles';
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles(() => ({
 
 const PendingPage =({paymentID,})=>{
     const [{ formValues }, dispatch] = useStateValue();
-    const history = useHistory()
+    // const history = useHistory()
     const [loading, setLoading] = useState(false)
 
     const classes = useStyles()
