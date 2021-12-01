@@ -97,9 +97,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
         email:formValues.email,
         name:formValues.name,
         phone:formValues.phone,
-
         }
-
 
 
 

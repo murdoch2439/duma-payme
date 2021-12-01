@@ -5,12 +5,15 @@ import { Container, Paper, Box, Grid } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
 
 import FormManager from './formStepsManager'
+import FormManager1 from './formStepsManager1'
 import { useStateValue } from "../context";
 import cover from '../assets/Trip-assurances (4).png'
 import logDuma from '../assets/duma1.png'
 import SuccessPage from "./successPage";
 import FailurePage from "./failurePage";
 import PendingPage from "./pendingPage";
+import {getUrlParams} from "../utils/helperFunctions";
+import {ORDER_ID} from "../constants/variableNames";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
@@ -21,7 +24,7 @@ const useStyles = makeStyles(() => ({
         height:'100%',
         borderRadius:10,
         margin:'auto',
-        marginTop:'25%',
+        marginTop:'10%',
         alignItems:'center',
         display:'flex',
     },
@@ -59,6 +62,7 @@ const LayoutManager = () => {
     // const [showFailModal, setShowFailModal] = useState(modalStates.showFailModal)
     // const [showPendingModal, setShowPendingModal] = useState(modalStates.showPendingModal)
     const history = useHistory()
+    const orderId = getUrlParams()[ORDER_ID]
 
     const [logo, setLogo] = useState('')
     useEffect(()=>{
@@ -126,9 +130,9 @@ const LayoutManager = () => {
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
                                       {/*formValues.receiverLogo === '' ? 'Loading...':*/}
-                                      <img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />
+                                      {/*<img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
                                       {/* }*/}
-                                      {/*<img src={cover} alt='logo' className={classes.clientLogo} />*/}
+                                      <img src={cover} alt='logo' className={classes.clientLogo} />
                                   </div>
 
 
@@ -146,11 +150,31 @@ const LayoutManager = () => {
                             </div>
                           </Box>
 
-                          <FormManager
-                              onSuccessfulCheckout ={()=> history.replace('/success')}
-                              onFailedCheckout ={()=>history.replace('/failure')}
-                              onPendingCheckout={()=>history.replace('/payment-pending')}
-                          />
+                          {/*<FormManager*/}
+                          {/*    onSuccessfulCheckout ={()=> history.replace('/success')}*/}
+                          {/*    onFailedCheckout ={()=>history.replace('/failure')}*/}
+                          {/*    onPendingCheckout={()=>history.replace('/payment-pending')}*/}
+                          {/*/> */}
+
+                        {
+                            orderId ?
+                            <FormManager1
+                                onSuccessfulCheckout ={()=> history.replace('/success')}
+                                onFailedCheckout ={()=>history.replace('/failure')}
+                                onPendingCheckout={()=>history.replace('/payment-pending')}
+                            />:
+                            <FormManager
+                            onSuccessfulCheckout ={()=> history.replace('/success')}
+                            onFailedCheckout ={()=>history.replace('/failure')}
+                            onPendingCheckout={()=>history.replace('/payment-pending')}
+                            />
+
+                        }
+                          {/*<FormManager1*/}
+                          {/*    onSuccessfulCheckout ={()=> history.replace('/success')}*/}
+                          {/*    onFailedCheckout ={()=>history.replace('/failure')}*/}
+                          {/*    onPendingCheckout={()=>history.replace('/payment-pending')}*/}
+                          {/*/>*/}
                     </Paper>
               </Container>
           }

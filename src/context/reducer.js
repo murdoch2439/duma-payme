@@ -20,6 +20,10 @@ const initialState = {
         card:null,
         receiverLogo:"prince.ilunga@businesslighthouse.tech",
         fees:4,
+        orderId:"",
+        customerId:"",
+        callbackUrl:"",
+
 
 
     },

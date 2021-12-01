@@ -43,4 +43,5 @@ export const getUrlPath =()=>{
     let path = window.location.pathname.split('/')[1];
     // home = home.substr(0, home.lastIndexOf('/'))
     console.log('path ==>',path)
+    return path
 }

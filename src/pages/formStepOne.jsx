@@ -74,7 +74,17 @@ const FormStepOne =()=> {
      const  payerId = getUrlParams()[PAYER_ID_STRING]
      formValues.receiverEmail = adminId
      formValues.payerId = payerId
-    getUrlPath()
+    const path = getUrlPath()
+
+    const checkUrl = () =>{
+        if(adminId && payerId){
+            console.log('Call the first method')
+        }else if(path){
+            console.log("Call the second method")
+        }
+    }
+
+    checkUrl()
 
      const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate))
 
@@ -104,6 +114,9 @@ const getIpAdress = () =>{
                 formValues.transactionReference = response.data.reference
                 formValues.receiverLogo = response.data.clientLogo
                 formValues.receiverName = response.data.clientName
+                if(response.data.payerId){
+                    formValues.payerId = response.data.payerId
+                }
 
              })
 
