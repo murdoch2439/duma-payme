@@ -111,7 +111,7 @@ const PendingPage =({paymentID,})=>{
                             }}
                             disabled={loading}
                         >
-                            {loading?'REFRESHING STATUS...': 'CLICK TO REFRESH'}
+                            {loading?'REFRESHING STATUS...': 'REFRESH'}
                         </Button>
                     </Grid>
                 </Paper>

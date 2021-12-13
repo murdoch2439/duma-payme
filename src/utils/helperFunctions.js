@@ -1,3 +1,5 @@
+import {Currencies} from "./currencies";
+
 export  const transformToUpCase = (word) =>{
       return word.toUpperCase()
    }
@@ -40,8 +42,14 @@ export const  getUrlParams =()=> {
 }
 
 export const getUrlPath =()=>{
-    let path = window.location.pathname.split('/')[1];
     // home = home.substr(0, home.lastIndexOf('/'))
-    console.log('path ==>',path)
-    return path
+    // console.log('path ==>',path)
+    return window.location.pathname.split('/')[1]
+}
+
+export const findCurrency = (currency) =>{
+    return Currencies.filter(currencyObject => {
+        return currencyObject.code.indexOf(currency.toUpperCase) >= 0
+    })
+
 }

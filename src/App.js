@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.css';
 import { ThemeProvider } from '@material-ui/styles';
-// import theme from './constants/theme'
+import theme from './constants/theme'
 import {StateProvider, useStateValue} from './context'
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
@@ -19,6 +19,7 @@ import SuccessPage1 from './pages/successPage1';
 import FailurePage from './pages/failurePage';
 import PendingPage from "./pages/pendingPage";
 import ContainerComponent from "./pages/Container";
+import PayWithDumaPay from "./pages/payWithDuma";
 
 const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2cp3ZI4cDSTWJ15AHTy1HWREb7HrObRwXcsneRfbLXvo5IQKQWM2000bkx3L5tB")
 
@@ -42,11 +43,11 @@ const  App =()=> {
 
   return (
     <ThemeProvider
-    // theme={theme}
+    theme={theme}
     >
     <StateProvider>
       <Router>
-        <div className="App">
+        {/*<div className="App">*/}
           {
             loading ?
                 <div className='Loading'>
@@ -59,13 +60,14 @@ const  App =()=> {
               <Route path="/success" component={SuccessPage} />
               <Route path="/success1" component={SuccessPage1} />
               <Route path="/failure" component={FailurePage} />
-              <Route path="/payment-pending" component={ContainerComponent} />
+              <Route path="/payment-pending" component={PendingPage} />
+              <Route path="/duma-pay" exact component={PayWithDumaPay} />
 
             </Switch>
             </Elements>
           }
 
-        </div>
+        {/*</div>*/}
         </Router>
 
     </StateProvider>

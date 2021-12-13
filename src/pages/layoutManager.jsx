@@ -13,7 +13,7 @@ import SuccessPage from "./successPage";
 import FailurePage from "./failurePage";
 import PendingPage from "./pendingPage";
 import {getUrlParams} from "../utils/helperFunctions";
-import {ORDER_ID} from "../constants/variableNames";
+import {ADMIN_ID_STRING, PAYER_ID_STRING} from "../constants/variableNames";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
         height:'100%',
         borderRadius:10,
         margin:'auto',
-        marginTop:'10%',
+        // marginTop:'10%',
         alignItems:'center',
         display:'flex',
     },
@@ -62,13 +62,13 @@ const LayoutManager = () => {
     // const [showFailModal, setShowFailModal] = useState(modalStates.showFailModal)
     // const [showPendingModal, setShowPendingModal] = useState(modalStates.showPendingModal)
     const history = useHistory()
-    const orderId = getUrlParams()[ORDER_ID]
+    const adminId = getUrlParams()[ADMIN_ID_STRING]
+    const payerId = getUrlParams()[PAYER_ID_STRING]
 
     const [logo, setLogo] = useState('')
     useEffect(()=>{
         // console.log('shoeeee', showPendingModal)
          if(formValues.receiverLogo === ''){
-
            console.log('formValues.receiverLogo is empty...')
          }else{
            setLogo(formValues.receiverLogo)
@@ -116,6 +116,7 @@ const LayoutManager = () => {
               modalStates.showsuccessmodal ? <SuccessPage />:
               modalStates.showfailmodal ? <FailurePage />:
               modalStates.showpendingmodal ? <PendingPage />:
+                  <Box mt={10} >
               <Container maxWidth="md" >
                     <Paper elevation={3}  className={classes.container} >
                           <Box
@@ -157,7 +158,7 @@ const LayoutManager = () => {
                           {/*/> */}
 
                         {
-                            orderId ?
+                            !adminId  ?
                             <FormManager1
                                 onSuccessfulCheckout ={()=> history.replace('/success')}
                                 onFailedCheckout ={()=>history.replace('/failure')}
@@ -177,6 +178,7 @@ const LayoutManager = () => {
                           {/*/>*/}
                     </Paper>
               </Container>
+                  </Box>
           }
 
       </>

@@ -43,17 +43,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-//http://localhost:3000/?orderId=12d3gt45&amount=500&currency=usd&customerId=h289d2792h&callbackUrl=http://localhost:3000/success
 
 
 
 const  FormStepTwo2 =()=> {
     const classes = useStyles();
     const [error, setError] = useState(null);
-    // const [disabled, setDisabled] = useState(false);
+
     const [{ formValues }, dispatch] = useStateValue();
-
-
 
 
     const stripe = useStripe();
@@ -80,10 +77,7 @@ const  FormStepTwo2 =()=> {
 
         <Grid  spacing={3}>
             <Grid  style={{ width:'100%', display:'flex'}} >
-                {/* <Grid xs={12} sm={12} md={4} >
 
-            <img src={formValues.receiver_logo} alt='logo'  width={'100%'}/>
-        </Grid> */}
                 <Grid item xs={12} sm={12} md={12} style={{padding:'0 5px 0 5px'}}>
                     <Grid item  xs={12} style={{paddingTop:20}} >
                         <Typography style ={{fontSize:16, fontWeight:'bold'}}>Payment details</Typography>
@@ -95,7 +89,7 @@ const  FormStepTwo2 =()=> {
                         </ListItem>
                         <ListItem className={classes.listItem} >
                             <ListItemText primary='Total:' style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{`${formValues.amount}.00 $`}</Typography>
+                            <Typography variant="body1" style={{fontWeight:'500'}}>{`${parseInt(formValues.amount).toFixed(2)} $`}</Typography>
                         </ListItem>
 
                     </List>

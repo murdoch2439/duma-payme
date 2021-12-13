@@ -12,6 +12,8 @@ import {
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
     MOBILE_MONEY, SHOW_PENDING_MODAL,
 } from '../constants/variableNames';
+import logDuma from "../assets/duma1.png";
+import Typography from "@material-ui/core/Typography";
 
 
 
@@ -35,6 +37,10 @@ const useStyles = makeStyles(() => ({
     height:50,
     color:'white'
   },
+    logoDuma: {
+        width:60,
+        // height:200
+    },
 }));
 
 const steps = ['Sender details', 'Review and card details',];
@@ -90,15 +96,12 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
   }
 
    const capture = async () => {
-
         setLoading(true);
-
         const billingDetails = {
         email:formValues.email,
         name:formValues.name,
         phone:formValues.phone,
         }
-
 
 
     try{
@@ -164,10 +167,15 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
                     sendingAmount: parseInt(formValues.amount) + formValues.fees,
                     paymentIntentId: paymentIntent.id,
                     payerId: formValues.payerId,
-                    fee: formValues.fees
+                    fee: formValues.fees,
+                    senderExist: formValues.senderExist,
+                    name: formValues.name,
+                    email:formValues.email,
+                    phone:formValues.phone,
                 }
 
                 console.log('Succeed ====>', paymentIntentObjet)
+                console.log('payerId ==>', formValues.payerId)
                 //  setCardMessage(paymentIntent.id)
                 await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                     .then(response => {
@@ -202,7 +210,7 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
         setError('Something went wrong, check your infos, your network and retry');
         setLoading(false);
         setDisabled(true)
-        console.log('loading in the error',loading)
+        // console.log('loading in the error',loading)
 
     }
 
@@ -214,6 +222,9 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
   return (
     <Box className={classes.layout} display={{ xs:'block' }} sm={12}>
+        {/*<Grid container display={{md:'hidden',lg:'hidden', xl:'hidden'}}>*/}
+        {/*    <img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
+        {/*</Grid>*/}
 
           <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />

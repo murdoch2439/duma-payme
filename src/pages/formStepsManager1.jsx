@@ -128,7 +128,7 @@ const  FormManager1 =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout
                     currency: formValues.currency,
                     receipt_email: formValues.receiverEmail
                 })
-                console.log('total ====>', parseInt(formValues.amount) + formValues.fees)
+                console.log('total another ====>', parseInt(formValues.amount) + formValues.fees)
                 const paymentMethodReq = await stripe.createPaymentMethod({
                     type: 'card',
                     card: formValues.card,
@@ -162,15 +162,23 @@ const  FormManager1 =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout
                 if (paymentIntent && paymentIntent.status === "succeeded") {
                     formValues.paymentIntent = paymentIntent.id
                     const paymentIntentObjet = {
-                        orderId: formValues.orderId,
-                        amount: formValues.amount,
-                        customerId: formValues.customerId,
-                        currency: formValues.currency
+
+                        reference: formValues.transactionReference,
+                        receivingAmount: formValues.amount,
+                        sendingAmount: parseInt(formValues.amount) + formValues.fees,
+                        paymentIntentId: paymentIntent.id,
+                        payerId: formValues.payerId,
+                        fee: formValues.fees,
+                        senderExist: formValues.senderExist,
+                        name: formValues.name,
+                        email:formValues.email,
+                        phone:formValues.phone,
                     }
 
                     console.log('Succeed ====>', paymentIntentObjet)
+                    console.log('payerId two ==>', formValues.payerId)
                     // history.replace(formValues.callbackUrl)
-                    window.location.href =  formValues.callbackUrl
+                    // window.location.href =  formValues.callbackUrl
 
                     // dispatch({
                     //     type: CHANGE_MODAL_STATES,
@@ -178,25 +186,28 @@ const  FormManager1 =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout
                     //     value: true
                     // })
                     //  setCardMessage(paymentIntent.id)
-                    // await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
-                    //     .then(response => {
-                    //         console.log('Confirmation ===>', response.data)
-                    //         if (response.data.status === 'success') {
-                    //             console.log('payment process succeeded')
-                    //             setLoading(false);
-                    //             setDisabled(true)
-                    //             setError(false);
-                    //             dispatch({
-                    //                 type: 'changeModalState',
-                    //                 key: "showsuccessmodal",
-                    //                 value: true
-                    //             })
-                    //             // onSuccessCheckout()
-                    //
-                    //         } else {
-                    //             onFailCheckout()
-                    //         }
-                    //     })
+                    await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
+                        .then(response => {
+                            console.log('Confirmation ===>', response.data)
+                            if (response.data.status === 'success') {
+                                console.log('payment process succeeded')
+                                setLoading(false);
+                                setDisabled(true)
+                                setError(false);
+                                dispatch({
+                                    type: 'changeModalState',
+                                    key: "showsuccessmodal",
+                                    value: true
+                                })
+                                setTimeout(()=>{
+                                    window.location.href = `${formValues.callbackUrl}/?success=true`
+                                }, 3000)
+                                // onSuccessCheckout()
+
+                            } else {
+                                onFailCheckout()
+                            }
+                        })
                 } else if (error) {
                     setError(error.message);
                     console.log('error message ====>',error.message)

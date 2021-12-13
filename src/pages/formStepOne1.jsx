@@ -6,15 +6,15 @@ import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import {
-    getUrlParams, getUrlPath, nameFormating,
+    getUrlParams, nameFormating,
 
 } from '../utils/helperFunctions';
 import {
     ADMIN_ID_STRING, AMOUNT,
-    API_PAYMENT_INIT, CALLBACK_URL, CURRENCY, CUSTOMER_ID,
+    API_PAYMENT_INIT, API_RETRIEVE_PURCHASED_OBJECT, CALLBACK_URL, CURRENCY,
     DEBIT_CARD,
     EDIT_FORM_VALUES,
-    MOBILE_MONEY, ORDER_ID,
+    MOBILE_MONEY,
     PAYER_ID_STRING
 } from '../constants/variableNames';
 import localLogo from '../assets/test4.svg'
@@ -24,7 +24,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 const useStyles = makeStyles({
     input:{
         borderWidth:0.3,
-        borderColor:'yellow',
     },
     form: {
         display: "flex",
@@ -64,17 +63,17 @@ const paymentMethod =[
 const FormStepOne1 =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
-    // const [currency, setCurrency] = useState('')
-    // const [errors, setErrors] = useState({})
+    const [currency, setCurrency] = useState('')
+    const [amount, setAmount] = useState("")
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    const mailFormatVerifer = (email) =>{
-
-        return emailFormat.test(email)
-
-    }
+    // const mailFormatVerifer = (email) =>{
+    //
+    //     return emailFormat.test(email)
+    //
+    // }
 
 
     const [paymentMeth, setPaymentMeth] = useState('')
@@ -82,71 +81,70 @@ const FormStepOne1 =()=> {
 
     const adminId = getUrlParams()[ADMIN_ID_STRING]
     const  payerId = getUrlParams()[PAYER_ID_STRING]
-    formValues.currency = getUrlParams()[CURRENCY].toUpperCase()
-     formValues.orderId = getUrlParams()[ORDER_ID]
-     formValues.amount = parseInt(getUrlParams()[AMOUNT])
-     formValues.customerId = getUrlParams()[CUSTOMER_ID]
-    formValues.callbackUrl = getUrlParams()[CALLBACK_URL]
     formValues.receiverEmail = adminId
-    // formValues.payerId = payerId
-
-    // const payload = {currency:formValues.currency, amount: formValues.amount, customerId: formValues.customerId, orderId:formValues.orderId }
-    // const path = getUrlPath()
-
-    // const checkUrl = () =>{
-    //     if(adminId && payerId){
-    //         console.log('Call the first method')
-    //     }else if(path){
-    //         console.log("Call the second method")
-    //     }
-    // }
-    //
-    // checkUrl()
-
-    const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate))
 
 
     useEffect(()=>{
-        // if(formValues.currency === ''){
-            getIpAdress()
-        // }else{
-        //     // setCurrency(formValues.currency)
-        //     setPaymentMeth(formValues.paymentMethod)
-        // }
+        if(formValues.currency === ''){
+            paymentInitialization().then()
+            // getIpAdress()
+        }else{
+            setCurrency(formValues.currency)
+            setAmount(formValues.amount)
+        }
 
 
-    },[])
+    },[formValues.currency, formValues.amount])
 
-    const getIpAdress = () =>{
+    const currencyManager = () =>{
+        if(currency === "USD"){
+            return "USD"
+        }else{
+            return "EUR"
+        }
+    }
+
+    const paymentInitialization = async() =>{
 
         try{
 
-            const paymentInfo = { currency:formValues.currency, amount: formValues.amount, customerId: formValues.customerId, orderId:formValues.orderId }
+            const paymentInfo = {  adminId, payerId }
+            // console.log('adminId 222 ==>', adminId)
+            // console.log('payerId 222 ==>', payerId)
 
-            // console.log('Payload to send ==>', paymentInfo)
-
-            axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
+            await axios.post(API_PAYMENT_INIT, paymentInfo).then(   (response)=>{
                 console.log('response Data ====>', response.data)
-                // setCurrency(response.data.currency)
-                // formValues.currency = response.data.currency
-                // formValues.rate = response.data.rate
-                // formValues.transactionReference = response.data.reference
-                // formValues.receiverLogo = response.data.clientLogo
-                // formValues.receiverName = response.data.clientName
-                // if(response.data.payerId){
-                //     formValues.payerId = response.data.payerId
-                // }
+                formValues.senderExist = response.data.senderExist
+                formValues.callbackUrl = response.data.cbUrl
+                setCurrency(response.data.adminCurrency)
+                setAmount(response.data.amount)
+                 formValues.currency = response.data.currency
+                console.log(currency)
+                console.log(amount)
+                console.log(formValues.receiverLogo)
+                formValues.amount = response.data.amount
+                formValues.rate = response.data.rate
+                formValues.transactionReference = response.data.reference
+                formValues.receiverLogo = response.data.clientLogo
+                formValues.receiverName = response.data.clientName
+                formValues.payerId = response.data.payerId
+
 
             })
+            // axios.get(API_RETRIEVE_PURCHASED_OBJECT,payerId).then(  (response)=>{
+            //     console.log('Payment object ==>', response.data)
+            //     formValues.amount = response.data.amount
+            //     formValues.callbackUrl = response.data.cbUrl
+            //     formValues.currency = response.data.currency
+            //     if(response.data.payerId){
+            //         formValues.payerId = response.data.payerId
+            //     }
+            //
+            // })
+
 
         }catch(error){
             console.error('Error on payment init : ',error)
-            // setCurrency('USD')
-            // formValues.currency = 'USD'
-            // formValues.rate = '1'
-            // formValues.transactionReference = 'hdiiei8783'
-            // formValues.receiverLogo = localLogo
-            // formValues.receiverName = 'Pierre Gomez'
 
         }
     }
@@ -163,11 +161,11 @@ const FormStepOne1 =()=> {
                     <List>
                         <ListItem className={classes.listItem} >
                             <ListItemText primary='Currency:' style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.currency}</Typography>
+                            <Typography variant="body1" style={{fontWeight:'500'}}>{currencyManager()}</Typography>
                         </ListItem>
                         <ListItem className={classes.listItem} >
                             <ListItemText primary='Total:' style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{`${parseInt(formValues.amount).toFixed(2)} $`}</Typography>
+                            <Typography variant="body1" style={{fontWeight:'500'}}>{`${parseInt(amount).toFixed(2)} $`}</Typography>
                         </ListItem>
 
                     </List>
@@ -181,7 +179,6 @@ const FormStepOne1 =()=> {
                         variant="outlined"
                         required
                         fullWidth
-                        // helperText={errorName? 'this field cannot be empty':null}
                         value={formValues.name}
                         onChange={e =>{
                             dispatch({
@@ -189,16 +186,8 @@ const FormStepOne1 =()=> {
                                 key: "name",
                                 value: e.target.value
                             })
-                            // if(e.target.value === ''){
-                            //     setErrorName(true)
-                            // }else{
-                            //     setErrorName(false)
-                            // }
+
                         }
-
-
-
-
 
 
                         }
@@ -209,7 +198,6 @@ const FormStepOne1 =()=> {
                     <TextField
                         label="Email adress"
                         name="email"
-
                         variant="outlined"
                         type="email"
                         required
@@ -235,58 +223,6 @@ const FormStepOne1 =()=> {
                         }
                     />
                 </Grid>
-                {/*<Grid item xs={12} sm={4} md={6}>*/}
-                {/*    <TextField*/}
-                {/*        label="Phone Number"*/}
-                {/*        name="phone"*/}
-                {/*        variant="outlined"*/}
-                {/*        type="tel"*/}
-                {/*        required*/}
-                {/*        fullWidth*/}
-                {/*        value={formValues.phone}*/}
-                {/*        onChange={e =>{*/}
-                {/*            dispatch({*/}
-                {/*                type: EDIT_FORM_VALUES,*/}
-                {/*                key: "phone",*/}
-                {/*                value: e.target.value*/}
-                {/*            })*/}
-                {/*        }*/}
-
-                {/*        }*/}
-                {/*    />*/}
-                {/*</Grid>*/}
-
-                {/*<Grid item xs={12} sm={6} md={6}>*/}
-                {/*    <FormControl*/}
-                {/*        required*/}
-
-                {/*        style={{minWidth: '100%',}}>*/}
-                {/*        <TextField*/}
-                {/*            label="Currency"*/}
-                {/*            select*/}
-                {/*            name="currency"*/}
-                {/*            variant="outlined"*/}
-                {/*            required*/}
-                {/*            disabled*/}
-                {/*            value={currency}*/}
-                {/*            onChange={(e) => {*/}
-                {/*                dispatch({*/}
-                {/*                    type: EDIT_FORM_VALUES,*/}
-                {/*                    key: "currency",*/}
-                {/*                    value: e.target.value.currency*/}
-                {/*                })*/}
-                {/*            }}*/}
-
-
-                {/*        >*/}
-                {/*            <MenuItem value='USD'>{currency}</MenuItem>*/}
-                {/*            <MenuItem value='EUR'>{currency}</MenuItem>*/}
-                {/*            <MenuItem value='CAD'>{currency}</MenuItem>*/}
-                {/*            <MenuItem value='GBP'>{currency}</MenuItem>*/}
-                {/*        </TextField>*/}
-                {/*    </FormControl>*/}
-
-                {/*</Grid>*/}
 
                 <Grid item xs={12} sm={6} md={12}>
                     <FormControl
@@ -312,52 +248,10 @@ const FormStepOne1 =()=> {
                     </FormControl>
 
                 </Grid>
-                {/*<Grid item xs={12} sm={6} md={3}>*/}
-                {/*    <TextField*/}
-                {/*        label="Amount"*/}
-                {/*        name="amount"*/}
-                {/*        variant="outlined"*/}
-                {/*        required*/}
-                {/*        type="number"*/}
-                {/*        fullWidth*/}
-                {/*        value={formValues.amount}*/}
-                {/*        onChange={e => {*/}
-                {/*            dispatch({*/}
-                {/*                type: EDIT_FORM_VALUES,*/}
-                {/*                key: "amount",*/}
-                {/*                value: e.target.value.replace(/[^0-9,.]/g, ''),*/}
-
-                {/*            })*/}
-                {/*        }*/}
 
 
-                {/*        }*/}
-                {/*    />*/}
-                {/*</Grid>*/}
-                {/*<Grid item xs={12} sm={6} md={3}>*/}
-                {/*    <TextField*/}
-                {/*        label={`Receive`}*/}
-                {/*        name="received"*/}
-                {/*        variant="outlined"*/}
-                {/*        required*/}
-                {/*        disabled*/}
-                {/*        type="number"*/}
-                {/*        fullWidth*/}
-                {/*        value={receivingAmount}*/}
-                {/*        onChange={e =>{*/}
-                {/*            dispatch({*/}
-                {/*                type: EDIT_FORM_VALUES,*/}
-                {/*                key: "received",*/}
-                {/*                value: e.target.value.replace(/[^0-9,.]/g, '')*/}
-                {/*            })*/}
-                {/*        }*/}
-
-                {/*        }*/}
-                {/*    />*/}
-                {/*</Grid>*/}
 
             </Grid>
-
 
 
         </Grid>
