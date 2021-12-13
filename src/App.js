@@ -18,7 +18,6 @@ import SuccessPage from './pages/successPage';
 import SuccessPage1 from './pages/successPage1';
 import FailurePage from './pages/failurePage';
 import PendingPage from "./pages/pendingPage";
-import ContainerComponent from "./pages/Container";
 import PayWithDumaPay from "./pages/payWithDuma";
 
 const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2cp3ZI4cDSTWJ15AHTy1HWREb7HrObRwXcsneRfbLXvo5IQKQWM2000bkx3L5tB")
