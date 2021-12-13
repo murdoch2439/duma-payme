@@ -12,17 +12,21 @@ export  const transformToUpCase = (word) =>{
           splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1)
 
         }
-        const result = splitted.join(' ')
-        return result
+       return splitted.join(' ')
       }
 
 
       export  const currencyManager = (currency, amount ) =>{
           if(currency === 'USD'){
-            return `$ ${amount}`
+              if(isNaN(amount) || amount === null){
+                  return `$ 00.00`
+              }else{
+                  return `$ ${parseInt(amount).toFixed(2)}`
+              }
+
           }
           if(currency === 'EUR'){
-            return  `€ ${amount}`
+            return  `€ ${parseInt(amount).toFixed(2)}`
           }
 
       }

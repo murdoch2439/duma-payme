@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const  FormStepTwo2 =()=> {
+const  GatewayFormStepTwo =()=> {
     const classes = useStyles();
     const [error, setError] = useState(null);
 
@@ -195,4 +195,4 @@ const  FormStepTwo2 =()=> {
     );
 }
 
-export default FormStepTwo2
+export default GatewayFormStepTwo

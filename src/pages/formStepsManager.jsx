@@ -56,7 +56,7 @@ const GetStepContent = ({step}) => {
   }
 }
 
-const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
+const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [{ formValues,  }, dispatch] = useStateValue();
@@ -119,8 +119,6 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
                 setLoading(false);
             }, 3000)
 
-            // alert(JSON.stringify(billingDetailsMobileMoney))
-
         }else{
 
             const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
@@ -176,7 +174,6 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
 
                 console.log('Succeed ====>', paymentIntentObjet)
                 console.log('payerId ==>', formValues.payerId)
-                //  setCardMessage(paymentIntent.id)
                 await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                     .then(response => {
                         console.log('Confirmation ===>', response.data)
@@ -262,4 +259,4 @@ const  FormManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout:
   );
 }
 
-export default FormManager
+export default FormStepsManager

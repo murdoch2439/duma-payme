@@ -55,43 +55,24 @@ const FormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-
-    // const [errors, setErrors] = useState({})
+    const [paymentMeth, setPaymentMeth] = useState('')
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    // const mailFormatVerifer = (email) =>{
-    //
-    //     return emailFormat.test(email)
-    //
-    // }
-    // const adminId = getUrlParams()[ADMIN_ID_STRING]
-    // const  payerId = getUrlParams()[PAYER_ID_STRING]
-
-
-    const [paymentMeth, setPaymentMeth] = useState('')
-    // const [admino, setAdmino] =useState('')
-
-
      const adminId = getUrlParams()[ADMIN_ID_STRING]
      const  payerId = getUrlParams()[PAYER_ID_STRING]
-    // setAdmino(adminId)
-    // console.log('admin_id', adminId)
-    // console.log('payer_id', payerId)
      formValues.receiverEmail = adminId
     if(payerId){
         formValues.payerId = payerId
     }
-
-
 
      const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate))
 
 
   useEffect(()=>{
       if(formValues.currency === ''){
-          getIpAdress()
+          getIpAdress().then()
       }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
@@ -105,9 +86,7 @@ const getIpAdress = async () =>{
 
             const paymentInfo =  {  adminId, payerId }
             if(adminId){
-                console.log('ADMIN_ID   ===>', paymentInfo)
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
-                    // console.log('response without payerId  in the url ====>', response.data)
                     setCurrency(response.data.currency)
                     formValues.currency = response.data.currency
                     formValues.rate = response.data.rate
@@ -123,23 +102,6 @@ const getIpAdress = async () =>{
                 })
 
             }
-            // else{
-            //     axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
-            //         console.log('response Data with both adminId & payerId ====>', response.data)
-            //         setCurrency(response.data.currency)
-            //         formValues.currency = response.data.currency
-            //         formValues.rate = response.data.rate
-            //         formValues.transactionReference = response.data.reference
-            //         formValues.receiverLogo = response.data.clientLogo
-            //         formValues.receiverName = response.data.clientName
-            //         formValues.senderExist = response.data.senderExist
-            //         formValues.payerId = response.data.payerId
-            //
-            //
-            //     })
-            // }
-
-
 
     }catch(error){
         console.error('Error on payment init : ',error)
@@ -179,11 +141,6 @@ const getIpAdress = async () =>{
                     //     setErrorName(false)
                     // }
                 }
-
-
-
-
-
 
                 }
             />
@@ -261,7 +218,6 @@ const getIpAdress = async () =>{
                     })
                 }}
 
-
         >
           <MenuItem value='USD'>{currency}</MenuItem>
           <MenuItem value='EUR'>{currency}</MenuItem>
@@ -284,7 +240,6 @@ const getIpAdress = async () =>{
                 onChange={(e) => {
                             setPaymentMeth(e.target.value)
                             formValues.paymentMethod = e.target.value
-                            // console.log('payment methode ...',formValues.paymentMethod)
                         }}
         >
           {paymentMethod.map((option) => (

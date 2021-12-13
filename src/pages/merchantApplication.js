@@ -46,7 +46,7 @@ const useStyles = makeStyles(() => ({
       let clientIp=''
 
 
-const PayWithDumaPay =()=>{
+const MerchantApplication =()=>{
           const [loading, setLoading] = useState(false)
     const [{ formValues }] = useStateValue();
     const cbUrl = "192.168.1.101:8080/index"
@@ -75,7 +75,7 @@ const PayWithDumaPay =()=>{
             //         console.log('Ip adress ====>:', clientIp)
             //     })
              await axios.post('http://192.168.1.101:8081/api/v1/icash/me/redirect', {ip: '197.157.209.2', adminId, cbUrl, currency, amount}, ).then((response)=>{
-                 console.log('ip ==> 197.157.209.2')
+                 // console.log('ip ==> 197.157.209.2')
                 setLoading(false)
                 console.log('product ==>', response.data)
                  setLoading(false)
@@ -125,6 +125,15 @@ const PayWithDumaPay =()=>{
                     <Grid  item className={classes.boxIcon}>
                         <ShoppingCartCheckoutIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
                     </Grid>
+                    {/*<p style={{textAlign:'center', fontSize:25}}>*/}
+                    {/*    Currency:*/}
+                    {/*    <span style={{fontWeight:'bold'}}> {currency}</span>*/}
+                    {/*    <br/>*/}
+                    {/*    Total:*/}
+                    {/*    <span style={{fontWeight:'bold'}}> {amount}$</span>*/}
+                    {/*    <br />*/}
+                    {/*    Click on the button billow to purchase your project*/}
+                    {/*</p>*/}
                     <form encType="text/plain"
                           action="http://192.168.1.101:8081/api/v1/icash/me/redirect"
 
@@ -137,28 +146,20 @@ const PayWithDumaPay =()=>{
                         <input type="submit" value="Pay with duma"/>
                     </form>
 
-                    <p style={{textAlign:'center', fontSize:25}}>
-                        Currency:
-                        <span style={{fontWeight:'bold'}}> {currency}</span>
-                        <br/>
-                        Total:
-                        <span style={{fontWeight:'bold'}}> {amount}$</span>
-                        <br />
-                        Click on the button billow to purchase your project
-                    </p>
-                    <Grid container item justify='center' style={{marginTop:30}}>
-                        <Button
-                            onClick={onClick}
-                            disabled={loading}
-                            style={{backgroundColor:  backgroundChanger(), color:loading ? '#FBB900':'white', height:50, width:220, }}
-                        >
-                            PAY WITH DUMA
-                        </Button>
-                    </Grid>
+
+                    {/*<Grid container item justify='center' style={{marginTop:30}}>*/}
+                    {/*    <Button*/}
+                    {/*        onClick={onClick}*/}
+                    {/*        disabled={loading}*/}
+                    {/*        style={{backgroundColor:  backgroundChanger(), color:loading ? '#FBB900':'white', height:50, width:220, }}*/}
+                    {/*    >*/}
+                    {/*        PAY WITH DUMA*/}
+                    {/*    </Button>*/}
+                    {/*</Grid>*/}
                 </Paper>
             </Container>
         </Zoom>
     )
 }
 
-export default PayWithDumaPay
+export default MerchantApplication

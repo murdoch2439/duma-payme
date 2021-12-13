@@ -60,11 +60,11 @@ const paymentMethod =[
 ]
 
 
-const FormStepOne1 =()=> {
+const GatewayFormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-    const [amount, setAmount] = useState("")
+    const [amount, setAmount] = useState("00")
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -87,7 +87,6 @@ const FormStepOne1 =()=> {
     useEffect(()=>{
         if(formValues.currency === ''){
             paymentInitialization().then()
-            // getIpAdress()
         }else{
             setCurrency(formValues.currency)
             setAmount(formValues.amount)
@@ -97,20 +96,16 @@ const FormStepOne1 =()=> {
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
-        if(currency === "USD"){
-            return "USD"
+        if(currency ){
+            return currency
         }else{
-            return "EUR"
+            return "USD"
         }
     }
 
     const paymentInitialization = async() =>{
-
         try{
-
             const paymentInfo = {  adminId, payerId }
-            // console.log('adminId 222 ==>', adminId)
-            // console.log('payerId 222 ==>', payerId)
 
             await axios.post(API_PAYMENT_INIT, paymentInfo).then(   (response)=>{
                 console.log('response Data ====>', response.data)
@@ -119,8 +114,6 @@ const FormStepOne1 =()=> {
                 setCurrency(response.data.adminCurrency)
                 setAmount(response.data.amount)
                  formValues.currency = response.data.currency
-                console.log(currency)
-                console.log(amount)
                 console.log(formValues.receiverLogo)
                 formValues.amount = response.data.amount
                 formValues.rate = response.data.rate
@@ -131,17 +124,6 @@ const FormStepOne1 =()=> {
 
 
             })
-            // axios.get(API_RETRIEVE_PURCHASED_OBJECT,payerId).then(  (response)=>{
-            //     console.log('Payment object ==>', response.data)
-            //     formValues.amount = response.data.amount
-            //     formValues.callbackUrl = response.data.cbUrl
-            //     formValues.currency = response.data.currency
-            //     if(response.data.payerId){
-            //         formValues.payerId = response.data.payerId
-            //     }
-            //
-            // })
-
 
         }catch(error){
             console.error('Error on payment init : ',error)
@@ -174,7 +156,6 @@ const FormStepOne1 =()=> {
                     <TextField
                         inputProps={{className:classes.input}}
                         label="Name on the card"
-
                         name="name"
                         variant="outlined"
                         required
@@ -236,7 +217,6 @@ const FormStepOne1 =()=> {
                             onChange={(e) => {
                                 setPaymentMeth(e.target.value)
                                 formValues.paymentMethod = e.target.value
-
                             }}
                         >
                             {paymentMethod.map((option) => (
@@ -261,4 +241,4 @@ const FormStepOne1 =()=> {
     );
 }
 
-export default FormStepOne1
+export default GatewayFormStepOne

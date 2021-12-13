@@ -4,8 +4,8 @@ import {  useHistory
 import { Container, Paper, Box, Grid } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
 
-import FormManager from './formStepsManager'
-import FormManager1 from './formStepsManager1'
+import FormStepsManager from './formStepsManager'
+import GatewayFormStepsManager from './gatewayFormStepsManager'
 import { useStateValue } from "../context";
 import cover from '../assets/Trip-assurances (4).png'
 import logDuma from '../assets/duma1.png'
@@ -14,6 +14,7 @@ import FailurePage from "./failurePage";
 import PendingPage from "./pendingPage";
 import {getUrlParams} from "../utils/helperFunctions";
 import {ADMIN_ID_STRING, PAYER_ID_STRING} from "../constants/variableNames";
+import LoadingComponent from "../components/loadingComponent";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
@@ -57,6 +58,9 @@ const useStyles = makeStyles(() => ({
 
 const LayoutManager = () => {
     const [{ formValues, modalStates  },] = useStateValue();
+
+
+
     const classes = useStyles();
     // const [showSuccessModal, setShowSuccessModal] = useState(modalStates.showSuccessModal)
     // const [showFailModal, setShowFailModal] = useState(modalStates.showFailModal)
@@ -67,34 +71,13 @@ const LayoutManager = () => {
 
     const [logo, setLogo] = useState('')
     useEffect(()=>{
-        // console.log('shoeeee', showPendingModal)
+
          if(formValues.receiverLogo === ''){
            console.log('formValues.receiverLogo is empty...')
          }else{
            setLogo(formValues.receiverLogo)
          }
        }, [formValues.receiverLogo])
-
-
-    // const onSuccessfulCheckout =() =>{
-    //
-    // }
-    // const onFailedCheckout = () =>{
-    //     dispatch({
-    //         type: CHANGE_MODAL_STATES,
-    //         key: SHOW_FAIL_MODAL,
-    //         value: true
-    //     })
-    //
-    // }
-    // const onPendingCheckout =()=>{
-    //     dispatch({
-    //         type: CHANGE_MODAL_STATES,
-    //         key: SHOW_PENDING_MODAL,
-    //         value: true
-    //     })
-    //
-    // }
 
 
           const cardsLogo = [
@@ -159,12 +142,12 @@ const LayoutManager = () => {
 
                         {
                             !adminId  ?
-                            <FormManager1
+                            <GatewayFormStepsManager
                                 onSuccessfulCheckout ={()=> history.replace('/success')}
                                 onFailedCheckout ={()=>history.replace('/failure')}
                                 onPendingCheckout={()=>history.replace('/payment-pending')}
                             />:
-                            <FormManager
+                            <FormStepsManager
                             onSuccessfulCheckout ={()=> history.replace('/success')}
                             onFailedCheckout ={()=>history.replace('/failure')}
                             onPendingCheckout={()=>history.replace('/payment-pending')}

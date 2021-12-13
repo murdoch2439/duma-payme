@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Box, Button, Grid} from '@material-ui/core'
 import {useStripe} from '@stripe/react-stripe-js';
 import axios from 'axios'
-import FormStepOne1 from './formStepOne1';
-import FormStepTwo2 from './formStepTwo2';
+import GatewayFormStepOne from './gatewayFormStepOne';
+import GatewayFormStepTwo from './gatewayFormStepTwo';
 import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
@@ -44,15 +44,15 @@ const steps = ['Sender details', 'Review and card details',];
 const GetStepContent = ({step}) => {
     switch (step) {
         case 0:
-            return <FormStepOne1 />;
+            return <GatewayFormStepOne />;
         case 1:
-            return <FormStepTwo2 />;
+            return <GatewayFormStepTwo />;
         default:
             throw new Error('Unknown step');
     }
 }
 
-const  FormManager1 =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
+const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const [{ formValues,  }, dispatch] = useStateValue();
@@ -272,4 +272,4 @@ const  FormManager1 =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout
     );
 }
 
-export default FormManager1
+export default GatewayFormStepsManager

@@ -73,6 +73,8 @@ const  FormStepTwo =()=> {
     const fees = parseInt(formValues.fees)
 
     const total = parseInt(formValues.amount) + fees
+    console.log('ooooo', formValues.amount)
+    console.log('eeeeh', formValues.currency)
 
   return (
 
@@ -91,19 +93,19 @@ const  FormStepTwo =()=> {
       <List disablePadding >
           <ListItem className={classes.listItem} >
             <ListItemText primary='Sender:' style={{fontWeight:'700', color:'grey'}}  />
-            <Typography variant="body1" style={{fontWeight:'500'}}>{nameFormating(formValues.name)}</Typography>
+            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.name ? nameFormating(formValues.name):'Not specified'}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary='Receiver:' style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1" style={{fontWeight:'500'}}>{nameFormating(formValues.receiverName)}</Typography>
+            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary='Amount to send:' style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1">{`${currencyManager(formValues.currency, formValues.amount)}.00`}</Typography>
+            <Typography variant="body1">{`${currencyManager(formValues.currency, formValues.amount)}`}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary='Fees:' style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1">{`${currencyManager(formValues.currency, fees )}.00`}</Typography>
+            <Typography variant="body1">{`${currencyManager(formValues.currency, fees )}`}</Typography>
           </ListItem>
          { formValues.currency === 'eur'? <ListItem className={classes.listItem} >
             <ListItemText primary='Rate:' style={{fontWeight:'700', color:'grey'}} />
@@ -114,7 +116,7 @@ const  FormStepTwo =()=> {
         <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>
           <ListItemText  primary="Total:" className={classes.total}/>
           <Typography variant="subtitle1" className={classes.total}>
-         {` ${currencyManager(formValues.currency, total )}.00 ${formValues.currency}`}
+         {` ${currencyManager(formValues.currency, total )} ${formValues.currency}`}
           </Typography>
         </ListItem>
       </List>

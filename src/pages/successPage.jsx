@@ -95,7 +95,7 @@ const SuccessPage =()=>{
                 Your payment to: <br />
                 <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
                 <br />
-                passed successfully, thank you for reaching out! You can order another payment link and pay out :)
+                passed successfully, thank you for reaching out! You can order another payment link for another payment
             </p>
             <Grid container item justify='center' style={{marginTop:30}}>
                 <Button
