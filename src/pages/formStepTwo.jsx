@@ -73,8 +73,6 @@ const  FormStepTwo =()=> {
     const fees = parseInt(formValues.fees)
 
     const total = parseInt(formValues.amount) + fees
-    console.log('ooooo', formValues.amount)
-    console.log('eeeeh', formValues.currency)
 
   return (
 

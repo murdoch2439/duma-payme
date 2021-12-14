@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
-import { currencyManager, nameFormating } from '../utils/helperFunctions';
+// import { currencyManager, nameFormating } from '../utils/helperFunctions';
 import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 
@@ -47,18 +47,21 @@ const useStyles = makeStyles((theme) => ({
 
 
 const  GatewayFormStepTwo =()=> {
-    const classes = useStyles();
-    const [error, setError] = useState(null);
-
     const [{ formValues }, dispatch] = useStateValue();
-
-
     const stripe = useStripe();
     const elements = useElements();
 
 
-    const handleChange = async(event) =>{
+    const [error, setError] = useState(null);
+    const classes = useStyles();
 
+
+
+
+
+
+
+    const handleChange = async(event) =>{
 
         // setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
@@ -94,43 +97,12 @@ const  GatewayFormStepTwo =()=> {
 
                     </List>
 
-
-                    {/*<List disablePadding>*/}
-                    {/*    <ListItem className={classes.listItem} >*/}
-                    {/*        <ListItemText primary='Sender:' style={{fontWeight:'700', color:'grey'}}  />*/}
-                    {/*        <Typography variant="body1" style={{fontWeight:'500'}}>{nameFormating(formValues.name)}</Typography>*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem className={classes.listItem} >*/}
-                    {/*        <ListItemText primary='Receiver:' style={{fontWeight:'700', color:'grey'}} />*/}
-                    {/*        <Typography variant="body1" style={{fontWeight:'500'}}>{nameFormating(formValues.receiverName)}</Typography>*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem className={classes.listItem} >*/}
-                    {/*        <ListItemText primary='Amount to send:' style={{fontWeight:'700', color:'grey'}} />*/}
-                    {/*        <Typography variant="body1">{`${currencyManager(formValues.currency, formValues.amount)}.00`}</Typography>*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem className={classes.listItem} >*/}
-                    {/*        <ListItemText primary='Fees:' style={{fontWeight:'700', color:'grey'}} />*/}
-                    {/*        <Typography variant="body1">{`${currencyManager(formValues.currency, fees )}.00`}</Typography>*/}
-                    {/*    </ListItem>*/}
-                    {/*    { formValues.currency === 'eur'? <ListItem className={classes.listItem} >*/}
-                    {/*        <ListItemText primary='Rate:' style={{fontWeight:'700', color:'grey'}} />*/}
-                    {/*        <Typography variant="body1">{currencyManager(formValues.currency, formValues.rate )}</Typography>*/}
-                    {/*    </ListItem>:null}*/}
-
-
-                    {/*    <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>*/}
-                    {/*        <ListItemText  primary="Total:" className={classes.total}/>*/}
-                    {/*        <Typography variant="subtitle1" className={classes.total}>*/}
-                    {/*            {` ${currencyManager(formValues.currency, total )}.00 ${formValues.currency}`}*/}
-                    {/*        </Typography>*/}
-                    {/*    </ListItem>*/}
-                    {/*</List>*/}
                 </Grid>
 
             </Grid>
             {/*<div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>*/}
 
-            <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterbottom={true}>
+            <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterbottom={"true"}>
                 {formValues.paymentMethod === DEBIT_CARD ?
                     "Card Information" :
                     "Mobile money Information"

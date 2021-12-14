@@ -57,3 +57,11 @@ export const findCurrency = (currency) =>{
     })
 
 }
+
+export   const backgroundChanger = (loading) =>{
+    if(!loading){
+        return '#FBB900'
+    }else{
+        return '#f5f5f5'
+    }
+}

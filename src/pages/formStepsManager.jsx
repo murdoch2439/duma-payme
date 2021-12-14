@@ -10,10 +10,11 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
-    MOBILE_MONEY, SHOW_PENDING_MODAL,
+    MOBILE_MONEY, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 import logDuma from "../assets/duma1.png";
 import Typography from "@material-ui/core/Typography";
+import {backgroundChanger} from "../utils/helperFunctions";
 
 
 
@@ -65,13 +66,13 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
   const [disabled, setDisabled] = useState(false);
 
 
-  const backgroundChanger = () =>{
-    if(!loading){
-      return '#FBB900'
-    }else{
-      return '#f5f5f5'
-    }
-  }
+  // const backgroundChanger = () =>{
+  //   if(!loading){
+  //     return '#FBB900'
+  //   }else{
+  //     return '#f5f5f5'
+  //   }
+  // }
 
     const stripe = useStripe();
 
@@ -126,7 +127,7 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
                 currency: formValues.currency,
                 receipt_email: formValues.receiverEmail
             })
-            console.log('total ====>', parseInt(formValues.amount) + formValues.fees)
+            // console.log('total ====>', parseInt(formValues.amount) + formValues.fees)
             const paymentMethodReq = await stripe.createPaymentMethod({
                 type: 'card',
                 card: formValues.card,
@@ -135,7 +136,7 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
             })
 
             if (paymentMethodReq.error) {
-                console.error('paymentMethod Error!')
+                console.error('paymentMethod Error!', paymentMethodReq.error.message)
 
                 setError(paymentMethodReq.error.message);
                 setLoading(false);
@@ -157,7 +158,7 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
             setDisabled(true)
 
 
-            if (paymentIntent && paymentIntent.status === "succeeded") {
+            if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                 formValues.paymentIntent = paymentIntent.id
                 const paymentIntentObjet = {
                     reference: formValues.transactionReference,
@@ -172,13 +173,12 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
                     phone:formValues.phone,
                 }
 
-                console.log('Succeed ====>', paymentIntentObjet)
-                console.log('payerId ==>', formValues.payerId)
+                console.log('Payload to verification ====>', paymentIntentObjet)
                 await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                     .then(response => {
                         console.log('Confirmation ===>', response.data)
                         if (response.data.status === 'success') {
-                            console.log('payment process succeeded')
+                            console.log('payment processed and verified successfully')
                             setLoading(false);
                             setDisabled(true)
                             setError(false);
@@ -239,7 +239,7 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
                     type="submit"
                     disabled={loading||disabled}
 
-                    style={{backgroundColor:backgroundChanger(),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
+                    style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                   >
                     { loading ? 'Processing...' :
                       activeStep === steps.length-1  ?  'Pay now' : 'Next'

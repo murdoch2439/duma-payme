@@ -10,10 +10,11 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
-    MOBILE_MONEY, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL,
+    MOBILE_MONEY, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 import {  useHistory
 } from "react-router-dom";
+import {backgroundChanger} from "../utils/helperFunctions";
 
 
 
@@ -62,13 +63,13 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
     const history = useHistory()
 
 
-    const backgroundChanger = () =>{
-        if(!loading){
-            return '#FBB900'
-        }else{
-            return '#f5f5f5'
-        }
-    }
+    // const backgroundChanger = () =>{
+    //     if(!loading){
+    //         return '#FBB900'
+    //     }else{
+    //         return '#f5f5f5'
+    //     }
+    // }
 
     const stripe = useStripe();
 
@@ -128,7 +129,7 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                     currency: formValues.currency,
                     receipt_email: formValues.receiverEmail
                 })
-                console.log('total another ====>', parseInt(formValues.amount) + formValues.fees)
+                // console.log('total another ====>', parseInt(formValues.amount) + formValues.fees)
                 const paymentMethodReq = await stripe.createPaymentMethod({
                     type: 'card',
                     card: formValues.card,
@@ -159,7 +160,7 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                 setDisabled(true)
 
 
-                if (paymentIntent && paymentIntent.status === "succeeded") {
+                if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                     formValues.paymentIntent = paymentIntent.id
                     const paymentIntentObjet = {
 
@@ -175,8 +176,8 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                         phone:formValues.phone,
                     }
 
-                    console.log('Succeed ====>', paymentIntentObjet)
-                    console.log('payerId two ==>', formValues.payerId)
+                    // console.log('Succeed ====>', paymentIntentObjet)
+                    // console.log('payerId two ==>', formValues.payerId)
                     // history.replace(formValues.callbackUrl)
                     // window.location.href =  formValues.callbackUrl
 
@@ -188,7 +189,7 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                     //  setCardMessage(paymentIntent.id)
                     await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                         .then(response => {
-                            console.log('Confirmation ===>', response.data)
+                            console.log('Payload for validation ===>', response.data)
                             if (response.data.status === 'success') {
                                 console.log('payment process succeeded')
                                 setLoading(false);
@@ -219,11 +220,10 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
             }
 
         }catch(error){
-            console.error('error from the catch', error.message)
-            setError('Something went wrong, check your infos, your network and retry');
+            console.error('error from the catch in the gateway', error.message)
+            setError('Something went wrong, check your infos or your network and retry');
             setLoading(false);
             setDisabled(true)
-            console.log('loading in the error',loading)
 
         }
 
@@ -250,9 +250,9 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                     <Button
                         className={classes.button}
                         type="submit"
-                        disabled={loading||disabled}
+                        disabled={loading||disabled || formValues.amount ==="0"}
 
-                        style={{backgroundColor:backgroundChanger(),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
+                        style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                     >
                         { loading ? 'Processing...' :
                             activeStep === steps.length-1  ?  'Pay now' : 'Next'

@@ -97,14 +97,14 @@ const SuccessPage =()=>{
                 <br />
                 passed successfully, thank you for reaching out! You can order another payment link for another payment
             </p>
-            <Grid container item justify='center' style={{marginTop:30}}>
-                <Button
-                    onClick={onClick}
-                    style={{backgroundColor:  'green', color:'white', height:50, width:220, }}
-                >
-                    FINISH
-                </Button>
-            </Grid>
+            {/*<Grid container item justify='center' style={{marginTop:30}}>*/}
+            {/*    <Button*/}
+            {/*        onClick={onClick}*/}
+            {/*        style={{backgroundColor:  'green', color:'white', height:50, width:220, }}*/}
+            {/*    >*/}
+            {/*        FINISH*/}
+            {/*    </Button>*/}
+            {/*</Grid>*/}
           </Paper>
         </Container>
     </Zoom>

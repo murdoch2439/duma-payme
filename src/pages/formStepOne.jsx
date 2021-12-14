@@ -97,7 +97,6 @@ const getIpAdress = async () =>{
                     formValues.receiverName = response.data.clientName
                     formValues.senderExist = response.data.senderExist
                     formValues.payerId = response.data.payerId
-                    console.log('payerId after receiving it from the response ==>', formValues.payerId)
 
                 })
 

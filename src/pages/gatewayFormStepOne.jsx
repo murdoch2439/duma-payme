@@ -99,7 +99,8 @@ const GatewayFormStepOne =()=> {
         if(currency ){
             return currency
         }else{
-            return "USD"
+            formValues.currency ="*****"
+            return "******"
         }
     }
 
