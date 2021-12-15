@@ -6,7 +6,7 @@ import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import {
-    getUrlParams, nameFormating,
+    getUrlParams,
 
 } from '../utils/helperFunctions';
 import {
@@ -64,7 +64,7 @@ const GatewayFormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-    const [amount, setAmount] = useState("00")
+    const [amount, setAmount] = useState("")
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -96,11 +96,19 @@ const GatewayFormStepOne =()=> {
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
-        if(currency ){
+        if(currency){
             return currency
         }else{
             formValues.currency ="*****"
             return "******"
+        }
+    }
+
+    const amountManager = () =>{
+        if(amount){
+            return `${parseInt(amount).toFixed(2)} $`
+        }else{
+            return `00.00 $`
         }
     }
 
@@ -148,7 +156,7 @@ const GatewayFormStepOne =()=> {
                         </ListItem>
                         <ListItem className={classes.listItem} >
                             <ListItemText primary='Total:' style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{`${parseInt(amount).toFixed(2)} $`}</Typography>
+                            <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
                         </ListItem>
 
                     </List>

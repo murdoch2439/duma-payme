@@ -12,8 +12,8 @@ import {
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
     MOBILE_MONEY, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
-import logDuma from "../assets/duma1.png";
-import Typography from "@material-ui/core/Typography";
+// import logDuma from "../assets/duma1.png";
+// import Typography from "@material-ui/core/Typography";
 import {backgroundChanger} from "../utils/helperFunctions";
 
 
@@ -207,7 +207,6 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
         setError('Something went wrong, check your infos, your network and retry');
         setLoading(false);
         setDisabled(true)
-        // console.log('loading in the error',loading)
 
     }
 
@@ -229,7 +228,7 @@ const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedChec
                   {error && <p style={{ color:'red'}}>{error}</p>}
                   {activeStep !== 0 &&
                     (
-                      <Button style={{width:'100%'}} onClick={handleBack} className={classes.buttons}>
+                      <Button style={{width:'100%'}} disabled={loading} onClick={handleBack} className={classes.buttons}>
                         Back
                       </Button>
                     )

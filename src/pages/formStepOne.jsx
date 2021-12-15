@@ -15,7 +15,7 @@ import {
     MOBILE_MONEY,
     PAYER_ID_STRING
 } from '../constants/variableNames';
-import localLogo from '../assets/test4.svg'
+// import localLogo from '../assets/test4.svg'
 
 
 const useStyles = makeStyles({

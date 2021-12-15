@@ -27,7 +27,7 @@
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
   },
-  "proxy": "https://duma-payme-backend.herokuapp.com",
+  "proxy": "http://localhost:6000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

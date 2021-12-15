@@ -30,7 +30,7 @@ const CARD_ELEMENT_OPTIONS = {
     },
   },
 };
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   listItem: {
     color:'black'
   },
@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
 const  FormStepTwo =()=> {
   const classes = useStyles();
   const [error, setError] = useState(null);
-  // const [disabled, setDisabled] = useState(false);
   const [{ formValues }, dispatch] = useStateValue();
 
 

@@ -10,7 +10,7 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
-    MOBILE_MONEY, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED,
+    MOBILE_MONEY, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 import {  useHistory
 } from "react-router-dom";
@@ -60,19 +60,10 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
-    const history = useHistory()
+    // const history = useHistory()
 
-
-    // const backgroundChanger = () =>{
-    //     if(!loading){
-    //         return '#FBB900'
-    //     }else{
-    //         return '#f5f5f5'
-    //     }
-    // }
 
     const stripe = useStripe();
-
 
     const handleNext = () => {
         if(activeStep === 1){
@@ -129,7 +120,6 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                     currency: formValues.currency,
                     receipt_email: formValues.receiverEmail
                 })
-                // console.log('total another ====>', parseInt(formValues.amount) + formValues.fees)
                 const paymentMethodReq = await stripe.createPaymentMethod({
                     type: 'card',
                     card: formValues.card,

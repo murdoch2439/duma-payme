@@ -7,7 +7,7 @@ const initialState = {
         email: "",
         phone: "",
         currency: "",
-        amount: "0",
+        amount: "1",
         received:"",
         paymentMethod:"",
         receiverName:"",
