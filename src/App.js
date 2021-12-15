@@ -33,10 +33,7 @@ const  App =()=> {
   },[])
 
   const starter = () =>{
-    // if(formValues.currency){
       setLoading(false)
-    // }
-
   }
 
   return (
@@ -55,10 +52,10 @@ const  App =()=> {
             <Switch>
               <Route path="/" exact component={LayoutManager} />
 
-              <Route path="/success" component={SuccessPage} />
-              <Route path="/success1" component={SuccessPage1} />
-              <Route path="/failure" component={FailurePage} />
-              <Route path="/payment-pending" component={PendingPage} />
+              {/*<Route path="/success" component={SuccessPage} />*/}
+              {/*<Route path="/success1" component={SuccessPage1} />*/}
+              {/*<Route path="/failure" component={FailurePage} />*/}
+              {/*<Route path="/payment-pending" component={PendingPage} />*/}
               <Route path="/duma-pay" exact component={MerchantApplication} />
 
             </Switch>
