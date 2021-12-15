@@ -49,7 +49,7 @@ const useStyles = makeStyles(() => ({
 const MerchantApplication =()=>{
           const [loading, setLoading] = useState(false)
     const [{ formValues }] = useStateValue();
-    const cbUrl = "192.168.1.101:8080/index"
+    const cbUrl = "http://18.200.191.178:8081/index"
     const adminId = "61b086378fd8086af11fdd33"
     const currency = "USD"
     const amount = "600"
@@ -74,7 +74,7 @@ const MerchantApplication =()=>{
             //          clientIp = response.data.IPv4
             //         console.log('Ip adress ====>:', clientIp)
             //     })
-             await axios.post('http://192.168.1.101:8081/api/v1/icash/me/redirect', {ip: '197.157.209.2', adminId, cbUrl, currency, amount}, ).then((response)=>{
+             await axios.post('http://18.200.191.178:8081/api/v1/icash/me/redirect', {ip: '197.157.209.2', adminId, cbUrl, currency, amount}, ).then((response)=>{
                  // console.log('ip ==> 197.157.209.2')
                 setLoading(false)
                 console.log('product ==>', response.data)
@@ -135,14 +135,14 @@ const MerchantApplication =()=>{
                     {/*    Click on the button billow to purchase your project*/}
                     {/*</p>*/}
                     <form encType="text/plain"
-                          action="http://192.168.1.101:8081/api/v1/icash/me/redirect"
+                          action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
 
                           method="get" id="duma">
                         <input name="ip" value="197.157.209.2"/>
                         <input name="adminId" value="61b086378fd8086af11fdd33"/>
                         <input name="currency" value="USD"/>
                         <input name="amount" value="600"/>
-                        <input name="cbUrl" value="http://192.168.1.101:8080/index"/>
+                        <input name="cbUrl" value="http://18.200.191.178:8081/index"/>
                         <input type="submit" value="Pay with duma"/>
                     </form>
 

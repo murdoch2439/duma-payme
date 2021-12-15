@@ -141,7 +141,7 @@ const LayoutManager = () => {
                           {/*/> */}
 
                         {
-                            !adminId  ?
+                            !adminId && payerId  ?
                             <GatewayFormStepsManager
                                 onSuccessfulCheckout ={()=> history.replace('/success')}
                                 onFailedCheckout ={()=>history.replace('/failure')}

@@ -84,9 +84,10 @@ const getIpAdress = async () =>{
 
     try{
 
-            const paymentInfo =  {  adminId, payerId }
+            const paymentInfo =  {  adminId, payerId,  }
             if(adminId){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
+
                     setCurrency(response.data.currency)
                     formValues.currency = response.data.currency
                     formValues.rate = response.data.rate
@@ -103,7 +104,7 @@ const getIpAdress = async () =>{
             }
 
     }catch(error){
-        console.error('Error on payment init : ',error)
+        console.error('Error on payment init : ',error.message)
 
         }
 }
