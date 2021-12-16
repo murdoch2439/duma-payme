@@ -9,7 +9,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
-import {API_DUMA_PAY_CLIENT_INIT} from "../constants/variableNames";
+import {API_DUMA_PAY_CLIENT_REDIRECT_INIT} from "../constants/variableNames";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 

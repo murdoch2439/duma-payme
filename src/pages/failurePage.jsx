@@ -12,7 +12,7 @@ import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-        width:450,
+
         height:640,
         marginBottom:10,
         borderTopLeftRadius:10,
@@ -79,7 +79,7 @@ const FailurePage =({paymentID})=>{
 
 
   return(
-     <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
+     <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
         <Container className={classes.boxWrapper}>
           <Paper className={classes.paper}>
             <Grid container  justifyContent='center' className={classes.boxTitle}>
