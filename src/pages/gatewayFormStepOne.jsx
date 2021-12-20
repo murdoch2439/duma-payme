@@ -64,7 +64,7 @@ const GatewayFormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-    const [amount, setAmount] = useState("")
+    const [amount, setAmount] = useState("1")
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -96,33 +96,28 @@ const GatewayFormStepOne =()=> {
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
-        if(currency){
+
             return currency
-        }else{
-            formValues.currency ="*****"
-            return "******"
-        }
     }
 
     const amountManager = () =>{
-        if(amount){
             return `${parseInt(amount).toFixed(2)} $`
-        }else{
-            return `00.00 $`
-        }
+
     }
 
     const paymentInitialization = async() =>{
+
         try{
             const paymentInfo = {  adminId, payerId }
 
             await axios.post(API_PAYMENT_INIT, paymentInfo).then(   (response)=>{
                 console.log('response Data ====>', response.data)
-                formValues.senderExist = response.data.senderExist
-                formValues.callbackUrl = response.data.cbUrl
                 setCurrency(response.data.adminCurrency)
                 setAmount(response.data.amount)
-                 formValues.currency = response.data.currency
+                formValues.senderExist = response.data.senderExist
+                formValues.callbackUrl = response.data.cbUrl
+
+                formValues.currency = response.data.currency
                 console.log(formValues.receiverLogo)
                 formValues.amount = response.data.amount
                 formValues.rate = response.data.rate
