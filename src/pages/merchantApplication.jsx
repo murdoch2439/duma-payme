@@ -135,13 +135,13 @@ const MerchantApplication =()=>{
                     {/*    Click on the button billow to purchase your project*/}
                     {/*</p>*/}
                     <form encType="text/plain"
-                          action="http://192.168.1.101:8081/api/v1/icash/me/redirect"
+                          action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
 
                           method="get" id="duma">
                         {/*<input name="ip" value="197.157.209.2"/>*/}
                         <input name="adminId" value="61b086378fd8086af11fdd33"/>
                         <input name="currency" value="USD"/>
-                        <input name="amount" value="400"/>
+                        <input name="amount" value="600"/>
                         <input name="cbUrl" value="http://18.200.191.178:8081/index"/>
                         <input type="submit" value="Pay with duma"/>
                     </form>

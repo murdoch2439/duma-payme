@@ -104,7 +104,7 @@ const getIpAdress = async () =>{
             }
 
     }catch(error){
-        console.error('Error on payment init : ',error.message)
+        console.error('Error on payment initialization ==> : ',error)
 
         }
 }
