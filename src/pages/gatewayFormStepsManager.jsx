@@ -190,9 +190,12 @@ const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFai
                                     key: "showsuccessmodal",
                                     value: true
                                 })
-                                setTimeout(()=>{
-                                    window.location.href = `${formValues.callbackUrl}/?success=true`
-                                }, 3000)
+                                if(formValues.callbackUrl){
+                                    setTimeout(()=>{
+                                        window.location.href = `${formValues.callbackUrl}/?success=true`
+                                    }, 3000)
+                                }
+
                                 // onSuccessCheckout()
 
                             } else {
