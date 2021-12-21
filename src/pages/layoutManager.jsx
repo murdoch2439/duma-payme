@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React from "react";
 import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid } from "@material-ui/core";
@@ -14,7 +14,7 @@ import FailurePage from "./failurePage";
 import PendingPage from "./pendingPage";
 import {getUrlParams} from "../utils/helperFunctions";
 import {ADMIN_ID_STRING, PAYER_ID_STRING} from "../constants/variableNames";
-import LoadingComponent from "../components/loadingComponent";
+// import LoadingComponent from "../components/loadingComponent";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
@@ -57,7 +57,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LayoutManager = () => {
-    const [{ formValues, modalStates  },] = useStateValue();
+    const [{  modalStates  },] = useStateValue();
 
 
 
@@ -69,15 +69,15 @@ const LayoutManager = () => {
     const adminId = getUrlParams()[ADMIN_ID_STRING]
     const payerId = getUrlParams()[PAYER_ID_STRING]
 
-    const [logo, setLogo] = useState('')
-    useEffect(()=>{
-
-         if(formValues.receiverLogo === ''){
-           console.log('formValues.receiverLogo is empty...')
-         }else{
-           setLogo(formValues.receiverLogo)
-         }
-       }, [formValues.receiverLogo])
+    // const [logo, setLogo] = useState('')
+    // useEffect(()=>{
+    //
+    //      if(formValues.receiverLogo === ''){
+    //        console.log('formValues.receiverLogo is empty...')
+    //      }else{
+    //        setLogo(formValues.receiverLogo)
+    //      }
+    //    }, [formValues.receiverLogo])
 
 
           const cardsLogo = [

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Container, Paper, Grid, Button,
+import { Container, Paper, Grid,
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
 
@@ -46,26 +46,26 @@ const SuccessPage =()=>{
   const [{ formValues }] = useStateValue();
 
 
-  const onClick =() =>{
-      // dispatch({
-      //     type: 'emptyFormValue',
-      //
-      // })
-      window.location.reload()
-      // dispatch({
-      //     type: CHANGE_MODAL_STATES,
-      //     key: SHOW_SUCCESS_MODAL,
-      //     value: false
-      // })
-      // dispatch({
-      //     type: CHANGE_MODAL_STATES,
-      //     key: SHOW_PENDING_MODAL,
-      //     value: false
-      // })
-
-      // history.replace('/')
-
-  }
+  // const onClick =() =>{
+  //     // dispatch({
+  //     //     type: 'emptyFormValue',
+  //     //
+  //     // })
+  //     window.location.reload()
+  //     // dispatch({
+  //     //     type: CHANGE_MODAL_STATES,
+  //     //     key: SHOW_SUCCESS_MODAL,
+  //     //     value: false
+  //     // })
+  //     // dispatch({
+  //     //     type: CHANGE_MODAL_STATES,
+  //     //     key: SHOW_PENDING_MODAL,
+  //     //     value: false
+  //     // })
+  //
+  //     // history.replace('/')
+  //
+  // }
 
   const classes = useStyles()
   const [checked, setChecked] = useState(false);

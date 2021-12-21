@@ -50,21 +50,17 @@ const  FormStepTwo =()=> {
   const [error, setError] = useState(null);
   const [{ formValues }, dispatch] = useStateValue();
 
-
-
-
-      const stripe = useStripe();
-      const elements = useElements();
+  const stripe = useStripe();
+  const elements = useElements();
 
 
     const handleChange = async(event) =>{
 
-
     // setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
-
   }
-      formValues.card = elements.getElement(CardElement)
+
+    formValues.card = elements.getElement(CardElement)
   if (!stripe || !elements) {
       // setCardMessage('Stripe has not yet loaded')
       return ;
@@ -75,7 +71,7 @@ const  FormStepTwo =()=> {
 
   return (
 
-      <Grid  spacing={3}>
+      <Grid >
       <Grid  style={{ width:'100%', display:'flex'}} >
         {/* <Grid xs={12} sm={12} md={4} >
 
@@ -122,38 +118,21 @@ const  FormStepTwo =()=> {
             </Grid>
           <div style={{height:1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
 
-      <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterbottom={true}>
+      <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterbottom={"true"}>
           {formValues.paymentMethod === DEBIT_CARD ?
             "Card Information" :
               "Mobile money Information"
           }
 
       </Typography>
-      <Grid container spacing={3} >
+      <Grid container  >
 
         <Grid item  xs={12} sm={12} >
             {
                 formValues.paymentMethod === DEBIT_CARD ?
                     <CardElement onChange={handleChange}  options={CARD_ELEMENT_OPTIONS}  />:
-                    <Grid item container spacing={5} style={{marginTop:5, display:'flex'}}>
-                        {/*<Grid item xs={12} sm={4} md={6} >*/}
-                        {/*    <TextField*/}
-                        {/*        inputProps={{className:classes.input}}*/}
-                        {/*        label="Mobile account name"*/}
-                        {/*        name="name"*/}
-                        {/*        variant="outlined"*/}
-                        {/*        required*/}
-                        {/*        fullWidth*/}
-                        {/*        value={formValues.name}*/}
-                        {/*        onChange={e =>*/}
-                        {/*            dispatch({*/}
-                        {/*                type: 'editFormValue',*/}
-                        {/*                key: "name",*/}
-                        {/*                value: e.target.value*/}
-                        {/*            })*/}
-                        {/*        }*/}
-                        {/*    />*/}
-                        {/*</Grid>*/}
+                    <Grid item container style={{marginTop:5, display:'flex'}}>
+
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
                                 label="Mobile Money Number"

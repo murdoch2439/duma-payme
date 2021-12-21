@@ -10,14 +10,14 @@ import {
 
 } from '../utils/helperFunctions';
 import {
-    ADMIN_ID_STRING, AMOUNT,
-    API_PAYMENT_INIT, API_RETRIEVE_PURCHASED_OBJECT, CALLBACK_URL, CURRENCY,
+    ADMIN_ID_STRING,
+    API_PAYMENT_INIT,
     DEBIT_CARD,
     EDIT_FORM_VALUES,
     MOBILE_MONEY,
     PAYER_ID_STRING
 } from '../constants/variableNames';
-import localLogo from '../assets/test4.svg'
+// import localLogo from '../assets/test4.svg'
 import ListItemText from "@material-ui/core/ListItemText";
 
 
@@ -68,12 +68,6 @@ const GatewayFormStepOne =()=> {
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-    // const mailFormatVerifer = (email) =>{
-    //
-    //     return emailFormat.test(email)
-    //
-    // }
 
 
     const [paymentMeth, setPaymentMeth] = useState('')

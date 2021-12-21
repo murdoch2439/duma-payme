@@ -53,7 +53,7 @@ const GetStepContent = ({step}) => {
     }
 }
 
-const  GatewayFormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
+const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const [{ formValues,  }, dispatch] = useStateValue();

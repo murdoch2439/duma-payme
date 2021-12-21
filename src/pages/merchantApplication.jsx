@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { Container, Paper, Grid, Button
+import { Container, Paper, Grid,
 } from "@material-ui/core";
-import CheckIcon from '@material-ui/icons/Check';
-import axios from 'axios'
 
 import { makeStyles, } from '@material-ui/core/styles';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 import Zoom from '@material-ui/core/Zoom';
-import { useStateValue } from '../context';
-import {API_DUMA_PAY_CLIENT_REDIRECT_INIT} from "../constants/variableNames";
-// import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
 
@@ -43,49 +38,34 @@ const useStyles = makeStyles(() => ({
         borderRadius:50,
     }
 }));
-      let clientIp=''
 
 
 const MerchantApplication =()=>{
-          const [loading, setLoading] = useState(false)
-    const [{ formValues }] = useStateValue();
-    const cbUrl = "http://18.200.191.178:8081/index"
-    const adminId = "61b086378fd8086af11fdd33"
-    const currency = "USD"
-    const amount = "600"
-    const backgroundChanger = () =>{
-        if(!loading){
-            return '#FBB900'
-        }else{
-            return '#f5f5f5'
-        }
-    }
 
-
-    const onClick =async() =>{
-        // dispatch({
-        //     type: 'emptyFormValue',
-        //
-        // })
-        try{
-            setLoading(true)
-            // const ip = await axios.get('https://geolocation-db.com/json', )
-            //     .then(response =>{
-            //          clientIp = response.data.IPv4
-            //         console.log('Ip adress ====>:', clientIp)
-            //     })
-             await axios.post('http://192.168.1.101:8081/api/v1/icash/me/redirect', {adminId, cbUrl, currency, amount}, ).then((response)=>{
-                 // console.log('ip ==> 197.157.209.2')
-                setLoading(false)
-                console.log('product ==>', response.data)
-                 setLoading(false)
-            })
-
-        }catch(error){
-            setLoading(false)
-            console.log('Error when Trying to ===>', error)
-
-        }
+    // const onClick =async() =>{
+    //     // dispatch({
+    //     //     type: 'emptyFormValue',
+    //     //
+    //     // })
+    //     try{
+    //         setLoading(true)
+    //         // const ip = await axios.get('https://geolocation-db.com/json', )
+    //         //     .then(response =>{
+    //         //          clientIp = response.data.IPv4
+    //         //         console.log('Ip adress ====>:', clientIp)
+    //         //     })
+    //          await axios.post('http://192.168.1.101:8081/api/v1/icash/me/redirect', {adminId, cbUrl, currency, amount}, ).then((response)=>{
+    //              // console.log('ip ==> 197.157.209.2')
+    //             setLoading(false)
+    //             console.log('product ==>', response.data)
+    //              setLoading(false)
+    //         })
+    //
+    //     }catch(error){
+    //         setLoading(false)
+    //         console.log('Error when Trying to ===>', error)
+    //
+    //     }
 
         // window.location.reload()
         // dispatch({
@@ -101,7 +81,7 @@ const MerchantApplication =()=>{
 
         // history.replace('/')
 
-    }
+    // }
 
     const classes = useStyles()
     const [checked, setChecked] = useState(false);
@@ -142,7 +122,7 @@ const MerchantApplication =()=>{
                         <input name="adminId" value="61b086378fd8086af11fdd33"/>
                         <input name="currency" value="USD"/>
                         <input name="amount" value="600"/>
-                        <input name="cbUrl" value="http://18.200.191.178:8081/index"/>
+                        <input name="cbUrl" value="https://collect.icash-congo.com/"/>
                         <input type="submit" value="Pay with duma"/>
                     </form>
 

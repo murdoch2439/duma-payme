@@ -122,7 +122,6 @@ const getIpAdress = async () =>{
             <TextField
             inputProps={{className:classes.input}}
                 label="Name on the card"
-
                 name="name"
                 variant="outlined"
                 required
@@ -150,14 +149,13 @@ const getIpAdress = async () =>{
             <TextField
                 label="Email adress"
                 name="email"
-
                 variant="outlined"
                 type="email"
                 required
                 fullWidth
                 error={errorName}
                 helperText={ errorName ? `${errorMessage}`:null}
-                value={formValues.email}
+                value={formValues.email.toString()}
                 onChange={e =>{
                     dispatch({
                         type: EDIT_FORM_VALUES,
@@ -268,8 +266,6 @@ const getIpAdress = async () =>{
 
                     })
                 }
-
-
                 }
             />
         </Grid>

@@ -6,7 +6,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import { makeStyles, } from '@material-ui/core/styles';
 
 import Zoom from '@material-ui/core/Zoom';
-import { useStateValue } from '../context';
+// import { useStateValue } from '../context';
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
 
 
 const SuccessPage1 =()=>{
-    const [{ formValues }] = useStateValue();
+    // const [{ formValues }] = useStateValue();
 
 
     const onClick =() =>{

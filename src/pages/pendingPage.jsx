@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
 
 
 
-const PendingPage =({paymentID,})=>{
+const PendingPage =()=>{
     const [{ formValues }, dispatch] = useStateValue();
     // const history = useHistory()
     const [loading, setLoading] = useState(false)

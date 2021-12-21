@@ -57,7 +57,7 @@ const GetStepContent = ({step}) => {
   }
 }
 
-const  FormStepsManager =({onSuccessfulCheckout: onSuccessCheckout, onFailedCheckout: onFailCheckout, onPendingCheckout}) => {
+const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [{ formValues,  }, dispatch] = useStateValue();
