@@ -1,11 +1,12 @@
 import React from 'react'
-import { Container, Paper, Grid,
+import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
 import CloudOffIcon from '@mui/icons-material/CloudOff';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
 
 import { makeStyles, } from '@material-ui/core/styles';
+import {useHistory} from 'react-router-dom'
 
 
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
@@ -20,7 +21,7 @@ const useStyles = makeStyles(() => ({
 
     },
     paper: {
-        height:500,
+        height:550,
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
@@ -44,8 +45,13 @@ const useStyles = makeStyles(() => ({
 
 
 const NotFoundPage =()=>{
+    const history = useHistory()
 
     const classes = useStyles()
+    const onClick =() =>{
+
+        history.goBack()
+    }
 
 
     return(
@@ -66,6 +72,14 @@ const NotFoundPage =()=>{
                         <br />
                         Sorry, page not found!
                     </p>
+                    <Grid container item justify='center' style={{marginTop:30}}>
+                        <Button
+                            onClick={onClick}
+                            style={{backgroundColor:  'white', color:'#FBB900', height:50, width:220, }}
+                        >
+                            GO BACK
+                        </Button>
+                    </Grid>
 
                 </Paper>
             </Container>

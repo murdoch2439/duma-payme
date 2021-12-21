@@ -12,8 +12,6 @@ import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
-
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         // backgroundColor:'red',

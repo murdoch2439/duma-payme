@@ -67,7 +67,7 @@ const FormStepOne =()=> {
         formValues.payerId = payerId
     }
 
-     const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : parseInt(formValues.amount) * parseFloat(formValues.rate))
+     const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
 
 
   useEffect(()=>{

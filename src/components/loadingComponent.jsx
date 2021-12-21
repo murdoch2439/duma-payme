@@ -25,7 +25,6 @@ const LoadingComponent = () =>{
           timeout={5000}
         />
 
-
     </Container>
   )
 }
