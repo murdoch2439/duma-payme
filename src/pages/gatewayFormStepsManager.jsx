@@ -12,8 +12,8 @@ import {
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
     MOBILE_MONEY, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
-import {  useHistory
-} from "react-router-dom";
+// import {  useHistory
+// } from "react-router-dom";
 import {backgroundChanger} from "../utils/helperFunctions";
 
 
