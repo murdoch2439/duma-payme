@@ -9,9 +9,9 @@ import GatewayFormStepsManager from './gatewayFormStepsManager'
 import { useStateValue } from "../context";
 import cover from '../assets/Trip-assurances (4).png'
 import logDuma from '../assets/duma1.png'
-import SuccessPage from "./successPage";
-import FailurePage from "./failurePage";
-import PendingPage from "./pendingPage";
+import SuccessModal from "./successPage";
+import FailureModal from "./failurePage";
+import PendingModal from "./pendingPage";
 import {getUrlParams} from "../utils/helperFunctions";
 import {ADMIN_ID_STRING, PAYER_ID_STRING} from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
@@ -32,7 +32,6 @@ const useStyles = makeStyles(() => ({
     imagesBoxWrapper:{
       width:'75%',
       borderRadius:10,
-
 
         // backgroundImage:`url(${cover})` ,
       // textAlign:'center'
@@ -59,12 +58,8 @@ const useStyles = makeStyles(() => ({
 const LayoutManager = () => {
     const [{  modalStates  },] = useStateValue();
 
-
-
     const classes = useStyles();
-    // const [showSuccessModal, setShowSuccessModal] = useState(modalStates.showSuccessModal)
-    // const [showFailModal, setShowFailModal] = useState(modalStates.showFailModal)
-    // const [showPendingModal, setShowPendingModal] = useState(modalStates.showPendingModal)
+
     const history = useHistory()
     const adminId = getUrlParams()[ADMIN_ID_STRING]
     const payerId = getUrlParams()[PAYER_ID_STRING]
@@ -96,11 +91,11 @@ const LayoutManager = () => {
     return (
       <>
           {
-              modalStates.showsuccessmodal ? <SuccessPage />:
-              modalStates.showfailmodal ? <FailurePage />:
-              modalStates.showpendingmodal ? <PendingPage />:
+              modalStates.showsuccessmodal ? <SuccessModal />:
+              modalStates.showfailmodal ? <FailureModal />:
+              modalStates.showpendingmodal ? <PendingModal />:
                   <Box mt={10} >
-              <Container maxWidth="md" >
+                    <Container maxWidth="md" >
                     <Paper elevation={3}  className={classes.container} >
                           <Box
                               className={classes.imagesBoxWrapper}
@@ -134,12 +129,6 @@ const LayoutManager = () => {
                             </div>
                           </Box>
 
-                          {/*<FormManager*/}
-                          {/*    onSuccessfulCheckout ={()=> history.replace('/success')}*/}
-                          {/*    onFailedCheckout ={()=>history.replace('/failure')}*/}
-                          {/*    onPendingCheckout={()=>history.replace('/payment-pending')}*/}
-                          {/*/> */}
-
                         {
                             !adminId && payerId  ?
                             <GatewayFormStepsManager
@@ -154,11 +143,6 @@ const LayoutManager = () => {
                             />
 
                         }
-                          {/*<FormManager1*/}
-                          {/*    onSuccessfulCheckout ={()=> history.replace('/success')}*/}
-                          {/*    onFailedCheckout ={()=>history.replace('/failure')}*/}
-                          {/*    onPendingCheckout={()=>history.replace('/payment-pending')}*/}
-                          {/*/>*/}
                     </Paper>
               </Container>
                   </Box>

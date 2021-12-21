@@ -18,14 +18,10 @@ const initialState = {
         rate:"1",
         ip:'',
         card:null,
-        receiverLogo:"prince.ilunga@businesslighthouse.tech",
+        receiverLogo:"",
         fees:4,
-        // orderId:"",
-        // customerId:"",
         callbackUrl:"",
         senderExist:false
-
-
 
     },
     modalStates:{

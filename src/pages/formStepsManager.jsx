@@ -9,8 +9,8 @@ import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES,
-    MOBILE_MONEY, SHOW_PENDING_MODAL, SUCCEEDED,
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, LOADING_MESSAGE,
+    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 // import logDuma from "../assets/duma1.png";
 // import Typography from "@material-ui/core/Typography";
@@ -229,7 +229,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                   {activeStep !== 0 &&
                     (
                       <Button style={{width:'100%'}} disabled={loading} onClick={handleBack} className={classes.buttons}>
-                        Back
+                          {PREVIOUS_STEP}
                       </Button>
                     )
                   }
@@ -240,8 +240,8 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                     style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                   >
-                    { loading ? 'Processing...' :
-                      activeStep === steps.length-1  ?  'Pay now' : 'Next'
+                    { loading ? LOADING_MESSAGE :
+                      activeStep === steps.length-1  ?  PAY_NOW : Next_STEP
                     }
                   </Button>
                   </Grid>

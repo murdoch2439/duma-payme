@@ -69,9 +69,7 @@ const  GatewayFormStepTwo =()=> {
         // setCardMessage('Stripe has not yet loaded')
         return ;
     }
-    // const fees = parseInt(formValues.fees)
 
-    // const total = parseInt(formValues.amount) + fees
 
     return (
 

@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 
 import MerchantApplication from "./pages/merchantApplication";
+import NotFoundPage from "./pages/notFoundPage";
 
 const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2cp3ZI4cDSTWJ15AHTy1HWREb7HrObRwXcsneRfbLXvo5IQKQWM2000bkx3L5tB")
 
@@ -47,9 +48,11 @@ const  App =()=> {
                 </div>:
             <Elements stripe={stripePromise}>
             <Switch>
+
               <Route path="/" exact component={LayoutManager} />
 
               <Route path="/duma-pay" exact component={MerchantApplication} />
+              <Route path="*"  component={NotFoundPage} />
 
             </Switch>
             </Elements>

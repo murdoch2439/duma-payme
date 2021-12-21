@@ -9,7 +9,6 @@ import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
 
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
 
@@ -18,17 +17,14 @@ const useStyles = makeStyles(() => ({
         borderTopLeftRadius:10,
         borderTopRightRadius:10,
 
-
     },
     paper: {
-
         height:500,
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
         borderTopLeftRadius:10,
         borderTopRightRadius:10,
-
     },
     boxTitle:{
       backgroundColor:'#d10c02',
@@ -49,7 +45,7 @@ const useStyles = makeStyles(() => ({
 
 
 
-const FailurePage =({paymentID})=>{
+const FailurePage =()=>{
   const [{ formValues }, dispatch] = useStateValue();
 
   const classes = useStyles()
@@ -64,10 +60,6 @@ const FailurePage =({paymentID})=>{
   };
 
     const onClick =() =>{
-        // dispatch({
-        //     type: 'emptyFormValue',
-        //
-        // })
 
         dispatch({
             type: CHANGE_MODAL_STATES,
