@@ -1,6 +1,6 @@
 export const ADMIN_ID_STRING = "adminId"
 export const PAYER_ID_STRING = "payerId"
-export const ONLINE_BACKE_END_PORT = "54.154.208.240"
+export const ONLINE_BACKE_END_PORT = "localhost"
 // export const ONLINE_BACKE_END_PORT = "192.168.1.115"
 // export const serverLive = "https://duma-payme-backend.herokuapp.com"
 // export const CURRENCY = "currency"
