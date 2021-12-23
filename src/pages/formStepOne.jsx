@@ -83,13 +83,12 @@ const FormStepOne =()=> {
 const getIpAdress = async () =>{
 
     try{
-
             const paymentInfo =  {  adminId, payerId,  }
             if(adminId){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
-
-                    setCurrency(response.data.currency)
                     formValues.currency = response.data.currency
+                    setCurrency(response.data.currency)
+
                     formValues.rate = response.data.rate
                     formValues.transactionReference = response.data.reference
                     formValues.receiverLogo = response.data.clientLogo
@@ -257,7 +256,7 @@ const getIpAdress = async () =>{
                 required
                 type="number"
                 fullWidth
-                value={formValues.amount}
+                value={parseInt(formValues.amount).toFixed(2)}
                 onChange={e => {
                     dispatch({
                         type: EDIT_FORM_VALUES,
