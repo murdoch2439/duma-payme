@@ -10,6 +10,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(() => ({
@@ -50,6 +51,7 @@ const PendingPage =()=>{
     const [{ formValues }, dispatch] = useStateValue();
     // const history = useHistory()
     const [loading, setLoading] = useState(false)
+    const {t}=useTranslation()
 
     const classes = useStyles()
     const [checked, setChecked] = useState(false);
@@ -84,7 +86,7 @@ const PendingPage =()=>{
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
-                        <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Information</p>
+                        <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >{t("Information")}</p>
                     </Grid>
                     <div style={{height:40}} />
                     <Grid  item className={classes.boxIcon}>
@@ -92,10 +94,10 @@ const PendingPage =()=>{
                     </Grid>
 
                     <p style={{textAlign:'center', fontSize:25}}>
-                        Your payment to: <br />
+                        {t("Your payment to:")} <br />
                         <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
                         <br />
-                        is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)
+                        {t("is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)")}
                     </p>
 
                     <Grid container item justify='center' style={{marginTop:30, paddingBottom:50}}>
@@ -109,7 +111,7 @@ const PendingPage =()=>{
                             }}
                             disabled={loading}
                         >
-                            {loading?'REFRESHING STATUS...': 'REFRESH'}
+                            {loading? t('Refreshing Status...'): t('Refresh')}
                         </Button>
                     </Grid>
                 </Paper>

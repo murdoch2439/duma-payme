@@ -1,7 +1,7 @@
 import React from "react";
 import {  useHistory
 } from "react-router-dom";
-import { Container, Paper, Box, Grid } from "@material-ui/core";
+import { Container, Paper, Box, Grid, Button } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
 
 import FormStepsManager from './formStepsManager'
@@ -16,6 +16,7 @@ import {getUrlParams} from "../utils/helperFunctions";
 import {ADMIN_ID_STRING, PAYER_ID_STRING} from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(() => ({
 
@@ -50,19 +51,26 @@ const useStyles = makeStyles(() => ({
     },
     clientLogo:{
         // marginTop:50,
-        width:'100%',
+        width:'50%',
+        textAlign:'center'
 
     }
 }));
 
 const LayoutManager = () => {
     const [{  modalStates  },] = useStateValue();
+    const {t, i18n} = useTranslation()
 
     const classes = useStyles();
+
 
     const history = useHistory()
     const adminId = getUrlParams()[ADMIN_ID_STRING]
     const payerId = getUrlParams()[PAYER_ID_STRING]
+
+    const onClickHandler =(lang)=>{
+        i18n.changeLanguage(lang).then()
+    }
 
     // const [logo, setLogo] = useState('')
     // useEffect(()=>{
@@ -102,6 +110,11 @@ const LayoutManager = () => {
                               display={{ xs: 'none',sm:'inline', md:'block' }}
                               m={1}
                           >
+                              <div>
+                                  <Button onClick={()=>onClickHandler('fr')}>{t("French")}</Button>
+                                  <Button onClick={()=>onClickHandler('en')}>{t("English")}</Button>
+                              </div>
+
                             <div className={classes.imagesBox}>
                                   <img src={logDuma} alt='logo' className={classes.logoDuma} />
                                   <div style={{height:300, backgroundColor:'white'}}>
@@ -111,7 +124,10 @@ const LayoutManager = () => {
                                       {/*formValues.receiverLogo === '' ? 'Loading...':*/}
                                       {/*<img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
                                       {/* }*/}
+                                      {/*<p>{t("Why")}</p>*/}
                                       <img src={cover} alt='logo' className={classes.clientLogo} />
+
+
                                   </div>
 
 
@@ -120,7 +136,7 @@ const LayoutManager = () => {
                                       xs={12}
                                       sm={12}
                                       md={12}
-                                      style={{ marginTop:50, textAlign:'center',}}
+                                      style={{ marginTop:10, textAlign:'center',}}
                                   >
                                     {
                                         cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)

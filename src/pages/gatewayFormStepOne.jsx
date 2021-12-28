@@ -19,6 +19,7 @@ import {
 } from '../constants/variableNames';
 // import localLogo from '../assets/test4.svg'
 import ListItemText from "@material-ui/core/ListItemText";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles({
@@ -68,6 +69,7 @@ const GatewayFormStepOne =()=> {
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const {t} = useTranslation()
 
 
     const [paymentMeth, setPaymentMeth] = useState('')
@@ -137,23 +139,25 @@ const GatewayFormStepOne =()=> {
 
 
                 <Grid item  xs={12} >
-                    <Typography variant="h6">Payment Information</Typography>
+                    <Typography variant="h6">{t("Payment Information")}</Typography>
                     <List>
                         <ListItem className={classes.listItem} >
-                            <ListItemText primary='Currency:' style={{fontWeight:'800', color:'black'}}  />
+                            <ListItemText primary={t('Currency :')} style={{fontWeight:'800', color:'black'}}  />
                             <Typography variant="body1" style={{fontWeight:'500'}}>{currencyManager()}</Typography>
                         </ListItem>
-                        <ListItem className={classes.listItem} >
-                            <ListItemText primary='Total:' style={{fontWeight:'800', color:'black'}}  />
+                        <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
+                            <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
                             <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
                         </ListItem>
 
                     </List>
+                    <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
                 </Grid>
+
                 <Grid item xs={12} sm={4} md={6} >
                     <TextField
                         inputProps={{className:classes.input}}
-                        label="Name on the card"
+                        label={t("Name on the card")}
                         name="name"
                         variant="outlined"
                         required
@@ -175,7 +179,7 @@ const GatewayFormStepOne =()=> {
 
                 <Grid item xs={12} sm={4} md={6}>
                     <TextField
-                        label="Email adress"
+                        label={t("Email adress")}
                         name="email"
                         variant="outlined"
                         type="email"
@@ -210,7 +214,7 @@ const GatewayFormStepOne =()=> {
                             required
                             variant="outlined"
                             select
-                            label="Payment method"
+                            label={t("Payment method")}
                             value={formValues.paymentMethod === '' ? paymentMeth : formValues.paymentMethod}
                             onChange={(e) => {
                                 setPaymentMeth(e.target.value)
@@ -219,7 +223,7 @@ const GatewayFormStepOne =()=> {
                         >
                             {paymentMethod.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
+                                    {t(option.label)}
                                 </MenuItem>
                             ))}
                         </TextField>

@@ -7,6 +7,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
+import {useTranslation} from "react-i18next";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
@@ -44,6 +45,7 @@ const useStyles = makeStyles(() => ({
 
 const SuccessPage =()=>{
   const [{ formValues }] = useStateValue();
+  const {t} = useTranslation()
 
 
   // const onClick =() =>{
@@ -83,17 +85,17 @@ const SuccessPage =()=>{
               <Paper className={classes.paper}>
 
                 <Grid container  justifyContent='center' className={classes.boxTitle}>
-                    <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Confirmation</p>
+                    <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >{t("Confirmation")}</p>
                 </Grid>
                 <div style={{height:40}} />
                 <Grid  item className={classes.boxIcon}>
                   <CheckIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
-                    Your payment to: <br />
+                    {t("Your payment to:")} <br />
                     <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
                     <br />
-                    passed successfully, thank you for reaching out! You can order another payment link for another payment
+                    {t("Passed successfully, thank you for reaching out! You can order another payment link for another payment")}
                 </p>
                 {/*<Grid container item justify='center' style={{marginTop:30}}>*/}
                 {/*    <Button*/}

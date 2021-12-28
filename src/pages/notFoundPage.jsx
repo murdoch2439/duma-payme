@@ -7,6 +7,7 @@ import CloudOffIcon from '@mui/icons-material/CloudOff';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
+import {useTranslation} from "react-i18next";
 
 
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
@@ -46,6 +47,7 @@ const useStyles = makeStyles(() => ({
 
 const NotFoundPage =()=>{
     const history = useHistory()
+    const {t} = useTranslation()
 
     const classes = useStyles()
     const onClick =() =>{
@@ -60,24 +62,24 @@ const NotFoundPage =()=>{
                 <Paper className={classes.paper}>
 
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
-                        <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >Not found</p>
+                        <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                     </Grid>
                     <div style={{height:40}} />
                     <Grid  item className={classes.boxIcon}>
                         <CloudOffIcon style={{fontSize:60, color:'black', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
                     </Grid>
                     <p style={{textAlign:'center', fontSize:25}}>
-                        Oups!!, something just went wrong! <br />
+                        {t("Oups!!, something just went wrong!")} <br />
                         <span style={{fontWeight:'bold', fontSize:100,}}>404</span>
                         <br />
-                        Sorry, page not found!
+                        {t("Sorry, page not found!")}
                     </p>
                     <Grid container item justify='center' style={{marginTop:30}}>
                         <Button
                             onClick={onClick}
                             style={{backgroundColor:  'white', color:'#FBB900', height:50, width:220, }}
                         >
-                            GO BACK
+                            {t("Go back")}
                         </Button>
                     </Grid>
 

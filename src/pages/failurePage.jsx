@@ -7,6 +7,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles(() => ({
@@ -47,6 +48,7 @@ const useStyles = makeStyles(() => ({
 
 const FailurePage =()=>{
   const [{ formValues }, dispatch] = useStateValue();
+  const {t} = useTranslation()
 
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
@@ -75,17 +77,17 @@ const FailurePage =()=>{
         <Container className={classes.boxWrapper}>
           <Paper className={classes.paper}>
             <Grid container  justifyContent='center' className={classes.boxTitle}>
-                <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Information</p>
+                <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >{t("Information")}</p>
             </Grid>
                 <div style={{height:40}} />
                 <Grid  item className={classes.boxIcon}>
                   <ClearIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
-                    Your payment to: <br />
+                    {t("Your payment to:")} <br />
                     <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
                     <br />
-                    has failed, please check informations and retry.
+                    {t("has failed, please check informations and retry.")}
                 </p>
 
             <Grid container item justify='center' style={{marginTop:30}}>
@@ -93,7 +95,7 @@ const FailurePage =()=>{
                     onClick={onClick}
                     style={{backgroundColor:  'red', color:'white', height:50, width:220, }}
                 >
-                    RETRY
+                    {t("Retry")}
                 </Button>
             </Grid>
           </Paper>

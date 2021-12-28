@@ -11,6 +11,7 @@ import '../constants/styles/cardSectionStyles.css'
 // import { currencyManager, nameFormating } from '../utils/helperFunctions';
 import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
+import {useTranslation} from "react-i18next";
 
 
 const CARD_ELEMENT_OPTIONS = {
@@ -50,6 +51,7 @@ const  GatewayFormStepTwo =()=> {
     const [{ formValues }, dispatch] = useStateValue();
     const stripe = useStripe();
     const elements = useElements();
+    const {t} = useTranslation()
 
 
     const [error, setError] = useState(null);
@@ -78,15 +80,15 @@ const  GatewayFormStepTwo =()=> {
 
                 <Grid item xs={12} sm={12} md={12} style={{padding:'0 5px 0 5px'}}>
                     <Grid item  xs={12} style={{paddingTop:20}} >
-                        <Typography style ={{fontSize:16, fontWeight:'bold'}}>Payment details</Typography>
+                        <Typography style ={{fontSize:16, fontWeight:'bold'}}>{t("Payment Details")}</Typography>
                     </Grid>
                     <List>
                         <ListItem className={classes.listItem} >
-                            <ListItemText primary='Currency:' style={{fontWeight:'800', color:'black'}}  />
+                            <ListItemText primary={t('Currency :')} style={{fontWeight:'800', color:'black'}}  />
                             <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.currency}</Typography>
                         </ListItem>
-                        <ListItem className={classes.listItem} >
-                            <ListItemText primary='Total:' style={{fontWeight:'800', color:'black'}}  />
+                        <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
+                            <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
                             <Typography variant="body1" style={{fontWeight:'500'}}>{`${parseInt(formValues.amount).toFixed(2)} $`}</Typography>
                         </ListItem>
 
@@ -95,12 +97,12 @@ const  GatewayFormStepTwo =()=> {
                 </Grid>
 
             </Grid>
-            {/*<div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>*/}
+            <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
 
             <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterbottom={"true"}>
                 {formValues.paymentMethod === DEBIT_CARD ?
-                    "Card Information" :
-                    "Mobile money Information"
+                    t("Card Information") :
+                    t("Mobile money Information")
                 }
 
             </Typography>
@@ -114,7 +116,7 @@ const  GatewayFormStepTwo =()=> {
 
                                 <Grid item xs={12} sm={12} md={12}>
                                     <TextField
-                                        label="Mobile Money Number"
+                                        label={t("Mobile Money Number")}
                                         name="receiver"
                                         variant="outlined"
                                         type="tel"

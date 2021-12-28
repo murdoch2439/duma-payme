@@ -9,8 +9,10 @@ import {
     Link,
     Typography,
 } from "@material-ui/core";
+import {useTranslation} from "react-i18next";
 
 const NoticeDialog = ({separator}) => {
+    const {t} = useTranslation()
 
     const [open, toggleOpen] = useState(false);
     const [dialog, setDialog] = useState("legal");
@@ -24,12 +26,12 @@ const NoticeDialog = ({separator}) => {
     const contentObject = {
         legal: {
             name: "legal",
-            title: "Legal Notice",
+            title: t("Legal Notice"),
             description: () => <>This website is owned and operated by Duma Solutions.<br /><br />To contact us:<br />Name<br />Address line<br />postcode city<br />country<br /><br />Phone: ___________</>
         },
         privacy: {
             name: "privacy",
-            title: "Privacy Notice",
+            title: t("Privacy Notice"),
             description: () => <>
                 The present website, including all information and materials contained on it, are managed and controlled by _________, ADDRESS.<br /><br />
                 Our contact details are provided on our Legal Notice.<br /><br />
@@ -101,7 +103,7 @@ const NoticeDialog = ({separator}) => {
         },
         tou: {
             name: "tou",
-            title: "Terms of Use",
+            title: t("Terms of Use"),
             description: () => <>
                 This website featured to you is subject to the following Terms and our Privacy Notice. If you visit our websites you accept these conditions.<br />
                 Please read them carefully.<br /><br />
@@ -121,15 +123,7 @@ const NoticeDialog = ({separator}) => {
                 <Typography variant="h6">6. Severability</Typography>
                 The provisions of these Terms of Use are intended to be severable. If for any reason any provision of these Terms of Use shall be held invalid or unenforceable in whole or in part in any jurisdiction, such provision shall, as to such jurisdiction, be ineffective to the extent of such invalidity or unenforceability without in any manner affecting the validity or enforceability thereof in any other jurisdiction or the remaining provisions hereof in any jurisdiction.<br />
             </>
-        },
-        trademarks: {
-            name: "trademarks",
-            title: "Trademarks",
-            description: () => <>
-                All materials available on this site are protected by copyright laws and international copyright treaty provisions.<br />
-                This material has been placed on this Internet site under the authority of the copyright owner for the sole purpose of viewing of the materials by users of this site.<br />
-            </>
-        },
+        }
     }
 
     return <Typography variant="caption">
@@ -150,7 +144,7 @@ const NoticeDialog = ({separator}) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => toggleOpen(false)} color="primary" autoFocus>
-                    Close
+                    {t("Close")}
                 </Button>
             </DialogActions>
         </Dialog>

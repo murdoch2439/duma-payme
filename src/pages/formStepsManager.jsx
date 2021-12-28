@@ -15,6 +15,7 @@ import {
 // import logDuma from "../assets/duma1.png";
 // import Typography from "@material-ui/core/Typography";
 import {backgroundChanger} from "../utils/helperFunctions";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -64,6 +65,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
+    const {t, } = useTranslation()
 
 
   // const backgroundChanger = () =>{
@@ -229,7 +231,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                   {activeStep !== 0 &&
                     (
                       <Button style={{width:'100%'}} disabled={loading} onClick={handleBack} className={classes.buttons}>
-                          {PREVIOUS_STEP}
+                          {t(PREVIOUS_STEP)}
                       </Button>
                     )
                   }
@@ -240,8 +242,8 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                     style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                   >
-                    { loading ? LOADING_MESSAGE :
-                      activeStep === steps.length-1  ?  PAY_NOW : Next_STEP
+                    { loading ? t(LOADING_MESSAGE) :
+                      activeStep === steps.length-1  ? t(PAY_NOW) : t(Next_STEP)
                     }
                   </Button>
                   </Grid>

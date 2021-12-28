@@ -1,4 +1,5 @@
 import {Currencies} from "./currencies";
+// import {useTranslation} from "react-i18next";
 
 export  const transformToUpCase = (word) =>{
       return word.toUpperCase()
@@ -65,3 +66,7 @@ export   const backgroundChanger = (loading) =>{
         return '#f5f5f5'
     }
 }
+
+// export const languageSwitcher = () =>{
+//
+// }

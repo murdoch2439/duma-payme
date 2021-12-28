@@ -15,6 +15,8 @@ import {
     MOBILE_MONEY,
     PAYER_ID_STRING
 } from '../constants/variableNames';
+import {useTranslation} from "react-i18next";
+
 // import localLogo from '../assets/test4.svg'
 
 
@@ -59,7 +61,7 @@ const FormStepOne =()=> {
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
+    const {t, } = useTranslation()
      const adminId = getUrlParams()[ADMIN_ID_STRING]
      const  payerId = getUrlParams()[PAYER_ID_STRING]
      formValues.receiverEmail = adminId
@@ -67,7 +69,7 @@ const FormStepOne =()=> {
         formValues.payerId = payerId
     }
 
-     const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
+  const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
 
 
   useEffect(()=>{
@@ -115,12 +117,12 @@ const getIpAdress = async () =>{
       <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
 
       <Grid item  xs={12} >
-            <Typography variant="h6">Payer Information</Typography>
+            <Typography variant="h6">{t("Payer Information")}</Typography>
         </Grid>
       <Grid item xs={12} sm={4} md={6} >
             <TextField
             inputProps={{className:classes.input}}
-                label="Name on the card"
+                label={t("Name on the card")}
                 name="name"
                 variant="outlined"
                 required
@@ -146,7 +148,7 @@ const getIpAdress = async () =>{
 
         <Grid item xs={12} sm={4} md={6}>
             <TextField
-                label="Email adress"
+                label={t("Email address")}
                 name="email"
                 variant="outlined"
                 type="email"
@@ -175,7 +177,7 @@ const getIpAdress = async () =>{
         </Grid>
         <Grid item xs={12} sm={4} md={6}>
             <TextField
-                label="Phone Number"
+                label={t("Phone Number")}
                 name="phone"
                 variant="outlined"
                 type="tel"
@@ -200,7 +202,7 @@ const getIpAdress = async () =>{
 
            style={{minWidth: '100%',}}>
         <TextField
-          label="Currency"
+          label={t("Currency")}
           select
           name="currency"
           variant="outlined"
@@ -232,7 +234,7 @@ const getIpAdress = async () =>{
                 required
                 variant="outlined"
                 select
-                label="Payment method"
+                label={t("Payment method")}
                 value={formValues.paymentMethod === '' ? paymentMeth : formValues.paymentMethod}
                 onChange={(e) => {
                             setPaymentMeth(e.target.value)
@@ -241,7 +243,7 @@ const getIpAdress = async () =>{
         >
           {paymentMethod.map((option) => (
             <MenuItem key={option.value} value={option.value}>
-              {option.label}
+              {t(option.label)}
             </MenuItem>
           ))}
         </TextField>
@@ -250,13 +252,14 @@ const getIpAdress = async () =>{
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
             <TextField
-                label="Amount"
+                label={t("Amount")}
                 name="amount"
                 variant="outlined"
                 required
                 type="number"
+                helperText={`${t("From")} ${currency}`}
                 fullWidth
-                value={parseInt(formValues.amount).toFixed(2)}
+                value={formValues.amount}
                 onChange={e => {
                     dispatch({
                         type: EDIT_FORM_VALUES,
@@ -270,9 +273,10 @@ const getIpAdress = async () =>{
         </Grid>
          <Grid item xs={12} sm={6} md={3}>
             <TextField
-                label={`Receive`}
+                label={t(`Receive`)}
                 name="received"
                 variant="outlined"
+                helperText={`${t("To")} ${currency}`}
                 required
                 disabled
                 type="number"
