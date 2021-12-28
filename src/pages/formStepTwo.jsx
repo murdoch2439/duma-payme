@@ -73,7 +73,7 @@ const  FormStepTwo =()=> {
 
   return (
 
-      <Grid style={{backgroundColor:'purple'}} >
+      <Grid>
       <Grid  style={{ width:'100%', display:'flex'}} >
 
         <Grid item xs={12} sm={12} md={12} style={{padding:'0 5px 0 5px'}}>
@@ -82,7 +82,7 @@ const  FormStepTwo =()=> {
         </Grid>
 
 
-      <List disablePadding style={{backgroundColor:'yellow'}} >
+      <List disablePadding >
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Sender :')} style={{fontWeight:'700', color:'grey'}}  />
             <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.name ? nameFormating(formValues.name):'Not specified'}</Typography>

@@ -26,21 +26,11 @@ const useStyles = makeStyles({
     input:{
         borderWidth:0.3,
     },
-    // form: {
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     justifyContent: "space-around"
-    // },
-    // buttons: {
-    //     display: 'flex',
-    //     justifyContent: 'flex-end',
-    //
-    // },
-    // button: {
-    //     height:50,
-    //     color:'white'
-    // },
     listItem: {
+        color:'black'
+    },
+    listItemText:{
+        fontWeight:'800',
         color:'black'
     },
     total: {
@@ -68,8 +58,11 @@ const GatewayFormStepOne =()=> {
     const [amount, setAmount] = useState("1")
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const {t} = useTranslation()
+
+
+    const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
 
 
     const [paymentMeth, setPaymentMeth] = useState('')
@@ -92,13 +85,11 @@ const GatewayFormStepOne =()=> {
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
-
             return currency
     }
 
     const amountManager = () =>{
             return `${parseInt(amount).toFixed(2)} $`
-
     }
 
     const paymentInitialization = async() =>{
@@ -133,16 +124,16 @@ const GatewayFormStepOne =()=> {
 
     return (
 
-        <Grid style={{backgroundColor:'pink',}}>
+        <Grid>
             <Grid item  xs={12} >
                 <Typography variant="h6">{t("Payment Information")}</Typography>
                 <List>
                     <ListItem className={classes.listItem} >
-                        <ListItemText primary={t('Currency :')} style={{fontWeight:'800', color:'black'}}  />
+                        <ListItemText primary={t('Currency :')} className={classes.listItemText}  />
                         <Typography variant="body1" style={{fontWeight:'500'}}>{currencyManager()}</Typography>
                     </ListItem>
                     <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
-                        <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
+                        <ListItemText primary={t('Total :')} className={classes.listItemText}  />
                         <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
                     </ListItem>
 

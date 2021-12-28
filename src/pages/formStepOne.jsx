@@ -118,40 +118,15 @@ const getIpAdress = async () =>{
 
     }catch(error){
         console.error('Error on payment initialization ==> : ',error)
-
         }
 }
 
   return (
 
-      <Grid style={{backgroundColor:'pink'}}>
+      <Grid>
           <Grid item   xs={12} style={{display:'flex', justifyContent:'space-between'}} >
               <Typography variant="h6">{t("Payer Information")}</Typography>
-              {/*<Grid item xs={12} sm={6} md={6}>*/}
-              <FormControl>
-                  <TextField
-                      // variant="outlined"
-                      select
-                      name={"language"}
-                      value={language}
-                      onChange={(e)=>{
-                          setLanguage(e.target.value)
-                          if(language === 'en'){
-                              onClickHandler('fr')
-                          }else{
-                              onClickHandler('en')
-                          }
-                      }}
-                  >
-                      {languages.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                              {t(option.label)}
-                          </MenuItem>
-                      ))}
 
-                  </TextField>
-              </FormControl>
-              {/*</Grid>*/}
           </Grid>
       <Grid container spacing={5} style={{ marginTop:0 ,marginBottom:0}}  >
 

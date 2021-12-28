@@ -22,7 +22,6 @@ import {useTranslation} from "react-i18next";
 const useStyles = makeStyles(() => ({
   layout: {
     width:'100%',
-    backgroundColor:'red',
     borderTopRightRadius:10,
     borderBottomRightRadius:10,
     paddingLeft:20,
@@ -70,14 +69,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const {t, } = useTranslation()
 
 
-  // const backgroundChanger = () =>{
-  //   if(!loading){
-  //     return '#FBB900'
-  //   }else{
-  //     return '#f5f5f5'
-  //   }
-  // }
-
     const stripe = useStripe();
 
 
@@ -114,7 +105,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         if(formValues.paymentMethod === MOBILE_MONEY ){
 
             setTimeout(()=>{
-
                 dispatch({
                     type: CHANGE_MODAL_STATES,
                     key: SHOW_PENDING_MODAL,
@@ -131,7 +121,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 currency: formValues.currency,
                 receipt_email: formValues.receiverEmail
             })
-            // console.log('total ====>', parseInt(formValues.amount) + formValues.fees)
+
             const paymentMethodReq = await stripe.createPaymentMethod({
                 type: 'card',
                 card: formValues.card,
@@ -199,7 +189,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     })
             } else if (error) {
                 setError(error.message);
-                // setLoading(false);
+
                 onFailCheckout()
                 return;
             }
@@ -226,7 +216,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         {/*    <img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
         {/*</Grid>*/}
 
-          <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
+          <form autoComplete="off" onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />
             <Grid >
                   {error && <p style={{ color:'red'}}>{error}</p>}

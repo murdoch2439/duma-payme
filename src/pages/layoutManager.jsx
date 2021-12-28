@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {  useHistory
 } from "react-router-dom";
-import { Container, Paper, Box, Grid, Button, FormControl, TextField, MenuItem } from "@material-ui/core";
+import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
 
 import FormStepsManager from './formStepsManager'
@@ -23,19 +23,12 @@ const useStyles = makeStyles(() => ({
     container: {
         backgroundColor:'white',
         // backgroundImage:`url(https://cdn.goodao.net/easypetgarden/H6dd2a1363c0042738024ab6ee5ffb470G.jpg)`,
-        height:'100%',
         borderRadius:10,
-        margin:'auto',
-        // marginTop:'10%',
-        // alignItems:'center',
         display:'flex',
     },
-    imagesBoxWrapper:{
+    leftContainerWrapper:{
       width:'75%',
-      // height:"100%",
-      // borderRadius:10,
       //   backgroundColor:'green',
-
         // backgroundImage:`url(${cover})` ,
       textAlign:'center'
     },
@@ -45,26 +38,35 @@ const useStyles = makeStyles(() => ({
         height:'100%',
         borderTopLeftRadius:10,
         borderBottomLeftRadius:10,
-
+    },
+    dumaLogoAndLangContainer:{
+        display:'flex',
+        justifyContent:'space-between'
     },
     logoDuma: {
-        width:60,
-        // height:200
+        width:50,
+    },
+    organizationLogo:{
+        height:"75%",
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
     },
     clientLogo:{
-        // marginTop:50,
         width:250,
-
 
     }
 }));
 
 const LayoutManager = () => {
-
-
-    const [{  modalStates  },] = useStateValue();
+    const classes = useStyles();
+    const [{  modalStates  }] = useStateValue();
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
+    const history = useHistory()
+    const adminId = getUrlParams()[ADMIN_ID_STRING]
+    const payerId = getUrlParams()[PAYER_ID_STRING]
+
     const languages=[
         {
             value:"en",
@@ -76,15 +78,6 @@ const LayoutManager = () => {
         }
     ]
 
-
-    const classes = useStyles();
-
-
-
-
-    const history = useHistory()
-    const adminId = getUrlParams()[ADMIN_ID_STRING]
-    const payerId = getUrlParams()[PAYER_ID_STRING]
 
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
@@ -124,16 +117,14 @@ const LayoutManager = () => {
                     <Container maxWidth="md" >
                     <Paper elevation={3}  className={classes.container} >
                           <Box
-                              className={classes.imagesBoxWrapper}
+                              className={classes.leftContainerWrapper}
                               display={{ xs: 'none',sm:'inline', md:'block' }}
                               m={1}
                           >
-                              <div style={{ display:'flex', justifyContent:'space-between'}}>
+                              <div className={classes.dumaLogoAndLangContainer}>
                                   <img src={logDuma} alt='logo' className={classes.logoDuma} />
-
                                       <FormControl>
                                         <TextField
-
                                             select
                                             name={"language"}
                                             value={language}
@@ -154,14 +145,13 @@ const LayoutManager = () => {
 
                                         </TextField>
                                       </FormControl>
+                                  {/*<img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
 
-                                  {/*<Button onClick={()=>onClickHandler('fr')}>{t("French")}</Button>*/}
-                                  {/*<Button onClick={()=>onClickHandler('en')}>{t("English")}</Button>*/}
                               </div>
 
                             <div className={classes.imagesBox}>
 
-                                  <div style={{height:"75%", display:'flex', alignItems:'center', justifyContent:'center', backgroundColor:'yellow'}}>
+                                  <div className={classes.organizationLogo}>
 
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
@@ -171,9 +161,7 @@ const LayoutManager = () => {
                                       {/*<p>{t("Why")}</p>*/}
                                       <img src={cover} alt='logo' className={classes.clientLogo} />
 
-
                                   </div>
-
 
                                   <Grid
                                       item

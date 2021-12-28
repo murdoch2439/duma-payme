@@ -21,7 +21,6 @@ import {useTranslation} from "react-i18next";
 const useStyles = makeStyles(() => ({
     layout: {
         width:'100%',
-        backgroundColor:'red',
         borderTopRightRadius:10,
         borderBottomRightRadius:10,
         paddingLeft:20,
