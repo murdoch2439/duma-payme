@@ -12,16 +12,13 @@ import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-        // backgroundColor:'red',
         width:450,
         height:560,
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
-
     },
     paper: {
         height:530,
@@ -36,15 +33,22 @@ const useStyles = makeStyles(() => ({
         borderTopLeftRadius:10,
         borderTopRightRadius:10
     },
+    title:{
+        fontWeight:'bold',
+        fontSize:25,
+        color:'white'
+    },
     boxIcon:{
         height:100,
         width:100,
         backgroundColor:'#FBB900',
         margin:'auto',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
         borderRadius:50,
     }
 }));
-
 
 
 const PendingPage =()=>{
@@ -52,7 +56,6 @@ const PendingPage =()=>{
     // const history = useHistory()
     const [loading, setLoading] = useState(false)
     const {t}=useTranslation()
-
     const classes = useStyles()
     const [checked, setChecked] = useState(false);
     useEffect(()=>{
@@ -86,11 +89,11 @@ const PendingPage =()=>{
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
-                        <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >{t("Information")}</p>
+                        <p className={classes.title} >{t("Information")}</p>
                     </Grid>
                     <div style={{height:40}} />
                     <Grid  item className={classes.boxIcon}>
-                        <UpdateIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                        <UpdateIcon style={{fontSize:60, color:'white'}}/>
                     </Grid>
 
                     <p style={{textAlign:'center', fontSize:25}}>

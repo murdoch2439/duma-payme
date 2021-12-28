@@ -17,7 +17,6 @@ const useStyles = makeStyles(() => ({
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
-
     },
     paper: {
         height:500,
@@ -33,11 +32,14 @@ const useStyles = makeStyles(() => ({
       borderTopRightRadius:10
     },
     boxIcon:{
-      height:50,
-      width:50,
+      height:100,
+      width:100,
       backgroundColor:'green',
       margin:'auto',
       borderRadius:50,
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
     }
 }));
 
@@ -46,7 +48,6 @@ const useStyles = makeStyles(() => ({
 const SuccessPage =()=>{
   const [{ formValues }] = useStateValue();
   const {t} = useTranslation()
-
 
   // const onClick =() =>{
   //     // dispatch({
@@ -83,13 +84,12 @@ const SuccessPage =()=>{
          <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container  className={classes.boxWrapper}>
               <Paper className={classes.paper}>
-
                 <Grid container  justifyContent='center' className={classes.boxTitle}>
                     <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >{t("Confirmation")}</p>
                 </Grid>
                 <div style={{height:40}} />
                 <Grid  item className={classes.boxIcon}>
-                  <CheckIcon style={{fontSize:30, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                  <CheckIcon style={{fontSize:60, color:'white'}}/>
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Your payment to:")} <br />

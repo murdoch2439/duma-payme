@@ -38,6 +38,9 @@ const useStyles = makeStyles(() => ({
       backgroundColor:'#d10c02',
       margin:'auto',
       borderRadius:50,
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
     },
     icon:{
 
@@ -81,7 +84,7 @@ const FailurePage =()=>{
             </Grid>
                 <div style={{height:40}} />
                 <Grid  item className={classes.boxIcon}>
-                  <ClearIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                  <ClearIcon style={{fontSize:60, color:'white'}}/>
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Your payment to:")} <br />

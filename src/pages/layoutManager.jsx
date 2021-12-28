@@ -28,12 +28,10 @@ const useStyles = makeStyles(() => ({
     },
     leftContainerWrapper:{
       width:'75%',
-      //   backgroundColor:'green',
         // backgroundImage:`url(${cover})` ,
       textAlign:'center'
     },
     imagesBox:{
-        // backgroundColor:'red',
         // backgroundImage:`url(${cover})`,
         height:'100%',
         borderTopLeftRadius:10,
@@ -146,11 +144,9 @@ const LayoutManager = () => {
                                         </TextField>
                                       </FormControl>
                                   {/*<img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
-
                               </div>
 
                             <div className={classes.imagesBox}>
-
                                   <div className={classes.organizationLogo}>
 
                                       {/*CLIENT LOGO GOES HERE */}
@@ -160,7 +156,6 @@ const LayoutManager = () => {
                                       {/* }*/}
                                       {/*<p>{t("Why")}</p>*/}
                                       <img src={cover} alt='logo' className={classes.clientLogo} />
-
                                   </div>
 
                                   <Grid
