@@ -13,7 +13,7 @@ import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-
+        width:800,
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
@@ -33,8 +33,8 @@ const useStyles = makeStyles(() => ({
       borderTopRightRadius:10
     },
     boxIcon:{
-      height:100,
-      width:100,
+      height:50,
+      width:50,
       backgroundColor:'green',
       margin:'auto',
       borderRadius:50,
@@ -89,7 +89,7 @@ const SuccessPage =()=>{
                 </Grid>
                 <div style={{height:40}} />
                 <Grid  item className={classes.boxIcon}>
-                  <CheckIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                  <CheckIcon style={{fontSize:30, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Your payment to:")} <br />

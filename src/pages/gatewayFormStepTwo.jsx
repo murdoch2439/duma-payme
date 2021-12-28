@@ -79,8 +79,8 @@ const  GatewayFormStepTwo =()=> {
             <Grid  style={{ width:'100%', display:'flex'}} >
 
                 <Grid item xs={12} sm={12} md={12} style={{padding:'0 5px 0 5px'}}>
-                    <Grid item  xs={12} style={{paddingTop:20}} >
-                        <Typography style ={{fontSize:16, fontWeight:'bold'}}>{t("Payment Details")}</Typography>
+                    <Grid item  xs={12}>
+                        <Typography variant="h6">{t("Payment Details")}</Typography>
                     </Grid>
                     <List>
                         <ListItem className={classes.listItem} >
@@ -97,17 +97,17 @@ const  GatewayFormStepTwo =()=> {
                 </Grid>
 
             </Grid>
-            <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
+            <div style={{height:1, marginTop:10, width:'96%',marginRight:10,marginLeft:10,  backgroundColor:'#C4C4C4'}}/>
 
-            <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}} gutterbottom={"true"}>
-                {formValues.paymentMethod === DEBIT_CARD ?
-                    t("Card Information") :
-                    t("Mobile money Information")
-                }
 
-            </Typography>
-            <Grid container >
+            <Grid style={{marginRight:10,marginLeft:10,}}  >
+                <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}}>
+                    {formValues.paymentMethod === DEBIT_CARD ?
+                        t("Card Information") :
+                        t("Mobile money Information")
+                    }
 
+                </Typography>
                 <Grid item  xs={12} sm={12} >
                     {
                         formValues.paymentMethod === DEBIT_CARD ?

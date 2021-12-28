@@ -26,20 +26,20 @@ const useStyles = makeStyles({
     input:{
         borderWidth:0.3,
     },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around"
-    },
-    buttons: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-
-    },
-    button: {
-        height:50,
-        color:'white'
-    },
+    // form: {
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     justifyContent: "space-around"
+    // },
+    // buttons: {
+    //     display: 'flex',
+    //     justifyContent: 'flex-end',
+    //
+    // },
+    // button: {
+    //     height:50,
+    //     color:'white'
+    // },
     listItem: {
         color:'black'
     },
@@ -133,26 +133,26 @@ const GatewayFormStepOne =()=> {
 
     return (
 
-        <Grid>
+        <Grid style={{backgroundColor:'pink',}}>
+            <Grid item  xs={12} >
+                <Typography variant="h6">{t("Payment Information")}</Typography>
+                <List>
+                    <ListItem className={classes.listItem} >
+                        <ListItemText primary={t('Currency :')} style={{fontWeight:'800', color:'black'}}  />
+                        <Typography variant="body1" style={{fontWeight:'500'}}>{currencyManager()}</Typography>
+                    </ListItem>
+                    <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
+                        <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
+                        <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
+                    </ListItem>
 
+                </List>
+                <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
+            </Grid>
             <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
 
 
-                <Grid item  xs={12} >
-                    <Typography variant="h6">{t("Payment Information")}</Typography>
-                    <List>
-                        <ListItem className={classes.listItem} >
-                            <ListItemText primary={t('Currency :')} style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{currencyManager()}</Typography>
-                        </ListItem>
-                        <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
-                            <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
-                        </ListItem>
 
-                    </List>
-                    <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
-                </Grid>
 
                 <Grid item xs={12} sm={4} md={6} >
                     <TextField

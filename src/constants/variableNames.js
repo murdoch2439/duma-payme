@@ -28,3 +28,5 @@ export const PAY_NOW = "Pay Now"
 export const Next_STEP = "Next"
 export const PREVIOUS_STEP = "Back"
 export const LOADING_MESSAGE = 'Processing...'
+export const ENGLISH_LANG_CODE = "en"
+export const FRENCH_LANG_CODE = "fr"

@@ -26,19 +26,12 @@ const useStyles = makeStyles({
       borderColor:'yellow',
   },
   form: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around"
+    // display: "flex",
+    // flexDirection: "column",
+    // justifyContent: "space-around",
+    // backgroundColor:'pink'
   },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
 
-  },
-  button: {
-    height:50,
-    color:'white'
-  },
 });
 
 const paymentMethod =[
@@ -61,12 +54,31 @@ const FormStepOne =()=> {
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    const {t, } = useTranslation()
+    const {t, i18n} = useTranslation()
      const adminId = getUrlParams()[ADMIN_ID_STRING]
      const  payerId = getUrlParams()[PAYER_ID_STRING]
      formValues.receiverEmail = adminId
     if(payerId){
         formValues.payerId = payerId
+    }
+
+
+
+    const [language, setLanguage] = useState("en")
+    const languages=[
+        {
+            value:"en",
+            label:"English"
+        },
+        {
+            value:"fr",
+            label:"French"
+        }
+    ]
+
+
+    const onClickHandler =(lang)=>{
+        i18n.changeLanguage(lang).then()
     }
 
   const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
@@ -112,14 +124,39 @@ const getIpAdress = async () =>{
 
   return (
 
-      <Grid>
+      <Grid style={{backgroundColor:'pink'}}>
+          <Grid item   xs={12} style={{display:'flex', justifyContent:'space-between'}} >
+              <Typography variant="h6">{t("Payer Information")}</Typography>
+              {/*<Grid item xs={12} sm={6} md={6}>*/}
+              <FormControl>
+                  <TextField
+                      // variant="outlined"
+                      select
+                      name={"language"}
+                      value={language}
+                      onChange={(e)=>{
+                          setLanguage(e.target.value)
+                          if(language === 'en'){
+                              onClickHandler('fr')
+                          }else{
+                              onClickHandler('en')
+                          }
+                      }}
+                  >
+                      {languages.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                              {t(option.label)}
+                          </MenuItem>
+                      ))}
 
-      <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
+                  </TextField>
+              </FormControl>
+              {/*</Grid>*/}
+          </Grid>
+      <Grid container spacing={5} style={{ marginTop:0 ,marginBottom:0}}  >
 
-      <Grid item  xs={12} >
-            <Typography variant="h6">{t("Payer Information")}</Typography>
-        </Grid>
-      <Grid item xs={12} sm={4} md={6} >
+
+      <Grid  item xs={12} sm={4} md={6} >
             <TextField
             inputProps={{className:classes.input}}
                 label={t("Name on the card")}

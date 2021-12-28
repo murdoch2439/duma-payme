@@ -51,8 +51,8 @@ let theme = {
       },
       fontSize: {
 
-      }
-    }
+      },borderWidth:0.3
+    },
   };
 
   theme = createTheme(theme);

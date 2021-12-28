@@ -127,7 +127,22 @@ const NoticeDialog = ({separator}) => {
     }
 
     return <Typography variant="caption">
-        {Object.keys(contentObject).map((x, i) => <span key={i}>{i > 0 && separator}&nbsp;<Link href="#" color={'textPrimary'} name={contentObject[x].name} onClick={clickHandler}>{contentObject[x].title}</Link></span>)}
+        {
+            Object.keys(contentObject).map((x, i) => {
+                return(
+                    <span key={i}>
+                        {i > 0 && separator}&nbsp;
+                        <Link
+                            href="#"
+                            color={'textPrimary'}
+                            name={contentObject[x].name}
+                            onClick={clickHandler}
+                        >
+                            {contentObject[x].title}
+                        </Link>
+                    </span>)
+            })
+        }
         <Dialog
             open={open}
             onClose={() => toggleOpen(false)}

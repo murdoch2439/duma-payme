@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {  useHistory
 } from "react-router-dom";
-import { Container, Paper, Box, Grid, Button } from "@material-ui/core";
+import { Container, Paper, Box, Grid, Button, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
 
 import FormStepsManager from './formStepsManager'
@@ -13,7 +13,7 @@ import SuccessModal from "./successPage";
 import FailureModal from "./failurePage";
 import PendingModal from "./pendingPage";
 import {getUrlParams} from "../utils/helperFunctions";
-import {ADMIN_ID_STRING, PAYER_ID_STRING} from "../constants/variableNames";
+import {ADMIN_ID_STRING, ENGLISH_LANG_CODE, FRENCH_LANG_CODE, PAYER_ID_STRING} from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
@@ -27,15 +27,17 @@ const useStyles = makeStyles(() => ({
         borderRadius:10,
         margin:'auto',
         // marginTop:'10%',
-        alignItems:'center',
+        // alignItems:'center',
         display:'flex',
     },
     imagesBoxWrapper:{
       width:'75%',
-      borderRadius:10,
+      // height:"100%",
+      // borderRadius:10,
+      //   backgroundColor:'green',
 
         // backgroundImage:`url(${cover})` ,
-      // textAlign:'center'
+      textAlign:'center'
     },
     imagesBox:{
         // backgroundColor:'red',
@@ -51,17 +53,33 @@ const useStyles = makeStyles(() => ({
     },
     clientLogo:{
         // marginTop:50,
-        width:'50%',
-        textAlign:'center'
+        width:250,
+
 
     }
 }));
 
 const LayoutManager = () => {
+
+
     const [{  modalStates  },] = useStateValue();
+    const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
+    const languages=[
+        {
+            value:"en",
+            label:"English"
+        },
+        {
+            value:"fr",
+            label:"French"
+        }
+    ]
+
 
     const classes = useStyles();
+
+
 
 
     const history = useHistory()
@@ -110,14 +128,40 @@ const LayoutManager = () => {
                               display={{ xs: 'none',sm:'inline', md:'block' }}
                               m={1}
                           >
-                              <div>
-                                  <Button onClick={()=>onClickHandler('fr')}>{t("French")}</Button>
-                                  <Button onClick={()=>onClickHandler('en')}>{t("English")}</Button>
+                              <div style={{ display:'flex', justifyContent:'space-between'}}>
+                                  <img src={logDuma} alt='logo' className={classes.logoDuma} />
+
+                                      <FormControl>
+                                        <TextField
+
+                                            select
+                                            name={"language"}
+                                            value={language}
+                                            onChange={(e)=>{
+                                                setLanguage(e.target.value)
+                                                if(language === FRENCH_LANG_CODE){
+                                                    onClickHandler(ENGLISH_LANG_CODE)
+                                                }else{
+                                                    onClickHandler(FRENCH_LANG_CODE)
+                                                }
+                                            }}
+                                        >
+                                            {languages.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                    {t(option.label)}
+                                                </MenuItem>
+                                            ))}
+
+                                        </TextField>
+                                      </FormControl>
+
+                                  {/*<Button onClick={()=>onClickHandler('fr')}>{t("French")}</Button>*/}
+                                  {/*<Button onClick={()=>onClickHandler('en')}>{t("English")}</Button>*/}
                               </div>
 
                             <div className={classes.imagesBox}>
-                                  <img src={logDuma} alt='logo' className={classes.logoDuma} />
-                                  <div style={{height:300, backgroundColor:'white'}}>
+
+                                  <div style={{height:"75%", display:'flex', alignItems:'center', justifyContent:'center', backgroundColor:'yellow'}}>
 
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
