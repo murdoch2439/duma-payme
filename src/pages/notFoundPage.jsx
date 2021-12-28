@@ -10,16 +10,11 @@ import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
 
 
-// import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
-
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
-
     },
     paper: {
         height:550,
@@ -43,21 +38,17 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-
-
 const NotFoundPage =()=>{
     const history = useHistory()
     const {t} = useTranslation()
 
     const classes = useStyles()
     const onClick =() =>{
-
         history.goBack()
     }
 
-
     return(
-        // <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
+
             <Container  className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
 
@@ -85,7 +76,7 @@ const NotFoundPage =()=>{
 
                 </Paper>
             </Container>
-        // </Zoom>
+
     )
 }
 
