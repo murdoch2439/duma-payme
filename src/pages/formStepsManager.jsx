@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Box, Button, Grid} from '@material-ui/core'
+import {Box, Button, FormControl, Grid, MenuItem, TextField} from '@material-ui/core'
 import {useStripe} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import FormStepOne from './formStepOne';
@@ -9,13 +9,13 @@ import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, LOADING_MESSAGE,
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, ENGLISH_LANG_CODE, FRENCH_LANG_CODE, LOADING_MESSAGE,
     MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
-// import logDuma from "../assets/duma1.png";
-// import Typography from "@material-ui/core/Typography";
-import {backgroundChanger} from "../utils/helperFunctions";
+import logDuma from "../assets/duma1.png";
+import {backgroundChanger, languages} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
+import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
 
 
 
@@ -29,7 +29,10 @@ const useStyles = makeStyles(() => ({
     paddingBottom:10,
     paddingTop:10,
   },
-
+  dumaLogoAndLangContainer:{
+      justifyContent:'space-between',
+      paddingBottom:10,
+    },
   buttons: {
     height:50,
     color:'black',
@@ -37,12 +40,11 @@ const useStyles = makeStyles(() => ({
     width:200
   },
   button: {
-    height:50,
+    height:40,
     color:'white'
   },
     logoDuma: {
-        width:60,
-        // height:200
+        width:40,
     },
 }));
 
@@ -65,11 +67,15 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const [{ formValues,  }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null);
+  const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
   const [disabled, setDisabled] = useState(false);
-    const {t, } = useTranslation()
+  const {t, i18n} = useTranslation()
 
+  const stripe = useStripe();
 
-    const stripe = useStripe();
+  const onClickHandler =(lang)=>{
+        i18n.changeLanguage(lang).then()
+  }
 
 
   const handleNext = () => {
@@ -98,7 +104,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         name:formValues.name,
         phone:formValues.phone,
         }
-
 
     try{
 
@@ -159,9 +164,8 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     receivingAmount: formValues.amount,
                     sendingAmount: parseInt(formValues.amount) + formValues.fees,
                     paymentIntentId: paymentIntent.id,
-                    payerId: formValues.payerId,
+                    paymentRequestId: formValues.paymentRequestId,
                     fee: formValues.fees,
-                    senderExist: formValues.senderExist,
                     name: formValues.name,
                     email:formValues.email,
                     phone:formValues.phone,
@@ -211,10 +215,8 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     }
 
   return (
-    <Box className={classes.layout} display={{ xs:'block' }} sm={12}>
-        {/*<Grid container display={{md:'hidden',lg:'hidden', xl:'hidden'}}>*/}
-        {/*    <img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
-        {/*</Grid>*/}
+    <Box className={classes.layout} display={{ xs:'block' }}  sm={12}>
+            <LogoAndLangSwitcher />
 
           <form autoComplete="off" onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />

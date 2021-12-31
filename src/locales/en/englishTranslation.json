@@ -2,7 +2,7 @@
   "Welcome to Duma solutions": "Welcome to Duma solutions",
   "Payer Information":"Payer Information",
   "Name on the card":"Name on the card",
-  "Email address":"email address",
+  "Email address":"Email address",
   "Phone Number":"Phone Number",
   "Currency":"Currency",
   "Currency :":"Currency :",
@@ -33,7 +33,8 @@
   "Mobile money Information":"Mobile money Information",
   "Not found":"Not found",
   "Oups!!, something just went wrong!":"Oups!!, something just went wrong!",
-  "Sorry, page not found!":"Sorry, page not found",
+  "Sorry, page not found!":"Sorry, page not found!",
+  "Make sure the link is correct": "Make sure the link is correct",
   "Go back":"Go back",
   "Confirmation":"Confirmation",
   "Your payment to:":"Your payment to:",
@@ -46,6 +47,10 @@
   "Payment Information":"Payment Information",
   "is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)":"is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)",
   "Refreshing Status...":"Refreshing Status...",
-  "Refresh":"Refresh"
+  "Refresh":"Refresh",
+  "Payment passed successfully:":"Payment passed successfully",
+  "Amount :": "Amount :",
+  "Organization :": "Organization :",
+  "Reference code :": "Reference code :"
 
 }

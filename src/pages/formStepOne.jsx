@@ -1,38 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {Grid,Typography, TextField, FormControl, MenuItem } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import axios from 'axios'
 import { useStateValue } from '../context';
+import { getUrlParams, responseManager,} from '../utils/helperFunctions';
 import {
-    getUrlParams,
-
-} from '../utils/helperFunctions';
-import {
-    ADMIN_ID_STRING,
+    MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
     DEBIT_CARD,
     EDIT_FORM_VALUES,
     MOBILE_MONEY,
-    PAYER_ID_STRING
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL
 } from '../constants/variableNames';
 import {useTranslation} from "react-i18next";
-
-// import localLogo from '../assets/test4.svg'
-
-
-const useStyles = makeStyles({
-  input:{
-      borderWidth:0.3,
-      borderColor:'yellow',
-  },
-  form: {
-    // display: "flex",
-    // flexDirection: "column",
-    // justifyContent: "space-around",
-    // backgroundColor:'pink'
-  },
-
-});
 
 const paymentMethod =[
     {
@@ -45,44 +24,22 @@ const paymentMethod =[
     },
 ]
 
-
 const FormStepOne =()=> {
-    const classes = useStyles();
+
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    const {t, i18n} = useTranslation()
-     const adminId = getUrlParams()[ADMIN_ID_STRING]
-     const  payerId = getUrlParams()[PAYER_ID_STRING]
-     formValues.receiverEmail = adminId
-    if(payerId){
-        formValues.payerId = payerId
-    }
-
-
-
-    const [language, setLanguage] = useState("en")
-    const languages=[
-        {
-            value:"en",
-            label:"English"
-        },
-        {
-            value:"fr",
-            label:"French"
-        }
-    ]
-
-
-    const onClickHandler =(lang)=>{
-        i18n.changeLanguage(lang).then()
+    const {t} = useTranslation()
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+    if(paymentRequestId){
+        formValues.payerId = paymentRequestId
     }
 
   const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
-
 
   useEffect(()=>{
       if(formValues.currency === ''){
@@ -95,25 +52,22 @@ const FormStepOne =()=> {
     },[formValues.currency, formValues.paymentMethod])
 
 const getIpAdress = async () =>{
-
     try{
-            const paymentInfo =  {  adminId, payerId,  }
-            if(adminId){
+            const paymentInfo =  {   merchantKey,  paymentRequestId  }
+            if(merchantKey && paymentRequestId){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
-                    formValues.currency = response.data.currency
                     setCurrency(response.data.currency)
-
-                    formValues.rate = response.data.rate
-                    formValues.transactionReference = response.data.reference
-                    formValues.receiverLogo = response.data.clientLogo
-                    formValues.amount = response.data.amount
-                    formValues.callbackUrl = response.data.cbUrl
-                    formValues.receiverName = response.data.clientName
-                    formValues.senderExist = response.data.senderExist
-                    formValues.payerId = response.data.payerId
+                    if(response.data.error && response.data.code === "403"){
+                        dispatch({
+                            type: CHANGE_MODAL_STATES,
+                            key: SHOW_ACCESS_DENIED_MODAL,
+                            value: true
+                        })
+                    }else{
+                        responseManager({response, formValues})
+                    }
 
                 })
-
             }
 
     }catch(error){
@@ -133,8 +87,9 @@ const getIpAdress = async () =>{
 
       <Grid  item xs={12} sm={4} md={6} >
             <TextField
-            inputProps={{className:classes.input}}
+
                 label={t("Name on the card")}
+
                 name="name"
                 variant="outlined"
                 required
@@ -158,7 +113,7 @@ const getIpAdress = async () =>{
             />
           </Grid>
 
-        <Grid item xs={12} sm={4} md={6}>
+        <Grid item xs={12} sm={4} md={6} >
             <TextField
                 label={t("Email address")}
                 name="email"
@@ -178,7 +133,6 @@ const getIpAdress = async () =>{
                     if(!emailFormat.test(e.target.value)){
                         setErrorName(true)
                         setErrorMessage('mail not valid')
-
                     }else{
                         setErrorName(false)
                     }
@@ -222,6 +176,7 @@ const getIpAdress = async () =>{
           disabled
           value={currency}
           onChange={(e) => {
+                    setCurrency(e.target.value)
                     dispatch({
                         type: EDIT_FORM_VALUES,
                         key: "currency",
@@ -243,9 +198,9 @@ const getIpAdress = async () =>{
         <FormControl
            style={{minWidth: '100%',}}>
             <TextField
-                required
                 variant="outlined"
                 select
+                required
                 label={t("Payment method")}
                 value={formValues.paymentMethod === '' ? paymentMeth : formValues.paymentMethod}
                 onChange={(e) => {
@@ -268,7 +223,8 @@ const getIpAdress = async () =>{
                 name="amount"
                 variant="outlined"
                 required
-                type="number"
+                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                type="text"
                 helperText={`${t("From")} ${currency}`}
                 fullWidth
                 value={formValues.amount}
@@ -277,7 +233,6 @@ const getIpAdress = async () =>{
                         type: EDIT_FORM_VALUES,
                         key: "amount",
                         value: e.target.value.replace(/[^0-9,.]/g, ''),
-
                     })
                 }
                 }
@@ -304,11 +259,10 @@ const getIpAdress = async () =>{
 
                 }
             />
+            {/*<FormHelperText>{`${t("To")} ${currency}`}</FormHelperText>*/}
         </Grid>
 
        </Grid>
-
-
 
    </Grid>
 

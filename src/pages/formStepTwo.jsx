@@ -1,15 +1,12 @@
 import React,{useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} from '@material-ui/core'
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
 import { currencyManager, nameFormating } from '../utils/helperFunctions';
-import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
@@ -39,6 +36,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
     color:'black'
   },
+  ListItemText:{
+      fontSize:25,
+  },
   title: {
 
   },
@@ -57,7 +57,6 @@ const  FormStepTwo =()=> {
 
 
     const handleChange = async(event) =>{
-
     // setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   }
@@ -99,10 +98,15 @@ const  FormStepTwo =()=> {
             <ListItemText primary={t('Fees :')} style={{fontWeight:'700', color:'grey'}} />
             <Typography variant="body1">{`${currencyManager(formValues.currency, fees )}`}</Typography>
           </ListItem>
-         { formValues.currency === 'eur'? <ListItem className={classes.listItem} >
-            <ListItemText primary={t('Rate :')} style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1">{currencyManager(formValues.currency, formValues.rate )}</Typography>
-          </ListItem>:null}
+         {
+             formValues.currency === 'eur'?
+                 <ListItem className={classes.listItem} >
+                    <ListItemText primary={t('Rate :')} style={{fontWeight:'700', color:'grey'}} />
+                    <Typography variant="body1">
+                        {currencyManager(formValues.currency, formValues.rate )}
+                    </Typography>
+                 </ListItem>:null
+         }
 
 
         <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>

@@ -45,8 +45,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-
-
 const  GatewayFormStepTwo =()=> {
     const [{ formValues }, dispatch] = useStateValue();
     const stripe = useStripe();
@@ -58,10 +56,7 @@ const  GatewayFormStepTwo =()=> {
     const classes = useStyles();
 
 
-
-
     const handleChange = async(event) =>{
-
         // setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
 

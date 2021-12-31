@@ -1,7 +1,9 @@
 
 body {
+  height:100%;
   background: url("./assets/gig1.gif") no-repeat top fixed ;
   background-size: cover;
+  /*display: flex;*/
   /*justify-content: center;*/
   /*align-items: center;*/
   /*text-align: center;*/
@@ -14,7 +16,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  justify-content: center;
+  /*justify-content: center;*/
+
 
 }
 

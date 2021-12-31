@@ -12,11 +12,12 @@ import logDuma from '../assets/duma1.png'
 import SuccessModal from "./successPage";
 import FailureModal from "./failurePage";
 import PendingModal from "./pendingPage";
-import {getUrlParams} from "../utils/helperFunctions";
-import {ADMIN_ID_STRING, ENGLISH_LANG_CODE, FRENCH_LANG_CODE, PAYER_ID_STRING} from "../constants/variableNames";
+import {getUrlParams, languages} from "../utils/helperFunctions";
+import {MERCHANT_KEY_STRING, ENGLISH_LANG_CODE, FRENCH_LANG_CODE, PAYMENT_REQUEST_ID_STRING} from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
+import IssuesPage from "./issuesPage";
 
 const useStyles = makeStyles(() => ({
 
@@ -62,19 +63,8 @@ const LayoutManager = () => {
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
     const history = useHistory()
-    const adminId = getUrlParams()[ADMIN_ID_STRING]
-    const payerId = getUrlParams()[PAYER_ID_STRING]
-
-    const languages=[
-        {
-            value:"en",
-            label:"English"
-        },
-        {
-            value:"fr",
-            label:"French"
-        }
-    ]
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    const paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
 
 
     const onClickHandler =(lang)=>{
@@ -111,15 +101,17 @@ const LayoutManager = () => {
               modalStates.showsuccessmodal ? <SuccessModal />:
               modalStates.showfailmodal ? <FailureModal />:
               modalStates.showpendingmodal ? <PendingModal />:
-                  <Box mt={10} >
+              modalStates.showaccessdeniedmodal ? <IssuesPage />:
+                  <Box  mt={10}  >
                     <Container maxWidth="md" >
                     <Paper elevation={3}  className={classes.container} >
                           <Box
                               className={classes.leftContainerWrapper}
                               display={{ xs: 'none',sm:'inline', md:'block' }}
                               m={1}
+
                           >
-                              <div className={classes.dumaLogoAndLangContainer}>
+                              <Box className={classes.dumaLogoAndLangContainer}>
                                   <img src={logDuma} alt='logo' className={classes.logoDuma} />
                                       <FormControl>
                                         <TextField
@@ -144,7 +136,7 @@ const LayoutManager = () => {
                                         </TextField>
                                       </FormControl>
                                   {/*<img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
-                              </div>
+                              </Box>
 
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
@@ -152,7 +144,7 @@ const LayoutManager = () => {
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
                                       {/*formValues.receiverLogo === '' ? 'Loading...':*/}
-                                      {/*<img src={`https://yayo-resources.s3.eu-west-1.amazonaws.com/icash/me/resources/${logo}/client-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
+                                      {/*<img src={`https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/${logo}/organisation-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
                                       {/* }*/}
                                       {/*<p>{t("Why")}</p>*/}
                                       <img src={cover} alt='logo' className={classes.clientLogo} />
@@ -173,7 +165,7 @@ const LayoutManager = () => {
                           </Box>
 
                         {
-                            !adminId && payerId  ?
+                            !merchantKey && paymentRequestId  ?
                             <GatewayFormStepsManager
                                 onSuccessfulCheckout ={()=> history.replace('/success')}
                                 onFailedCheckout ={()=>history.replace('/failure')}

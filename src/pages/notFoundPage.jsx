@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:15,
     },
     paper: {
-        height:550,
+
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
@@ -34,7 +34,10 @@ const useStyles = makeStyles(() => ({
         width:100,
         backgroundColor:'#FBB900',
         margin:'auto',
-        borderRadius:50,
+        borderRadius:100,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
     }
 }));
 
@@ -57,7 +60,7 @@ const NotFoundPage =()=>{
                     </Grid>
                     <div style={{height:40}} />
                     <Grid  item className={classes.boxIcon}>
-                        <CloudOffIcon style={{fontSize:60, color:'black', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
+                        <CloudOffIcon style={{fontSize:60, color:'black'}}/>
                     </Grid>
                     <p style={{textAlign:'center', fontSize:25}}>
                         {t("Oups!!, something just went wrong!")} <br />

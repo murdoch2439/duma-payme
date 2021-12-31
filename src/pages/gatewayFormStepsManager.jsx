@@ -16,6 +16,7 @@ import {
 // } from "react-router-dom";
 import {backgroundChanger} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
+import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
 
 
 const useStyles = makeStyles(() => ({
@@ -28,15 +29,19 @@ const useStyles = makeStyles(() => ({
         paddingBottom:10,
         paddingTop:10,
     },
-
     buttons: {
         height:50,
         color:'black',
         marginTop:15,
         width:200
     },
+    dumaLogoAndLangContainer:{
+        display: { xs: 'flex', sm:'none', md: 'none' },
+        justifyContent:'space-between',
+        paddingBottom:10,
+    },
     button: {
-        height:50,
+        height:40,
         color:'white'
     },
 }));
@@ -61,9 +66,8 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
-    const {t} = useTranslation()
+    const {t, i18n} = useTranslation()
     // const history = useHistory()
-
 
     const stripe = useStripe();
 
@@ -74,6 +78,9 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
             setActiveStep((prevActiveStep) => prevActiveStep + 1)
         }
     };
+    const onClickHandler =(lang)=>{
+        i18n.changeLanguage(lang).then()
+    }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1)
@@ -89,14 +96,17 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const capture = async () => {
 
         setLoading(true);
+        console.log({
+            name: formValues.name,
+            email: formValues.email,
+            phone: formValues.phone,
+        })
 
         const billingDetails = {
             email:formValues.email,
             name:formValues.name,
             // phone:formValues.phone,
         }
-
-
 
         try{
 
@@ -160,9 +170,8 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         receivingAmount: formValues.amount,
                         sendingAmount: parseInt(formValues.amount) + formValues.fees,
                         paymentIntentId: paymentIntent.id,
-                        payerId: formValues.payerId,
+                        paymentRequestId: formValues.paymentRequestId,
                         fee: formValues.fees,
-                        senderExist: formValues.senderExist,
                         name: formValues.name,
                         email:formValues.email,
                         phone:formValues.phone,
@@ -170,8 +179,8 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                     // console.log('Succeed ====>', paymentIntentObjet)
                     // console.log('payerId two ==>', formValues.payerId)
-                    // history.replace(formValues.callbackUrl)
-                    // window.location.href =  formValues.callbackUrl
+                    // history.replace(formValues.callBackUrl)
+                    // window.location.href =  formValues.callBackUrl
 
                     // dispatch({
                     //     type: CHANGE_MODAL_STATES,
@@ -192,9 +201,9 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                                     key: "showsuccessmodal",
                                     value: true
                                 })
-                                if(formValues.callbackUrl){
+                                if(formValues.callBackUrl){
                                     setTimeout(()=>{
-                                        window.location.href = `${formValues.callbackUrl}/?success=true`
+                                        window.location.href = `${formValues.callBackUrl}/?success=true`
                                     }, 3000)
                                 }
 
@@ -229,7 +238,8 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     }
 
     return (
-        <Box className={classes.layout} display={{ xs:'block' }} sm={12}>
+        <Box className={classes.layout} display={{xs: 'block'}} sm={12}>
+            <LogoAndLangSwitcher />
 
             <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
                 <GetStepContent step={activeStep} />

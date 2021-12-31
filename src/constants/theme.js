@@ -27,7 +27,7 @@ let theme = {
       },
       "primary": {
         "light": "#7dafc2",
-        "main": "#000000",
+        "main": "#766d6d",
         "dark": "#416d7d",
         "contrastText": "#fff"
       },
@@ -51,7 +51,7 @@ let theme = {
       },
       fontSize: {
 
-      },borderWidth:0.3
+      }
     },
   };
 

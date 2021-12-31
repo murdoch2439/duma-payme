@@ -6,12 +6,13 @@ const initialState = {
         name: "",
         email: "",
         phone: "",
-        currency: "USD",
+        currency: "",
         amount: "1",
         received:"",
         paymentMethod:"",
         receiverName:"",
-        payerId:"",
+        clientName:"",
+        paymentRequestId:"",
         receiverEmail:"",
         transactionReference:"",
         paymentIntent:"",
@@ -20,14 +21,16 @@ const initialState = {
         card:null,
         receiverLogo:"",
         fees:4,
-        callbackUrl:"",
-        senderExist:false
+        callBackUrl:"",
+        error:false,
+        code:""
 
     },
     modalStates:{
         showsuccessmodal:false,
         showfailmodal:false,
         showpendingmodal:false,
+        showaccessdeniedmodal:false
     }
 };
 
