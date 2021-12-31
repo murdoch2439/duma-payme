@@ -1,17 +1,29 @@
+
 body {
-  background-color: grey;
-  /* padding-left: 150px; */
+  height:100%;
+  background: url("./assets/gig1.gif") no-repeat top fixed ;
+  background-size: cover;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  /*text-align: center;*/
+  /*display:flex;*/
+
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /*justify-content: center;*/
+
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.loader {
-  color: aqua;
-}
+
+

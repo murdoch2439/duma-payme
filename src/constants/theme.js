@@ -4,11 +4,11 @@ import { createTheme } from '@material-ui/core/styles'
 let theme = {
     "typography": {
       "fontFamily": [
+        "Roboto",
         "-apple-system",
         "BlinkMacSystemFont",
         "Segoe UI",
-        "Roboto",
-        "Helvetica Neue",
+
         "Arial",
         "sans-serif",
         "Apple Color Emoji",
@@ -27,7 +27,7 @@ let theme = {
       },
       "primary": {
         "light": "#7dafc2",
-        "main": "#5d9cb3",
+        "main": "#766d6d",
         "dark": "#416d7d",
         "contrastText": "#fff"
       },
@@ -48,10 +48,13 @@ let theme = {
         "secondary": "rgba(0, 0, 0, 0.54)",
         "disabled": "rgba(0, 0, 0, 0.38)",
         "hint": "rgba(0, 0, 0, 0.38)"
+      },
+      fontSize: {
+
       }
-    }
+    },
   };
-  
+
   theme = createTheme(theme);
   theme = responsiveFontSizes(theme);
   export default theme

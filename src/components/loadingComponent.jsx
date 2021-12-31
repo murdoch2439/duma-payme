@@ -1,42 +1,30 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Loader from "react-loader-spinner";
-import { Container, Box, Grid } from "@material-ui/core";
+import { Container, } from "@material-ui/core";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    // display: 'flex',
-    // '& > * + *': {
-
-      margin:'15% 0 0 0',
-      // backgroundColor:'red',
-      // height:'100%',
+      marginTop:'20%',
+      height:'100%',
       textAlign:'center',
-      justifyContent:'center',
-      alignItems:'center',
-
-      
-    // },
   },
 }));
 
 const LoadingComponent = () =>{
   const classes = useStyles();
   return(
-    <Container className={classes.root} justifyContent='center'>
-
-      <Box  >
+    <Container className={classes.root}>
 
         <Loader
           type="Puff"
           color="white"
           height={100}
           width={100}
-          timeout={5000} 
+          timeout={5000}
         />
 
-      </Box>
     </Container>
   )
 }
