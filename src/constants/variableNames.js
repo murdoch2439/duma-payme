@@ -1,7 +1,9 @@
 export const MERCHANT_KEY_STRING = "merchantKey"
 export const PAYMENT_REQUEST_ID_STRING = "paymentRequestId"
-// export const ONLINE_BACK_END_PORT = "54.154.208.240"
-export const ONLINE_BACK_END_PORT = "192.168.1.115"
+export const OPTION_STRING = "op"
+export const BFF_IP = "18.200.191.178"
+export const ONLINE_BACK_END_PORT = "54.154.208.240"
+// export const ONLINE_BACK_END_PORT = "192.168.1.115"
 // export const serverLive = "https://duma-payme-backend.herokuapp.com"
 // export const CURRENCY = "currency"
 export const API_PAYMENT_INIT =  `http://${ONLINE_BACK_END_PORT}:3001/api/payment-init`

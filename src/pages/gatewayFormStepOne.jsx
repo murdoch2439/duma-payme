@@ -12,7 +12,7 @@ import {
     DEBIT_CARD,
     EDIT_FORM_VALUES,
     MOBILE_MONEY,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, OPTION_STRING
 } from '../constants/variableNames';
 // import localLogo from '../assets/test4.svg'
 import ListItemText from "@material-ui/core/ListItemText";
@@ -62,6 +62,7 @@ const GatewayFormStepOne =()=> {
 
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+    // const option= getUrlParams()[OPTION_STRING]
 
     useEffect(()=>{
         if(formValues.currency === ''){

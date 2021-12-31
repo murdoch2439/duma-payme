@@ -203,7 +203,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                                 })
                                 if(formValues.callBackUrl){
                                     setTimeout(()=>{
-                                        window.location.href = `${formValues.callBackUrl}/?success=true`
+                                        window.location.href = `${formValues.callBackUrl}?success=true`
                                     }, 3000)
                                 }
 

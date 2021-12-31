@@ -3,6 +3,7 @@ import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 // import CloudOffIcon from '@mui/icons-material/CloudOff';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
+import InsertPageBreakIcon from '@mui/icons-material/InsertPageBreak';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
@@ -65,7 +66,7 @@ const IssuesPage =()=>{
                     {/*{t("Make sure the link is correct")}*/}
                 </p>
                 <Grid  item className={classes.boxIcon}>
-                    <PowerOffIcon style={{fontSize:60, color:'black',}}/>
+                    <InsertPageBreakIcon style={{fontSize:60, color:'black',}}/>
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {/*{t("Oups!!, something just went wrong!")} <br />*/}

@@ -13,7 +13,13 @@ import SuccessModal from "./successPage";
 import FailureModal from "./failurePage";
 import PendingModal from "./pendingPage";
 import {getUrlParams, languages} from "../utils/helperFunctions";
-import {MERCHANT_KEY_STRING, ENGLISH_LANG_CODE, FRENCH_LANG_CODE, PAYMENT_REQUEST_ID_STRING} from "../constants/variableNames";
+import {
+    MERCHANT_KEY_STRING,
+    ENGLISH_LANG_CODE,
+    FRENCH_LANG_CODE,
+    PAYMENT_REQUEST_ID_STRING,
+    OPTION_STRING
+} from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
 // import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
@@ -65,6 +71,7 @@ const LayoutManager = () => {
     const history = useHistory()
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+    const option= getUrlParams()[OPTION_STRING]
 
 
     const onClickHandler =(lang)=>{
@@ -85,10 +92,10 @@ const LayoutManager = () => {
           const cardsLogo = [
         "amex",
         "cirrus",
-        // "diners",
-        // "dankort",
-        // "discover",
-        // "jcb",
+        "diners",
+        "dankort",
+        "discover",
+        "jcb",
         "maestro",
         "mastercard",
         "visa",
@@ -165,7 +172,7 @@ const LayoutManager = () => {
                           </Box>
 
                         {
-                            !merchantKey && paymentRequestId  ?
+                            option  ?
                             <GatewayFormStepsManager
                                 onSuccessfulCheckout ={()=> history.replace('/success')}
                                 onFailedCheckout ={()=>history.replace('/failure')}

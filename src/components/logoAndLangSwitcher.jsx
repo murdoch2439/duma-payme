@@ -7,7 +7,6 @@ import logDuma from "../assets/duma1.png";
 import {languages} from "../utils/helperFunctions";
 
 const useStyles = makeStyles(() => ({
-
     dumaLogoAndLangContainer:{
         width:'100%',
         justifyContent:'space-between',
@@ -27,9 +26,8 @@ const LogoAndLangSwitcher = () =>{
         i18n.changeLanguage(lang).then()
     }
 
-
     return(
-        <Box  className={classes.dumaLogoAndLangContainer} sx={{display: { xs: 'flex', sm:'none', md: 'none' }, justifyContent:'space-between'}}>
+        <Box className={classes.dumaLogoAndLangContainer} sx={{display: { xs: 'flex', sm:'none', md: 'none' }, justifyContent:'space-between'}}>
             <img src={logDuma} alt='logo' className={classes.logoDuma} />
             <FormControl>
                 <TextField
@@ -50,12 +48,11 @@ const LogoAndLangSwitcher = () =>{
                         <MenuItem key={option.value} value={option.value}>
                             {t(option.label)}
                         </MenuItem>
-                    ))}
-
+                    ))
+                    }
                 </TextField>
             </FormControl>
         </Box>
-
     )
 }
 
