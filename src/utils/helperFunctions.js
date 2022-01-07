@@ -83,11 +83,10 @@ export    const languages=[
 
 export const responseManager = ({response, formValues}) =>{
 
-
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
-    // formValues.callBackUrl = response.data.callBackUrl
+    formValues.clientCurrency = response.data.clientCurrency
     formValues.clientName = response.data.clientName
     formValues.receiverName = response.data.receiverName
     formValues.paymentRequestId = response.data.paymentRequestId

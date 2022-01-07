@@ -23,7 +23,8 @@ const initialState = {
         fees:4,
         callBackUrl:"",
         error:false,
-        code:""
+        code:"",
+        clientCurrency:"",
 
     },
     modalStates:{
