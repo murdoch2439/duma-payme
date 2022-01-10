@@ -9,7 +9,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {useTranslation} from "react-i18next";
-import {businessLogicManager, nameFormating} from "../utils/helperFunctions";
+import {businessLogicManager, nameFormating, totalToPay} from "../utils/helperFunctions";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
@@ -116,7 +116,12 @@ const SuccessPage =()=>{
                           <ListItem className={classes.listItem} >
                               <ListItemText primary={t('Amount :')} style={{fontWeight:'700', color:'grey', }}   />
                               <div style={{backgroundColor:'green', padding:5, borderRadius:5}}>
-                                  <Typography  variant="body1" className={classes.total}>{`${businessLogicManager(formValues.currency, formValues.amount)} ${formValues.currency}`}</Typography>
+                                  <Typography  variant="body1" className={classes.total}>{totalToPay({
+                                      currency:formValues
+                                      .currency,
+                                      amount:formValues
+                                      .amount
+                                  })}</Typography>
                               </div>
 
                           </ListItem>
