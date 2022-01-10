@@ -7,7 +7,6 @@ import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} f
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
 import {
-    businessLogicManager,
     nameFormating,
     receivingAmount,
     sendingAmount,
