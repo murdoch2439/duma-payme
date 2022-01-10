@@ -57,6 +57,7 @@ const  FormStepTwo =()=> {
   const [error, setError] = useState(null);
   const [{ formValues }, dispatch] = useStateValue();
   const {t} = useTranslation()
+    const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
 
   const stripe = useStripe();
   const elements = useElements();
@@ -72,14 +73,11 @@ const  FormStepTwo =()=> {
       // setCardMessage('Stripe has not yet loaded')
       return ;
     }
-    // const fees = parseInt(formValues.fees)
 
-    const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
+
 
     const total = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
 
-    console.log('total ==>', total)
-    // console.log('businessObject ==>', businessObject)
 
   return (
 
