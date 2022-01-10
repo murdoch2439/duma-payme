@@ -152,7 +152,7 @@ const LayoutManager = () => {
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
                                       {/*formValues.receiverLogo === '' ? 'Loading...':*/}
-                                      <img src={`https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png`} alt='logo'  className={classes.clientLogo} />
+                                      <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo'  className={classes.clientLogo} />
                                       {/* }*/}
                                       {/*<p>{t("Why")}</p>*/}
                                       {/*<img src={cover} alt='logo' className={classes.clientLogo} />*/}
