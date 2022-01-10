@@ -21,7 +21,7 @@
       }
 
       export const totalToPay = ({currency, amount, }) =>{
-        return  currency === "USD" ? `$ ${amount} ${currency}`: `€ ${amount} ${currency}`
+        return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
 
       }
 
