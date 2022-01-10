@@ -1,0 +1,127 @@
+
+> paiemoi-app@0.1.0 start
+> export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://10.0.0.31/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /home/ec2-user/pay-me-reactjs/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+src/pages/formStepOne.jsx
+  Line 81:7:  React Hook useEffect has a missing dependency: 'getIpAdress'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/gatewayFormStepOne.jsx
+  Line 90:7:  React Hook useEffect has a missing dependency: 'paymentInitialization'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+
+> paiemoi-app@0.1.0 start
+> export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://10.0.0.31/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /home/ec2-user/pay-me-reactjs/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+src/pages/formStepOne.jsx
+  Line 81:7:  React Hook useEffect has a missing dependency: 'getIpAdress'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/gatewayFormStepOne.jsx
+  Line 90:7:  React Hook useEffect has a missing dependency: 'paymentInitialization'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+
+> paiemoi-app@0.1.0 start
+> export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://10.0.0.31/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /home/ec2-user/pay-me-reactjs/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+src/pages/formStepOne.jsx
+  Line 81:7:  React Hook useEffect has a missing dependency: 'getIpAdress'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/gatewayFormStepOne.jsx
+  Line 90:7:  React Hook useEffect has a missing dependency: 'paymentInitialization'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+
+> paiemoi-app@0.1.0 start
+> export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://10.0.0.31/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /home/ec2-user/pay-me-reactjs/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+src/pages/formStepOne.jsx
+  Line 81:7:  React Hook useEffect has a missing dependency: 'getIpAdress'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/gatewayFormStepOne.jsx
+  Line 90:7:  React Hook useEffect has a missing dependency: 'paymentInitialization'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+
+> paiemoi-app@0.1.0 start
+> react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://10.0.0.31/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /home/ec2-user/pay-me-reactjs/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:130:10)
+    at module.exports (/home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:417:16)
+    at handleParseError (/home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:471:10)
+    at /home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:503:5
+    at /home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:358:12
+    at /home/ec2-user/pay-me-reactjs/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/home/ec2-user/pay-me-reactjs/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/home/ec2-user/pay-me-reactjs/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+/home/ec2-user/pay-me-reactjs/node_modules/react-scripts/scripts/start.js:19
+  throw err;
+  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:130:10)
+    at module.exports (/home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:417:16)
+    at /home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:452:10
+    at /home/ec2-user/pay-me-reactjs/node_modules/webpack/lib/NormalModule.js:323:13
+    at /home/ec2-user/pay-me-reactjs/node_modules/loader-runner/lib/LoaderRunner.js:367:11
+    at /home/ec2-user/pay-me-reactjs/node_modules/loader-runner/lib/LoaderRunner.js:233:18
+    at context.callback (/home/ec2-user/pay-me-reactjs/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /home/ec2-user/pay-me-reactjs/node_modules/babel-loader/lib/index.js:59:103 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v17.2.0
