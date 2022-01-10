@@ -45,9 +45,7 @@ const useStyles = makeStyles(() => ({
   ListItemText:{
       fontSize:25,
   },
-  title: {
 
-  },
 }));
 
 
