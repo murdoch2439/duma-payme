@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Box, Button, FormControl, Grid, MenuItem, TextField} from '@material-ui/core'
+import {Box, Button, Grid,} from '@material-ui/core'
 import {useStripe} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import FormStepOne from './formStepOne';
@@ -9,14 +9,12 @@ import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, ENGLISH_LANG_CODE, FRENCH_LANG_CODE, LOADING_MESSAGE,
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, LOADING_MESSAGE,
     MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
-import logDuma from "../assets/duma1.png";
-import {backgroundChanger, languages} from "../utils/helperFunctions";
+import {backgroundChanger} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
 import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
-
 
 
 const useStyles = makeStyles(() => ({
@@ -67,15 +65,10 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const [{ formValues,  }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null);
-  const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
   const [disabled, setDisabled] = useState(false);
-  const {t, i18n} = useTranslation()
+  const {t,} = useTranslation()
 
   const stripe = useStripe();
-
-  const onClickHandler =(lang)=>{
-        i18n.changeLanguage(lang).then()
-  }
 
 
   const handleNext = () => {

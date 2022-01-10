@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
@@ -14,10 +14,10 @@ import FailureModal from "./failurePage";
 import PendingModal from "./pendingPage";
 import {getUrlParams, languages} from "../utils/helperFunctions";
 import {
-    MERCHANT_KEY_STRING,
+    // MERCHANT_KEY_STRING,
     ENGLISH_LANG_CODE,
-    FRENCH_LANG_CODE,
-    PAYMENT_REQUEST_ID_STRING,
+    FRENCH_LANG_CODE, MERCHANT_KEY_STRING,
+    // PAYMENT_REQUEST_ID_STRING,
     OPTION_STRING
 } from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
@@ -65,20 +65,21 @@ const useStyles = makeStyles(() => ({
 
 const LayoutManager = () => {
     const classes = useStyles();
-    const [{  modalStates  }] = useStateValue();
+    const [{  formValues, modalStates  }] = useStateValue();
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
     const history = useHistory()
-    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-    const paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+    // const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    // const paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
     const option= getUrlParams()[OPTION_STRING]
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
 
 
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
     }
 
-    // const [logo, setLogo] = useState('')
+    const [logo, setLogo] = useState(merchantKey)
     // useEffect(()=>{
     //
     //      if(formValues.receiverLogo === ''){
@@ -93,10 +94,10 @@ const LayoutManager = () => {
         "amex",
         "cirrus",
         "diners",
-        "dankort",
-        "discover",
-        "jcb",
-        "maestro",
+        // "dankort",
+        // "discover",
+        // "jcb",
+        // "maestro",
         "mastercard",
         "visa",
         "visaelectron",
@@ -151,10 +152,10 @@ const LayoutManager = () => {
                                       {/*CLIENT LOGO GOES HERE */}
                                       {/*{*/}
                                       {/*formValues.receiverLogo === '' ? 'Loading...':*/}
-                                      {/*<img src={`https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/${logo}/organisation-logo.png`} alt='logo'  className={classes.clientLogo} />*/}
+                                      <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo'  className={classes.clientLogo} />
                                       {/* }*/}
                                       {/*<p>{t("Why")}</p>*/}
-                                      <img src={cover} alt='logo' className={classes.clientLogo} />
+                                      {/*<img src={cover} alt='logo' className={classes.clientLogo} />*/}
                                   </div>
 
                                   <Grid

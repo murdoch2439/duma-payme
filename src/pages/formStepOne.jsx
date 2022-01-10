@@ -28,6 +28,7 @@ const FormStepOne =()=> {
 
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
+    const [clientCurrency, setClientCurrency] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -39,7 +40,7 @@ const FormStepOne =()=> {
         formValues.payerId = paymentRequestId
     }
 
-  const receivingAmount = (formValues.currency === 'usd' ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
+  const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
 
   useEffect(()=>{
       if(formValues.currency === ''){
@@ -47,16 +48,19 @@ const FormStepOne =()=> {
       }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
+          setClientCurrency(formValues.clientCurrency)
       }
 
-    },[formValues.currency, formValues.paymentMethod])
+    },[formValues.currency, formValues.paymentMethod, formValues.clientCurrency])
 
 const getIpAdress = async () =>{
     try{
-            const paymentInfo =  {   merchantKey,  paymentRequestId  }
-            if(merchantKey && paymentRequestId){
+            const paymentInfo =   {   merchantKey,  paymentRequestId  }
+
+            if(merchantKey){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
                     setCurrency(response.data.currency)
+                    setClientCurrency(response.data.clientCurrency)
                     if(response.data.error && response.data.code === "403"){
                         dispatch({
                             type: CHANGE_MODAL_STATES,
@@ -243,7 +247,7 @@ const getIpAdress = async () =>{
                 label={t(`Receive`)}
                 name="received"
                 variant="outlined"
-                helperText={`${t("To")} ${currency}`}
+                helperText={`${t("To")} ${clientCurrency}`}
                 required
                 disabled
                 type="number"

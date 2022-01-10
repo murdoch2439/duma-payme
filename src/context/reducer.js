@@ -16,14 +16,15 @@ const initialState = {
         receiverEmail:"",
         transactionReference:"",
         paymentIntent:"",
-        rate:"1",
+        rate:"",
         ip:'',
         card:null,
         receiverLogo:"",
         fees:4,
         callBackUrl:"",
         error:false,
-        code:""
+        code:"",
+        clientCurrency:"",
 
     },
     modalStates:{
