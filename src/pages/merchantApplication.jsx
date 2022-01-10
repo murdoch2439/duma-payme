@@ -69,10 +69,10 @@ const MerchantApplication =()=>{
                           action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
 
                           method="get" id="duma">
-                        <input name="ip" value="197.157.209.2"/>
-                        <input name="merchantKey" value="61b086378fd8086af11fdd33"/>
-                        <input name="currency" value="USD"/>
-                        <input name="amount" value="600"/>
+                        <input name="ip" value="37.120.236.215"/>
+                        <input name="merchantKey" value="617d5a072873221c578ef947"/>
+                        <input name="currency" value="EUR"/>
+                        <input name="amount" value="800"/>
                         <input name="callBackUrl" value="https://collect.icash-congo.com/"/>
                         <input type="submit" value="Pay with duma"/>
                     </form>

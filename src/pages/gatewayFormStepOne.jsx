@@ -51,7 +51,7 @@ const paymentMethod =[
 const GatewayFormStepOne =()=> {
     const classes = useStyles();
     const [{ formValues }, dispatch] = useStateValue();
-    const [adminCurrency, setAdminCurrency] = useState('')
+    const [currency, setCurrency] = useState('')
     const [amount, setAmount] = useState("1")
     const [errorName, setErrorName] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -68,18 +68,23 @@ const GatewayFormStepOne =()=> {
         if(formValues.currency === ''){
             paymentInitialization().then()
         }else{
-            setAdminCurrency(formValues.currency)
+            setCurrency(formValues.currency)
             setAmount(formValues.amount)
         }
 
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
-            return adminCurrency
+            return currency
     }
 
     const amountManager = () =>{
+        if(currency === "USD"){
             return `${parseInt(amount).toFixed(2)} $`
+        } else{
+            return `${parseInt(amount).toFixed(2)} €`
+        }
+
     }
 
     const paymentInitialization = async() =>{
@@ -89,7 +94,7 @@ const GatewayFormStepOne =()=> {
             if(merchantKey && paymentRequestId){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(   (response)=>{
                     console.log('response Data ====>', response.data)
-                    setAdminCurrency(response.data.adminCurrency)
+                    setCurrency(response.data.currency)
                     setAmount(response.data.amount)
                     if(response.data.error && response.data.code === "403"){
                         dispatch({
