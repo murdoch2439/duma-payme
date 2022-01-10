@@ -1,6 +1,3 @@
-// import {Currencies} from "./currencies";
-// import {useTranslation} from "react-i18next";
-
 // export  const transformToUpCase = (word) =>{
 //       return word.toUpperCase()
 //    }
@@ -17,20 +14,65 @@
       }
 
 
-      export  const currencyManager = (currency, amount ) =>{
+      export const sendingAmount = ({currency, amount,}) =>{
+
+              return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
+
+      }
+
+      export const totalToPay = ({currency, amount, }) =>{
+        return  currency === "USD" ? `$ ${amount} ${currency}`: `€ ${amount} ${currency}`
+
+      }
+
+      export const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
+
+        if(!currency){
+            return `$ 00.00`
+        }else{
+            if(currency === "USD"){
+                if(currency === clientCurrency){
+                    return `$ ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+                }
+            }
+              if(currency === "EUR"){
+                  if(currency === clientCurrency){
+                      return `€ ${parseInt(amount).toFixed(2)}`
+                  }else{
+                      return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+                  }
+
+            }
+        //
+        }
+      }
+
+
+      export  const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
+
         if(!currency){
             return `$ 00.00`
         }
-        if(currency === 'USD'){
+        if(currency !== clientCurrency && currency === "USD"){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
-              }else{
+              }if(currency === clientCurrency){
+                return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+
+            }else{
                   return `$ ${parseInt(amount).toFixed(2)}`
               }
 
           }
-          if(currency === 'EUR'){
-            return  `€ ${parseInt(amount).toFixed(2)}`
+          if(currency !== clientCurrency &&  currency === 'EUR'){
+              if(isNaN(amount) || amount === null || amount === undefined){
+                  return `$ 00.00`
+              }else{
+                  return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+              }
+
           }
 
       }
@@ -92,13 +134,14 @@ export const responseManager = ({response, formValues}) =>{
     formValues.paymentRequestId = response.data.paymentRequestId
     formValues.error = response.data.error
     formValues.code = response.data.code
+    if(response.data.rate){
+        formValues.rate = response.data.rate
+    }
     if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
     }if(response.data.amount){
         formValues.amount = response.data.amount
     }
-
-
 }
 
 // export const languageSwitcher = () =>{

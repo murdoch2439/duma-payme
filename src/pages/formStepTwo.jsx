@@ -6,7 +6,13 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} from '@material-ui/core'
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
-import { currencyManager, nameFormating } from '../utils/helperFunctions';
+import {
+    businessLogicManager,
+    nameFormating,
+    receivingAmount,
+    sendingAmount,
+    totalToPay
+} from '../utils/helperFunctions';
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
@@ -66,9 +72,14 @@ const  FormStepTwo =()=> {
       // setCardMessage('Stripe has not yet loaded')
       return ;
     }
-    const fees = parseInt(formValues.fees)
+    // const fees = parseInt(formValues.fees)
 
-    const total = parseInt(formValues.amount) + fees
+    const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
+
+    const total = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
+
+    console.log('total ==>', total)
+    // console.log('businessObject ==>', businessObject)
 
   return (
 
@@ -91,19 +102,19 @@ const  FormStepTwo =()=> {
             <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
-            <ListItemText primary={t('Amount to send:')} style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1">{`${currencyManager(formValues.currency, formValues.amount)}`}</Typography>
+            <ListItemText primary={t('Sending Amount :')} style={{fontWeight:'700', color:'grey'}} />
+            <Typography variant="body1">{sendingAmount(businessObject)}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
-            <ListItemText primary={t('Fees :')} style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1">{`${currencyManager(formValues.currency, fees )}`}</Typography>
+            <ListItemText primary={t('Receiving amount :')} style={{fontWeight:'700', color:'grey'}} />
+            <Typography variant="body1">{receivingAmount(businessObject)}</Typography>
           </ListItem>
          {
-             formValues.currency === 'eur'?
+             formValues.clientCurrency !== formValues.currency ?
                  <ListItem className={classes.listItem} >
                     <ListItemText primary={t('Rate :')} style={{fontWeight:'700', color:'grey'}} />
                     <Typography variant="body1">
-                        {currencyManager(formValues.currency, formValues.rate )}
+                        {formValues.rate.toFixed(2)}
                     </Typography>
                  </ListItem>:null
          }
@@ -112,7 +123,7 @@ const  FormStepTwo =()=> {
         <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>
           <ListItemText  primary={t("Total :")} className={classes.total}/>
           <Typography variant="subtitle1" className={classes.total}>
-         {` ${currencyManager(formValues.currency, total )} ${formValues.currency}`}
+         {totalToPay(businessObject)}
           </Typography>
         </ListItem>
       </List>

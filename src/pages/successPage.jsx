@@ -9,7 +9,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {useTranslation} from "react-i18next";
-import {currencyManager, nameFormating} from "../utils/helperFunctions";
+import {businessLogicManager, nameFormating} from "../utils/helperFunctions";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 
@@ -116,7 +116,7 @@ const SuccessPage =()=>{
                           <ListItem className={classes.listItem} >
                               <ListItemText primary={t('Amount :')} style={{fontWeight:'700', color:'grey', }}   />
                               <div style={{backgroundColor:'green', padding:5, borderRadius:5}}>
-                                  <Typography  variant="body1" className={classes.total}>{`${currencyManager(formValues.currency, formValues.amount)} ${formValues.currency}`}</Typography>
+                                  <Typography  variant="body1" className={classes.total}>{`${businessLogicManager(formValues.currency, formValues.amount)} ${formValues.currency}`}</Typography>
                               </div>
 
                           </ListItem>
@@ -139,14 +139,14 @@ const SuccessPage =()=>{
 
                           {/*<ListItem className={classes.listItem} >*/}
                           {/*    <ListItemText primary={t('Fees :')} style={{fontWeight:'700', color:'grey'}} />*/}
-                          {/*    <Typography variant="body1">{`${currencyManager(formValues.currency, fees )}`}</Typography>*/}
+                          {/*    <Typography variant="body1">{`${businessLogicManager(formValues.currency, fees )}`}</Typography>*/}
                           {/*</ListItem>*/}
                           {/*{*/}
                           {/*    formValues.currency === 'eur'?*/}
                           {/*        <ListItem className={classes.listItem} >*/}
                           {/*            <ListItemText primary={t('Rate :')} style={{fontWeight:'700', color:'grey'}} />*/}
                           {/*            <Typography variant="body1">*/}
-                          {/*                {currencyManager(formValues.currency, formValues.rate )}*/}
+                          {/*                {businessLogicManager(formValues.currency, formValues.rate )}*/}
                           {/*            </Typography>*/}
                           {/*        </ListItem>:null*/}
                           {/*}*/}
@@ -155,7 +155,7 @@ const SuccessPage =()=>{
                           {/*<ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>*/}
                           {/*    <ListItemText  primary={t("Total :")} className={classes.total}/>*/}
                           {/*    <Typography variant="subtitle1" className={classes.total}>*/}
-                          {/*        {` ${currencyManager(formValues.currency, total )} ${formValues.currency}`}*/}
+                          {/*        {` ${businessLogicManager(formValues.currency, total )} ${formValues.currency}`}*/}
                           {/*    </Typography>*/}
                           {/*</ListItem>*/}
                       </List>

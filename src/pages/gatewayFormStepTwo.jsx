@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
-// import { currencyManager, nameFormating } from '../utils/helperFunctions';
+// import { businessLogicManager, nameFormating } from '../utils/helperFunctions';
 import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";

@@ -16,7 +16,7 @@ const initialState = {
         receiverEmail:"",
         transactionReference:"",
         paymentIntent:"",
-        rate:"1",
+        rate:"",
         ip:'',
         card:null,
         receiverLogo:"",
