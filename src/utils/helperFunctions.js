@@ -1,31 +1,28 @@
-// export  const transformToUpCase = (word) =>{
-//       return word.toUpperCase()
-//    }
 
-   export const nameFormating = (string) =>{
-        const splitted = string.split(' ')
+const nameFormating = (string) =>{
+    const splitted = string.split(' ')
 
-        for (let i = 0; i < splitted.length; i++){
+    for (let i = 0; i < splitted.length; i++){
 
-          splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1)
+      splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1)
 
-        }
-       return splitted.join(' ')
-      }
+    }
+   return splitted.join(' ')
+}
 
 
-      export const sendingAmount = ({currency, amount,}) =>{
+const sendingAmount = ({currency, amount,}) =>{
 
-              return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
+      return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
 
-      }
+}
 
-      export const totalToPay = ({currency, amount, }) =>{
-        return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
+const totalToPay = ({currency, amount, }) =>{
+return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
 
-      }
+}
 
-      export const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
+const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
 
         if(!currency){
             return `$ 00.00`
@@ -45,12 +42,11 @@
                   }
 
             }
-        //
+
         }
       }
 
-
-      export  const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
+const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
 
         if(!currency){
             return `$ 00.00`
@@ -78,12 +74,7 @@
       }
 
 
-// export const urlParamsFormater =(text) =>{
-//        return  text.split('=')[1]
-//      }
-
-
-export const  getUrlParams =()=> {
+ const  getUrlParams =()=> {
     let  vars = {};
      window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value)=> {
         vars[key] = value;
@@ -104,7 +95,7 @@ export const  getUrlParams =()=> {
 //
 // }
 
-export   const backgroundChanger = (loading) =>{
+const backgroundChanger = (loading) =>{
     if(!loading){
         return '#FBB900'
     }else{
@@ -112,7 +103,7 @@ export   const backgroundChanger = (loading) =>{
     }
 }
 
-export    const languages=[
+const languages=[
     {
         value:"en",
         label:"English"
@@ -123,7 +114,7 @@ export    const languages=[
     }
 ]
 
-export const responseManager = ({response, formValues}) =>{
+const responseManager = ({response, formValues}) =>{
 
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
@@ -144,6 +135,4 @@ export const responseManager = ({response, formValues}) =>{
     }
 }
 
-// export const languageSwitcher = () =>{
-//
-// }
+export {responseManager, backgroundChanger, nameFormating, languages, getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}
