@@ -10,7 +10,6 @@ const nameFormating = (string) =>{
    return splitted.join(' ')
 }
 
-
 const sendingAmount = ({currency, amount,}) =>{
 
       return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
@@ -19,7 +18,6 @@ const sendingAmount = ({currency, amount,}) =>{
 
 const totalToPay = ({currency, amount, }) =>{
 return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
-
 }
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
@@ -73,8 +71,7 @@ const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
 
       }
 
-
- const  getUrlParams =()=> {
+const  getUrlParams =()=> {
     let  vars = {};
      window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value)=> {
         vars[key] = value;
