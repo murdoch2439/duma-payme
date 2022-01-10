@@ -12,6 +12,7 @@ import '../constants/styles/cardSectionStyles.css'
 import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
+import {totalToPay} from "../utils/helperFunctions";
 
 
 const CARD_ELEMENT_OPTIONS = {
@@ -50,6 +51,7 @@ const  GatewayFormStepTwo =()=> {
     const stripe = useStripe();
     const elements = useElements();
     const {t} = useTranslation()
+    const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
 
 
     const [error, setError] = useState(null);
@@ -84,7 +86,7 @@ const  GatewayFormStepTwo =()=> {
                         </ListItem>
                         <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
                             <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{`${parseInt(formValues.amount).toFixed(2)} $`}</Typography>
+                            <Typography variant="body1" style={{fontWeight:'500'}}>{totalToPay(businessObject)}</Typography>
                         </ListItem>
 
                     </List>
@@ -93,7 +95,6 @@ const  GatewayFormStepTwo =()=> {
 
             </Grid>
             <div style={{height:1, marginTop:10, width:'96%',marginRight:10,marginLeft:10,  backgroundColor:'#C4C4C4'}}/>
-
 
             <Grid style={{marginRight:10,marginLeft:10,}}  >
                 <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}}>
