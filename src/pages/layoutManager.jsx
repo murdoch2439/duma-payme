@@ -14,10 +14,8 @@ import FailureModal from "./failurePage";
 import PendingModal from "./pendingPage";
 import {getUrlParams, languages} from "../utils/helperFunctions";
 import {
-    // MERCHANT_KEY_STRING,
     ENGLISH_LANG_CODE,
     FRENCH_LANG_CODE, MERCHANT_KEY_STRING,
-    // PAYMENT_REQUEST_ID_STRING,
     OPTION_STRING
 } from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
