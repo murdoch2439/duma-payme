@@ -82,14 +82,11 @@ const getIpAdress = async () =>{
 
       <Grid  item xs={12} sm={4} md={6} >
             <TextField
-
                 label={t("Name on the card")}
-
                 name="name"
                 variant="outlined"
                 required
                 fullWidth
-                // helperText={errorName? 'this field cannot be empty':null}
                 value={formValues.name}
                 onChange={e =>{
                     dispatch({
@@ -97,13 +94,7 @@ const getIpAdress = async () =>{
                         key: "name",
                         value: e.target.value
                     })
-                    // if(e.target.value === ''){
-                    //     setErrorName(true)
-                    // }else{
-                    //     setErrorName(false)
-                    // }
                 }
-
                 }
             />
           </Grid>
