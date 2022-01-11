@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getUrlParams, responseManager} from '../utils/helperFunctions';
+import {getUrlParams, paymentMethod, responseManager} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
@@ -35,17 +35,6 @@ const useStyles = makeStyles({
         color:'black'
     },
 });
-
-const paymentMethod =[
-    {
-        value:DEBIT_CARD,
-        label:'Debit card',
-    },
-    {
-        value:MOBILE_MONEY,
-        label:'Mobile Money',
-    },
-]
 
 
 const GatewayFormStepOne =()=> {
@@ -127,7 +116,6 @@ const GatewayFormStepOne =()=> {
                         <ListItemText primary={t('Total :')} className={classes.listItemText}  />
                         <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
                     </ListItem>
-
                 </List>
                 <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
             </Grid>
@@ -150,7 +138,6 @@ const GatewayFormStepOne =()=> {
                         }
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={4} md={6}>
                     <TextField
                         label={t("Email adress")}
@@ -171,7 +158,6 @@ const GatewayFormStepOne =()=> {
                             if(!emailFormat.test(e.target.value)){
                                 setErrorName(true)
                                 setErrorMessage('mail not valid')
-
                             }else{
                                 setErrorName(false)
                             }
@@ -195,14 +181,11 @@ const GatewayFormStepOne =()=> {
                                 value: e.target.value
                             })
                         }
-
                         }
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6} md={6}>
-                    <FormControl
-                        style={{minWidth: '100%',}}>
+                    <FormControl style={{minWidth: '100%',}}>
                         <TextField
                             required
                             variant="outlined"
@@ -221,10 +204,8 @@ const GatewayFormStepOne =()=> {
                             ))}
                         </TextField>
                     </FormControl>
-
                 </Grid>
             </Grid>
-
         </Grid>
 
     );
