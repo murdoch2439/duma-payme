@@ -66,14 +66,12 @@ const GatewayFormStepOne =()=> {
     const amountManager = () =>{
         if(currency === "USD"){
             return `${parseInt(amount).toFixed(2)} $`
-        } else{
+        }else{
             return `${parseInt(amount).toFixed(2)} €`
         }
-
     }
 
     const paymentInitialization = async() =>{
-
         try{
             const paymentInfo = {  merchantKey, paymentRequestId }
             if(merchantKey){
