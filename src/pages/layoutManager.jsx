@@ -130,10 +130,15 @@ const LayoutManager = () => {
 
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
-
-                                      <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo'  className={classes.clientLogo} />
-
-                                      {/*<img src={cover} alt='logo' className={classes.clientLogo} />*/}
+                                      <img
+                                          src={
+                                              merchantKey ?
+                                                  `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` :
+                                                  cover
+                                          }
+                                          alt='logo'
+                                          className={classes.clientLogo}
+                                      />
                                   </div>
 
                                   <Grid
@@ -168,9 +173,7 @@ const LayoutManager = () => {
               </Container>
                   </Box>
           }
-
       </>
-
     )
 }
 
