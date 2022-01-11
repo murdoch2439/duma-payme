@@ -152,7 +152,6 @@ const getIpAdress = async () =>{
                         value: e.target.value
                     })
                 }
-
                 }
             />
         </Grid>
@@ -160,26 +159,25 @@ const getIpAdress = async () =>{
         <Grid item xs={12} sm={6} md={6}>
            <FormControl
            required
-
-           style={{minWidth: '100%',}}>
-        <TextField
-          label={t("Currency")}
-          select
-          name="currency"
-          variant="outlined"
-          required
-          disabled
-          value={currency}
-          onChange={(e) => {
-                    setCurrency(e.target.value)
-                    dispatch({
-                        type: EDIT_FORM_VALUES,
-                        key: "currency",
-                        value: e.target.value.currency
-                    })
-                }}
-
-        >
+           style={{minWidth: '100%',}}
+           >
+            <TextField
+              label={t("Currency")}
+              select
+              name="currency"
+              variant="outlined"
+              required
+              disabled
+              value={currency}
+              onChange={(e) => {
+                        setCurrency(e.target.value)
+                        dispatch({
+                            type: EDIT_FORM_VALUES,
+                            key: "currency",
+                            value: e.target.value.currency
+                        })
+                    }}
+            >
           <MenuItem value='USD'>{currency}</MenuItem>
           <MenuItem value='EUR'>{currency}</MenuItem>
           <MenuItem value='CAD'>{currency}</MenuItem>
@@ -190,8 +188,7 @@ const getIpAdress = async () =>{
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
-        <FormControl
-           style={{minWidth: '100%',}}>
+        <FormControl style={{minWidth: '100%',}}>
             <TextField
                 variant="outlined"
                 select
@@ -224,12 +221,12 @@ const getIpAdress = async () =>{
                 fullWidth
                 value={formValues.amount}
                 onChange={e => {
-                    dispatch({
-                        type: EDIT_FORM_VALUES,
-                        key: "amount",
-                        value: e.target.value.replace(/[^0-9,.]/g, ''),
-                    })
-                }
+                        dispatch({
+                            type: EDIT_FORM_VALUES,
+                            key: "amount",
+                            value: e.target.value.replace(/[^0-9,.]/g, ''),
+                        })
+                    }
                 }
             />
         </Grid>
@@ -251,7 +248,6 @@ const getIpAdress = async () =>{
                         value: e.target.value.replace(/[^0-9,.]/g, '')
                     })
                 }
-
                 }
             />
             {/*<FormHelperText>{`${t("To")} ${currency}`}</FormHelperText>*/}
