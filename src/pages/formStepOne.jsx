@@ -7,7 +7,7 @@ import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
     EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_403, CODE_500
 } from '../constants/variableNames';
 import {useTranslation} from "react-i18next";
 
@@ -50,7 +50,7 @@ const getIpAdress = async () =>{
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
                     setCurrency(response.data.currency)
                     setClientCurrency(response.data.clientCurrency)
-                    if(response.data.error && response.data.code === "403"){
+                    if((response.data.error && response.data.code === CODE_403)|| response.data.code === CODE_500){
                         dispatch({
                             type: CHANGE_MODAL_STATES,
                             key: SHOW_ACCESS_DENIED_MODAL,

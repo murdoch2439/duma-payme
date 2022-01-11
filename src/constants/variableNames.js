@@ -32,3 +32,5 @@ export const PREVIOUS_STEP = "Back"
 export const LOADING_MESSAGE = 'Processing...'
 export const ENGLISH_LANG_CODE = "en"
 export const FRENCH_LANG_CODE = "fr"
+export const CODE_403 ="403"
+export const CODE_500 ="500"

@@ -12,7 +12,7 @@ import {
     DEBIT_CARD,
     EDIT_FORM_VALUES,
     MOBILE_MONEY,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, OPTION_STRING
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, OPTION_STRING, CODE_500, CODE_403
 } from '../constants/variableNames';
 // import localLogo from '../assets/test4.svg'
 import ListItemText from "@material-ui/core/ListItemText";
@@ -96,7 +96,7 @@ const GatewayFormStepOne =()=> {
                     console.log('response Data ====>', response.data)
                     setCurrency(response.data.currency)
                     setAmount(response.data.amount)
-                    if((response.data.error && response.data.code === "403") || response.data.code === "500"){
+                    if((response.data.error && response.data.code === CODE_403) || response.data.code === CODE_500){
                         dispatch({
                             type: CHANGE_MODAL_STATES,
                             key: SHOW_ACCESS_DENIED_MODAL,
