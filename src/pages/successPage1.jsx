@@ -37,8 +37,6 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-
-
 const SuccessPage1 =()=>{
     // const [{ formValues }] = useStateValue();
 
@@ -59,7 +57,6 @@ const SuccessPage1 =()=>{
         //     value: false
         // })
         // history.replace('/')
-
     }
 
     const classes = useStyles()
