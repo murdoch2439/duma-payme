@@ -2,14 +2,13 @@ import React from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 // import CheckIcon from '@material-ui/icons/Check';
-import CloudOffIcon from '@mui/icons-material/CloudOff';
+// import CloudOffIcon from '@mui/icons-material/CloudOff';
 import picture from '../assets/ErrorSleeping.svg'
 // import PowerOffIcon from '@mui/icons-material/PowerOff';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
-
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
