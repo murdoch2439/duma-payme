@@ -8,6 +8,7 @@ import InsertPageBreakIcon from '@mui/icons-material/InsertPageBreak';
 import { makeStyles, } from '@material-ui/core/styles';
 // import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
+import picture from '../assets/Laptop.svg'
 
 
 const useStyles = makeStyles(() => ({
@@ -61,17 +62,14 @@ const IssuesPage =()=>{
                 <div style={{height:40}} />
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Oups!!, something just went wrong!")} <br />
-                    {/*<span style={{fontWeight:'bold', fontSize:100,}}>500</span>*/}
-                    {/*<br />*/}
-                    {/*{t("Make sure the link is correct")}*/}
+
                 </p>
-                <Grid  item className={classes.boxIcon}>
-                    <InsertPageBreakIcon style={{fontSize:60, color:'black',}}/>
-                </Grid>
+                <p style={{textAlign:'center',}}>
+                    <img src={picture} alt="f0f" style={{width:350}} />
+                </p>
+
                 <p style={{textAlign:'center', fontSize:25}}>
-                    {/*{t("Oups!!, something just went wrong!")} <br />*/}
-                    {/*<span style={{fontWeight:'bold', fontSize:100,}}>500</span>*/}
-                    <br />
+
                     {t("Make sure the link is correct")}
                 </p>
                 <Grid container item justify='center' style={{marginTop:30}}>

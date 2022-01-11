@@ -66,12 +66,12 @@ const MerchantApplication =()=>{
                     </Grid>
 
                     <form encType="text/plain"
-                          action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
+                          action="http://192.168.1.100:8081/api/v1/icash/me/redirect"
 
                           method="get" id="duma">
-                        <input name="ip" value="37.120.236.215"/>
+                        <input name="ip" value="169.255.204.4"/>
                         <input name="merchantKey" value="617d5a072873221c578ef947"/>
-                        <input name="currency" value="EUR"/>
+                        <input name="currency" value="USD"/>
                         <input name="amount" value="800"/>
                         <input name="callBackUrl" value="https://collect.icash-congo.com/"/>
                         <input type="submit" value="Pay with duma"/>

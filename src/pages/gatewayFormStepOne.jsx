@@ -91,12 +91,12 @@ const GatewayFormStepOne =()=> {
 
         try{
             const paymentInfo = {  merchantKey, paymentRequestId }
-            if(merchantKey && paymentRequestId){
+            if(merchantKey){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(   (response)=>{
                     console.log('response Data ====>', response.data)
                     setCurrency(response.data.currency)
                     setAmount(response.data.amount)
-                    if(response.data.error && response.data.code === "403"){
+                    if((response.data.error && response.data.code === "403") || response.data.code === "500"){
                         dispatch({
                             type: CHANGE_MODAL_STATES,
                             key: SHOW_ACCESS_DENIED_MODAL,
