@@ -192,7 +192,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   return (
     <Box className={classes.layout} display={{ xs:'block' }}  sm={12}>
             <LogoAndLangSwitcher />
-
           <form autoComplete="off" onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />
             <Grid >
@@ -208,23 +207,17 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     className={classes.button}
                     type="submit"
                     disabled={loading||disabled}
-
                     style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                   >
                     { loading ? t(LOADING_MESSAGE) :
                       activeStep === steps.length-1  ? t(PAY_NOW) : t(Next_STEP)
                     }
                   </Button>
-                  </Grid>
-
-                </form>
+            </Grid>
+          </form>
         <Grid style={{ marginTop:10}}>
-
         <Copyright />
         </Grid>
-
-
-
     </Box>
   );
 }
