@@ -123,7 +123,6 @@ const getIpAdress = async () =>{
                         setErrorName(false)
                     }
                 }
-
                 }
             />
         </Grid>
