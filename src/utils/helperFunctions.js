@@ -31,45 +31,37 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
                 }else{
                     return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
                 }
-            }
-              if(currency === "EUR"){
+            }if(currency === "EUR"){
                   if(currency === clientCurrency){
                       return `€ ${parseInt(amount).toFixed(2)}`
                   }else{
                       return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
                   }
-
             }
 
         }
-      }
+}
 
 const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
 
         if(!currency){
             return `$ 00.00`
-        }
-        if(currency !== clientCurrency && currency === "USD"){
+        }if(currency !== clientCurrency && currency === "USD"){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }if(currency === clientCurrency){
                 return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
-
             }else{
                   return `$ ${parseInt(amount).toFixed(2)}`
               }
-
-          }
-          if(currency !== clientCurrency &&  currency === 'EUR'){
+          }if(currency !== clientCurrency &&  currency === 'EUR'){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
                   return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-
           }
-
-      }
+}
 
 const  getUrlParams =()=> {
     let  vars = {};
