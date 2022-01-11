@@ -3,7 +3,6 @@ import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
-
 import FormStepsManager from './formStepsManager'
 import GatewayFormStepsManager from './gatewayFormStepsManager'
 import { useStateValue } from "../context";
@@ -24,7 +23,6 @@ import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
 const useStyles = makeStyles(() => ({
-
     container: {
         backgroundColor:'white',
         // backgroundImage:`url(https://cdn.goodao.net/easypetgarden/H6dd2a1363c0042738024ab6ee5ffb470G.jpg)`,
