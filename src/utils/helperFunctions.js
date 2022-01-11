@@ -1,3 +1,4 @@
+import {DEBIT_CARD, MOBILE_MONEY} from "../constants/variableNames";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
@@ -94,6 +95,16 @@ const languages=[
         label:"French"
     }
 ]
+const paymentMethod =[
+    {
+        value:DEBIT_CARD,
+        label:'Debit card',
+    },
+    {
+        value:MOBILE_MONEY,
+        label:'Mobile Money',
+    },
+]
 
 const responseManager = ({response, formValues}) =>{
 
@@ -115,4 +126,4 @@ const responseManager = ({response, formValues}) =>{
     }
 }
 
-export {responseManager, backgroundChanger, nameFormating, languages, getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}
+export {responseManager, backgroundChanger, nameFormating, languages, paymentMethod,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}

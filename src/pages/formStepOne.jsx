@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import axios from 'axios'
 import { useStateValue } from '../context';
-import { getUrlParams, responseManager,} from '../utils/helperFunctions';
+import {getUrlParams, paymentMethod, responseManager,} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
@@ -13,16 +13,7 @@ import {
 } from '../constants/variableNames';
 import {useTranslation} from "react-i18next";
 
-const paymentMethod =[
-    {
-        value:DEBIT_CARD,
-        label:'Debit card',
-    },
-    {
-        value:MOBILE_MONEY,
-        label:'Mobile Money',
-    },
-]
+
 
 const FormStepOne =()=> {
 
