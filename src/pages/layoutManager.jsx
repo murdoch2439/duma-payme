@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState,} from "react";
 import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
@@ -59,38 +59,23 @@ const useStyles = makeStyles(() => ({
     },
     clientLogo:{
         width:250,
-
     }
 }));
 
 const LayoutManager = () => {
     const classes = useStyles();
-    const [{  formValues, modalStates  }] = useStateValue();
+    const [{  modalStates  }] = useStateValue();
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
     const history = useHistory()
-    // const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-    // const paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
     const option= getUrlParams()[OPTION_STRING]
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-
 
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
     }
 
-    const [logo, setLogo] = useState(merchantKey)
-    // useEffect(()=>{
-    //
-    //      if(formValues.receiverLogo === ''){
-    //        console.log('formValues.receiverLogo is empty...')
-    //      }else{
-    //        setLogo(formValues.receiverLogo)
-    //      }
-    //    }, [formValues.receiverLogo])
-
-
-          const cardsLogo = [
+    const cardsLogo = [
         "amex",
         "cirrus",
         "diners",
@@ -143,18 +128,13 @@ const LayoutManager = () => {
 
                                         </TextField>
                                       </FormControl>
-                                  {/*<img src={logDuma} alt='logo' className={classes.logoDuma} />*/}
                               </Box>
 
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
 
-                                      {/*CLIENT LOGO GOES HERE */}
-                                      {/*{*/}
-                                      {/*formValues.receiverLogo === '' ? 'Loading...':*/}
                                       <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo'  className={classes.clientLogo} />
-                                      {/* }*/}
-                                      {/*<p>{t("Why")}</p>*/}
+
                                       {/*<img src={cover} alt='logo' className={classes.clientLogo} />*/}
                                   </div>
 
