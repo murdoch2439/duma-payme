@@ -59,7 +59,7 @@ const NotFoundPage =()=>{
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
                         <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                     </Grid>
-                    <div style={{height:0}} />
+
                     {/*<Grid  item className={classes.boxIcon}>*/}
                     {/*    <CloudOffIcon style={{fontSize:60, color:'black'}}/>*/}
                     {/*    /!*<img src={picture} alt="f0f" style={{width:100}} />*!/*/}
