@@ -2,9 +2,10 @@ import React, {useState} from 'react'
 import {Box, FormControl,  MenuItem, TextField} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import {useTranslation} from "react-i18next";
-import {ENGLISH_LANG_CODE, FRENCH_LANG_CODE} from "../constants/variableNames";
+import {ENGLISH_LANG_CODE, FRENCH_LANG_CODE, MERCHANT_KEY_STRING} from "../constants/variableNames";
 import logDuma from "../assets/duma1.png";
-import {languages} from "../utils/helperFunctions";
+import {getUrlParams, languages} from "../utils/helperFunctions";
+import cover from "../assets/Trip-assurances (4).png";
 
 const useStyles = makeStyles(() => ({
     dumaLogoAndLangContainer:{
@@ -15,12 +16,19 @@ const useStyles = makeStyles(() => ({
     logoDuma: {
         width:30,
     },
+    clientLogo:{
+        width:40,
+        backgroundColor:'red'
+
+    }
 }));
 
 const LogoAndLangSwitcher = () =>{
     const classes = useStyles();
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
+
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
 
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
@@ -29,6 +37,7 @@ const LogoAndLangSwitcher = () =>{
     return(
         <Box className={classes.dumaLogoAndLangContainer} sx={{display: { xs: 'flex', sm:'none', md: 'none' }, justifyContent:'space-between'}}>
             <img src={logDuma} alt='logo' className={classes.logoDuma} />
+            <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo'  className={classes.clientLogo} />
             <FormControl>
                 <TextField
                     size={"small"}

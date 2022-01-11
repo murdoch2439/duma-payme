@@ -12,12 +12,10 @@ import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-
         height:640,
         marginBottom:10,
         borderTopLeftRadius:10,
         borderTopRightRadius:10,
-
     },
     paper: {
         height:500,

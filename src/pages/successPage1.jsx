@@ -2,14 +2,10 @@ import React, {useEffect, useState} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
-
 import { makeStyles, } from '@material-ui/core/styles';
-
 import Zoom from '@material-ui/core/Zoom';
 // import { useStateValue } from '../context';
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
-
-
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
@@ -18,7 +14,6 @@ const useStyles = makeStyles(() => ({
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
-
     },
     paper: {
         height:500,
@@ -42,11 +37,8 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-
-
 const SuccessPage1 =()=>{
     // const [{ formValues }] = useStateValue();
-
 
     const onClick =() =>{
         // dispatch({
@@ -64,9 +56,7 @@ const SuccessPage1 =()=>{
         //     key: SHOW_PENDING_MODAL,
         //     value: false
         // })
-
         // history.replace('/')
-
     }
 
     const classes = useStyles()
@@ -83,7 +73,6 @@ const SuccessPage1 =()=>{
         <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
-
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
                         <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Confirmation</p>
                     </Grid>

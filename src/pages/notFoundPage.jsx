@@ -2,13 +2,13 @@ import React from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 // import CheckIcon from '@material-ui/icons/Check';
-import CloudOffIcon from '@mui/icons-material/CloudOff';
+// import CloudOffIcon from '@mui/icons-material/CloudOff';
+import picture from '../assets/ErrorSleeping.svg'
 // import PowerOffIcon from '@mui/icons-material/PowerOff';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
-
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
@@ -58,14 +58,27 @@ const NotFoundPage =()=>{
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
                         <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                     </Grid>
-                    <div style={{height:40}} />
-                    <Grid  item className={classes.boxIcon}>
-                        <CloudOffIcon style={{fontSize:60, color:'black'}}/>
-                    </Grid>
+
+                    {/*<Grid  item className={classes.boxIcon}>*/}
+                    {/*    <CloudOffIcon style={{fontSize:60, color:'black'}}/>*/}
+                    {/*    /!*<img src={picture} alt="f0f" style={{width:100}} />*!/*/}
+                    {/*</Grid>*/}
                     <p style={{textAlign:'center', fontSize:25}}>
                         {t("Oups!!, something just went wrong!")} <br />
-                        <span style={{fontWeight:'bold', fontSize:100,}}>404</span>
-                        <br />
+                        {/*<span style={{fontWeight:'bold', fontSize:100,}}>404</span>*/}
+                        {/*<img src={picture} alt="f0f" style={{width:300}} />*/}
+                        {/*<br />*/}
+                        {/*{t("Sorry, page not found!")}*/}
+                    </p>
+                    <p style={{textAlign:'center',}}>
+                        <img src={picture} alt="f0f" style={{width:250}} />
+                    </p>
+
+                    <p style={{textAlign:'center', fontSize:25}}>
+                        {/*{t("Oups!!, something just went wrong!")} <br />*/}
+                        {/*/!*<span style={{fontWeight:'bold', fontSize:100,}}>404</span>*!/*/}
+                        {/*<img src={picture} alt="f0f" style={{width:300}} />*/}
+                        {/*<br />*/}
                         {t("Sorry, page not found!")}
                     </p>
                     <Grid container item justify='center' style={{marginTop:30}}>

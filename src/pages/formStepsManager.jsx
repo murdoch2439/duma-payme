@@ -16,7 +16,6 @@ import {backgroundChanger} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
 import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
 
-
 const useStyles = makeStyles(() => ({
   layout: {
     width:'100%',
@@ -55,12 +54,12 @@ const GetStepContent = ({step}) => {
     case 1:
       return <FormStepTwo />;
     default:
-      throw new Error('Unknown step');
+      throw new Error('Unknown step')
   }
 }
 
 const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
-  const classes = useStyles();
+  const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0);
   const [{ formValues,  }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false)
@@ -70,20 +69,19 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
   const stripe = useStripe();
 
-
   const handleNext = () => {
     if(activeStep === 1){
       capture().then()
     }else{
       setActiveStep((prevActiveStep) => prevActiveStep + 1)
     }
-  };
+  }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   };
 
-  const handleReset = () => setActiveStep(0);
+  const handleReset = () => setActiveStep(0)
 
   const handleSubmit = (event) =>{
     event.preventDefault()
@@ -91,7 +89,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   }
 
    const capture = async () => {
-        setLoading(true);
+        setLoading(true)
         const billingDetails = {
         email:formValues.email,
         name:formValues.name,
@@ -99,21 +97,16 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         }
 
     try{
-
         if(formValues.paymentMethod === MOBILE_MONEY ){
-
             setTimeout(()=>{
                 dispatch({
                     type: CHANGE_MODAL_STATES,
                     key: SHOW_PENDING_MODAL,
                     value: true
                 })
-
                 setLoading(false);
             }, 3000)
-
         }else{
-
             const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
                 amount: formValues.amount,
                 currency: formValues.currency,
@@ -124,12 +117,10 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 type: 'card',
                 card: formValues.card,
                 billing_details: billingDetails,
-
             })
 
-            if (paymentMethodReq.error) {
+            if(paymentMethodReq.error) {
                 console.error('paymentMethod Error!', paymentMethodReq.error.message)
-
                 setError(paymentMethodReq.error.message);
                 setLoading(false);
                 // dispatch({
@@ -140,15 +131,12 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 onFailCheckout()
                 return;
             }
-
             const {paymentIntent, error} = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: paymentMethodReq.paymentMethod.id,
-
             })
             console.log(paymentIntent)
             setError(false);
             setDisabled(true)
-
 
             if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                 formValues.paymentIntent = paymentIntent.id
@@ -168,7 +156,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                     .then(response => {
                         console.log('Confirmation ===>', response.data)
-                        if (response.data.status === 'success') {
+                        if(response.data.status === 'success') {
                             console.log('payment processed and verified successfully')
                             setLoading(false);
                             setDisabled(true)
@@ -179,30 +167,24 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                                 value: true
                             })
                             // onSuccessCheckout()
-
-                        } else {
+                        }else {
                             onFailCheckout()
                         }
                     })
-            } else if (error) {
+            } else if(error) {
                 setError(error.message);
-
                 onFailCheckout()
                 return;
             }
             handleReset()
         }
-
     }catch(error){
         console.error('error from the catch', error.message)
         setError('Something went wrong, check your infos, your network and retry');
         setLoading(false);
         setDisabled(true)
-
     }
-
             // dispatch({ type: 'emptyFormValue'});
-
         // setLoading(false);
         // onSuccessfulCheckout()
     }
@@ -210,7 +192,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   return (
     <Box className={classes.layout} display={{ xs:'block' }}  sm={12}>
             <LogoAndLangSwitcher />
-
           <form autoComplete="off" onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />
             <Grid >
@@ -226,23 +207,17 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     className={classes.button}
                     type="submit"
                     disabled={loading||disabled}
-
                     style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                   >
                     { loading ? t(LOADING_MESSAGE) :
                       activeStep === steps.length-1  ? t(PAY_NOW) : t(Next_STEP)
                     }
                   </Button>
-                  </Grid>
-
-                </form>
+            </Grid>
+          </form>
         <Grid style={{ marginTop:10}}>
-
         <Copyright />
         </Grid>
-
-
-
     </Box>
   );
 }

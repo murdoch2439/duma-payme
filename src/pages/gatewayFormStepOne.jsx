@@ -5,16 +5,13 @@ import axios from 'axios'
 import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getUrlParams, responseManager} from '../utils/helperFunctions';
+import {getUrlParams, paymentMethod, responseManager} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
-    DEBIT_CARD,
     EDIT_FORM_VALUES,
-    MOBILE_MONEY,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, OPTION_STRING
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403
 } from '../constants/variableNames';
-// import localLogo from '../assets/test4.svg'
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
 
@@ -36,17 +33,6 @@ const useStyles = makeStyles({
     },
 });
 
-const paymentMethod =[
-    {
-        value:DEBIT_CARD,
-        label:'Debit card',
-    },
-    {
-        value:MOBILE_MONEY,
-        label:'Mobile Money',
-    },
-]
-
 
 const GatewayFormStepOne =()=> {
     const classes = useStyles();
@@ -57,12 +43,11 @@ const GatewayFormStepOne =()=> {
     const [errorMessage, setErrorMessage] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const {t} = useTranslation()
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
 
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
-    // const option= getUrlParams()[OPTION_STRING]
 
     useEffect(()=>{
         if(formValues.currency === ''){
@@ -81,22 +66,20 @@ const GatewayFormStepOne =()=> {
     const amountManager = () =>{
         if(currency === "USD"){
             return `${parseInt(amount).toFixed(2)} $`
-        } else{
+        }else{
             return `${parseInt(amount).toFixed(2)} €`
         }
-
     }
 
     const paymentInitialization = async() =>{
-
         try{
             const paymentInfo = {  merchantKey, paymentRequestId }
-            if(merchantKey && paymentRequestId){
+            if(merchantKey){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(   (response)=>{
                     console.log('response Data ====>', response.data)
                     setCurrency(response.data.currency)
                     setAmount(response.data.amount)
-                    if(response.data.error && response.data.code === "403"){
+                    if((response.data.error && response.data.code === CODE_403) || response.data.code === CODE_500){
                         dispatch({
                             type: CHANGE_MODAL_STATES,
                             key: SHOW_ACCESS_DENIED_MODAL,
@@ -127,7 +110,6 @@ const GatewayFormStepOne =()=> {
                         <ListItemText primary={t('Total :')} className={classes.listItemText}  />
                         <Typography variant="body1" style={{fontWeight:'500'}}>{amountManager()}</Typography>
                     </ListItem>
-
                 </List>
                 <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
             </Grid>
@@ -150,7 +132,6 @@ const GatewayFormStepOne =()=> {
                         }
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={4} md={6}>
                     <TextField
                         label={t("Email adress")}
@@ -171,7 +152,6 @@ const GatewayFormStepOne =()=> {
                             if(!emailFormat.test(e.target.value)){
                                 setErrorName(true)
                                 setErrorMessage('mail not valid')
-
                             }else{
                                 setErrorName(false)
                             }
@@ -195,14 +175,11 @@ const GatewayFormStepOne =()=> {
                                 value: e.target.value
                             })
                         }
-
                         }
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6} md={6}>
-                    <FormControl
-                        style={{minWidth: '100%',}}>
+                    <FormControl style={{minWidth: '100%',}}>
                         <TextField
                             required
                             variant="outlined"
@@ -221,10 +198,8 @@ const GatewayFormStepOne =()=> {
                             ))}
                         </TextField>
                     </FormControl>
-
                 </Grid>
             </Grid>
-
         </Grid>
 
     );

@@ -8,13 +8,11 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
 import LayoutManager from './pages/layoutManager';
 import LoadingComponent from './components/loadingComponent';
-
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-
 import MerchantApplication from "./pages/merchantApplication";
 import NotFoundPage from "./pages/notFoundPage";
 import SuccessPage from "./pages/successPage";
@@ -27,8 +25,6 @@ const  App =()=> {
   const [loading, setLoading] = useState(true)
 
 
-
-
   useEffect(()=>{
     starter()
   },[])
@@ -38,12 +34,9 @@ const  App =()=> {
   }
 
   return (
-    <ThemeProvider
-    theme={theme}
-    >
+    <ThemeProvider theme={theme}>
     <StateProvider>
       <Router>
-
           {
             loading ?
                 <div className='Loading'>
@@ -51,21 +44,16 @@ const  App =()=> {
                 </div>:
             <Elements stripe={stripePromise}>
             <Switch>
-
               <Route path="/" exact component={LayoutManager} />
-
               <Route path="/duma-pay" exact component={MerchantApplication} />
               <Route path="/success" exact component={SuccessPage} />
               <Route path="/error" exact component={FailurePage} />
               <Route path="/issue" exact component={IssuesPage} />
               <Route path="*"  component={NotFoundPage} />
-
             </Switch>
             </Elements>
           }
-
         </Router>
-
     </StateProvider>
     </ThemeProvider>
   );

@@ -2,27 +2,16 @@ import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import axios from 'axios'
 import { useStateValue } from '../context';
-import { getUrlParams, responseManager,} from '../utils/helperFunctions';
+import {getUrlParams, paymentMethod, responseManager,} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
-    DEBIT_CARD,
     EDIT_FORM_VALUES,
-    MOBILE_MONEY,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_403, CODE_500
 } from '../constants/variableNames';
 import {useTranslation} from "react-i18next";
 
-const paymentMethod =[
-    {
-        value:DEBIT_CARD,
-        label:'Debit card',
-    },
-    {
-        value:MOBILE_MONEY,
-        label:'Mobile Money',
-    },
-]
+
 
 const FormStepOne =()=> {
 
@@ -61,7 +50,7 @@ const getIpAdress = async () =>{
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
                     setCurrency(response.data.currency)
                     setClientCurrency(response.data.clientCurrency)
-                    if(response.data.error && response.data.code === "403"){
+                    if((response.data.error && response.data.code === CODE_403)|| response.data.code === CODE_500){
                         dispatch({
                             type: CHANGE_MODAL_STATES,
                             key: SHOW_ACCESS_DENIED_MODAL,
@@ -91,14 +80,11 @@ const getIpAdress = async () =>{
 
       <Grid  item xs={12} sm={4} md={6} >
             <TextField
-
                 label={t("Name on the card")}
-
                 name="name"
                 variant="outlined"
                 required
                 fullWidth
-                // helperText={errorName? 'this field cannot be empty':null}
                 value={formValues.name}
                 onChange={e =>{
                     dispatch({
@@ -106,13 +92,7 @@ const getIpAdress = async () =>{
                         key: "name",
                         value: e.target.value
                     })
-                    // if(e.target.value === ''){
-                    //     setErrorName(true)
-                    // }else{
-                    //     setErrorName(false)
-                    // }
                 }
-
                 }
             />
           </Grid>
@@ -141,7 +121,6 @@ const getIpAdress = async () =>{
                         setErrorName(false)
                     }
                 }
-
                 }
             />
         </Grid>
@@ -161,7 +140,6 @@ const getIpAdress = async () =>{
                         value: e.target.value
                     })
                 }
-
                 }
             />
         </Grid>
@@ -169,26 +147,25 @@ const getIpAdress = async () =>{
         <Grid item xs={12} sm={6} md={6}>
            <FormControl
            required
-
-           style={{minWidth: '100%',}}>
-        <TextField
-          label={t("Currency")}
-          select
-          name="currency"
-          variant="outlined"
-          required
-          disabled
-          value={currency}
-          onChange={(e) => {
-                    setCurrency(e.target.value)
-                    dispatch({
-                        type: EDIT_FORM_VALUES,
-                        key: "currency",
-                        value: e.target.value.currency
-                    })
-                }}
-
-        >
+           style={{minWidth: '100%',}}
+           >
+            <TextField
+              label={t("Currency")}
+              select
+              name="currency"
+              variant="outlined"
+              required
+              disabled
+              value={currency}
+              onChange={(e) => {
+                        setCurrency(e.target.value)
+                        dispatch({
+                            type: EDIT_FORM_VALUES,
+                            key: "currency",
+                            value: e.target.value.currency
+                        })
+                    }}
+            >
           <MenuItem value='USD'>{currency}</MenuItem>
           <MenuItem value='EUR'>{currency}</MenuItem>
           <MenuItem value='CAD'>{currency}</MenuItem>
@@ -199,8 +176,7 @@ const getIpAdress = async () =>{
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
-        <FormControl
-           style={{minWidth: '100%',}}>
+        <FormControl style={{minWidth: '100%',}}>
             <TextField
                 variant="outlined"
                 select
@@ -233,12 +209,12 @@ const getIpAdress = async () =>{
                 fullWidth
                 value={formValues.amount}
                 onChange={e => {
-                    dispatch({
-                        type: EDIT_FORM_VALUES,
-                        key: "amount",
-                        value: e.target.value.replace(/[^0-9,.]/g, ''),
-                    })
-                }
+                        dispatch({
+                            type: EDIT_FORM_VALUES,
+                            key: "amount",
+                            value: e.target.value.replace(/[^0-9,.]/g, ''),
+                        })
+                    }
                 }
             />
         </Grid>
@@ -260,7 +236,6 @@ const getIpAdress = async () =>{
                         value: e.target.value.replace(/[^0-9,.]/g, '')
                     })
                 }
-
                 }
             />
             {/*<FormHelperText>{`${t("To")} ${currency}`}</FormHelperText>*/}

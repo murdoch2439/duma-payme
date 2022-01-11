@@ -1,31 +1,27 @@
-// export  const transformToUpCase = (word) =>{
-//       return word.toUpperCase()
-//    }
+import {DEBIT_CARD, MOBILE_MONEY} from "../constants/variableNames";
 
-   export const nameFormating = (string) =>{
-        const splitted = string.split(' ')
+const nameFormating = (string) =>{
+    const splitted = string.split(' ')
 
-        for (let i = 0; i < splitted.length; i++){
+    for (let i = 0; i < splitted.length; i++){
 
-          splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1)
+      splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1)
 
-        }
-       return splitted.join(' ')
-      }
+    }
+   return splitted.join(' ')
+}
 
+const sendingAmount = ({currency, amount,}) =>{
 
-      export const sendingAmount = ({currency, amount,}) =>{
+      return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
 
-              return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
+}
 
-      }
+const totalToPay = ({currency, amount, }) =>{
+return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
+}
 
-      export const totalToPay = ({currency, amount, }) =>{
-        return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
-
-      }
-
-      export const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
+const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
 
         if(!currency){
             return `$ 00.00`
@@ -36,54 +32,38 @@
                 }else{
                     return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
                 }
-            }
-              if(currency === "EUR"){
+            }if(currency === "EUR"){
                   if(currency === clientCurrency){
                       return `€ ${parseInt(amount).toFixed(2)}`
                   }else{
                       return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
                   }
-
             }
-        //
         }
-      }
+}
 
-
-      export  const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
+const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
 
         if(!currency){
             return `$ 00.00`
-        }
-        if(currency !== clientCurrency && currency === "USD"){
+        }if(currency !== clientCurrency && currency === "USD"){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }if(currency === clientCurrency){
                 return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
-
             }else{
                   return `$ ${parseInt(amount).toFixed(2)}`
               }
-
-          }
-          if(currency !== clientCurrency &&  currency === 'EUR'){
+          }if(currency !== clientCurrency &&  currency === 'EUR'){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
                   return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-
           }
+}
 
-      }
-
-
-// export const urlParamsFormater =(text) =>{
-//        return  text.split('=')[1]
-//      }
-
-
-export const  getUrlParams =()=> {
+const  getUrlParams =()=> {
     let  vars = {};
      window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value)=> {
         vars[key] = value;
@@ -97,14 +77,7 @@ export const  getUrlParams =()=> {
 //     return window.location.pathname.split('/')[1]
 // }
 
-// export const findCurrency = (currency) =>{
-//     return Currencies.filter(currencyObject => {
-//         return currencyObject.code.indexOf(currency.toUpperCase) >= 0
-//     })
-//
-// }
-
-export   const backgroundChanger = (loading) =>{
+const backgroundChanger = (loading) =>{
     if(!loading){
         return '#FBB900'
     }else{
@@ -112,7 +85,7 @@ export   const backgroundChanger = (loading) =>{
     }
 }
 
-export    const languages=[
+const languages=[
     {
         value:"en",
         label:"English"
@@ -122,8 +95,18 @@ export    const languages=[
         label:"French"
     }
 ]
+const paymentMethod =[
+    {
+        value:DEBIT_CARD,
+        label:'Debit card',
+    },
+    {
+        value:MOBILE_MONEY,
+        label:'Mobile Money',
+    },
+]
 
-export const responseManager = ({response, formValues}) =>{
+const responseManager = ({response, formValues}) =>{
 
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
@@ -136,14 +119,11 @@ export const responseManager = ({response, formValues}) =>{
     formValues.code = response.data.code
     if(response.data.rate){
         formValues.rate = response.data.rate
-    }
-    if(response.data.callBackUrl){
+    }if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
     }if(response.data.amount){
         formValues.amount = response.data.amount
     }
 }
 
-// export const languageSwitcher = () =>{
-//
-// }
+export {responseManager, backgroundChanger, nameFormating, languages, paymentMethod,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}
