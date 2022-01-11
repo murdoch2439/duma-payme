@@ -55,21 +55,17 @@ const IssuesPage =()=>{
 
         <Container  className={classes.boxWrapper}>
             <Paper className={classes.paper}>
-
                 <Grid container  justifyContent='center' className={classes.boxTitle}>
                     <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                 </Grid>
                 <div style={{height:40}} />
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Oups!!, something just went wrong!")} <br />
-
                 </p>
                 <p style={{textAlign:'center',}}>
                     <img src={picture} alt="f0f" style={{width:350}} />
                 </p>
-
                 <p style={{textAlign:'center', fontSize:25}}>
-
                     {t("Make sure the link is correct")}
                 </p>
                 <Grid container item justify='center' style={{marginTop:30}}>
@@ -83,7 +79,6 @@ const IssuesPage =()=>{
 
             </Paper>
         </Container>
-
     )
 }
 
