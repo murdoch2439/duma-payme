@@ -9,12 +9,9 @@ import {getUrlParams, paymentMethod, responseManager} from '../utils/helperFunct
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
-    DEBIT_CARD,
     EDIT_FORM_VALUES,
-    MOBILE_MONEY,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, OPTION_STRING, CODE_500, CODE_403
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403
 } from '../constants/variableNames';
-// import localLogo from '../assets/test4.svg'
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
 
@@ -46,12 +43,11 @@ const GatewayFormStepOne =()=> {
     const [errorMessage, setErrorMessage] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const {t} = useTranslation()
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
 
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
-    // const option= getUrlParams()[OPTION_STRING]
 
     useEffect(()=>{
         if(formValues.currency === ''){
