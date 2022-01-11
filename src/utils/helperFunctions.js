@@ -38,7 +38,6 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
                       return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
                   }
             }
-
         }
 }
 
@@ -77,7 +76,6 @@ const  getUrlParams =()=> {
 //     return window.location.pathname.split('/')[1]
 // }
 
-
 const backgroundChanger = (loading) =>{
     if(!loading){
         return '#FBB900'
@@ -110,8 +108,7 @@ const responseManager = ({response, formValues}) =>{
     formValues.code = response.data.code
     if(response.data.rate){
         formValues.rate = response.data.rate
-    }
-    if(response.data.callBackUrl){
+    }if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
     }if(response.data.amount){
         formValues.amount = response.data.amount
