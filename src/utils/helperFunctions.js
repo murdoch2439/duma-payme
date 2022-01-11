@@ -85,12 +85,6 @@ const  getUrlParams =()=> {
 //     return window.location.pathname.split('/')[1]
 // }
 
-// export const findCurrency = (currency) =>{
-//     return Currencies.filter(currencyObject => {
-//         return currencyObject.code.indexOf(currency.toUpperCase) >= 0
-//     })
-//
-// }
 
 const backgroundChanger = (loading) =>{
     if(!loading){
