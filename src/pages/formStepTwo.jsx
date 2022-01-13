@@ -142,7 +142,6 @@ const  FormStepTwo =()=> {
                     </Grid>
 
             }
-
         </Grid>
         {error && <p style={{color:'red'}}>{error}</p>}
       </Grid>
