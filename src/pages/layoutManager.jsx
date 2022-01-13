@@ -98,7 +98,6 @@ const LayoutManager = () => {
                               className={classes.leftContainerWrapper}
                               display={{ xs: 'none',sm:'inline', md:'block' }}
                               m={1}
-
                           >
                               <Box className={classes.dumaLogoAndLangContainer}>
                                   <img src={logDuma} alt='logo' className={classes.logoDuma} />
