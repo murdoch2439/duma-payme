@@ -25,7 +25,6 @@ const LogoAndLangSwitcher = () =>{
     const classes = useStyles();
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
-
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
 
     const onClickHandler =(lang)=>{
@@ -62,5 +61,4 @@ const LogoAndLangSwitcher = () =>{
         </Box>
     )
 }
-
 export default LogoAndLangSwitcher
