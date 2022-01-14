@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
+import axios from 'axios'
 // import CheckIcon from '@material-ui/icons/Check';
 // import CloudOffIcon from '@mui/icons-material/CloudOff';
 import picture from '../assets/ErrorSleeping.svg'
 // import PowerOffIcon from '@mui/icons-material/PowerOff';
+import {HEALTH_CHECK} from '../constants/variableNames'
 
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
+
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
@@ -48,6 +51,20 @@ const NotFoundPage =()=>{
     const onClick =() =>{
         history.goBack()
     }
+    useEffect(()=>{
+
+        (async()=>{const response = await axios.get(HEALTH_CHECK)
+            console.log('response ==> :', response.data)})()
+
+        // const getData = async() =>{
+        //     const response = await axios.get(HEALTH_CHECK)
+        //     console.log('response ==> :', response.data)
+        // }
+
+
+
+        // axios.get(HEALTH_CHECK).then((response)=>console.log('response  => :',response.data))
+    },[])
 
     return(
 
