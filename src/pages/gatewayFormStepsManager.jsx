@@ -176,10 +176,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         phone:formValues.phone,
                     }
 
-                    // console.log('Succeed ====>', paymentIntentObjet)
-                    // console.log('payerId two ==>', formValues.payerId)
-                    // history.replace(formValues.callBackUrl)
-                    // window.location.href =  formValues.callBackUrl
 
                     // dispatch({
                     //     type: CHANGE_MODAL_STATES,
