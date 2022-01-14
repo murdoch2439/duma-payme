@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
 // import CheckIcon from '@material-ui/icons/Check';
@@ -44,7 +44,6 @@ const useStyles = makeStyles(() => ({
 const NotFoundPage =()=>{
     const history = useHistory()
     const {t} = useTranslation()
-
     const classes = useStyles()
     const onClick =() =>{
         history.goBack()
