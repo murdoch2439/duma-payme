@@ -22,6 +22,7 @@ import {
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
+
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor:'white',
@@ -135,6 +136,7 @@ const LayoutManager = () => {
                                           }
                                           alt='logo'
                                           className={classes.clientLogo}
+                                          onError={(e)=>e.target.src=cover}
                                       />
                                   </div>
 

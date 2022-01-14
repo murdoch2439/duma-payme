@@ -18,8 +18,6 @@ const useStyles = makeStyles(() => ({
     },
     clientLogo:{
         width:40,
-        backgroundColor:'red'
-
     }
 }));
 
@@ -37,7 +35,7 @@ const LogoAndLangSwitcher = () =>{
     return(
         <Box className={classes.dumaLogoAndLangContainer} sx={{display: { xs: 'flex', sm:'none', md: 'none' }, justifyContent:'space-between'}}>
             <img src={logDuma} alt='logo' className={classes.logoDuma} />
-            <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo'  className={classes.clientLogo} />
+            <img src={ merchantKey ? `https://dumacash-resources.s3.eu-west-1.amazonaws.com/organisations/static/${merchantKey}/organisation-logo.png` : cover} alt='logo' onError={(e)=>e.target.src=cover}  className={classes.clientLogo} />
             <FormControl>
                 <TextField
                     size={"small"}
