@@ -161,14 +161,13 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 setError(false);
                 setDisabled(true)
 
-
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                     formValues.paymentIntent = paymentIntent.id
                     const paymentIntentObjet = {
 
                         reference: formValues.transactionReference,
                         receivingAmount: formValues.amount,
-                        sendingAmount: parseInt(formValues.amount) + formValues.fees,
+                        sendingAmount: parseInt(formValues.amount) ,
                         paymentIntentId: paymentIntent.id,
                         paymentRequestId: formValues.paymentRequestId,
                         fee: formValues.fees,
@@ -177,10 +176,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         phone:formValues.phone,
                     }
 
-                    // console.log('Succeed ====>', paymentIntentObjet)
-                    // console.log('payerId two ==>', formValues.payerId)
-                    // history.replace(formValues.callBackUrl)
-                    // window.location.href =  formValues.callBackUrl
 
                     // dispatch({
                     //     type: CHANGE_MODAL_STATES,

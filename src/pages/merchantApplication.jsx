@@ -56,7 +56,6 @@ const MerchantApplication =()=>{
         <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
-
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
                         <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Checkout</p>
                     </Grid>
