@@ -80,7 +80,7 @@ const  FormStepTwo =()=> {
             <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
-            <ListItemText primary={t('Sending Amount :')} style={{fontWeight:'700', color:'grey'}} />
+            <ListItemText primary={t('Sending amount :')} style={{fontWeight:'700', color:'grey'}} />
             <Typography variant="body1">{sendingAmount(businessObject)}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
@@ -142,10 +142,8 @@ const  FormStepTwo =()=> {
                     </Grid>
 
             }
-
         </Grid>
         {error && <p style={{color:'red'}}>{error}</p>}
-
       </Grid>
     </Grid>
   );

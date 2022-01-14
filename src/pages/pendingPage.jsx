@@ -4,9 +4,7 @@ import { Container, Paper, Grid, Button
 import UpdateIcon from '@material-ui/icons/Update';
 // import {  useHistory
 // } from "react-router-dom";
-
 import { makeStyles, } from '@material-ui/core/styles';
-
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
@@ -68,7 +66,6 @@ const PendingPage =()=>{
     const onClick = () =>{
         setLoading(true)
         setTimeout(()=>{
-
             dispatch({
                 type: CHANGE_MODAL_STATES,
                 key: SHOW_SUCCESS_MODAL,
@@ -81,7 +78,6 @@ const PendingPage =()=>{
             })
             setLoading(false)
         },3000)
-
     }
 
     return(
@@ -95,14 +91,12 @@ const PendingPage =()=>{
                     <Grid  item className={classes.boxIcon}>
                         <UpdateIcon style={{fontSize:60, color:'white'}}/>
                     </Grid>
-
                     <p style={{textAlign:'center', fontSize:25}}>
                         {t("Your payment to:")} <br />
                         <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
                         <br />
                         {t("is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)")}
                     </p>
-
                     <Grid container item justify='center' style={{marginTop:30, paddingBottom:50}}>
                         <Button
                             onClick={onClick}
@@ -122,5 +116,4 @@ const PendingPage =()=>{
         </Zoom>
     )
 }
-
 export default PendingPage

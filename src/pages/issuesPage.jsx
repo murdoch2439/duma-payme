@@ -63,7 +63,7 @@ const IssuesPage =()=>{
                     {t("Oups!!, something just went wrong!")} <br />
                 </p>
                 <p style={{textAlign:'center',}}>
-                    <img src={picture} alt="f0f" style={{width:350}} />
+                    <img src={picture} alt="f0f" style={{width:250}} />
                 </p>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Make sure the link is correct")}

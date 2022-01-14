@@ -3,7 +3,6 @@ import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
-
 import FormStepsManager from './formStepsManager'
 import GatewayFormStepsManager from './gatewayFormStepsManager'
 import { useStateValue } from "../context";
@@ -23,8 +22,8 @@ import {
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
-const useStyles = makeStyles(() => ({
 
+const useStyles = makeStyles(() => ({
     container: {
         backgroundColor:'white',
         // backgroundImage:`url(https://cdn.goodao.net/easypetgarden/H6dd2a1363c0042738024ab6ee5ffb470G.jpg)`,
@@ -100,7 +99,6 @@ const LayoutManager = () => {
                               className={classes.leftContainerWrapper}
                               display={{ xs: 'none',sm:'inline', md:'block' }}
                               m={1}
-
                           >
                               <Box className={classes.dumaLogoAndLangContainer}>
                                   <img src={logDuma} alt='logo' className={classes.logoDuma} />
@@ -138,6 +136,7 @@ const LayoutManager = () => {
                                           }
                                           alt='logo'
                                           className={classes.clientLogo}
+                                          onError={(e)=>e.target.src=cover}
                                       />
                                   </div>
 
