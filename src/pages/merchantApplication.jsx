@@ -69,7 +69,7 @@ const MerchantApplication =()=>{
 
                           method="get" id="duma">
                         <input name="ip" value="169.255.204.4"/>
-                        <input name="merchantKey" value="61b086378fd8086af11fdd33"/>
+                        <input name="merchantKey" value="617d5a072873221c578ef947"/>
                         <input name="currency" value="USD"/>
                         <input name="amount" value="1000"/>
                         <input name="callBackUrl" value="https://collect.icash-congo.com/"/>
