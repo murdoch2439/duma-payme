@@ -56,7 +56,6 @@ const MerchantApplication =()=>{
         <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
-
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
                         <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >Checkout</p>
                     </Grid>
@@ -66,11 +65,11 @@ const MerchantApplication =()=>{
                     </Grid>
 
                     <form encType="text/plain"
-                          action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
+                          action="http://192.168.8.104:8081/api/v1/icash/me/redirect"
 
                           method="get" id="duma">
                         <input name="ip" value="169.255.204.4"/>
-                        <input name="merchantKey" value="617d5a072873221c578ef947"/>
+                        <input name="merchantKey" value="61b086378fd8086af11fdd33"/>
                         <input name="currency" value="USD"/>
                         <input name="amount" value="1000"/>
                         <input name="callBackUrl" value="https://collect.icash-congo.com/"/>

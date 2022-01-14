@@ -161,14 +161,13 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 setError(false);
                 setDisabled(true)
 
-
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                     formValues.paymentIntent = paymentIntent.id
                     const paymentIntentObjet = {
 
                         reference: formValues.transactionReference,
                         receivingAmount: formValues.amount,
-                        sendingAmount: parseInt(formValues.amount) + formValues.fees,
+                        sendingAmount: parseInt(formValues.amount) ,
                         paymentIntentId: paymentIntent.id,
                         paymentRequestId: formValues.paymentRequestId,
                         fee: formValues.fees,
