@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getUrlParams, paymentMethod, responseManager} from '../utils/helperFunctions';
+import {getUrlParams, paymentMethods, responseManager} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
@@ -191,7 +191,7 @@ const GatewayFormStepOne =()=> {
                                 formValues.paymentMethod = e.target.value
                             }}
                         >
-                            {paymentMethod.map((option) => (
+                            {paymentMethods.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
                                     {t(option.label)}
                                 </MenuItem>

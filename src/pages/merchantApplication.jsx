@@ -8,7 +8,6 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Zoom from '@material-ui/core/Zoom';
 
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         width:450,
@@ -41,13 +40,11 @@ const useStyles = makeStyles(() => ({
 
 
 const MerchantApplication =()=>{
-
     const classes = useStyles()
     const [checked, setChecked] = useState(false);
     useEffect(()=>{
         handleChange()
     },[])
-
     const handleChange = () => {
         setChecked(true);
     };
@@ -69,14 +66,12 @@ const MerchantApplication =()=>{
 
                           method="get" id="duma">
                         <input name="ip" value="169.255.204.4"/>
-                        <input name="merchantKey" value="617d5a072873221c578ef947"/>
+                        <input name="merchantKey" value="61e173d7073fe27180400f30"/>
                         <input name="currency" value="USD"/>
                         <input name="amount" value="1000"/>
                         <input name="callBackUrl" value="https://collect.icash-congo.com/"/>
                         <input type="submit" value="Pay with duma"/>
                     </form>
-
-
                 </Paper>
             </Container>
         </Zoom>

@@ -1,4 +1,5 @@
-import {DEBIT_CARD, MOBILE_MONEY} from "../constants/variableNames";
+import {CAD, DEBIT_CARD, EUR, GBP, IP_PROVIDER_API_KEY, MOBILE_MONEY, USD} from "../constants/variableNames";
+import axios from "axios";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
@@ -13,12 +14,38 @@ const nameFormating = (string) =>{
 
 const sendingAmount = ({currency, amount,}) =>{
 
-      return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
+    if(currency === USD){
+        return `$ ${parseInt(amount).toFixed(2)}`
+
+    }if(currency === EUR){
+        return `€ ${parseInt(amount).toFixed(2)}`
+
+    }if(currency === GBP){
+        return `£ ${parseInt(amount).toFixed(2)}`
+
+    }if(currency === CAD){
+        return `CA$ ${parseInt(amount).toFixed(2)}`
+    }
+
+      // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
 
 }
 
 const totalToPay = ({currency, amount, }) =>{
-return  currency === "USD" ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
+    if(currency === USD){
+        return `$ ${parseInt(amount).toFixed(2)} ${currency}`
+    }if(currency === EUR){
+        return `€ ${parseInt(amount).toFixed(2)} ${currency}`
+
+    }if(currency === GBP){
+        return `£ ${parseInt(amount).toFixed(2)} ${currency}`
+
+    }if(currency === CAD){
+        return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
+    }
+
+
+    // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
 }
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
@@ -26,27 +53,38 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
         if(!currency){
             return `$ 00.00`
         }else{
-            if(currency === "USD"){
+            if(currency === USD){
                 if(currency === clientCurrency){
                     return `$ ${parseInt(amount).toFixed(2)}`
                 }else{
-                    return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                 }
-            }if(currency === "EUR"){
+            }if(currency === EUR){
                   if(currency === clientCurrency){
                       return `€ ${parseInt(amount).toFixed(2)}`
                   }else{
-                      return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+                      return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                   }
+            }if(currency === GBP){
+                if(currency === clientCurrency){
+                    return `£ ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
+                }
+            }if(currency === CAD){
+                if(currency === clientCurrency){
+                    return `CA$ ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
+                }
             }
         }
 }
 
 const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
-
         if(!currency){
             return `$ 00.00`
-        }if(currency !== clientCurrency && currency === "USD"){
+        }if(currency !== clientCurrency && currency === USD){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }if(currency === clientCurrency){
@@ -54,13 +92,27 @@ const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
             }else{
                   return `$ ${parseInt(amount).toFixed(2)}`
               }
-          }if(currency !== clientCurrency &&  currency === 'EUR'){
+        }if(currency !== clientCurrency &&  currency === EUR){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
                   return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-          }
+        }if(currency !== clientCurrency && currency === GBP){
+              if(isNaN(amount) || amount === null || amount === undefined){
+                  return `$ 00.00`
+              }else{
+                  return  `£ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+              }
+
+        }if(currency !== clientCurrency && currency === CAD){
+              if(isNaN(amount) || amount === null || amount === undefined){
+                  return `$ 00.00`
+              }else{
+                  return  `CA$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+              }
+
+        }
 }
 
 const  getUrlParams =()=> {
@@ -85,6 +137,45 @@ const backgroundChanger = (loading) =>{
     }
 }
 
+const currencyManager = (currency) =>{
+    if(currency === USD){
+        return  "$"
+    } if(currency === EUR){
+        return "€"
+    }if(currency === GBP){
+        return "£"
+    }if(currency === CAD){
+        return "CA$"
+    }
+
+    // switch(currency){
+    //     case currency === USD :
+    //         return "$" ;
+    //     case currency === EUR :
+    //         return "€";
+    //     case currency === GBP:
+    //         return "£";
+    //     case currency === CAD :
+    //         return "CAD$";
+    //     default    :
+    //         return  "***"
+    // }
+
+}
+const getClientIpAddress = async() =>{
+    try{
+        const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
+        // `https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`
+        // console.log('Daata ===>', response.data)
+        return response.data.ip
+
+    }catch(error){
+        console.log("Couldn't get user Ip adress ==> :", error.response)
+
+    }
+
+}
+
 const languages=[
     {
         value:"en",
@@ -95,7 +186,7 @@ const languages=[
         label:"French"
     }
 ]
-const paymentMethod =[
+const paymentMethods =[
     {
         value:DEBIT_CARD,
         label:'Debit card',
@@ -106,12 +197,12 @@ const paymentMethod =[
     },
 ]
 
-const responseManager = ({response, formValues}) =>{
 
+const responseManager = ({response, formValues}) =>{
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
-    formValues.clientCurrency = response.data.clientCurrency
+    formValues.clientCurrency = response.data.clientCurrency !== null ? response.data.clientCurrency : USD
     formValues.clientName = response.data.clientName
     formValues.receiverName = response.data.receiverName
     formValues.paymentRequestId = response.data.paymentRequestId
@@ -126,4 +217,4 @@ const responseManager = ({response, formValues}) =>{
     }
 }
 
-export {responseManager, backgroundChanger, nameFormating, languages, paymentMethod,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}
+export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress}
