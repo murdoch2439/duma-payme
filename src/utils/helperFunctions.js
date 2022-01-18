@@ -43,7 +43,6 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
 }
 
 const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
-
         if(!currency){
             return `$ 00.00`
         }if(currency !== clientCurrency && currency === "USD"){
@@ -95,7 +94,7 @@ const languages=[
         label:"French"
     }
 ]
-const paymentMethod =[
+const paymentMethods =[
     {
         value:DEBIT_CARD,
         label:'Debit card',
@@ -111,7 +110,7 @@ const responseManager = ({response, formValues}) =>{
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
-    formValues.clientCurrency = response.data.clientCurrency
+    formValues.clientCurrency = response.data.clientCurrency !== null ? response.data.clientCurrency : "USD"
     formValues.clientName = response.data.clientName
     formValues.receiverName = response.data.receiverName
     formValues.paymentRequestId = response.data.paymentRequestId
@@ -126,4 +125,4 @@ const responseManager = ({response, formValues}) =>{
     }
 }
 
-export {responseManager, backgroundChanger, nameFormating, languages, paymentMethod,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}
+export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount}

@@ -120,7 +120,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
             })
 
             if(paymentMethodReq.error) {
-                console.error('paymentMethod Error!', paymentMethodReq.error.message)
+                console.error('paymentMethods Error!', paymentMethodReq.error.message)
                 setError(paymentMethodReq.error.message);
                 setLoading(false);
                 // dispatch({

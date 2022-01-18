@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import axios from 'axios'
 import { useStateValue } from '../context';
-import {getUrlParams, paymentMethod, responseManager,} from '../utils/helperFunctions';
+import {getUrlParams, paymentMethods, responseManager,} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
@@ -188,7 +188,7 @@ const getIpAdress = async () =>{
                             formValues.paymentMethod = e.target.value
                         }}
         >
-          {paymentMethod.map((option) => (
+          {paymentMethods.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {t(option.label)}
             </MenuItem>

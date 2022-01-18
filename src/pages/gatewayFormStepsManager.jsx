@@ -140,7 +140,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 })
 
                 if (paymentMethodReq.error) {
-                    console.error('paymentMethod Error!')
+                    console.error('paymentMethods Error!')
 
                     setError(paymentMethodReq.error.message);
                     setLoading(false);
