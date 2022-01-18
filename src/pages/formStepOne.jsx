@@ -45,10 +45,8 @@ const FormStepOne =()=> {
 const getIpAdress = async () =>{
     try{
         const ip = await getClientIpAddress()
-        console.log('ip Adress!!!   =>', ip)
         if(ip){
             const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
-
             if(merchantKey){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
                     setCurrency(response.data.currency)
