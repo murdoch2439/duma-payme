@@ -106,7 +106,6 @@ const paymentMethods =[
 ]
 
 const responseManager = ({response, formValues}) =>{
-
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
