@@ -30,13 +30,13 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
                 if(currency === clientCurrency){
                     return `$ ${parseInt(amount).toFixed(2)}`
                 }else{
-                    return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                 }
             }if(currency === "EUR"){
                   if(currency === clientCurrency){
                       return `€ ${parseInt(amount).toFixed(2)}`
                   }else{
-                      return `$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+                      return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                   }
             }
         }
