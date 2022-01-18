@@ -10,7 +10,6 @@ import { makeStyles, } from '@material-ui/core/styles';
 import {useTranslation} from "react-i18next";
 import picture from '../assets/Laptop.svg'
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         marginBottom:10,
@@ -45,14 +44,12 @@ const useStyles = makeStyles(() => ({
 const IssuesPage =()=>{
     // const history = useHistory()
     const {t} = useTranslation()
-
     const classes = useStyles()
     // const onClick =() =>{
     //     history.goBack()
     // }
 
     return(
-
         <Container  className={classes.boxWrapper}>
             <Paper className={classes.paper}>
                 <Grid container  justifyContent='center' className={classes.boxTitle}>
@@ -76,7 +73,6 @@ const IssuesPage =()=>{
                     {/*    {t("Go back")}*/}
                     {/*</Button>*/}
                 </Grid>
-
             </Paper>
         </Container>
     )
