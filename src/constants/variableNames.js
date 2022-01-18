@@ -9,7 +9,6 @@ const ONLINE_BACK_END_PORT = "54.154.208.240"
 // export const CURRENCY = "currency"
 const API_PAYMENT_INIT =  `http://${ONLINE_BACK_END_PORT}:3001/api/payment-init`
 const IP_PROVIDER_API_KEY = "44f0e7d529f599f5285f2bb5c8642eefbd77c2dd8cc187a61fca9a0d"
-// export const API_DUMA_PAY_CLIENT_REDIRECT_INIT=`http://${ONLINE_BACK_END_PORT}:3001/api/payment-redirect`
 const API_VALIDATE_PAYMENT_INTENT = `http://${ONLINE_BACK_END_PORT}:3001/api/validate`
 const API_CREATE_PAYMENT_INTENT = `http://${ONLINE_BACK_END_PORT}:3001/api/create-payment-intent`
 const HEALTH_CHECK = `http://${ONLINE_BACK_END_PORT}:3001/api/check`
