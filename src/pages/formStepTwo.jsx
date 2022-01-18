@@ -4,6 +4,7 @@ import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} f
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
 import {
+    currencyManager,
     nameFormating,
     receivingAmount,
     sendingAmount,

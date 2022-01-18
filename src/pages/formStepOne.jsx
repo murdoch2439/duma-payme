@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import axios from 'axios'
 import { useStateValue } from '../context';
-import {getUrlParams, paymentMethods, responseManager,} from '../utils/helperFunctions';
+import {getClientIpAddress, getUrlParams, paymentMethods, responseManager,} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
@@ -44,7 +44,10 @@ const FormStepOne =()=> {
 
 const getIpAdress = async () =>{
     try{
-            const paymentInfo =   {   merchantKey,  paymentRequestId  }
+        const ip = await getClientIpAddress()
+        console.log('ip Adress!!!   =>', ip)
+        if(ip){
+            const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
 
             if(merchantKey){
                 await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
@@ -62,6 +65,11 @@ const getIpAdress = async () =>{
 
                 })
             }
+        }else{
+            console.log('Ip is not provided!!!!!!!!!!')
+        }
+
+
 
     }catch(error){
         console.error('Error on payment initialization ==> : ',error)
