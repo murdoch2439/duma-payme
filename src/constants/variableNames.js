@@ -17,7 +17,6 @@ const MOBILE_MONEY = "mobile money"
 const EDIT_FORM_VALUES = 'editFormValue'
 const FORM_EMPTY_VALUES ="emptyFormValues"
 const CHANGE_MODAL_STATES = "changeModalState"
-// export const SENDER_EMAIL = "email"
 // export const AMOUNT_TO_SEND = "amount"
 // export const RECEIVER_NAME ="receiverName"
 const SHOW_SUCCESS_MODAL = "showsuccessmodal"
