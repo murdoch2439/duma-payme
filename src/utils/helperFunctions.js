@@ -104,7 +104,6 @@ const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
               }else{
                   return  `£ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-
         }if(currency !== clientCurrency && currency === CAD){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
