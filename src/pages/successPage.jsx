@@ -12,7 +12,6 @@ import {useTranslation} from "react-i18next";
 import {businessLogicManager, nameFormating, totalToPay} from "../utils/helperFunctions";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         // width:800,
