@@ -43,8 +43,6 @@ const totalToPay = ({currency, amount, }) =>{
     }if(currency === CAD){
         return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
     }
-
-
     // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
 }
 
