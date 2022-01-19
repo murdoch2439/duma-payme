@@ -30,7 +30,8 @@ const useStyles = makeStyles(() => ({
     boxTitle:{
         backgroundColor:'white',
         borderTopLeftRadius:10,
-        borderTopRightRadius:10
+        borderTopRightRadius:10,
+        justifyContent:'center'
     },
     boxIcon:{
         height:100,
@@ -71,7 +72,7 @@ const NotFoundPage =()=>{
             <Container  className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
 
-                    <Grid container  justifyContent='center' className={classes.boxTitle}>
+                    <Grid container  className={classes.boxTitle}>
                         <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                     </Grid>
 
