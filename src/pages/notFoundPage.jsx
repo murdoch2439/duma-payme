@@ -7,7 +7,6 @@ import axios from 'axios'
 import picture from '../assets/ErrorSleeping.svg'
 // import PowerOffIcon from '@mui/icons-material/PowerOff';
 import {HEALTH_CHECK} from '../constants/variableNames'
-
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
@@ -20,7 +19,6 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:15,
     },
     paper: {
-
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
