@@ -4,7 +4,6 @@ import { initReactI18next } from "react-i18next";
 import englishTranslation from "./locales/en/englishTranslation.json"
 import frenchTranslation from "./locales/fr/frenchTranslation.json"
 
-
 i18n
     .use(LanguageDetector)
     .use(initReactI18next)
@@ -23,9 +22,7 @@ i18n
         // have a common namespace used around the full app
         ns: ["translations"],
         defaultNS: "translations",
-
         keySeparator: false, // we use content as keys
-
         interpolation: {
             escapeValue: false
         }

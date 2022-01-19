@@ -91,9 +91,9 @@ const LayoutManager = () => {
               modalStates.showfailmodal ? <FailureModal />:
               modalStates.showpendingmodal ? <PendingModal />:
               modalStates.showaccessdeniedmodal ? <IssuesPage />:
-                  <Box  mt={10}  >
-                    <Container maxWidth="md" >
-                    <Paper elevation={3}  className={classes.container} >
+                  <Box  mt={10}>
+                    <Container maxWidth="md">
+                    <Paper elevation={3}  className={classes.container}>
                           <Box
                               className={classes.leftContainerWrapper}
                               display={{ xs: 'none',sm:'inline', md:'block' }}
