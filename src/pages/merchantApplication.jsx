@@ -59,7 +59,8 @@ const MerchantApplication =()=>{
                     <Grid  item className={classes.boxIcon}>
                         <ShoppingCartCheckoutIcon style={{fontSize:60, color:'white', textAlign:'center', marginLeft:'20%', marginTop:'20%'}}/>
                     </Grid>
-                    <form encType="text/plain"
+                    <form
+                        encType="text/plain"
                           action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
                           method="get" id="duma"
                     >
