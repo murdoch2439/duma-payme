@@ -247,7 +247,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         className={classes.button}
                         type="submit"
                         disabled={loading||disabled || formValues.amount ==="0"}
-
                         style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                     >
                         { loading ? t(LOADING_MESSAGE) :
@@ -255,15 +254,10 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         }
                     </Button>
                 </Grid>
-
             </form>
             <Grid style={{ marginTop:10}}>
-
                 <Copyright />
             </Grid>
-
-
-
         </Box>
     );
 }
