@@ -74,5 +74,4 @@ const MerchantApplication =()=>{
         </Zoom>
     )
 }
-
 export default MerchantApplication
