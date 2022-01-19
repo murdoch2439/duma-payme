@@ -13,7 +13,6 @@ const nameFormating = (string) =>{
 }
 
 const sendingAmount = ({currency, amount,}) =>{
-
     if(currency === USD){
         return `$ ${parseInt(amount).toFixed(2)}`
 
@@ -27,7 +26,6 @@ const sendingAmount = ({currency, amount,}) =>{
         return `CA$ ${parseInt(amount).toFixed(2)}`
     }
       // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
-
 }
 
 const totalToPay = ({currency, amount, }) =>{
