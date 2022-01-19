@@ -33,7 +33,6 @@ const totalToPay = ({currency, amount, }) =>{
         return `$ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === EUR){
         return `€ ${parseInt(amount).toFixed(2)} ${currency}`
-
     }if(currency === GBP){
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
 
