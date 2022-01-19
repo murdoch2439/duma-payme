@@ -9,7 +9,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {useTranslation} from "react-i18next";
-import {businessLogicManager, nameFormating, totalToPay} from "../utils/helperFunctions";
+import { nameFormating, totalToPay} from "../utils/helperFunctions";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
 const useStyles = makeStyles(() => ({
