@@ -7,7 +7,6 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 import Zoom from '@material-ui/core/Zoom';
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         width:450,
