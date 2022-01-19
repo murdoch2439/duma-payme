@@ -138,19 +138,6 @@ const currencyManager = (currency) =>{
         return "CA$"
     }
 
-    // switch(currency){
-    //     case currency === USD :
-    //         return "$" ;
-    //     case currency === EUR :
-    //         return "€";
-    //     case currency === GBP:
-    //         return "£";
-    //     case currency === CAD :
-    //         return "CAD$";
-    //     default    :
-    //         return  "***"
-    // }
-
 }
 const getClientIpAddress = async() =>{
     try{
