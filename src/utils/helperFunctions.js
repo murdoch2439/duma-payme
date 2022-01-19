@@ -165,6 +165,11 @@ const currencyManager = (currency) =>{
 const getClientIpAddress = async() =>{
     try{
         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
+        // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
+
+        //197.157.209.57
+        // console.log('Daata from the first ===>',getGeoDB.data)
+        // console.log('Daata from the second ===>', response.data)
         // `https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`
         // console.log('Daata ===>', response.data)
         return response.data.ip

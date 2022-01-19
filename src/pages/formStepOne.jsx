@@ -44,6 +44,7 @@ const FormStepOne =()=> {
 
 const getIpAdress = async () =>{
     try{
+        console.log('executed!!!!!!!!!!')
         const ip = await getClientIpAddress()
         if(ip){
             const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
