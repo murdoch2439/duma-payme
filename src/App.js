@@ -26,7 +26,6 @@ const  App =()=> {
   useEffect(()=>{
     starter()
   },[])
-
   const starter = () =>{
       setLoading(false)
   }
