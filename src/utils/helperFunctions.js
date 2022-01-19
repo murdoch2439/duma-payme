@@ -111,7 +111,6 @@ const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
               }else{
                   return  `CA$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-
         }
 }
 
@@ -168,7 +167,6 @@ const getClientIpAddress = async() =>{
         // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
         //197.157.209.57
         return response.data.ip
-
     }catch(error){
         console.log("Couldn't get user Ip adress ==> :", error.response)
     }
