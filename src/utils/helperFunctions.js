@@ -49,7 +49,6 @@ const totalToPay = ({currency, amount, }) =>{
 }
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
-
         if(!currency){
             return `$ 00.00`
         }else{
