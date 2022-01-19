@@ -175,7 +175,7 @@ const responseManager = ({response, formValues}) =>{
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
-    formValues.clientCurrency = response.data.clientCurrency !== null ? response.data.clientCurrency : USD
+    formValues.clientCurrency = response.data.clientCurrency !== null ? response.data.clientCurrency : "*****"
     formValues.clientName = response.data.clientName
     formValues.receiverName = response.data.receiverName
     formValues.paymentRequestId = response.data.paymentRequestId
