@@ -61,7 +61,8 @@ const MerchantApplication =()=>{
                     </Grid>
                     <form encType="text/plain"
                           action="http://18.200.191.178:8081/api/v1/icash/me/redirect"
-                          method="get" id="duma">
+                          method="get" id="duma"
+                    >
                         <input name="ip" value="169.255.204.4"/>
                         <input name="merchantKey" value="61e173d7073fe27180400f30"/>
                         <input name="currency" value="USD"/>
