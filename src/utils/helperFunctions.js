@@ -137,7 +137,6 @@ const currencyManager = (currency) =>{
     }if(currency === CAD){
         return "CA$"
     }
-
 }
 const getClientIpAddress = async() =>{
     try{
