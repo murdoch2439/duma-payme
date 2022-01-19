@@ -71,7 +71,6 @@ const LayoutManager = () => {
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
     }
-
     const cardsLogo = [
         "amex",
         "cirrus",
