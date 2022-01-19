@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Container, Paper, Grid, List, makeStyles, ListItem, ListItemText, TextField, Typography
+import { Container, Paper, Grid, List, makeStyles, ListItem, ListItemText, Typography
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
 // import {List, makeStyles, ListItem, ListItemText, TextField, Typography} from '@material-ui/core'
@@ -65,7 +65,6 @@ const SuccessPage =()=>{
   // const onClick =() =>{
   //     // dispatch({
   //     //     type: 'emptyFormValue',
-  //     //
   //     // })
   //     window.location.reload()
   //     // dispatch({
@@ -78,9 +77,7 @@ const SuccessPage =()=>{
   //     //     key: SHOW_PENDING_MODAL,
   //     //     value: false
   //     // })
-  //
   //     // history.replace('/')
-  //
   // }
 
   const classes = useStyles()
