@@ -171,7 +171,6 @@ const getClientIpAddress = async() =>{
 
     }catch(error){
         console.log("Couldn't get user Ip adress ==> :", error.response)
-
     }
 
 }
