@@ -201,9 +201,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                                         window.location.href = `${formValues.callBackUrl}?success=true`
                                     }, 3000)
                                 }
-
                                 // onSuccessCheckout()
-
                             } else {
                                 onFailCheckout()
                             }
