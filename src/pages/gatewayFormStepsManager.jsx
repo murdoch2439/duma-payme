@@ -90,7 +90,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         event.preventDefault()
         handleNext()
     }
-
     const capture = async () => {
 
         setLoading(true);
