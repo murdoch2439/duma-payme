@@ -8,8 +8,9 @@ import FormStepTwo from './formStepTwo';
 import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
+    API_MOBILE_MONEY_PAYMENT_INIT,
     API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, LOADING_MESSAGE,
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
     MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 import {backgroundChanger} from "../utils/helperFunctions";
@@ -66,6 +67,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const {t,} = useTranslation()
+  const serviceProvider = formValues.phone.substring(0,3)
 
   const stripe = useStripe();
 
@@ -98,14 +100,29 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
     try{
         if(formValues.paymentMethod === MOBILE_MONEY ){
-            setTimeout(()=>{
-                dispatch({
-                    type: CHANGE_MODAL_STATES,
-                    key: SHOW_PENDING_MODAL,
-                    value: true
-                })
-                setLoading(false);
-            }, 3000)
+            const payloadForMobileMoney ={
+                initials: formValues.name,
+                surname:formValues.name,
+                email:formValues.email,
+                phone:formValues.phone,
+                amount: formValues.amount,
+                transfRefNo: formValues.transactionReference,
+                paymentRequestId: formValues.paymentRequestId,
+                service: serviceProvider,
+                client: CLIENT_FOR_MOBILE_PAYMENT
+            }
+            const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
+
+            console.log('response on mobile payment init ==> :',response.data)
+
+            // setTimeout(()=>{
+            //     dispatch({
+            //         type: CHANGE_MODAL_STATES,
+            //         key: SHOW_PENDING_MODAL,
+            //         value: true
+            //     })
+            //     setLoading(false);
+            // }, 3000)
         }else{
             const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
                 amount: formValues.amount,

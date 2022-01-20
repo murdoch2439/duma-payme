@@ -9,7 +9,7 @@ import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, LOADING_MESSAGE,
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
     MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 // import {  useHistory
@@ -107,7 +107,17 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         try{
 
             if(formValues.paymentMethod === MOBILE_MONEY ){
-
+                const payloadForMobileMoney ={
+                    initials: formValues.name,
+                    surname:formValues.name,
+                    email:formValues.email,
+                    phone:formValues.phone,
+                    amount: formValues.amount,
+                    transfRefNo: formValues.transactionReference,
+                    paymentRequestId: formValues.paymentRequestId,
+                    service: serviceProvider,
+                    client: CLIENT_FOR_MOBILE_PAYMENT
+                }
                 setTimeout(()=>{
 
                     dispatch({
