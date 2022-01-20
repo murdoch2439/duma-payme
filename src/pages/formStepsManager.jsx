@@ -117,15 +117,19 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
             const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
 
             console.log('response on mobile payment init ==> :',response.data)
+            if(response.data.status === "success"){
+                setLoading(false);
+                // setTimeout(()=>{
+                    dispatch({
+                        type: CHANGE_MODAL_STATES,
+                        key: SHOW_PENDING_MODAL,
+                        value: true
+                    })
+                //     setLoading(false);
+                // }, 3000)
+            }
 
-            // setTimeout(()=>{
-            //     dispatch({
-            //         type: CHANGE_MODAL_STATES,
-            //         key: SHOW_PENDING_MODAL,
-            //         value: true
-            //     })
-            //     setLoading(false);
-            // }, 3000)
+
         }else{
             const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
                 amount: formValues.amount,
