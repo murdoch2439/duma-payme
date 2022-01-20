@@ -106,6 +106,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 email:formValues.email,
                 phone:formValues.phone,
                 amount: formValues.amount,
+                currency:formValues.currency,
                 transfRefNo: formValues.transactionReference,
                 paymentRequestId: formValues.paymentRequestId,
                 service: serviceProvider,
