@@ -47,6 +47,7 @@
   "Retry":"Ressayer",
   "Information":"Information",
   "Payment Information":"Information de payement",
+  "Payment waiting for validation": "Payement en attente de validation",
   "is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)":"s'effectue, confirmez l'operation avec votre téléphone ensuite cliquez sur le button pour actualiser le status :)",
   "Refreshing Status...":"Actualisation du status...",
   "Refresh":"Actualiser",

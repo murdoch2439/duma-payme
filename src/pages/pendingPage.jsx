@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import { Container, Paper, Grid, Button
+import {
+    Container, Paper, Grid, Button, List, ListItem, ListItemText, Typography
 } from "@material-ui/core";
 import UpdateIcon from '@material-ui/icons/Update';
 // import {  useHistory
@@ -9,11 +10,13 @@ import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
+import {nameFormating, totalToPay} from "../utils/helperFunctions";
+import OperationsSummeryComponent from "../components/operationsSummeryComponent";
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-        width:450,
-        height:560,
+        // width:450,
+        // height:560,
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
@@ -45,12 +48,17 @@ const useStyles = makeStyles(() => ({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:50,
-    }
+    } ,
+    total: {
+        fontWeight: '500',
+        color:'white',
+        fontSize:18
+    },
 }));
 
 
 const PendingPage =()=>{
-    const [{ formValues }, dispatch] = useStateValue();
+    const [ dispatch] = useStateValue();
     // const history = useHistory()
     const [loading, setLoading] = useState(false)
     const {t}=useTranslation()
@@ -81,7 +89,7 @@ const PendingPage =()=>{
     }
 
     return(
-        <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
+        <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
                     <Grid container  justifyContent='center' className={classes.boxTitle}>
@@ -91,13 +99,20 @@ const PendingPage =()=>{
                     <Grid  item className={classes.boxIcon}>
                         <UpdateIcon style={{fontSize:60, color:'white'}}/>
                     </Grid>
-                    <p style={{textAlign:'center', fontSize:25}}>
-                        {t("Your payment to:")} <br />
-                        <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
-                        <br />
-                        {t("is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)")}
+                    {/*<p style={{textAlign:'center', fontSize:25}}>*/}
+                    {/*    {t("Your payment to:")} <br />*/}
+                    {/*    <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>*/}
+                    {/*    <br />*/}
+                    {/*    {t("is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)")}*/}
+                    {/*</p>*/}
+                    <p style={{textAlign:'center', fontSize:22}}>
+                        {t("Payment waiting for validation")} <br />
+                        {/*<span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>*/}
+                        {/*<br />*/}
+                        {/*{t("Passed successfully, thank you for reaching out! You can order another payment link for another payment")}*/}
                     </p>
-                    <Grid container item justify='center' style={{marginTop:30, paddingBottom:50}}>
+                    <OperationsSummeryComponent />
+                    <Grid container item justify='center' style={{marginTop:0, paddingBottom:50}}>
                         <Button
                             onClick={onClick}
                             style={{

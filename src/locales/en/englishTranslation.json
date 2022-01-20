@@ -46,6 +46,7 @@
   "has failed, please check informations and retry.":"has failed, please check informations and retry.",
   "Retry":"Retry",
   "Information":"Information",
+  "Payment waiting for validation": "Payment waiting for validation",
   "Payment Information":"Payment Information",
   "is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)":"is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)",
   "Refreshing Status...":"Refreshing Status...",
