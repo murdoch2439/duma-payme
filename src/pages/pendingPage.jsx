@@ -10,7 +10,6 @@ import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
-import {nameFormating, totalToPay} from "../utils/helperFunctions";
 import OperationsSummeryComponent from "../components/operationsSummeryComponent";
 
 const useStyles = makeStyles(() => ({
