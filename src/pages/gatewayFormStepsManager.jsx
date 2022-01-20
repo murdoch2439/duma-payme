@@ -8,7 +8,7 @@ import GatewayFormStepTwo from './gatewayFormStepTwo';
 import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
-    API_CREATE_PAYMENT_INTENT,
+    API_CREATE_PAYMENT_INTENT, API_MOBILE_MONEY_PAYMENT_INIT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
     MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
@@ -118,6 +118,10 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     service: serviceProvider,
                     client: CLIENT_FOR_MOBILE_PAYMENT
                 }
+                const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
+
+                console.log('response on mobile payment init ==> :',response.data)
+
                 setTimeout(()=>{
 
                     dispatch({
