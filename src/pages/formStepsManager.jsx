@@ -67,7 +67,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const {t,} = useTranslation()
-  const serviceProvider = formValues.phone.substring(0,3)
+  const serviceProvider = formValues.sendermobilenumber.substring(0,3)
 
   const stripe = useStripe();
 
@@ -100,18 +100,20 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
     try{
         if(formValues.paymentMethod === MOBILE_MONEY ){
+
             const payloadForMobileMoney ={
                 initials: formValues.name,
                 surname:formValues.name,
                 email:formValues.email,
-                phone:formValues.phone,
+                phone:formValues.sendermobilenumber,
                 amount: formValues.amount,
                 currency:formValues.currency,
-                transfRefNo: formValues.transactionReference,
+                transRefNo: formValues.transactionReference,
                 paymentRequestId: formValues.paymentRequestId,
                 service: serviceProvider,
                 client: CLIENT_FOR_MOBILE_PAYMENT
             }
+            // console.log('referrrrrrrrrrr', payloadForMobileMoney.transfRefNo )
             const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
 
             console.log('response on mobile payment init ==> :',response.data)

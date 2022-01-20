@@ -2,7 +2,7 @@ import {EDIT_FORM_VALUES, CHANGE_MODAL_STATES, FORM_EMPTY_VALUES} from "../const
 
 const initialState = {
     formValues: {
-        receiver:"",
+        sendermobilenumber:"",
         name: "",
         email: "",
         phone: "",

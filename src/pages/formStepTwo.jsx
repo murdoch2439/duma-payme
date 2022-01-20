@@ -125,16 +125,16 @@ const  FormStepTwo =()=> {
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
                                 label={t("Mobile Money Number")}
-                                name="receiver"
+                                name="sendermobilenumber"
                                 variant="outlined"
                                 type="tel"
                                 required
                                 fullWidth
-                                value={formValues.receiver}
+                                value={formValues.sendermobilenumber}
                                 onChange={e =>
                                     dispatch({
                                         type: EDIT_FORM_VALUES,
-                                        key: "receiver",
+                                        key: "sendermobilenumber",
                                         value: e.target.value
                                     })
                                 }
