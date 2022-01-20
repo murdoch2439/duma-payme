@@ -68,7 +68,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [disabled, setDisabled] = useState(false);
     const {t, i18n} = useTranslation()
     // const history = useHistory()
-
     const stripe = useStripe();
 
     const handleNext = () => {
