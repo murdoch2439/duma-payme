@@ -7,7 +7,6 @@ import CheckIcon from '@material-ui/icons/Check';
 // import { makeStyles, } from '@material-ui/core/styles';
 
 import Zoom from '@material-ui/core/Zoom';
-import { useStateValue } from '../context';
 import {useTranslation} from "react-i18next";
 import { nameFormating, totalToPay} from "../utils/helperFunctions";
 import OperationsSummeryComponent from "../components/operationsSummeryComponent";
