@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {
-    Container, Paper, Grid, Button, List, ListItem, ListItemText, Typography
+    Container, Paper, Grid, Button,
 } from "@material-ui/core";
 import UpdateIcon from '@material-ui/icons/Update';
 // import {  useHistory
@@ -49,11 +49,6 @@ const useStyles = makeStyles(() => ({
         alignItems:'center',
         borderRadius:50,
     } ,
-    total: {
-        fontWeight: '500',
-        color:'white',
-        fontSize:18
-    },
 }));
 
 
