@@ -10,7 +10,7 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT, API_MOBILE_MONEY_PAYMENT_INIT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
-    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
+    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED,
 } from '../constants/variableNames';
 // import {  useHistory
 // } from "react-router-dom";
@@ -194,33 +194,52 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     //     value: true
                     // })
 
-                    await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
-                        .then(response => {
-                            console.log('Payload for validation ===>', response.data)
-                            if (response.data.status === 'success') {
-                                console.log('payment process succeeded')
-                                setLoading(false);
-                                setDisabled(true)
-                                setError(false);
-                                dispatch({
-                                    type: 'changeModalState',
-                                    key: "showsuccessmodal",
-                                    value: true
-                                })
-                                if(formValues.callBackUrl){
-                                    setTimeout(()=>{
-                                        window.location.href = `${formValues.callBackUrl}?success=true`
-                                    }, 3000)
-                                }
-                                // onSuccessCheckout()
-                            } else {
-                                onFailCheckout()
+                    const responseFromBffValidation = await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
+                    console.log('Payload for validation ===>', responseFromBffValidation.data)
+                        if(responseFromBffValidation.data.status === "success"){
+                            console.log('payment process succeeded')
+                            setLoading(false);
+                            setDisabled(true)
+                            setError(false);
+                            dispatch({
+                                type: CHANGE_MODAL_STATES,
+                                key: SHOW_SUCCESS_MODAL,
+                                value: true
+                            })
+                            if(formValues.callBackUrl){
+                                setTimeout(()=>{
+                                    window.location.href = `${formValues.callBackUrl}?success=true`
+                                }, 3000)
                             }
-                        })
+
+                        }else {
+                            onFailCheckout()
+                        }
+                        // .then(response => {
+                        //     console.log('Payload for validation ===>', response.data)
+                        //     if (response.data.status === 'success') {
+                        //         console.log('payment process succeeded')
+                        //         setLoading(false);
+                        //         setDisabled(true)
+                        //         setError(false);
+                        //         dispatch({
+                        //             type: CHANGE_MODAL_STATES,
+                        //             key: SHOW_SUCCESS_MODAL,
+                        //             value: true
+                        //         })
+                        //         if(formValues.callBackUrl){
+                        //             setTimeout(()=>{
+                        //                 window.location.href = `${formValues.callBackUrl}?success=true`
+                        //             }, 3000)
+                        //         }
+                        //         // onSuccessCheckout()
+                        //     } else {
+                        //         onFailCheckout()
+                        //     }
+                        // })
                 } else if (error) {
                     setError(error.message);
-                    console.log('error message ====>',error.message)
-                    // setLoading(false);
+                    console.log('Error on stripe payment confirmation ===>', error)
                     // onFailCheckout()
                     return;
                 }
@@ -229,9 +248,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
         }catch(error){
             console.error('error from the catch in the gateway', error.message)
-            setError('Something went wrong, check your infos or your network and retry');
             setLoading(false);
-            setDisabled(true)
 
         }
 

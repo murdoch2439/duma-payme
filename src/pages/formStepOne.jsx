@@ -33,7 +33,7 @@ const FormStepOne =()=> {
 
   useEffect(()=>{
       if(formValues.currency === ''){
-          getIpAdress().then()
+          paymentInitWithBff().then()
       }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
@@ -42,31 +42,42 @@ const FormStepOne =()=> {
 
     },[formValues.currency, formValues.paymentMethod, formValues.clientCurrency])
 
-const getIpAdress = async () =>{
+const paymentInitWithBff = async () =>{
     try{
         const ip = await getClientIpAddress()
         if(ip){
             const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
             if(merchantKey){
-                await axios.post(API_PAYMENT_INIT, paymentInfo).then(  (response)=>{
-                    setCurrency(response.data.currency)
-                    setClientCurrency(response.data.clientCurrency)
-                    if((response.data.error && response.data.code === CODE_403)|| response.data.code === CODE_500){
-                        dispatch({
-                            type: CHANGE_MODAL_STATES,
-                            key: SHOW_ACCESS_DENIED_MODAL,
-                            value: true
-                        })
-                    }else{
-                        responseManager({response, formValues})
-                    }
-
-                })
+                const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
+                setCurrency(responseFromBffPaymentInit.data.currency)
+                setClientCurrency(responseFromBffPaymentInit.data.clientCurrency)
+                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
+                    dispatch({
+                        type: CHANGE_MODAL_STATES,
+                        key: SHOW_ACCESS_DENIED_MODAL,
+                        value: true
+                    })
+                }else{
+                    responseManager({responseFromBffPaymentInit, formValues})
+                }
+                    // .then(  (response)=>{
+                //     setCurrency(response.data.currency)
+                //     setClientCurrency(response.data.clientCurrency)
+                //     if((response.data.error && response.data.code === CODE_403)|| response.data.code === CODE_500){
+                //         dispatch({
+                //             type: CHANGE_MODAL_STATES,
+                //             key: SHOW_ACCESS_DENIED_MODAL,
+                //             value: true
+                //         })
+                //     }else{
+                //         responseManager({response, formValues})
+                //     }
+                //
+                // })
             }
         }else{
             console.log('Ip is not provided!!!!!!!!!!')
         }
-
 
     }catch(error){
         console.error('Error on payment initialization ==> : ',error)
