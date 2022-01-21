@@ -84,9 +84,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   };
-
   const handleReset = () => setActiveStep(0)
-
   const handleSubmit = (event) =>{
     event.preventDefault()
     handleNext()
