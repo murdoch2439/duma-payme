@@ -11,7 +11,7 @@ import {
     API_MOBILE_MONEY_PAYMENT_INIT,
     API_CREATE_PAYMENT_INTENT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
-    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED, SHOW_SUCCESS_MODAL,
+    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED, SHOW_SUCCESS_MODAL, SUCCESS,
 } from '../constants/variableNames';
 import {backgroundChanger} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
@@ -177,9 +177,10 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     }
 
                     console.log('Payload to verification ====>', paymentIntentObjetForBffValidation)
+
                     const responseFromBffValidation = await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjetForBffValidation)
 
-                        if(responseFromBffValidation.data.status === "success"){
+                        if(responseFromBffValidation.data.status === SUCCESS){
                             console.log('payment processed and verified successfully')
                             setLoading(false);
                             setDisabled(true)
@@ -194,25 +195,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                             console.log('Something happened during validation with Bff ===>', responseFromBffValidation.data )
                             // onFailCheckout()
                         }
-                        // .then(response => {
-                        //     console.log('Confirmation ===>', response.data)
-                        //     if(response.data.status === 'success') {
-                        //         console.log('payment processed and verified successfully')
-                        //         setLoading(false);
-                        //         setDisabled(true)
-                        //         setError(false);
-                        //         dispatch({
-                        //             type: 'changeModalState',
-                        //             key: "showsuccessmodal",
-                        //             value: true
-                        //         })
-                        //         // onSuccessCheckout()
-                        //     }else {
-                        //         console.log('Something happened')
-                        //
-                        //         onFailCheckout()
-                        //     }
-                        // })
+
                 } else if(error) {
                     console.log('Error on stripe payment confirmation ===>', error)
                     setError(error.message);

@@ -10,7 +10,7 @@ import { useStateValue } from '../context';
 import {
     API_CREATE_PAYMENT_INTENT, API_MOBILE_MONEY_PAYMENT_INIT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
-    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED,
+    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED, SUCCESS,
 } from '../constants/variableNames';
 // import {  useHistory
 // } from "react-router-dom";
@@ -174,6 +174,11 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                     formValues.paymentIntent = paymentIntent.id
+                    dispatch({
+                        type: CHANGE_MODAL_STATES,
+                        key: SHOW_SUCCESS_MODAL,
+                        value: true
+                    })
                     const paymentIntentObjet = {
 
                         reference: formValues.transactionReference,
@@ -196,7 +201,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                     const responseFromBffValidation = await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                     console.log('Payload for validation ===>', responseFromBffValidation.data)
-                        if(responseFromBffValidation.data.status === "success"){
+                        if(responseFromBffValidation.data.status === SUCCESS){
                             console.log('payment process succeeded')
                             setLoading(false);
                             setDisabled(true)
@@ -215,28 +220,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         }else {
                             onFailCheckout()
                         }
-                        // .then(response => {
-                        //     console.log('Payload for validation ===>', response.data)
-                        //     if (response.data.status === 'success') {
-                        //         console.log('payment process succeeded')
-                        //         setLoading(false);
-                        //         setDisabled(true)
-                        //         setError(false);
-                        //         dispatch({
-                        //             type: CHANGE_MODAL_STATES,
-                        //             key: SHOW_SUCCESS_MODAL,
-                        //             value: true
-                        //         })
-                        //         if(formValues.callBackUrl){
-                        //             setTimeout(()=>{
-                        //                 window.location.href = `${formValues.callBackUrl}?success=true`
-                        //             }, 3000)
-                        //         }
-                        //         // onSuccessCheckout()
-                        //     } else {
-                        //         onFailCheckout()
-                        //     }
-                        // })
+
                 } else if (error) {
                     setError(error.message);
                     console.log('Error on stripe payment confirmation ===>', error)
