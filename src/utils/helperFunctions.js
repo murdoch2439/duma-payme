@@ -13,7 +13,6 @@ const nameFormating = (string) =>{
 }
 
 const sendingAmount = ({currency, amount,}) =>{
-
     if(currency === USD){
         return `$ ${parseInt(amount).toFixed(2)}`
 
@@ -26,9 +25,7 @@ const sendingAmount = ({currency, amount,}) =>{
     }if(currency === CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
     }
-
       // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
-
 }
 
 const totalToPay = ({currency, amount, }) =>{
@@ -36,20 +33,15 @@ const totalToPay = ({currency, amount, }) =>{
         return `$ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === EUR){
         return `€ ${parseInt(amount).toFixed(2)} ${currency}`
-
     }if(currency === GBP){
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
-
     }if(currency === CAD){
         return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
     }
-
-
     // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
 }
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
-
         if(!currency){
             return `$ 00.00`
         }else{
@@ -104,14 +96,12 @@ const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
               }else{
                   return  `£ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-
         }if(currency !== clientCurrency && currency === CAD){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
                   return  `CA$ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-
         }
 }
 
@@ -147,33 +137,18 @@ const currencyManager = (currency) =>{
     }if(currency === CAD){
         return "CA$"
     }
-
-    // switch(currency){
-    //     case currency === USD :
-    //         return "$" ;
-    //     case currency === EUR :
-    //         return "€";
-    //     case currency === GBP:
-    //         return "£";
-    //     case currency === CAD :
-    //         return "CAD$";
-    //     default    :
-    //         return  "***"
-    // }
-
 }
+
+const firstThreeDigit = string => string.substring(0,3)
 const getClientIpAddress = async() =>{
     try{
         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
-        // `https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`
-        // console.log('Daata ===>', response.data)
+        // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
+        //197.157.209.57
         return response.data.ip
-
     }catch(error){
         console.log("Couldn't get user Ip adress ==> :", error.response)
-
     }
-
 }
 
 const languages=[
@@ -191,18 +166,19 @@ const paymentMethods =[
         value:DEBIT_CARD,
         label:'Debit card',
     },
-    {
-        value:MOBILE_MONEY,
-        label:'Mobile Money',
-    },
+    // {
+    //     value:MOBILE_MONEY,
+    //     label:'Mobile Money',
+    // },
 ]
 
 
 const responseManager = ({response, formValues}) =>{
+
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
-    formValues.clientCurrency = response.data.clientCurrency !== null ? response.data.clientCurrency : USD
+    formValues.clientCurrency = response.data.clientCurrency !== null ? response.data.clientCurrency : "*****"
     formValues.clientName = response.data.clientName
     formValues.receiverName = response.data.receiverName
     formValues.paymentRequestId = response.data.paymentRequestId
@@ -217,4 +193,4 @@ const responseManager = ({response, formValues}) =>{
     }
 }
 
-export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress}
+export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress, firstThreeDigit}

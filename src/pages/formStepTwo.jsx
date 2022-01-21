@@ -4,7 +4,6 @@ import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} f
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
 import {
-    currencyManager,
     nameFormating,
     receivingAmount,
     sendingAmount,
@@ -61,6 +60,7 @@ const  FormStepTwo =()=> {
       // setCardMessage('Stripe has not yet loaded')
       return ;
     }
+
 
   return (
 
@@ -125,16 +125,16 @@ const  FormStepTwo =()=> {
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
                                 label={t("Mobile Money Number")}
-                                name="receiver"
+                                name="phone"
                                 variant="outlined"
                                 type="tel"
                                 required
                                 fullWidth
-                                value={formValues.receiver}
+                                value={formValues.phone}
                                 onChange={e =>
                                     dispatch({
                                         type: EDIT_FORM_VALUES,
-                                        key: "receiver",
+                                        key: "phone",
                                         value: e.target.value
                                     })
                                 }
@@ -144,7 +144,7 @@ const  FormStepTwo =()=> {
 
             }
         </Grid>
-        {error && <p style={{color:'red'}}>{error}</p>}
+          <p style={{color:'red'}}>{error ? error :null}</p>
       </Grid>
     </Grid>
   );

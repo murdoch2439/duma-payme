@@ -27,7 +27,8 @@ const useStyles = makeStyles(() => ({
     boxTitle:{
         backgroundColor:'white',
         borderTopLeftRadius:10,
-        borderTopRightRadius:10
+        borderTopRightRadius:10,
+        justifyContent:'center',
     },
     boxIcon:{
         height:150,
@@ -52,7 +53,7 @@ const IssuesPage =()=>{
     return(
         <Container  className={classes.boxWrapper}>
             <Paper className={classes.paper}>
-                <Grid container  justifyContent='center' className={classes.boxTitle}>
+                <Grid container   className={classes.boxTitle}>
                     <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                 </Grid>
                 <div style={{height:40}} />
@@ -65,7 +66,7 @@ const IssuesPage =()=>{
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Make sure the link is correct")}
                 </p>
-                <Grid container item justify='center' style={{marginTop:30}}>
+                <Grid container item style={{marginTop:30, justifyContent:'center',}}>
                     {/*<Button*/}
                     {/*    onClick={onClick}*/}
                     {/*    style={{backgroundColor:  'white', color:'#FBB900', height:50, width:220, }}*/}

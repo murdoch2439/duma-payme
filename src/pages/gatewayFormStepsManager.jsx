@@ -8,13 +8,13 @@ import GatewayFormStepTwo from './gatewayFormStepTwo';
 import Copyright from '../components/copyright';
 import { useStateValue } from '../context';
 import {
-    API_CREATE_PAYMENT_INTENT,
-    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, LOADING_MESSAGE,
-    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SUCCEEDED,
+    API_CREATE_PAYMENT_INTENT, API_MOBILE_MONEY_PAYMENT_INIT,
+    API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
+    MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED, SUCCESS,
 } from '../constants/variableNames';
 // import {  useHistory
 // } from "react-router-dom";
-import {backgroundChanger} from "../utils/helperFunctions";
+import {backgroundChanger, firstThreeDigit} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
 import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
 
@@ -64,35 +64,33 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [activeStep, setActiveStep] = useState(0);
     const [{ formValues,  }, dispatch] = useStateValue();
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const {t, i18n} = useTranslation()
-    // const history = useHistory()
 
+    // const serviceProvider = formValues.phone.substring(0,3)
+    // const history = useHistory()
     const stripe = useStripe();
 
-    const handleNext = () => {
+    const handleNextStep = () => {
         if(activeStep === 1){
             capture().then()
         }else{
             setActiveStep((prevActiveStep) => prevActiveStep + 1)
         }
     };
-    const onClickHandler =(lang)=>{
-        i18n.changeLanguage(lang).then()
-    }
+    // const onClickHandler =(lang)=>{
+    //     i18n.changeLanguage(lang).then()
+    // }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1)
     };
-
     const handleReset = () => setActiveStep(0);
-
     const handleSubmit = (event) =>{
         event.preventDefault()
-        handleNext()
+        handleNextStep()
     }
-
     const capture = async () => {
 
         setLoading(true);
@@ -111,6 +109,20 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         try{
 
             if(formValues.paymentMethod === MOBILE_MONEY ){
+                const payloadForMobileMoney ={
+                    initials: formValues.name,
+                    surname:formValues.name,
+                    email:formValues.email,
+                    phone:formValues.phone,
+                    currency: formValues.currency,
+                    amount: formValues.amount,
+                    transfRefNo: formValues.transactionReference,
+                    paymentRequestId: formValues.paymentRequestId,
+                    service: firstThreeDigit(formValues.phone),
+                    client: CLIENT_FOR_MOBILE_PAYMENT
+                }
+                const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
+                console.log('response on mobile payment init ==> :',response.data)
 
                 setTimeout(()=>{
 
@@ -142,7 +154,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 if (paymentMethodReq.error) {
                     console.error('paymentMethods Error!')
 
-                    setError(paymentMethodReq.error.message);
+                    // setError(paymentMethodReq.error.message);
                     setLoading(false);
                     // dispatch({
                     //     type: CHANGE_MODAL_STATES,
@@ -158,11 +170,16 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                 })
                 console.log(paymentIntent)
-                setError(false);
+                // setError(false);
                 setDisabled(true)
 
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                     formValues.paymentIntent = paymentIntent.id
+                    dispatch({
+                        type: CHANGE_MODAL_STATES,
+                        key: SHOW_SUCCESS_MODAL,
+                        value: true
+                    })
                     const paymentIntentObjet = {
 
                         reference: formValues.transactionReference,
@@ -182,36 +199,32 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     //     key: SHOW_SUCCESS_MODAL,
                     //     value: true
                     // })
-                    //  setCardMessage(paymentIntent.id)
-                    await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
-                        .then(response => {
-                            console.log('Payload for validation ===>', response.data)
-                            if (response.data.status === 'success') {
-                                console.log('payment process succeeded')
-                                setLoading(false);
-                                setDisabled(true)
-                                setError(false);
-                                dispatch({
-                                    type: 'changeModalState',
-                                    key: "showsuccessmodal",
-                                    value: true
-                                })
-                                if(formValues.callBackUrl){
-                                    setTimeout(()=>{
-                                        window.location.href = `${formValues.callBackUrl}?success=true`
-                                    }, 3000)
-                                }
 
-                                // onSuccessCheckout()
-
-                            } else {
-                                onFailCheckout()
+                    const responseFromBffValidation = await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
+                    console.log('Payload for validation ===>', responseFromBffValidation.data)
+                        if(responseFromBffValidation.data.status === SUCCESS){
+                            console.log('payment process succeeded')
+                            setLoading(false);
+                            setDisabled(true)
+                            // setError(false);
+                            dispatch({
+                                type: CHANGE_MODAL_STATES,
+                                key: SHOW_SUCCESS_MODAL,
+                                value: true
+                            })
+                            if(formValues.callBackUrl){
+                                setTimeout(()=>{
+                                    window.location.href = `${formValues.callBackUrl}?success=true`
+                                }, 3000)
                             }
-                        })
+
+                        }else {
+                            onFailCheckout()
+                        }
+
                 } else if (error) {
-                    setError(error.message);
-                    console.log('error message ====>',error.message)
-                    // setLoading(false);
+                    // setError(error.message);
+                    console.log('Error on stripe payment confirmation ===>', error)
                     // onFailCheckout()
                     return;
                 }
@@ -220,9 +233,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
         }catch(error){
             console.error('error from the catch in the gateway', error.message)
-            setError('Something went wrong, check your infos or your network and retry');
             setLoading(false);
-            setDisabled(true)
 
         }
 
@@ -239,7 +250,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
             <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
                 <GetStepContent step={activeStep} />
                 <Grid >
-                    {error && <p style={{ color:'red'}}>{error}</p>}
+
                     {activeStep !== 0 &&
                     (
                         <Button style={{width:'100%'}} onClick={handleBack} className={classes.buttons}>
@@ -251,7 +262,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         className={classes.button}
                         type="submit"
                         disabled={loading||disabled || formValues.amount ==="0"}
-
                         style={{backgroundColor:backgroundChanger(loading),  width:'100%', height:50, marginTop:5, color:loading ? '#FBB900':'white'}}
                     >
                         { loading ? t(LOADING_MESSAGE) :
@@ -259,15 +269,10 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         }
                     </Button>
                 </Grid>
-
             </form>
             <Grid style={{ marginTop:10}}>
-
                 <Copyright />
             </Grid>
-
-
-
         </Box>
     );
 }
