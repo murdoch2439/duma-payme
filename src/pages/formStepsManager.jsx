@@ -64,7 +64,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
   const [activeStep, setActiveStep] = useState(0);
   const [{ formValues,  }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const {t,} = useTranslation()
   const serviceProvider = formValues.sendermobilenumber.substring(0,3)
@@ -140,7 +140,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
             if(paymentMethodReq.error) {
                 console.error('paymentMethods Error  ===>', paymentMethodReq.error.message)
-                setError(paymentMethodReq.error.message);
+                // setError(paymentMethodReq.error.message);
                 setLoading(false);
                 // dispatch({
                 //     type: CHANGE_MODAL_STATES,
@@ -154,7 +154,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     payment_method: paymentMethodReq.paymentMethod.id,
                 })
                 // console.log(paymentIntent)
-                setError(false);
+                // setError(false);
                 setDisabled(true)
 
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
@@ -184,7 +184,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                             console.log('payment processed and verified successfully')
                             setLoading(false);
                             setDisabled(true)
-                            setError(false);
+                            // setError(false);
                             dispatch({
                                 type: CHANGE_MODAL_STATES,
                                 key: SHOW_SUCCESS_MODAL,
@@ -198,7 +198,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                 } else if(error) {
                     console.log('Error on stripe payment confirmation ===>', error)
-                    setError(error.message);
+                    // setError(error.message);
                     onFailCheckout()
                 }
                 handleReset()

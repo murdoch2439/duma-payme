@@ -64,7 +64,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [activeStep, setActiveStep] = useState(0);
     const [{ formValues,  }, dispatch] = useStateValue();
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const {t, i18n} = useTranslation()
 
@@ -153,7 +153,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 if (paymentMethodReq.error) {
                     console.error('paymentMethods Error!')
 
-                    setError(paymentMethodReq.error.message);
+                    // setError(paymentMethodReq.error.message);
                     setLoading(false);
                     // dispatch({
                     //     type: CHANGE_MODAL_STATES,
@@ -169,7 +169,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
                 })
                 console.log(paymentIntent)
-                setError(false);
+                // setError(false);
                 setDisabled(true)
 
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
@@ -205,7 +205,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                             console.log('payment process succeeded')
                             setLoading(false);
                             setDisabled(true)
-                            setError(false);
+                            // setError(false);
                             dispatch({
                                 type: CHANGE_MODAL_STATES,
                                 key: SHOW_SUCCESS_MODAL,
@@ -222,7 +222,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                         }
 
                 } else if (error) {
-                    setError(error.message);
+                    // setError(error.message);
                     console.log('Error on stripe payment confirmation ===>', error)
                     // onFailCheckout()
                     return;
@@ -249,7 +249,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
             <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
                 <GetStepContent step={activeStep} />
                 <Grid >
-                    {error && <p style={{ color:'red'}}>{error}</p>}
+
                     {activeStep !== 0 &&
                     (
                         <Button style={{width:'100%'}} onClick={handleBack} className={classes.buttons}>
