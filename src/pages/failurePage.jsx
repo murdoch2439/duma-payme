@@ -91,7 +91,7 @@ const FailurePage =()=>{
                     {t("has failed, please check informations and retry.")}
                 </p>
 
-            <Grid container item justify='center' style={{marginTop:30}}>
+            <Grid container item justifyContent='center' style={{marginTop:30}}>
                 <Button
                     onClick={onClick}
                     style={{backgroundColor:  'red', color:'white', height:50, width:220, }}

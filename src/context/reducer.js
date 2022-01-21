@@ -6,7 +6,7 @@ const initialState = {
         name: "",
         email: "",
         phone: "",
-        currency: "",
+        currency: "USD",
         amount: "1",
         received:"",
         paymentMethod:"",
@@ -16,7 +16,7 @@ const initialState = {
         receiverEmail:"",
         transactionReference:"",
         paymentIntent:"",
-        rate:"",
+        rate:"1",
         ip:'',
         card:null,
         receiverLogo:"",
@@ -24,7 +24,7 @@ const initialState = {
         callBackUrl:"",
         error:false,
         code:"",
-        clientCurrency:"",
+        clientCurrency:"USD",
 
     },
     modalStates:{

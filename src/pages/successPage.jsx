@@ -4,7 +4,6 @@ import { Container, Paper, Grid, makeStyles,
 import CheckIcon from '@material-ui/icons/Check';
 import Zoom from '@material-ui/core/Zoom';
 import {useTranslation} from "react-i18next";
-
 import OperationsSummeryComponent from "../components/operationsSummeryComponent";
 // import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
 
@@ -99,16 +98,9 @@ const SuccessPage =()=>{
                 </Grid>
                   <p style={{textAlign:'center', fontSize:22}}>
                       {t("Payment passed successfully:")} <br />
-
-                      {/*{t("Passed successfully, thank you for reaching out! You can order another payment link for another payment")}*/}
                   </p>
                 <OperationsSummeryComponent />
-                {/*<p style={{textAlign:'center', fontSize:25}}>*/}
-                {/*    {t("Your payment to:")} <br />*/}
-                {/*    <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>*/}
-                {/*    <br />*/}
-                {/*    {t("Passed successfully, thank you for reaching out! You can order another payment link for another payment")}*/}
-                {/*</p>*/}
+
                 {/*<Grid container item justify='center' style={{marginTop:30}}>*/}
                 {/*    <Button*/}
                 {/*        onClick={onClick}*/}

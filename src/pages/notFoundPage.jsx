@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react'
 import { Container, Paper, Grid, Button
 } from "@material-ui/core";
-import axios from 'axios'
 // import CheckIcon from '@material-ui/icons/Check';
 // import CloudOffIcon from '@mui/icons-material/CloudOff';
 import picture from '../assets/ErrorSleeping.svg'
 // import PowerOffIcon from '@mui/icons-material/PowerOff';
-import {HEALTH_CHECK} from '../constants/variableNames'
 import { makeStyles, } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
@@ -50,23 +48,8 @@ const NotFoundPage =()=>{
     const onClick =() =>{
         history.goBack()
     }
-    useEffect(()=>{
-
-        (async()=>{const response = await axios.get(HEALTH_CHECK)
-            console.log('response ==> :', response.data)})()
-
-        // const getData = async() =>{
-        //     const response = await axios.get(HEALTH_CHECK)
-        //     console.log('response ==> :', response.data)
-        // }
-
-
-
-        // axios.get(HEALTH_CHECK).then((response)=>console.log('response  => :',response.data))
-    },[])
 
     return(
-
             <Container  className={classes.boxWrapper}>
                 <Paper className={classes.paper}>
 
@@ -80,23 +63,14 @@ const NotFoundPage =()=>{
                     {/*</Grid>*/}
                     <p style={{textAlign:'center', fontSize:25}}>
                         {t("Oups!!, something just went wrong!")} <br />
-                        {/*<span style={{fontWeight:'bold', fontSize:100,}}>404</span>*/}
-                        {/*<img src={picture} alt="f0f" style={{width:300}} />*/}
-                        {/*<br />*/}
-                        {/*{t("Sorry, page not found!")}*/}
                     </p>
                     <p style={{textAlign:'center',}}>
                         <img src={picture} alt="f0f" style={{width:250}} />
                     </p>
-
                     <p style={{textAlign:'center', fontSize:25}}>
-                        {/*{t("Oups!!, something just went wrong!")} <br />*/}
-                        {/*/!*<span style={{fontWeight:'bold', fontSize:100,}}>404</span>*!/*/}
-                        {/*<img src={picture} alt="f0f" style={{width:300}} />*/}
-                        {/*<br />*/}
                         {t("Sorry, page not found!")}
                     </p>
-                    <Grid container item justify='center' style={{marginTop:30}}>
+                    <Grid container item justifyContent='center' style={{marginTop:30}}>
                         <Button
                             onClick={onClick}
                             style={{backgroundColor:  'white', color:'#FBB900', height:50, width:220, }}

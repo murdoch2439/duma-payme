@@ -100,7 +100,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
     try{
         if(formValues.paymentMethod === MOBILE_MONEY ){
-
             const payloadForMobileMoney ={
                 initials: formValues.name,
                 surname:formValues.name,
@@ -113,10 +112,9 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 service: serviceProvider,
                 client: CLIENT_FOR_MOBILE_PAYMENT
             }
-            // console.log('referrrrrrrrrrr', payloadForMobileMoney.transfRefNo )
             const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
 
-            console.log('response on mobile payment init ==> :',response.data)
+            // console.log('response on mobile payment init ==> :',response.data)
             if(response.data.status === "success"){
                 setLoading(false);
                 // setTimeout(()=>{
@@ -128,7 +126,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 //     setLoading(false);
                 // }, 3000)
             }
-
 
         }else{
             const {data: clientSecret} = await axios.post(API_CREATE_PAYMENT_INTENT, {
@@ -144,7 +141,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
             })
 
             if(paymentMethodReq.error) {
-                console.error('paymentMethods Error!', paymentMethodReq.error.message)
+                console.error('paymentMethods Error  ===>', paymentMethodReq.error.message)
                 setError(paymentMethodReq.error.message);
                 setLoading(false);
                 // dispatch({
@@ -152,8 +149,8 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 //     key: SHOW_FAIL_MODAL,
                 //     value: true
                 // })
-                onFailCheckout()
-                return;
+                // onFailCheckout()
+                // return;
             }
             const {paymentIntent, error} = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: paymentMethodReq.paymentMethod.id,
@@ -192,6 +189,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                             })
                             // onSuccessCheckout()
                         }else {
+
                             onFailCheckout()
                         }
                     })
@@ -204,9 +202,9 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         }
     }catch(error){
         console.error('error from the catch', error.message)
-        setError('Something went wrong, check your infos, your network and retry');
+        // setError('Something went wrong, check your infos, your network and retry');
         setLoading(false);
-        setDisabled(true)
+        // setDisabled(true)
     }
             // dispatch({ type: 'emptyFormValue'});
         // setLoading(false);
@@ -219,7 +217,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
           <form autoComplete="off" onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />
             <Grid >
-                  {error && <p style={{ color:'red'}}>{error}</p>}
+                  {/*{error && <p style={{ color:'red'}}>{error}</p>}*/}
                   {activeStep !== 0 &&
                     (
                       <Button style={{width:'100%'}} disabled={loading} onClick={handleBack} className={classes.buttons}>

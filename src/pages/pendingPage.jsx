@@ -93,17 +93,9 @@ const PendingPage =()=>{
                     <Grid  item className={classes.boxIcon}>
                         <UpdateIcon style={{fontSize:60, color:'white'}}/>
                     </Grid>
-                    {/*<p style={{textAlign:'center', fontSize:25}}>*/}
-                    {/*    {t("Your payment to:")} <br />*/}
-                    {/*    <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>*/}
-                    {/*    <br />*/}
-                    {/*    {t("is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)")}*/}
-                    {/*</p>*/}
+
                     <p style={{textAlign:'center', fontSize:22}}>
                         {t("Payment waiting for validation")} <br />
-                        {/*<span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>*/}
-                        {/*<br />*/}
-                        {/*{t("Passed successfully, thank you for reaching out! You can order another payment link for another payment")}*/}
                     </p>
                     <OperationsSummeryComponent />
                     <Grid container item justify='center' style={{marginTop:0, paddingBottom:50}}>
