@@ -121,7 +121,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     client: CLIENT_FOR_MOBILE_PAYMENT
                 }
                 const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
-
                 console.log('response on mobile payment init ==> :',response.data)
 
                 setTimeout(()=>{
@@ -194,7 +193,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     //     key: SHOW_SUCCESS_MODAL,
                     //     value: true
                     // })
-                    //  setCardMessage(paymentIntent.id)
+
                     await axios.post(API_VALIDATE_PAYMENT_INTENT, paymentIntentObjet)
                         .then(response => {
                             console.log('Payload for validation ===>', response.data)
