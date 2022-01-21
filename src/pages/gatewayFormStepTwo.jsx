@@ -132,9 +132,6 @@ const  GatewayFormStepTwo =()=> {
 
                     }
 
-
-
-
                 </Grid>
                 <p style={{color:'red'}}>{error ? error :null}</p>
 
