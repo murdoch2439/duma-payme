@@ -161,7 +161,6 @@ const paymentInitWithBff = async () =>{
                 }
             />
         </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
            <FormControl
            required
@@ -190,7 +189,6 @@ const paymentInitWithBff = async () =>{
           <MenuItem value='GBP'>{currency}</MenuItem>
         </TextField>
       </FormControl>
-
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
@@ -213,7 +211,6 @@ const paymentInitWithBff = async () =>{
           ))}
         </TextField>
         </FormControl>
-
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
             <TextField
@@ -258,12 +255,8 @@ const paymentInitWithBff = async () =>{
             />
             {/*<FormHelperText>{`${t("To")} ${currency}`}</FormHelperText>*/}
         </Grid>
-
        </Grid>
-
    </Grid>
-
-
 
   );
 }

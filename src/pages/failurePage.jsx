@@ -63,15 +63,12 @@ const FailurePage =()=>{
   };
 
     const onClick =() =>{
-
         dispatch({
             type: CHANGE_MODAL_STATES,
             key: SHOW_FAIL_MODAL,
             value: false
         })
-
     }
-
 
   return(
      <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
@@ -90,7 +87,6 @@ const FailurePage =()=>{
                     <br />
                     {t("has failed, please check informations and retry.")}
                 </p>
-
             <Grid container item justifyContent='center' style={{marginTop:30}}>
                 <Button
                     onClick={onClick}

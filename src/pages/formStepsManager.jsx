@@ -78,15 +78,12 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     }else{
       setActiveStep((prevActiveStep) => prevActiveStep + 1)
     }
-
   }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   };
-
   const handleReset = () => setActiveStep(0)
-
   const handleSubmit = (event) =>{
     event.preventDefault()
     handleNext()
@@ -115,7 +112,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                 client: CLIENT_FOR_MOBILE_PAYMENT
             }
             const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)
-            // console.log('response on mobile payment init ==> :',response.data)
             if(response.data.status === "success"){
                 setLoading(false);
                 // setTimeout(()=>{
