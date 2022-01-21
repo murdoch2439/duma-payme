@@ -68,7 +68,6 @@ const FailurePage =()=>{
             key: SHOW_FAIL_MODAL,
             value: false
         })
-
     }
 
   return(
