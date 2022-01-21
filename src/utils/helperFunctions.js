@@ -164,10 +164,10 @@ const paymentMethods =[
         value:DEBIT_CARD,
         label:'Debit card',
     },
-    {
-        value:MOBILE_MONEY,
-        label:'Mobile Money',
-    },
+    // {
+    //     value:MOBILE_MONEY,
+    //     label:'Mobile Money',
+    // },
 ]
 
 

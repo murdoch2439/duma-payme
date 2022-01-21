@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { Container, Paper, Grid, makeStyles,
 } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
-// import {List, makeStyles, ListItem, ListItemText, TextField, Typography} from '@material-ui/core'
 import Zoom from '@material-ui/core/Zoom';
 import {useTranslation} from "react-i18next";
 
