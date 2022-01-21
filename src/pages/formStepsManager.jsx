@@ -78,7 +78,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     }else{
       setActiveStep((prevActiveStep) => prevActiveStep + 1)
     }
-
   }
 
   const handleBack = () => {
