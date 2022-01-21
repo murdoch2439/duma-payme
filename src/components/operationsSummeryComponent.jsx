@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, Paper, Grid, List, makeStyles, ListItem, ListItemText, Typography
+import {  List, makeStyles, ListItem, ListItemText, Typography
 } from "@material-ui/core";
 import {useTranslation} from "react-i18next";
 import {useStateValue} from "../context";

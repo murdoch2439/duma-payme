@@ -98,7 +98,7 @@ const PendingPage =()=>{
                         {t("Payment waiting for validation")} <br />
                     </p>
                     <OperationsSummeryComponent />
-                    <Grid container item justify='center' style={{marginTop:0, paddingBottom:50}}>
+                    <Grid container item justifyContent='center' style={{marginTop:0, paddingBottom:50}}>
                         <Button
                             onClick={onClick}
                             style={{

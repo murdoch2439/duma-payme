@@ -87,7 +87,7 @@ const GatewayFormStepOne =()=> {
                         value: true
                     })
                 }else{
-                    responseManager({responseFromBffPaymentInit, formValues})
+                    responseManager({response:responseFromBffPaymentInit, formValues})
                 }
 
                    // .then(   (response)=>{

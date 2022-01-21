@@ -14,7 +14,7 @@ import {
 } from '../constants/variableNames';
 // import {  useHistory
 // } from "react-router-dom";
-import {backgroundChanger} from "../utils/helperFunctions";
+import {backgroundChanger, firstThreeDigit} from "../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
 import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
 
@@ -68,20 +68,20 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [disabled, setDisabled] = useState(false);
     const {t, i18n} = useTranslation()
 
-    const serviceProvider = formValues.phone.substring(0,3)
+    // const serviceProvider = formValues.phone.substring(0,3)
     // const history = useHistory()
     const stripe = useStripe();
 
-    const handleNext = () => {
+    const handleNextStep = () => {
         if(activeStep === 1){
             capture().then()
         }else{
             setActiveStep((prevActiveStep) => prevActiveStep + 1)
         }
     };
-    const onClickHandler =(lang)=>{
-        i18n.changeLanguage(lang).then()
-    }
+    // const onClickHandler =(lang)=>{
+    //     i18n.changeLanguage(lang).then()
+    // }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1)
@@ -89,7 +89,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const handleReset = () => setActiveStep(0);
     const handleSubmit = (event) =>{
         event.preventDefault()
-        handleNext()
+        handleNextStep()
     }
     const capture = async () => {
 
@@ -114,10 +114,11 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     surname:formValues.name,
                     email:formValues.email,
                     phone:formValues.phone,
+                    currency: formValues.currency,
                     amount: formValues.amount,
                     transfRefNo: formValues.transactionReference,
                     paymentRequestId: formValues.paymentRequestId,
-                    service: serviceProvider,
+                    service: firstThreeDigit(formValues.phone),
                     client: CLIENT_FOR_MOBILE_PAYMENT
                 }
                 const response =  await axios.post(API_MOBILE_MONEY_PAYMENT_INIT, payloadForMobileMoney)

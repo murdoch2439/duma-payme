@@ -4,7 +4,6 @@ import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} f
 import { useStateValue } from '../context';
 import '../constants/styles/cardSectionStyles.css'
 import {
-    currencyManager,
     nameFormating,
     receivingAmount,
     sendingAmount,
@@ -126,16 +125,16 @@ const  FormStepTwo =()=> {
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
                                 label={t("Mobile Money Number")}
-                                name="sendermobilenumber"
+                                name="phone"
                                 variant="outlined"
                                 type="tel"
                                 required
                                 fullWidth
-                                value={formValues.sendermobilenumber}
+                                value={formValues.phone}
                                 onChange={e =>
                                     dispatch({
                                         type: EDIT_FORM_VALUES,
-                                        key: "sendermobilenumber",
+                                        key: "phone",
                                         value: e.target.value
                                     })
                                 }

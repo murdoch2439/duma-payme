@@ -138,6 +138,8 @@ const currencyManager = (currency) =>{
         return "CA$"
     }
 }
+
+const firstThreeDigit = string => string.substring(0,3)
 const getClientIpAddress = async() =>{
     try{
         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
@@ -172,6 +174,7 @@ const paymentMethods =[
 
 
 const responseManager = ({response, formValues}) =>{
+
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
     formValues.receiverLogo = response.data.clientLogo
@@ -190,4 +193,4 @@ const responseManager = ({response, formValues}) =>{
     }
 }
 
-export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress}
+export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress, firstThreeDigit}

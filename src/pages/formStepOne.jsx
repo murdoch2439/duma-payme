@@ -33,7 +33,7 @@ const FormStepOne =()=> {
 
   useEffect(()=>{
       if(formValues.currency === ''){
-          paymentInitWithBff().then()
+          paymentInitWithBff()
       }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
@@ -51,6 +51,7 @@ const paymentInitWithBff = async () =>{
                 const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                 setCurrency(responseFromBffPaymentInit.data.currency)
                 setClientCurrency(responseFromBffPaymentInit.data.clientCurrency)
+
                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
                     dispatch({
                         type: CHANGE_MODAL_STATES,
@@ -58,8 +59,9 @@ const paymentInitWithBff = async () =>{
                         value: true
                     })
                 }else{
-                    responseManager({responseFromBffPaymentInit, formValues})
+                    responseManager({response :responseFromBffPaymentInit, formValues})
                 }
+
                     // .then(  (response)=>{
                 //     setCurrency(response.data.currency)
                 //     setClientCurrency(response.data.clientCurrency)
