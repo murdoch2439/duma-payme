@@ -27,7 +27,7 @@ const  App =()=> {
     starter()
   },[])
   const starter = () =>{
-      setLoading(false)
+      setTimeout(()=> setLoading(false), 5000)
   }
 
   return (

@@ -59,6 +59,7 @@ const paymentInitWithBff = async () =>{
                         value: true
                     })
                 }else{
+                    console.log('response Data ====>',responseFromBffPaymentInit)
                     responseManager({response :responseFromBffPaymentInit, formValues})
                 }
 
