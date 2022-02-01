@@ -156,14 +156,12 @@ const LayoutManager = () => {
                                           sm={8}
                                           md={12}
                                           className={classes.cardType}
-
                                       >
                                           <div>
                                               {
                                                   cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
                                               }
                                           </div>
-
                                       </Grid>
                                   </div>
                             </div>
