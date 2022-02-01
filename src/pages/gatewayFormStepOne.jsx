@@ -91,7 +91,6 @@ const GatewayFormStepOne =()=> {
                 }
 
 
-
             }
 
         }catch(error){
