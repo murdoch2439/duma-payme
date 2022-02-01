@@ -33,7 +33,7 @@ const FormStepOne =()=> {
 
   useEffect(()=>{
       if(formValues.currency === ''){
-          paymentInitWithBff()
+          paymentInitWithBff().then()
       }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
@@ -59,7 +59,7 @@ const paymentInitWithBff = async () =>{
                         value: true
                     })
                 }else{
-                    console.log('response Data ====>',responseFromBffPaymentInit)
+                    // console.log('response Data ====>',responseFromBffPaymentInit)
                     responseManager({response :responseFromBffPaymentInit, formValues})
                 }
 
