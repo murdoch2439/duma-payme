@@ -185,7 +185,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                                 key: SHOW_SUCCESS_MODAL,
                                 value: true
                             })
-
                         }else{
                             console.log('Something happened during validation with Bff ===>', responseFromBffValidation.data )
                             // onFailCheckout()
