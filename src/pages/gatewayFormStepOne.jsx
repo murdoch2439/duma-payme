@@ -99,11 +99,7 @@ const GatewayFormStepOne =()=> {
                    //          type: CHANGE_MODAL_STATES,
                    //          key: SHOW_ACCESS_DENIED_MODAL,
                    //          value: true
-                   //      })
-                   //  }else{
-                   //      responseManager({response, formValues})
-                   //  }
-                // })
+
             }
 
         }catch(error){
