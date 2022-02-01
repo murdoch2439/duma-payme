@@ -167,7 +167,6 @@ const LayoutManager = () => {
 
                                       </Grid>
                                   </div>
-
                             </div>
                           </Box>
 
