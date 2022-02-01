@@ -54,7 +54,6 @@ const FailurePage =()=>{
   const [checked, setChecked] = useState(false);
   useEffect(()=>{
     handleChange()
-
   },[])
 
   const handleChange = () => {
