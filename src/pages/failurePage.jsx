@@ -100,5 +100,4 @@ const FailurePage =()=>{
      </Zoom>
   )
 }
-
 export default FailurePage
