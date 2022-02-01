@@ -9,7 +9,6 @@ import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         height:640,
