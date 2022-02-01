@@ -46,7 +46,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-
 const FailurePage =()=>{
   const [{ formValues }, dispatch] = useStateValue();
   const {t} = useTranslation()
