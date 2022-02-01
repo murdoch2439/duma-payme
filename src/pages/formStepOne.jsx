@@ -63,20 +63,6 @@ const paymentInitWithBff = async () =>{
                     responseManager({response :responseFromBffPaymentInit, formValues})
                 }
 
-                    // .then(  (response)=>{
-                //     setCurrency(response.data.currency)
-                //     setClientCurrency(response.data.clientCurrency)
-                //     if((response.data.error && response.data.code === CODE_403)|| response.data.code === CODE_500){
-                //         dispatch({
-                //             type: CHANGE_MODAL_STATES,
-                //             key: SHOW_ACCESS_DENIED_MODAL,
-                //             value: true
-                //         })
-                //     }else{
-                //         responseManager({response, formValues})
-                //     }
-                //
-                // })
             }
         }else{
             console.log('Ip is not provided!!!!!!!!!!')
