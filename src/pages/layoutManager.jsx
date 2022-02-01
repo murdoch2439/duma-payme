@@ -33,13 +33,18 @@ const useStyles = makeStyles(() => ({
     leftContainerWrapper:{
       width:'75%',
         // backgroundImage:`url(${cover})` ,
-      textAlign:'center'
+      // textAlign:'center',
+        backgroundColor:'purple'
     },
     imagesBox:{
         // backgroundImage:`url(${cover})`,
-        height:'100%',
-        borderTopLeftRadius:10,
+        // height:'100%',
         borderBottomLeftRadius:10,
+        backgroundColor:'green',
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center'
     },
     dumaLogoAndLangContainer:{
         display:'flex',
@@ -142,9 +147,9 @@ const LayoutManager = () => {
                                   <Grid
                                       item
                                       xs={12}
-                                      sm={12}
+                                      sm={8}
                                       md={12}
-                                      style={{ marginTop:10, textAlign:'center',}}
+                                      style={{ marginTop:10, textAlign:'center', justifyContent:'center', alignItems:'center', backgroundColor:'red', width:'100%'}}
                                   >
                                     {
                                         cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
