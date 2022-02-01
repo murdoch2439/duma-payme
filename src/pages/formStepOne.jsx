@@ -74,11 +74,9 @@ const paymentInitWithBff = async () =>{
 }
 
   return (
-
       <Grid>
           <Grid item   xs={12} style={{display:'flex', justifyContent:'space-between'}} >
               <Typography variant="h6">{t("Payer Information")}</Typography>
-
           </Grid>
       <Grid container spacing={5} style={{ marginTop:0 ,marginBottom:0}}  >
 
