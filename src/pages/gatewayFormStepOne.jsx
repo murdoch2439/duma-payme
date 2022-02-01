@@ -95,8 +95,7 @@ const GatewayFormStepOne =()=> {
                    //  setCurrency(response.data.currency)
                    //  setAmount(response.data.amount)
                    //  if((response.data.error && response.data.code === CODE_403) || response.data.code === CODE_500){
-                   //      dispatch({
-                   //
+
 
             }
 
