@@ -13,7 +13,6 @@ import {useTranslation} from "react-i18next";
 
 
 const FormStepOne =()=> {
-
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
     const [clientCurrency, setClientCurrency] = useState('')
@@ -29,7 +28,6 @@ const FormStepOne =()=> {
     }
 
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
-
   useEffect(()=>{
       if(formValues.currency === ''){
           paymentInitWithBff().then()
