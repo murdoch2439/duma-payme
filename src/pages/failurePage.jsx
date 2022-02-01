@@ -40,6 +40,12 @@ const useStyles = makeStyles(() => ({
       justifyContent:'center',
       alignItems:'center',
     },
+    button:{
+        backgroundColor:  'red',
+        color:'white',
+        height:50,
+        width:220,
+    }
 }));
 
 const FailurePage =()=>{
@@ -84,7 +90,7 @@ const FailurePage =()=>{
             <Grid container item justifyContent='center' style={{marginTop:30}}>
                 <Button
                     onClick={onClick}
-                    style={{backgroundColor:  'red', color:'white', height:50, width:220, }}
+                    className={classes.button}
                 >
                     {t("Retry")}
                 </Button>
