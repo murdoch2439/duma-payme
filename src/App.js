@@ -3,7 +3,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.css';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './constants/theme'
-import {StateProvider, useStateValue} from './context'
+import {StateProvider,} from './context'
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
 import LayoutManager from './pages/layoutManager';
