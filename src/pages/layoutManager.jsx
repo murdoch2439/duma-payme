@@ -34,17 +34,16 @@ const useStyles = makeStyles(() => ({
       width:'75%',
         // backgroundImage:`url(${cover})` ,
       // textAlign:'center',
-        backgroundColor:'purple'
     },
     imagesBox:{
         // backgroundImage:`url(${cover})`,
-        // height:'100%',
+        height:'90%',
         borderBottomLeftRadius:10,
-        backgroundColor:'green',
         display:'flex',
         flexDirection:'column',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        // backgroundColor:'pink'
     },
     dumaLogoAndLangContainer:{
         display:'flex',
@@ -54,13 +53,22 @@ const useStyles = makeStyles(() => ({
         width:50,
     },
     organizationLogo:{
-        height:"75%",
+        height:"80%",
         display:'flex',
+        flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
+        // backgroundColor:'grey',
     },
     clientLogo:{
         width:250,
+    },
+    cardType: {
+        // height:"10%",
+        // backgroundColor:'red',
+        display:'flex',
+        alignItems:'flex-end',
+        marginBottom:20,
     }
 }));
 
@@ -132,6 +140,7 @@ const LayoutManager = () => {
 
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
+                                      {/*<div>Hello</div>*/}
                                       <img
                                           src={
                                               merchantKey ?
@@ -142,19 +151,24 @@ const LayoutManager = () => {
                                           className={classes.clientLogo}
                                           onError={(e)=>e.target.src=cover}
                                       />
+                                      <Grid
+                                          item
+                                          xs={12}
+                                          sm={8}
+                                          md={12}
+                                          className={classes.cardType}
+
+                                      >
+                                          <div>
+                                              {
+                                                  cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
+                                              }
+                                          </div>
+
+                                      </Grid>
                                   </div>
 
-                                  <Grid
-                                      item
-                                      xs={12}
-                                      sm={8}
-                                      md={12}
-                                      style={{ marginTop:10, textAlign:'center', justifyContent:'center', alignItems:'center', backgroundColor:'red', width:'100%'}}
-                                  >
-                                    {
-                                        cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
-                                    }
-                                  </Grid>
+
                             </div>
                           </Box>
 
