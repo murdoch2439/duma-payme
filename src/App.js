@@ -23,7 +23,6 @@ const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2c
 
 const  App =()=> {
   const [loading, setLoading] = useState(true)
-  // const [{ formValues,  }, dispatch] = useStateValue();
   useEffect(()=>{
     starter()
   },[])
