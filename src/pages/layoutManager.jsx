@@ -140,7 +140,6 @@ const LayoutManager = () => {
 
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
-                                      {/*<div>Hello</div>*/}
                                       <img
                                           src={
                                               merchantKey ?
