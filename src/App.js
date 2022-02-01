@@ -3,7 +3,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.css';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './constants/theme'
-import {StateProvider} from './context'
+import {StateProvider, useStateValue} from './context'
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
 import LayoutManager from './pages/layoutManager';
@@ -23,11 +23,12 @@ const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2c
 
 const  App =()=> {
   const [loading, setLoading] = useState(true)
+  // const [{ formValues,  }, dispatch] = useStateValue();
   useEffect(()=>{
     starter()
   },[])
   const starter = () =>{
-      setTimeout(()=> setLoading(false), 5000)
+      setTimeout(()=> setLoading(false), 3000)
   }
 
   return (
