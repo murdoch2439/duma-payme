@@ -66,7 +66,7 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [loading, setLoading] = useState(false)
     // const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
-    const {t, i18n} = useTranslation()
+    const {t,} = useTranslation()
 
     // const serviceProvider = formValues.phone.substring(0,3)
     // const history = useHistory()
