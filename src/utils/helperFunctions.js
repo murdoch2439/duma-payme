@@ -172,7 +172,6 @@ const paymentMethods =[
     // },
 ]
 
-
 const responseManager = ({response, formValues}) =>{
 
     formValues.currency = response.data.currency
