@@ -89,7 +89,6 @@ const GatewayFormStepOne =()=> {
                 }else{
                     responseManager({response:responseFromBffPaymentInit, formValues})
                 }
-
                    // .then(   (response)=>{
                    //  console.log('response Data ====>', response.data)
                    //  setCurrency(response.data.currency)
