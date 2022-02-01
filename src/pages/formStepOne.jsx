@@ -80,7 +80,6 @@ const paymentInitWithBff = async () =>{
           </Grid>
       <Grid container spacing={5} style={{ marginTop:0 ,marginBottom:0}}  >
 
-
       <Grid  item xs={12} sm={4} md={6} >
             <TextField
                 label={t("Name on the card")}
