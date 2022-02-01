@@ -96,9 +96,7 @@ const GatewayFormStepOne =()=> {
                    //  setAmount(response.data.amount)
                    //  if((response.data.error && response.data.code === CODE_403) || response.data.code === CODE_500){
                    //      dispatch({
-                   //          type: CHANGE_MODAL_STATES,
-                   //          key: SHOW_ACCESS_DENIED_MODAL,
-                   //          value: true
+                   //
 
             }
 
