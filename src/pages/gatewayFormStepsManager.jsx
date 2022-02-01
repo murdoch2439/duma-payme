@@ -64,7 +64,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
     const [activeStep, setActiveStep] = useState(0);
     const [{ formValues,  }, dispatch] = useStateValue();
     const [loading, setLoading] = useState(false)
-    // const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const {t,} = useTranslation()
 
