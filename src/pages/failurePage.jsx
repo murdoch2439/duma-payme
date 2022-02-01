@@ -42,7 +42,6 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-
 const FailurePage =()=>{
   const [{ formValues }, dispatch] = useStateValue();
   const {t} = useTranslation()
@@ -61,7 +60,7 @@ const FailurePage =()=>{
         dispatch({
             type: CHANGE_MODAL_STATES,
             key: SHOW_FAIL_MODAL,
-            value: false
+            value: false,
         })
     }
 
