@@ -50,7 +50,6 @@ const useStyles = makeStyles(() => ({
 const FailurePage =()=>{
   const [{ formValues }, dispatch] = useStateValue();
   const {t} = useTranslation()
-
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
   useEffect(()=>{
