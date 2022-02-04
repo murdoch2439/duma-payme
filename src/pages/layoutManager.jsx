@@ -22,7 +22,6 @@ import {
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
-
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor:'white',
@@ -33,13 +32,16 @@ const useStyles = makeStyles(() => ({
     leftContainerWrapper:{
       width:'75%',
         // backgroundImage:`url(${cover})` ,
-      textAlign:'center'
+      // textAlign:'center',
     },
     imagesBox:{
         // backgroundImage:`url(${cover})`,
-        height:'100%',
-        borderTopLeftRadius:10,
+        height:'90%',
         borderBottomLeftRadius:10,
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center',
     },
     dumaLogoAndLangContainer:{
         display:'flex',
@@ -49,13 +51,21 @@ const useStyles = makeStyles(() => ({
         width:50,
     },
     organizationLogo:{
-        height:"75%",
+        height:"80%",
         display:'flex',
+        flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
     },
     clientLogo:{
         width:250,
+    },
+    cardType: {
+        // height:"10%",
+        // backgroundColor:'red',
+        display:'flex',
+        alignItems:'flex-end',
+        marginBottom:20,
     }
 }));
 
@@ -137,19 +147,20 @@ const LayoutManager = () => {
                                           className={classes.clientLogo}
                                           onError={(e)=>e.target.src=cover}
                                       />
+                                      <Grid
+                                          item
+                                          xs={12}
+                                          sm={8}
+                                          md={12}
+                                          className={classes.cardType}
+                                      >
+                                          <div>
+                                              {
+                                                  cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
+                                              }
+                                          </div>
+                                      </Grid>
                                   </div>
-
-                                  <Grid
-                                      item
-                                      xs={12}
-                                      sm={12}
-                                      md={12}
-                                      style={{ marginTop:10, textAlign:'center',}}
-                                  >
-                                    {
-                                        cardsLogo.map(card => <img key={card} src={`./cards/${card}.png`} alt={card} width="40px" style={{ padding: "0 5px" }} />)
-                                    }
-                                  </Grid>
                             </div>
                           </Box>
 
@@ -174,5 +185,4 @@ const LayoutManager = () => {
       </>
     )
 }
-
 export default LayoutManager;

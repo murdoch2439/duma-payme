@@ -138,7 +138,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
 
             if(paymentMethodReq.error) {
                 console.error('paymentMethods Error  ===>', paymentMethodReq.error.message)
-                // setError(paymentMethodReq.error.message);
                 setLoading(false);
                 // dispatch({
                 //     type: CHANGE_MODAL_STATES,
@@ -152,9 +151,7 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                     payment_method: paymentMethodReq.paymentMethod.id,
                 })
                 // console.log(paymentIntent)
-                // setError(false);
                 setDisabled(true)
-
                 if (paymentIntent && paymentIntent.status === SUCCEEDED) {
                     formValues.paymentIntent = paymentIntent.id
                     dispatch({
@@ -188,7 +185,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
                                 key: SHOW_SUCCESS_MODAL,
                                 value: true
                             })
-
                         }else{
                             console.log('Something happened during validation with Bff ===>', responseFromBffValidation.data )
                             // onFailCheckout()

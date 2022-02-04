@@ -9,7 +9,6 @@ import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
-
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         height:640,
@@ -40,22 +39,21 @@ const useStyles = makeStyles(() => ({
       justifyContent:'center',
       alignItems:'center',
     },
-    icon:{
-
+    button:{
+        backgroundColor:  'red',
+        color:'white',
+        height:50,
+        width:220,
     }
 }));
-
-
 
 const FailurePage =()=>{
   const [{ formValues }, dispatch] = useStateValue();
   const {t} = useTranslation()
-
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
   useEffect(()=>{
     handleChange()
-
   },[])
 
   const handleChange = () => {
@@ -66,7 +64,7 @@ const FailurePage =()=>{
         dispatch({
             type: CHANGE_MODAL_STATES,
             key: SHOW_FAIL_MODAL,
-            value: false
+            value: false,
         })
     }
 
@@ -90,7 +88,7 @@ const FailurePage =()=>{
             <Grid container item justifyContent='center' style={{marginTop:30}}>
                 <Button
                     onClick={onClick}
-                    style={{backgroundColor:  'red', color:'white', height:50, width:220, }}
+                    className={classes.button}
                 >
                     {t("Retry")}
                 </Button>
@@ -100,5 +98,4 @@ const FailurePage =()=>{
      </Zoom>
   )
 }
-
 export default FailurePage

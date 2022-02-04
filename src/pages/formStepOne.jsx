@@ -12,9 +12,7 @@ import {
 import {useTranslation} from "react-i18next";
 
 
-
 const FormStepOne =()=> {
-
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
     const [clientCurrency, setClientCurrency] = useState('')
@@ -30,10 +28,9 @@ const FormStepOne =()=> {
     }
 
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
-
   useEffect(()=>{
       if(formValues.currency === ''){
-          paymentInitWithBff()
+          paymentInitWithBff().then()
       }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
@@ -59,44 +56,26 @@ const paymentInitWithBff = async () =>{
                         value: true
                     })
                 }else{
+                    // console.log('response Data ====>',responseFromBffPaymentInit)
                     responseManager({response :responseFromBffPaymentInit, formValues})
                 }
 
-                    // .then(  (response)=>{
-                //     setCurrency(response.data.currency)
-                //     setClientCurrency(response.data.clientCurrency)
-                //     if((response.data.error && response.data.code === CODE_403)|| response.data.code === CODE_500){
-                //         dispatch({
-                //             type: CHANGE_MODAL_STATES,
-                //             key: SHOW_ACCESS_DENIED_MODAL,
-                //             value: true
-                //         })
-                //     }else{
-                //         responseManager({response, formValues})
-                //     }
-                //
-                // })
             }
         }else{
             console.log('Ip is not provided!!!!!!!!!!')
         }
-
     }catch(error){
         console.error('Error on payment initialization ==> : ',error)
         }
 }
 
   return (
-
       <Grid>
           <Grid item   xs={12} style={{display:'flex', justifyContent:'space-between'}} >
               <Typography variant="h6">{t("Payer Information")}</Typography>
-
           </Grid>
       <Grid container spacing={5} style={{ marginTop:0 ,marginBottom:0}}  >
-
-
-      <Grid  item xs={12} sm={4} md={6} >
+      <Grid  item xs={12} sm={12} md={6} >
             <TextField
                 label={t("Name on the card")}
                 name="name"
@@ -115,7 +94,7 @@ const paymentInitWithBff = async () =>{
             />
           </Grid>
 
-        <Grid item xs={12} sm={4} md={6} >
+        <Grid item xs={12} sm={6} md={6} >
             <TextField
                 label={t("Email address")}
                 name="email"
@@ -142,7 +121,7 @@ const paymentInitWithBff = async () =>{
                 }
             />
         </Grid>
-        <Grid item xs={12} sm={4} md={6}>
+        <Grid item xs={12} sm={6} md={6}>
             <TextField
                 label={t("Phone Number")}
                 name="phone"
@@ -190,7 +169,6 @@ const paymentInitWithBff = async () =>{
         </TextField>
       </FormControl>
         </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
         <FormControl style={{minWidth: '100%',}}>
             <TextField

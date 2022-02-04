@@ -75,7 +75,6 @@ const GatewayFormStepOne =()=> {
         try{
             const paymentInfo = {  merchantKey, paymentRequestId }
             if(merchantKey){
-
                const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                 console.log('response Data ====>', responseFromBffPaymentInit.data)
                 setCurrency(responseFromBffPaymentInit.data.currency)
@@ -89,21 +88,6 @@ const GatewayFormStepOne =()=> {
                 }else{
                     responseManager({response:responseFromBffPaymentInit, formValues})
                 }
-
-                   // .then(   (response)=>{
-                   //  console.log('response Data ====>', response.data)
-                   //  setCurrency(response.data.currency)
-                   //  setAmount(response.data.amount)
-                   //  if((response.data.error && response.data.code === CODE_403) || response.data.code === CODE_500){
-                   //      dispatch({
-                   //          type: CHANGE_MODAL_STATES,
-                   //          key: SHOW_ACCESS_DENIED_MODAL,
-                   //          value: true
-                   //      })
-                   //  }else{
-                   //      responseManager({response, formValues})
-                   //  }
-                // })
             }
 
         }catch(error){

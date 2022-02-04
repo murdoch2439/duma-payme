@@ -1,4 +1,4 @@
-import {CAD, DEBIT_CARD, EUR, GBP, IP_PROVIDER_API_KEY, MOBILE_MONEY, USD} from "../constants/variableNames";
+import {CAD, DEBIT_CARD, EUR, GBP, IP_PROVIDER_API_KEY, USD} from "../constants/variableNames";
 import axios from "axios";
 
 const nameFormating = (string) =>{
@@ -171,7 +171,6 @@ const paymentMethods =[
     //     label:'Mobile Money',
     // },
 ]
-
 
 const responseManager = ({response, formValues}) =>{
 
