@@ -41,7 +41,6 @@ const useStyles = makeStyles(() => ({
         color:'black'
     },
     title: {
-
     },
 }));
 
