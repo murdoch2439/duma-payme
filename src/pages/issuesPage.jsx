@@ -55,7 +55,7 @@ const IssuesPage =()=>{
                 </Grid>
                 <div style={{height:40}} />
                 <p style={{textAlign:'center', fontSize:25}}>
-                    {t("Oups!!, something just went wrong!")} <br />
+                    {t("Oups!!, something just went wrong!")}<br />
                 </p>
                 <p style={{textAlign:'center',}}>
                     <img src={picture} alt="f0f" style={{width:250}} />
