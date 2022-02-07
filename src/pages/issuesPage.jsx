@@ -36,6 +36,11 @@ const useStyles = makeStyles(() => ({
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
+    },
+    paragraph:{
+        fontWeight:"bold",
+        fontSize:25,
+        color:"black",
     }
 }));
 
@@ -51,7 +56,7 @@ const IssuesPage =()=>{
         <Container  className={classes.boxWrapper}>
             <Paper className={classes.paper}>
                 <Grid container   className={classes.boxTitle}>
-                    <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
+                    <p style={classes.paragraph} >{t("Not found")}</p>
                 </Grid>
                 <div style={{height:40}} />
                 <p style={{textAlign:'center', fontSize:25}}>
