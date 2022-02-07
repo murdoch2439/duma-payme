@@ -14,7 +14,6 @@ import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import {totalToPay} from "../utils/helperFunctions";
 
-
 const CARD_ELEMENT_OPTIONS = {
     style: {
         base: {
