@@ -41,6 +41,10 @@ const useStyles = makeStyles(() => ({
         fontWeight:"bold",
         fontSize:25,
         color:"black",
+    },
+    text:{
+        textAlign:'center',
+        fontSize:25
     }
 }));
 
@@ -59,13 +63,13 @@ const IssuesPage =()=>{
                     <p style={classes.paragraph} >{t("Not found")}</p>
                 </Grid>
                 <div style={{height:40}} />
-                <p style={{textAlign:'center', fontSize:25}}>
+                <p style={classes.text}>
                     {t("Oups!!, something just went wrong!")}<br />
                 </p>
                 <p style={{textAlign:'center',}}>
                     <img src={picture} alt="f0f" style={{width:250}} />
                 </p>
-                <p style={{textAlign:'center', fontSize:25}}>
+                <p style={classes.text}>
                     {t("Make sure the link is correct")}
                 </p>
                 <Grid container item style={{marginTop:30, justifyContent:'center',}}>
