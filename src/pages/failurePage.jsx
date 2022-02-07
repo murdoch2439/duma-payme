@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Container, Paper, Grid, Button} from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
-import { makeStyles, } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
 import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
