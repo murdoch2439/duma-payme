@@ -15,7 +15,6 @@ const sendingAmount = ({currency, amount,}) =>{
         return `$ ${parseInt(amount).toFixed(2)}`
     }if(currency === EUR){
         return `€ ${parseInt(amount).toFixed(2)}`
-
     }if(currency === GBP){
         return `£ ${parseInt(amount).toFixed(2)}`
 
