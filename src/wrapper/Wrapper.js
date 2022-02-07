@@ -17,7 +17,6 @@ import NotFoundPage from "../pages/notFoundPage";
 // import {StateProvider} from "../context";
 import {PUBLIC_KEY} from "../constants/variableNames";
 
-
 const stripePromise = loadStripe(PUBLIC_KEY)
 
 
@@ -52,8 +51,6 @@ const Wrapper = () =>{
                 }
             </Router>
         </>
-
-
 
     )
 }
