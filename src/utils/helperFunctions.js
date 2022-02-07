@@ -165,7 +165,6 @@ const paymentMethods =[
 ]
 
 const responseManager = ({response, formValues}) =>{
-    console.log('response ===>', response)
 
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
