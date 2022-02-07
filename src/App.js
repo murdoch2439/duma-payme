@@ -18,8 +18,9 @@ import NotFoundPage from "./pages/notFoundPage";
 import SuccessPage from "./pages/successPage";
 import FailurePage from "./pages/failurePage";
 import IssuesPage from "./pages/issuesPage";
+import {PUBLIC_KEY} from "./constants/variableNames";
 
-const stripePromise = loadStripe("pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2cp3ZI4cDSTWJ15AHTy1HWREb7HrObRwXcsneRfbLXvo5IQKQWM2000bkx3L5tB")
+const stripePromise = loadStripe(PUBLIC_KEY)
 
 const  App =()=> {
   const [loading, setLoading] = useState(true)
