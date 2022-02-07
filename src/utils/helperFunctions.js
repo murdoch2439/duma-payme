@@ -25,7 +25,7 @@ const sendingAmount = ({currency, amount,}) =>{
     }if(currency === CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
     }
-      // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
+
 }
 
 const totalToPay = ({currency, amount, }) =>{
