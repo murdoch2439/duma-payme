@@ -84,4 +84,5 @@ const IssuesPage =()=>{
         </Container>
     )
 }
+
 export default IssuesPage
