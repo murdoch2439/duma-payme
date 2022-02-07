@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-    Container, Paper, Grid, Button,
-} from "@material-ui/core";
+import {Container, Paper, Grid, Button} from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles, } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
