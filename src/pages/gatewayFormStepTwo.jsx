@@ -53,7 +53,6 @@ const  GatewayFormStepTwo =()=> {
     const {t} = useTranslation()
     const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
 
-
     const [error, setError] = useState(null);
     const classes = useStyles();
 
