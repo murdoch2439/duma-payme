@@ -57,7 +57,6 @@ const  GatewayFormStepTwo =()=> {
     const [error, setError] = useState(null);
     const classes = useStyles();
 
-
     const handleChange = async(event) =>{
         // setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
