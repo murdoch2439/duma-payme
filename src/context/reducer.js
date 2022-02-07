@@ -25,6 +25,7 @@ const initialState = {
         error:false,
         code:"",
         clientCurrency:"",
+        clientKey:""
 
     },
     modalStates:{

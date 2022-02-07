@@ -165,6 +165,7 @@ const paymentMethods =[
 ]
 
 const responseManager = ({response, formValues}) =>{
+    console.log('response ===>', response)
 
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
@@ -175,6 +176,7 @@ const responseManager = ({response, formValues}) =>{
     formValues.paymentRequestId = response.data.paymentRequestId
     formValues.error = response.data.error
     formValues.code = response.data.code
+    formValues.clientKey=response.data.clientKey
     if(response.data.rate){
         formValues.rate = response.data.rate
     }if(response.data.callBackUrl){
