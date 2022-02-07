@@ -50,7 +50,6 @@ let theme = {
         "hint": "rgba(0, 0, 0, 0.38)"
       },
       fontSize: {
-
       }
     },
   };
