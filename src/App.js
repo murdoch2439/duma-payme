@@ -19,6 +19,7 @@ import SuccessPage from "./pages/successPage";
 import FailurePage from "./pages/failurePage";
 import IssuesPage from "./pages/issuesPage";
 import {PUBLIC_KEY} from "./constants/variableNames";
+import Wrapper from "./wrapper/Wrapper";
 
 const stripePromise = loadStripe(PUBLIC_KEY)
 
@@ -34,24 +35,25 @@ const  App =()=> {
   return (
     <ThemeProvider theme={theme}>
     <StateProvider>
-      <Router>
-          {
-            loading ?
-                <div className='Loading'>
-                  <LoadingComponent />
-                </div>:
-            <Elements stripe={stripePromise}>
-            <Switch>
-              <Route path="/" exact component={LayoutManager} />
-              <Route path="/duma-pay" exact component={MerchantApplication} />
-              <Route path="/success" exact component={SuccessPage} />
-              <Route path="/error" exact component={FailurePage} />
-              <Route path="/issue" exact component={IssuesPage} />
-              <Route path="*"  component={NotFoundPage} />
-            </Switch>
-            </Elements>
-          }
-        </Router>
+      <Wrapper />
+      {/*<Router>*/}
+      {/*    {*/}
+      {/*      loading ?*/}
+      {/*          <div className='Loading'>*/}
+      {/*            <LoadingComponent />*/}
+      {/*          </div>:*/}
+      {/*      <Elements stripe={stripePromise}>*/}
+      {/*      <Switch>*/}
+      {/*        <Route path="/" exact component={LayoutManager} />*/}
+      {/*        <Route path="/duma-pay" exact component={MerchantApplication} />*/}
+      {/*        <Route path="/success" exact component={SuccessPage} />*/}
+      {/*        <Route path="/error" exact component={FailurePage} />*/}
+      {/*        <Route path="/issue" exact component={IssuesPage} />*/}
+      {/*        <Route path="*"  component={NotFoundPage} />*/}
+      {/*      </Switch>*/}
+      {/*      </Elements>*/}
+      {/*    }*/}
+      {/*  </Router>*/}
     </StateProvider>
     </ThemeProvider>
   );
