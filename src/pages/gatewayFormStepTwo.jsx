@@ -68,7 +68,6 @@ const  GatewayFormStepTwo =()=> {
     }
 
     return (
-
         <Grid >
             <Grid  style={{ width:'100%', display:'flex'}} >
 
@@ -85,7 +84,6 @@ const  GatewayFormStepTwo =()=> {
                             <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
                             <Typography variant="body1" style={{fontWeight:'500'}}>{totalToPay(businessObject)}</Typography>
                         </ListItem>
-
                     </List>
 
                 </Grid>
