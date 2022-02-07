@@ -105,7 +105,6 @@ const  getUrlParams =()=> {
     });
     return vars;
 }
-
 // export const getUrlPath =()=>{
 //     // home = home.substr(0, home.lastIndexOf('/'))
 //     // console.log('path ==>',path)
