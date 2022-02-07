@@ -199,7 +199,6 @@ const GatewayFormStepOne =()=> {
                 </Grid>
             </Grid>
         </Grid>
-
     );
 }
 
