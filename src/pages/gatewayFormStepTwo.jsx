@@ -85,7 +85,6 @@ const  GatewayFormStepTwo =()=> {
                             <Typography variant="body1" style={{fontWeight:'500'}}>{totalToPay(businessObject)}</Typography>
                         </ListItem>
                     </List>
-
                 </Grid>
 
             </Grid>
