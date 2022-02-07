@@ -67,7 +67,6 @@ const  GatewayFormStepTwo =()=> {
         return ;
     }
 
-
     return (
 
         <Grid >
