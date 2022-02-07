@@ -15,14 +15,14 @@ import FailurePage from "../pages/failurePage";
 import IssuesPage from "../pages/issuesPage";
 import NotFoundPage from "../pages/notFoundPage";
 import {PUBLIC_KEY} from "../constants/variableNames";
-import {useStateValue} from "../context";
+// import {useStateValue} from "../context";
 
 const stripePromise = loadStripe(PUBLIC_KEY)
 
 
 
 const Wrapper = () =>{
-    const [{ formValues }, dispatch] = useStateValue();
+    // const [{ formValues }, dispatch] = useStateValue();
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
         starter()
@@ -30,6 +30,8 @@ const Wrapper = () =>{
     const starter = () =>{
         setTimeout(()=> setLoading(false), 3000)
     }
+
+    // console.log('form Valueeeee ====>',formValues)
 
     return(
         <>
