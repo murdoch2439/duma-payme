@@ -23,14 +23,20 @@ const stripePromise = loadStripe(PUBLIC_KEY)
 
 const Wrapper = () =>{
     const [{ formValues }] = useStateValue();
-    const [clientKey, setClientKey] = useState(formValues.clientKey)
+    const [clientKey, setClientKey] = useState("")
 
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
         starter()
     },[])
     const starter = () =>{
-        setTimeout(()=> setLoading(false), 3000)
+        setTimeout(()=> {
+
+            setLoading(false)
+            setClientKey(formValues.clientKey)
+        }, 3000)
+
+
     }
 
     // console.log('form Valueeeee ====>',formValues)
