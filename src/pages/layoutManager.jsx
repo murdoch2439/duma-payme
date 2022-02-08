@@ -131,7 +131,6 @@ const LayoutManager = () => {
                                         </TextField>
                                       </FormControl>
                               </Box>
-
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
                                       <img
@@ -160,7 +159,6 @@ const LayoutManager = () => {
                                   </div>
                             </div>
                           </Box>
-
                         {
                             option  ?
                             <GatewayFormStepsManager
