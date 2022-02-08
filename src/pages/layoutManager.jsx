@@ -171,7 +171,6 @@ const LayoutManager = () => {
                             onFailedCheckout ={()=>history.replace('/failure')}
                             onPendingCheckout={()=>history.replace('/payment-pending')}
                             />
-
                         }
                     </Paper>
               </Container>
