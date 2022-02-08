@@ -54,6 +54,8 @@ const FailurePage =()=>{
     handleChange()
   },[])
 
+
+
   const handleChange = () => {
     setChecked(true);
   };
