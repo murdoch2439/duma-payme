@@ -128,7 +128,6 @@ const LayoutManager = () => {
                                                     {t(option.label)}
                                                 </MenuItem>
                                             ))}
-
                                         </TextField>
                                       </FormControl>
                               </Box>
