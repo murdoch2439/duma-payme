@@ -61,8 +61,6 @@ const useStyles = makeStyles(() => ({
         width:250,
     },
     cardType: {
-        // height:"10%",
-        // backgroundColor:'red',
         display:'flex',
         alignItems:'flex-end',
         marginBottom:20,
