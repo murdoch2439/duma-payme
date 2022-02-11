@@ -8,11 +8,6 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
 import LayoutManager from './pages/layoutManager';
 import LoadingComponent from './components/loadingComponent';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
 import MerchantApplication from "./pages/merchantApplication";
 import NotFoundPage from "./pages/notFoundPage";
 import SuccessPage from "./pages/successPage";
