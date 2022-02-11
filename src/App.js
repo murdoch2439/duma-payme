@@ -25,13 +25,6 @@ const stripePromise = loadStripe(PUBLIC_KEY)
 
 const  App =()=> {
 
-  useEffect(()=>{
-    starter()
-  },[])
-  const starter = () =>{
-      setTimeout(()=> setLoading(false), 3000)
-  }
-
   return (
     <ThemeProvider theme={theme}>
     <StateProvider>
