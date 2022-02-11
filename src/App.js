@@ -6,7 +6,7 @@ import theme from './constants/theme'
 import {StateProvider,} from './context'
 import {loadStripe} from '@stripe/stripe-js'
 
-import SuccessPage from "./pages/successPage";
+
 import {PUBLIC_KEY} from "./constants/variableNames";
 import Wrapper from "./wrapper/Wrapper";
 
