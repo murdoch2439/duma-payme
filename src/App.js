@@ -36,7 +36,6 @@ const  App =()=> {
     <ThemeProvider theme={theme}>
     <StateProvider>
       <Wrapper />
-      {/*<Router>*/}
     </StateProvider>
     </ThemeProvider>
   );
