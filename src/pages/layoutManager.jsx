@@ -61,8 +61,6 @@ const useStyles = makeStyles(() => ({
         width:250,
     },
     cardType: {
-        // height:"10%",
-        // backgroundColor:'red',
         display:'flex',
         alignItems:'flex-end',
         marginBottom:20,
@@ -130,11 +128,9 @@ const LayoutManager = () => {
                                                     {t(option.label)}
                                                 </MenuItem>
                                             ))}
-
                                         </TextField>
                                       </FormControl>
                               </Box>
-
                             <div className={classes.imagesBox}>
                                   <div className={classes.organizationLogo}>
                                       <img
@@ -163,7 +159,6 @@ const LayoutManager = () => {
                                   </div>
                             </div>
                           </Box>
-
                         {
                             option  ?
                             <GatewayFormStepsManager
@@ -176,7 +171,6 @@ const LayoutManager = () => {
                             onFailedCheckout ={()=>history.replace('/failure')}
                             onPendingCheckout={()=>history.replace('/payment-pending')}
                             />
-
                         }
                     </Paper>
               </Container>

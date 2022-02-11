@@ -1,10 +1,8 @@
 import React from 'react'
-import { Container, Paper, Grid,
-} from "@material-ui/core";
+import { Container, Paper, Grid} from "@material-ui/core";
 // import CloudOffIcon from '@mui/icons-material/CloudOff';
 // import PowerOffIcon from '@mui/icons-material/PowerOff';
 // import InsertPageBreakIcon from '@mui/icons-material/InsertPageBreak';
-
 import { makeStyles, } from '@material-ui/core/styles';
 // import {useHistory} from 'react-router-dom'
 import {useTranslation} from "react-i18next";
@@ -17,7 +15,6 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:15,
     },
     paper: {
-
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
@@ -39,6 +36,15 @@ const useStyles = makeStyles(() => ({
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
+    },
+    paragraph:{
+        fontWeight:"bold",
+        fontSize:25,
+        color:"black",
+    },
+    text:{
+        textAlign:'center',
+        fontSize:25
     }
 }));
 
@@ -54,16 +60,16 @@ const IssuesPage =()=>{
         <Container  className={classes.boxWrapper}>
             <Paper className={classes.paper}>
                 <Grid container   className={classes.boxTitle}>
-                    <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
+                    <p style={classes.paragraph} >{t("Not found")}</p>
                 </Grid>
                 <div style={{height:40}} />
-                <p style={{textAlign:'center', fontSize:25}}>
-                    {t("Oups!!, something just went wrong!")} <br />
+                <p style={classes.text}>
+                    {t("Oups!!, something just went wrong!")}<br />
                 </p>
                 <p style={{textAlign:'center',}}>
                     <img src={picture} alt="f0f" style={{width:250}} />
                 </p>
-                <p style={{textAlign:'center', fontSize:25}}>
+                <p style={classes.text}>
                     {t("Make sure the link is correct")}
                 </p>
                 <Grid container item style={{marginTop:30, justifyContent:'center',}}>

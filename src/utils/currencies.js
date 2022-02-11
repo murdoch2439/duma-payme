@@ -28,7 +28,6 @@ export const Currencies = [
         "code": "GBP",
         "name_plural": "British pounds sterling"
     },
-
     {
         "symbol": "$",
         "name": "US Dollar",

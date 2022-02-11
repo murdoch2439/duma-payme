@@ -216,7 +216,6 @@ const  FormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
           <form autoComplete="off" onSubmit={handleSubmit}>
             <GetStepContent step={activeStep} />
             <Grid >
-                  {/*{error && <p style={{ color:'red'}}>{error}</p>}*/}
                   {activeStep !== 0 &&
                     (
                       <Button style={{width:'100%'}} disabled={loading} onClick={handleBack} className={classes.buttons}>

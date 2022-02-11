@@ -14,7 +14,6 @@ import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import {totalToPay} from "../utils/helperFunctions";
 
-
 const CARD_ELEMENT_OPTIONS = {
     style: {
         base: {
@@ -41,7 +40,6 @@ const useStyles = makeStyles(() => ({
         color:'black'
     },
     title: {
-
     },
 }));
 
@@ -52,11 +50,8 @@ const  GatewayFormStepTwo =()=> {
     const elements = useElements();
     const {t} = useTranslation()
     const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
-
-
     const [error, setError] = useState(null);
     const classes = useStyles();
-
 
     const handleChange = async(event) =>{
         // setDisabled(event.empty);
@@ -69,9 +64,7 @@ const  GatewayFormStepTwo =()=> {
         return ;
     }
 
-
     return (
-
         <Grid >
             <Grid  style={{ width:'100%', display:'flex'}} >
 
@@ -88,9 +81,7 @@ const  GatewayFormStepTwo =()=> {
                             <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
                             <Typography variant="body1" style={{fontWeight:'500'}}>{totalToPay(businessObject)}</Typography>
                         </ListItem>
-
                     </List>
-
                 </Grid>
 
             </Grid>

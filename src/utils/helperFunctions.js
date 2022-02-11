@@ -3,11 +3,8 @@ import axios from "axios";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
-
     for (let i = 0; i < splitted.length; i++){
-
       splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1)
-
     }
    return splitted.join(' ')
 }
@@ -15,17 +12,13 @@ const nameFormating = (string) =>{
 const sendingAmount = ({currency, amount,}) =>{
     if(currency === USD){
         return `$ ${parseInt(amount).toFixed(2)}`
-
     }if(currency === EUR){
         return `€ ${parseInt(amount).toFixed(2)}`
-
     }if(currency === GBP){
         return `£ ${parseInt(amount).toFixed(2)}`
-
     }if(currency === CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
     }
-      // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)}`: `€ ${parseInt(amount).toFixed(2)}`
 }
 
 const totalToPay = ({currency, amount, }) =>{
@@ -38,7 +31,7 @@ const totalToPay = ({currency, amount, }) =>{
     }if(currency === CAD){
         return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
     }
-    // return  currency === USD ? `$ ${parseInt(amount).toFixed(2)} ${currency}`: `€ ${parseInt(amount).toFixed(2)} ${currency}`
+
 }
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
@@ -112,7 +105,6 @@ const  getUrlParams =()=> {
     });
     return vars;
 }
-
 // export const getUrlPath =()=>{
 //     // home = home.substr(0, home.lastIndexOf('/'))
 //     // console.log('path ==>',path)
@@ -183,6 +175,7 @@ const responseManager = ({response, formValues}) =>{
     formValues.paymentRequestId = response.data.paymentRequestId
     formValues.error = response.data.error
     formValues.code = response.data.code
+    formValues.clientKey=response.data.clientKey
     if(response.data.rate){
         formValues.rate = response.data.rate
     }if(response.data.callBackUrl){
