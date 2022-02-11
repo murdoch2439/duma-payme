@@ -37,23 +37,6 @@ const  App =()=> {
     <StateProvider>
       <Wrapper />
       {/*<Router>*/}
-      {/*    {*/}
-      {/*      loading ?*/}
-      {/*          <div className='Loading'>*/}
-      {/*            <LoadingComponent />*/}
-      {/*          </div>:*/}
-      {/*      <Elements stripe={stripePromise}>*/}
-      {/*      <Switch>*/}
-      {/*        <Route path="/" exact component={LayoutManager} />*/}
-      {/*        <Route path="/duma-pay" exact component={MerchantApplication} />*/}
-      {/*        <Route path="/success" exact component={SuccessPage} />*/}
-      {/*        <Route path="/error" exact component={FailurePage} />*/}
-      {/*        <Route path="/issue" exact component={IssuesPage} />*/}
-      {/*        <Route path="*"  component={NotFoundPage} />*/}
-      {/*      </Switch>*/}
-      {/*      </Elements>*/}
-      {/*    }*/}
-      {/*  </Router>*/}
     </StateProvider>
     </ThemeProvider>
   );
