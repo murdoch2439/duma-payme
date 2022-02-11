@@ -22,7 +22,6 @@ const stripePromise = loadStripe(PUBLIC_KEY)
 
 const Wrapper = () =>{
     // const [{ formValues }] = useStateValue();
-
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
         starter()
