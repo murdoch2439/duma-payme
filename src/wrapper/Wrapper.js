@@ -36,10 +36,8 @@ const Wrapper = () =>{
             setClientKey(formValues.clientKey)
         }, 3000)
 
-
     }
 
-    // console.log('form Valueeeee ====>',formValues)
 
     return(
         <>
