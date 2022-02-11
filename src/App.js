@@ -5,8 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from './constants/theme'
 import {StateProvider,} from './context'
 import {loadStripe} from '@stripe/stripe-js'
-import LayoutManager from './pages/layoutManager';
-import MerchantApplication from "./pages/merchantApplication";
+
 import SuccessPage from "./pages/successPage";
 import FailurePage from "./pages/failurePage";
 import {PUBLIC_KEY} from "./constants/variableNames";
