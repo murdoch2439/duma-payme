@@ -9,10 +9,8 @@ import {loadStripe} from '@stripe/stripe-js'
 import LayoutManager from './pages/layoutManager';
 import LoadingComponent from './components/loadingComponent';
 import MerchantApplication from "./pages/merchantApplication";
-import NotFoundPage from "./pages/notFoundPage";
 import SuccessPage from "./pages/successPage";
 import FailurePage from "./pages/failurePage";
-import IssuesPage from "./pages/issuesPage";
 import {PUBLIC_KEY} from "./constants/variableNames";
 import Wrapper from "./wrapper/Wrapper";
 
