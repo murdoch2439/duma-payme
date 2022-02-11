@@ -8,8 +8,6 @@ import {loadStripe} from '@stripe/stripe-js'
 import {PUBLIC_KEY} from "./constants/variableNames";
 import Wrapper from "./wrapper/Wrapper";
 
-const stripePromise = loadStripe(PUBLIC_KEY)
-
 const  App =()=> {
 
   return (
