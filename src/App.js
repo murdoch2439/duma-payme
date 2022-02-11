@@ -24,7 +24,7 @@ import Wrapper from "./wrapper/Wrapper";
 const stripePromise = loadStripe(PUBLIC_KEY)
 
 const  App =()=> {
-  const [loading, setLoading] = useState(true)
+
   useEffect(()=>{
     starter()
   },[])
