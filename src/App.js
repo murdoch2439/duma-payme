@@ -6,7 +6,6 @@ import theme from './constants/theme'
 import {StateProvider,} from './context'
 import {loadStripe} from '@stripe/stripe-js'
 import LayoutManager from './pages/layoutManager';
-import LoadingComponent from './components/loadingComponent';
 import MerchantApplication from "./pages/merchantApplication";
 import SuccessPage from "./pages/successPage";
 import FailurePage from "./pages/failurePage";
