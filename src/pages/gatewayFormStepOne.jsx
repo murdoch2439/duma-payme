@@ -96,7 +96,6 @@ const GatewayFormStepOne =()=> {
                     responseManager({response:responseFromBffPaymentInit, formValues})
                 }
             }
-
         }catch(error){
             console.error('Error on the gateway bff payment init : ',error)
         }
