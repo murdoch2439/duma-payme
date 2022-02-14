@@ -10,7 +10,7 @@ import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
     EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403, USD
 } from '../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
@@ -63,10 +63,12 @@ const GatewayFormStepOne =()=> {
     }
 
     const amountManager = () =>{
-        if(currency === "USD"){
+        if(currency === USD){
             return `${parseInt(amount).toFixed(2)} $`
-        }else{
+        }else if(currency === "EUR"){
             return `${parseInt(amount).toFixed(2)} €`
+        }else{
+            return `*****`
         }
     }
 
@@ -136,7 +138,7 @@ const GatewayFormStepOne =()=> {
                 </Grid>
                 <Grid item xs={12} sm={4} md={6}>
                     <TextField
-                        label={t("Email adress")}
+                        label={t("Email address")}
                         name="email"
                         variant="outlined"
                         type="email"
