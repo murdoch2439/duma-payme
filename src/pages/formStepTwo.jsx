@@ -9,7 +9,7 @@ import {
     sendingAmount,
     totalToPay
 } from '../utils/helperFunctions';
-import {DEBIT_CARD, EDIT_FORM_VALUES} from "../constants/variableNames";
+import {DEBIT_CARD, EDIT_FORM_VALUES, STARS_FOR_NO_CONTENT} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
 const CARD_ELEMENT_OPTIONS = {
@@ -78,7 +78,7 @@ const  FormStepTwo =()=> {
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Receiver :')} style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
+            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.receiverName ? nameFormating(formValues.receiverName):STARS_FOR_NO_CONTENT}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Sending amount :')} style={{fontWeight:'700', color:'grey'}} />
