@@ -10,7 +10,7 @@ import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
     EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403, USD
+    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403, USD, EUR, GBP, CAD
 } from '../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
@@ -65,10 +65,14 @@ const GatewayFormStepOne =()=> {
     const amountManager = () =>{
         if(currency === USD){
             return `${parseInt(amount).toFixed(2)} $`
-        }else if(currency === "EUR"){
+        }if(currency === EUR){
             return `${parseInt(amount).toFixed(2)} €`
+        }if(currency === GBP){
+        return `${parseInt(amount).toFixed(2)} £`
+        }if(currency === CAD){
+            return `${parseInt(amount).toFixed(2)} ${CAD}`
         }else{
-            return `*****`
+                return `*****`
         }
     }
 
