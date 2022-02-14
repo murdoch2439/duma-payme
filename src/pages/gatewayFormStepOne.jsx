@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getUrlParams, paymentMethods, responseManager} from '../utils/helperFunctions';
+import {getClientIpAddress, getUrlParams, paymentMethods, responseManager} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
@@ -70,15 +70,19 @@ const GatewayFormStepOne =()=> {
         }
     }
 
+
     const paymentInitialization = async() =>{
         try{
-            const paymentInfo = {  merchantKey, paymentRequestId }
+            const ip = await getClientIpAddress()
+            const paymentInfo = {  merchantKey, paymentRequestId, ip }
             if(merchantKey){
                const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                 console.log('response Data ====>', responseFromBffPaymentInit.data)
                 setCurrency(responseFromBffPaymentInit.data.currency)
                 setAmount(responseFromBffPaymentInit.data.amount)
-                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || responseFromBffPaymentInit.data.code === CODE_500){
+                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || (responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_500)){
+                    console.log("This is getting executed!!!")
+
                     dispatch({
                         type: CHANGE_MODAL_STATES,
                         key: SHOW_ACCESS_DENIED_MODAL,
@@ -189,11 +193,13 @@ const GatewayFormStepOne =()=> {
                                 formValues.paymentMethod = e.target.value
                             }}
                         >
-                            {paymentMethods.map((option) => (
+                            {
+                                paymentMethods.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
                                     {t(option.label)}
                                 </MenuItem>
-                            ))}
+                                ))
+                            }
                         </TextField>
                     </FormControl>
                 </Grid>
