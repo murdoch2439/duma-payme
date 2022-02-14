@@ -85,8 +85,7 @@ const GatewayFormStepOne =()=> {
                 console.log('response Data ====>', responseFromBffPaymentInit.data)
                 setCurrency(responseFromBffPaymentInit.data.currency)
                 setAmount(responseFromBffPaymentInit.data.amount)
-                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || (responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_500)){
-                    // console.log("This is getting executed!!!")
+                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_500){
 
                     dispatch({
                         type: CHANGE_MODAL_STATES,
