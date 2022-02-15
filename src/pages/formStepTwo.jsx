@@ -57,7 +57,7 @@ const  FormStepTwo =()=> {
   }
     formValues.card = elements.getElement(CardElement)
   if (!stripe || !elements) {
-      // setCardMessage('Stripe has not yet loaded')
+
       return ;
     }
 
