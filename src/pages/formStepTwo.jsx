@@ -86,13 +86,14 @@ const  FormStepTwo =()=> {
             <Typography variant="body1">{receivingAmount(businessObject)}</Typography>
           </ListItem>
          {
-             formValues.clientCurrency !== formValues.currency ?
-                 <ListItem className={classes.listItem} >
+             formValues.clientCurrency !== formValues.currency
+                 ? <ListItem className={classes.listItem} >
                     <ListItemText primary={t('Rate :')} style={{fontWeight:'700', color:'grey'}} />
                     <Typography variant="body1">
                         {formValues.rate.toFixed(2)}
                     </Typography>
-                 </ListItem>:null
+                    </ListItem>
+                 :null
          }
 
         <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}}>
