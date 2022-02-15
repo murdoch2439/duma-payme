@@ -57,7 +57,6 @@ const  FormStepTwo =()=> {
   }
     formValues.card = elements.getElement(CardElement)
   if (!stripe || !elements) {
-
       return ;
     }
 
