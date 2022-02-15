@@ -63,7 +63,6 @@ const  FormStepTwo =()=> {
 
 
   return (
-
       <Grid>
       <Grid  style={{ width:'100%', display:'flex'}}>
         <Grid item xs={12} sm={12} md={12} style={{padding:'0 5px 0 5px'}}>
