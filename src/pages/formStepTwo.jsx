@@ -69,7 +69,6 @@ const  FormStepTwo =()=> {
           <Grid item  xs={12}>
             <Typography variant="h6">{t("Payment Details")}</Typography>
         </Grid>
-
       <List disablePadding >
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Sender :')} style={{fontWeight:'700', color:'grey'}}  />
