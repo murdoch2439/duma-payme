@@ -5,12 +5,21 @@ import axios from 'axios'
 import { useStateValue } from '../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getUrlParams, paymentMethods, responseManager} from '../utils/helperFunctions';
+import {getClientIpAddress, getUrlParams, paymentMethods, responseManager} from '../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
     EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_500, CODE_403
+    PAYMENT_REQUEST_ID_STRING,
+    CHANGE_MODAL_STATES,
+    SHOW_ACCESS_DENIED_MODAL,
+    CODE_500,
+    CODE_403,
+    USD,
+    EUR,
+    GBP,
+    CAD,
+    STARS_FOR_NO_CONTENT
 } from '../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
@@ -59,26 +68,40 @@ const GatewayFormStepOne =()=> {
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
+        if(currency){
             return currency
+
+        }else{
+            return STARS_FOR_NO_CONTENT
+        }
+
     }
 
     const amountManager = () =>{
-        if(currency === "USD"){
+        if(currency === USD){
             return `${parseInt(amount).toFixed(2)} $`
-        }else{
+        }if(currency === EUR){
             return `${parseInt(amount).toFixed(2)} €`
+        }if(currency === GBP){
+        return `${parseInt(amount).toFixed(2)} £`
+        }if(currency === CAD){
+            return `${parseInt(amount).toFixed(2)} ${CAD}`
+        }else{
+                return STARS_FOR_NO_CONTENT
         }
     }
 
     const paymentInitialization = async() =>{
         try{
-            const paymentInfo = {  merchantKey, paymentRequestId }
+            const ip = await getClientIpAddress()
+            const paymentInfo = {  merchantKey, paymentRequestId, ip }
             if(merchantKey){
                const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                 console.log('response Data ====>', responseFromBffPaymentInit.data)
                 setCurrency(responseFromBffPaymentInit.data.currency)
                 setAmount(responseFromBffPaymentInit.data.amount)
                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || responseFromBffPaymentInit.data.code === CODE_500){
+
                     dispatch({
                         type: CHANGE_MODAL_STATES,
                         key: SHOW_ACCESS_DENIED_MODAL,
@@ -88,7 +111,6 @@ const GatewayFormStepOne =()=> {
                     responseManager({response:responseFromBffPaymentInit, formValues})
                 }
             }
-
         }catch(error){
             console.error('Error on the gateway bff payment init : ',error)
         }
@@ -132,7 +154,7 @@ const GatewayFormStepOne =()=> {
                 </Grid>
                 <Grid item xs={12} sm={4} md={6}>
                     <TextField
-                        label={t("Email adress")}
+                        label={t("Email address")}
                         name="email"
                         variant="outlined"
                         type="email"
@@ -189,11 +211,13 @@ const GatewayFormStepOne =()=> {
                                 formValues.paymentMethod = e.target.value
                             }}
                         >
-                            {paymentMethods.map((option) => (
+                            {
+                                paymentMethods.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
                                     {t(option.label)}
                                 </MenuItem>
-                            ))}
+                                ))
+                            }
                         </TextField>
                     </FormControl>
                 </Grid>
