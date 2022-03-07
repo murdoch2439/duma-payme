@@ -3,15 +3,15 @@ import {EDIT_FORM_VALUES, CHANGE_MODAL_STATES, FORM_EMPTY_VALUES} from "../const
 const initialState = {
     formValues: {
         sendermobilenumber:"",
-        name: "",
-        email: "",
-        phone: "",
-        currency: "",
+        name: "James Heller",
+        email: "jamesh@gmail.com",
+        phone: "09909022",
+        currency: "USD",
         amount: "1",
         received:"",
         paymentMethod:"",
-        receiverName:"",
-        clientName:"",
+        receiverName:"Olivier Pierre",
+        clientName:"Orvid Corporate",
         paymentRequestId:"",
         receiverEmail:"",
         transactionReference:"",
@@ -24,7 +24,7 @@ const initialState = {
         callBackUrl:"",
         error:false,
         code:"",
-        clientCurrency:"",
+        clientCurrency:"USD",
         clientKey:""
 
     },
