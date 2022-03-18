@@ -5,7 +5,7 @@ const initialState = {
         sendermobilenumber:"",
         name: "",
         email: "",
-        phone: "09909022",
+        phone: "",
         currency: "USD",
         amount: "1",
         received:"",
