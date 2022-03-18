@@ -4,7 +4,7 @@ const initialState = {
     formValues: {
         sendermobilenumber:"",
         name: "",
-        email: "jamesh@gmail.com",
+        email: "",
         phone: "09909022",
         currency: "USD",
         amount: "1",
