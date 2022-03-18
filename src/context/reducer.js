@@ -24,7 +24,7 @@ const initialState = {
         callBackUrl:"",
         error:false,
         code:"",
-        clientCurrency:"USD",
+        clientCurrency:"",
         clientKey:""
 
     },
