@@ -3,7 +3,7 @@ import {EDIT_FORM_VALUES, CHANGE_MODAL_STATES, FORM_EMPTY_VALUES} from "../const
 const initialState = {
     formValues: {
         sendermobilenumber:"",
-        name: "James Heller",
+        name: "",
         email: "jamesh@gmail.com",
         phone: "09909022",
         currency: "USD",
