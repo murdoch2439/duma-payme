@@ -10,7 +10,7 @@ const initialState = {
         amount: "1",
         received:"",
         paymentMethod:"",
-        receiverName:"Olivier Pierre",
+        receiverName:"",
         clientName:"Orvid Corporate",
         paymentRequestId:"",
         receiverEmail:"",
