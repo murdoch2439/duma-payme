@@ -1,11 +1,11 @@
 import React from "react"
-import Grid from "@material-ui/core/Grid";
+import {Grid,Typography, List, ListItem, ListItemText, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import {totalToPay} from "../../utils/helperFunctions";
-import {makeStyles} from "@material-ui/core/styles";
+
 import {useTranslation} from "react-i18next";
 
 
