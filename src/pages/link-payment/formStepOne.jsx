@@ -30,7 +30,6 @@ const FormStepOne =()=> {
 
 // const paymentInitWithBff = async () =>{
 //     try{
-//         const ip = await getClientIpAddress()
 //         if(ip){
 
 //             if(merchantKey){
