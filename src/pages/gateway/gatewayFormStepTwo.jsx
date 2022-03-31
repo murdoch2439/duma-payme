@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+
 import { useStateValue } from '../../context';
 import '../../constants/styles/cardSectionStyles.css'
 // import { businessLogicManager, nameFormating } from '../utils/helperFunctions';
