@@ -233,7 +233,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         }catch(error){
             console.error('error from the catch in the gateway', error.message)
             setLoading(false);
-
         }
 
         // dispatch({ type: 'emptyFormValue'});

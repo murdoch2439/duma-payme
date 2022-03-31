@@ -12,7 +12,6 @@ import '../../constants/styles/cardSectionStyles.css'
 import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../../constants/variableNames";
 import {useTranslation} from "react-i18next";
-import {totalToPay} from "../../utils/helperFunctions";
 import GatewayInfo from "../../components/gateway-info/";
 
 const CARD_ELEMENT_OPTIONS = {
