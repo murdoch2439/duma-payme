@@ -5,8 +5,7 @@ import { paymentMethods,} from '../../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
 
-    EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING, CODE_403, CODE_500
+    EDIT_FORM_VALUES, CODE_403, CODE_500
 } from '../../constants/variableNames';
 import {useTranslation} from "react-i18next";
 
