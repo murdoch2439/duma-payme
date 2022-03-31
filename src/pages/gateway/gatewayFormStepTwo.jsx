@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import { makeStyles, TextField, Typography, Grid } from '@material-ui/core';
 
-
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import { useStateValue } from '../../context';
 import '../../constants/styles/cardSectionStyles.css'
