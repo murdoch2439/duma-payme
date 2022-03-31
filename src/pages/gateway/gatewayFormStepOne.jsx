@@ -107,7 +107,7 @@ const GatewayFormStepOne =()=> {
                 }
             }
         }catch(error){
-            console.error('Error on the gateway bff payment init : ',error)
+
         }
     }
 
