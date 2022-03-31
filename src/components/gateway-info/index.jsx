@@ -3,7 +3,7 @@ import {Grid,Typography, List, ListItem, ListItemText, makeStyles} from "@materi
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+
 import {totalToPay} from "../../utils/helperFunctions";
 
 import {useTranslation} from "react-i18next";
