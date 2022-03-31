@@ -42,11 +42,7 @@ const FormStepOne =()=> {
 //
 //                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
 //                     console.log("response data from init ==> ", responseFromBffPaymentInit.data)
-//                     dispatch({
-//                         type: CHANGE_MODAL_STATES,
-//                         key: SHOW_ACCESS_DENIED_MODAL,
-//                         value: true
-//                     })
+
 //                 }else{
 //                     console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
 //                     responseManager({response :responseFromBffPaymentInit, formValues})
