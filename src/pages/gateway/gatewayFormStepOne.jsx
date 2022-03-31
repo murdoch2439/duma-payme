@@ -11,7 +11,7 @@ import {
     API_PAYMENT_INIT,
     EDIT_FORM_VALUES,
     PAYMENT_REQUEST_ID_STRING,
-    CODE_500,
+
 
     USD,
     EUR,
