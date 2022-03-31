@@ -84,13 +84,7 @@ const GatewayFormStepOne =()=> {
     }
 
     const paymentInitialization = async() =>{
-        try{
 
-
-
-        }catch(error){
-
-        }
     }
 
     return (
