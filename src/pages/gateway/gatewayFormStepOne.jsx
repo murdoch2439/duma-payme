@@ -85,7 +85,7 @@ const GatewayFormStepOne =()=> {
 
     const paymentInitialization = async() =>{
         try{
-            const ip = await getClientIpAddress()
+
 
 
         }catch(error){
