@@ -93,7 +93,6 @@ const GatewayFormStepOne =()=> {
                 setCurrency(responseFromBffPaymentInit.data.currency)
                 setAmount(responseFromBffPaymentInit.data.amount)
                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || responseFromBffPaymentInit.data.code === CODE_500){
-
                 }
             }
         }catch(error){
