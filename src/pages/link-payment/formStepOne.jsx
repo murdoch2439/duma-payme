@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import { useStateValue } from '../../context';
-import {getClientIpAddress, getUrlParams, paymentMethods,} from '../../utils/helperFunctions';
+import {getClientIpAddress, paymentMethods,} from '../../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
     API_PAYMENT_INIT,
