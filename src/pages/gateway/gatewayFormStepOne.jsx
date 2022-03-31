@@ -67,7 +67,6 @@ const GatewayFormStepOne =()=> {
         }else{
             return STARS_FOR_NO_CONTENT
         }
-
     }
 
     const amountManager = () =>{
