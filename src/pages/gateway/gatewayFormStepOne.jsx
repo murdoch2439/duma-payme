@@ -50,7 +50,6 @@ const GatewayFormStepOne =()=> {
     useEffect(()=>{
             setCurrency(formValues.currency)
             setAmount(formValues.amount)
-
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
