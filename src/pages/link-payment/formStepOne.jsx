@@ -2,11 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import { useStateValue } from '../../context';
 import { paymentMethods,} from '../../utils/helperFunctions';
-import {
-    MERCHANT_KEY_STRING,
-
-    EDIT_FORM_VALUES,
-} from '../../constants/variableNames';
+import {EDIT_FORM_VALUES,} from '../../constants/variableNames';
 import {useTranslation} from "react-i18next";
 
 
