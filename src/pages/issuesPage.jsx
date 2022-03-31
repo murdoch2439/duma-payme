@@ -8,6 +8,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 import {useTranslation} from "react-i18next";
 import picture from '../assets/Laptop.svg'
 
+
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         marginBottom:10,
@@ -49,6 +50,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const IssuesPage =()=>{
+    // const [{ formValues,  }, dispatch] = useStateValue();
     // const history = useHistory()
     const {t} = useTranslation()
     const classes = useStyles()
@@ -56,20 +58,21 @@ const IssuesPage =()=>{
     //     history.goBack()
     // }
 
+
     return(
         <Container  className={classes.boxWrapper}>
             <Paper className={classes.paper}>
                 <Grid container   className={classes.boxTitle}>
-                    <p style={classes.paragraph} >{t("Not found")}</p>
+                    <p className={classes.paragraph} >{t("Not found")}</p>
                 </Grid>
                 <div style={{height:40}} />
-                <p style={classes.text}>
+                <p className={classes.text}>
                     {t("Oups!!, something just went wrong!")}<br />
                 </p>
                 <p style={{textAlign:'center',}}>
                     <img src={picture} alt="f0f" style={{width:250}} />
                 </p>
-                <p style={classes.text}>
+                <p className={classes.text}>
                     {t("Make sure the link is correct")}
                 </p>
                 <Grid container item style={{marginTop:30, justifyContent:'center',}}>
