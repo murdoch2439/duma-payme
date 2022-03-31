@@ -147,10 +147,10 @@ const FormStepOne =()=> {
                         })
                     }}
             >
-          <MenuItem value='USD'>{formValues.currency}</MenuItem>
-          <MenuItem value='EUR'>{formValues.currency}</MenuItem>
-          <MenuItem value='CAD'>{formValues.currency}</MenuItem>
-          <MenuItem value='GBP'>{formValues.currency}</MenuItem>
+          <MenuItem value='USD'>{currency}</MenuItem>
+          <MenuItem value='EUR'>{currency}</MenuItem>
+          <MenuItem value='CAD'>{currency}</MenuItem>
+          <MenuItem value='GBP'>{currency}</MenuItem>
         </TextField>
       </FormControl>
         </Grid>
