@@ -35,7 +35,7 @@ const Wrapper = () =>{
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
 
     useEffect(()=>{
-        // eslint-disable-next-line no-undef
+
         if(formValues.currency === EMPTY_STRING){
             paymentInitWithBff().then()
         }else{
