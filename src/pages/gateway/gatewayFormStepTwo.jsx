@@ -1,12 +1,12 @@
 import React,{useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles, TextField, Typography, Grid } from '@material-ui/core';
+
+
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import { useStateValue } from '../../context';
 import '../../constants/styles/cardSectionStyles.css'
 // import { businessLogicManager, nameFormating } from '../utils/helperFunctions';
-import {TextField} from "@material-ui/core";
+
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import GatewayInfo from "../../components/gateway-info/";
