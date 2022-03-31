@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useStateValue } from '../../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getClientIpAddress, getUrlParams, paymentMethods, responseManager} from '../../utils/helperFunctions';
+import {getClientIpAddress, getUrlParams, paymentMethods, } from '../../utils/helperFunctions';
 import {
     EDIT_FORM_VALUES,
     USD,
