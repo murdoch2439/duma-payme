@@ -31,7 +31,6 @@ const FormStepOne =()=> {
 // const paymentInitWithBff = async () =>{
 //     try{
 //         if(ip){
-
 //             if(merchantKey){
 //                 const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
 
