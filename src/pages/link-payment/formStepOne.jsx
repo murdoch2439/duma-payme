@@ -22,11 +22,9 @@ const FormStepOne =()=> {
 
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
   useEffect(()=>{
-
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
           setClientCurrency(formValues.clientCurrency)
-
 
     },[formValues.currency, formValues.paymentMethod, formValues.clientCurrency])
 
