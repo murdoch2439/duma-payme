@@ -13,6 +13,7 @@ import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import {totalToPay} from "../../utils/helperFunctions";
+import GatewayInfo from "../../components/gateway-info";
 
 const CARD_ELEMENT_OPTIONS = {
     style: {
@@ -41,6 +42,33 @@ const useStyles = makeStyles(() => ({
     },
     title: {
     },
+    sectionOne:{
+        width:'100%', display:'flex'
+    },
+    paddingManager:{
+        padding:'0 5px 0 5px'
+    },
+    key:{
+        fontWeight:'800',
+        color:'black'
+    },
+    value:{
+        fontWeight:'500'
+    },
+    totalBg:{
+        backgroundColor:'#F1F5F6',  borderRadius:5,
+    },
+    separator:{
+        height:1,
+        marginTop:10,
+        width:'96%',
+        marginRight:10,
+        marginLeft:10,
+        backgroundColor:'#C4C4C4'
+    },
+    secondSection:{
+        marginRight:10,marginLeft:10,
+    }
 }));
 
 
@@ -66,28 +94,11 @@ const  GatewayFormStepTwo =()=> {
 
     return (
         <Grid >
-            <Grid  style={{ width:'100%', display:'flex'}} >
+            <GatewayInfo currency={formValues.currency} businessObject={businessObject} />
 
-                <Grid item xs={12} sm={12} md={12} style={{padding:'0 5px 0 5px'}}>
-                    <Grid item  xs={12}>
-                        <Typography variant="h6">{t("Payment Details")}</Typography>
-                    </Grid>
-                    <List>
-                        <ListItem className={classes.listItem} >
-                            <ListItemText primary={t('Currency :')} style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.currency}</Typography>
-                        </ListItem>
-                        <ListItem className={classes.listItem} style={{backgroundColor:'#F1F5F6',  borderRadius:5,}} >
-                            <ListItemText primary={t('Total :')} style={{fontWeight:'800', color:'black'}}  />
-                            <Typography variant="body1" style={{fontWeight:'500'}}>{totalToPay(businessObject)}</Typography>
-                        </ListItem>
-                    </List>
-                </Grid>
+            <div className={classes.separator} />
 
-            </Grid>
-            <div style={{height:1, marginTop:10, width:'96%',marginRight:10,marginLeft:10,  backgroundColor:'#C4C4C4'}}/>
-
-            <Grid style={{marginRight:10,marginLeft:10,}}  >
+            <Grid className={classes.secondSection}>
                 <Typography style ={{fontSize:16, paddingTop:20, fontWeight:'bold'}}>
                     {formValues.paymentMethod === DEBIT_CARD ?
                         t("Card Information") :

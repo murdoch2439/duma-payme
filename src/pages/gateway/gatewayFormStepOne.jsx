@@ -15,6 +15,7 @@ import {
 } from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
+// import GatewayInfo from "../../components/gateway-info";
 
 
 const useStyles = makeStyles({
@@ -44,6 +45,7 @@ const GatewayFormStepOne =()=> {
     const [errorMessage, setErrorMessage] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const {t} = useTranslation()
+    // const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
 
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -79,6 +81,7 @@ const GatewayFormStepOne =()=> {
         <Grid>
             <Grid item  xs={12} >
                 <Typography variant="h6">{t("Payment Information")}</Typography>
+                {/*<GatewayInfo currency={formValues.currency} businessObject={businessObject} />*/}
                 <List>
                     <ListItem className={classes.listItem} >
                         <ListItemText primary={t('Currency :')} className={classes.listItemText}  />
