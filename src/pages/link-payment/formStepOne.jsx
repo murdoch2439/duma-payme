@@ -34,8 +34,7 @@ const FormStepOne =()=> {
 
 //             if(merchantKey){
 //                 const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
-//                 setCurrency(responseFromBffPaymentInit.data.currency)
-//                 setClientCurrency(responseFromBffPaymentInit.data.clientCurrency)
+
 //
 //                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
 //                     console.log("response data from init ==> ", responseFromBffPaymentInit.data)
