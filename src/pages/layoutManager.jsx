@@ -3,8 +3,8 @@ import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
-import FormStepsManager from './formStepsManager'
-import GatewayFormStepsManager from './gatewayFormStepsManager'
+import FormStepsManager from './link-payment/formStepsManager'
+import GatewayFormStepsManager from './gateway/gatewayFormStepsManager'
 import { useStateValue } from "../context";
 import cover from '../assets/Trip-assurances (4).png'
 import logDuma from '../assets/duma1.png'
