@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
 import { useStateValue } from '../../context';
-import {getClientIpAddress, paymentMethods,} from '../../utils/helperFunctions';
+import { paymentMethods,} from '../../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
-    API_PAYMENT_INIT,
+
     EDIT_FORM_VALUES,
     PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_403, CODE_500
 } from '../../constants/variableNames';
