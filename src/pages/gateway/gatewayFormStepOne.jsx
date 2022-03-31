@@ -83,9 +83,7 @@ const GatewayFormStepOne =()=> {
         }
     }
 
-    const paymentInitialization = async() =>{
 
-    }
 
     return (
 
