@@ -55,7 +55,6 @@ const FormStepOne =()=> {
 //             }
 //         }
 //     }catch(error){
-//         console.error('Error on payment initialization ==> : ',error)
 //         }
 // }
 
