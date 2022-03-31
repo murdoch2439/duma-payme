@@ -13,7 +13,7 @@ import {TextField} from "@material-ui/core";
 import {DEBIT_CARD, EDIT_FORM_VALUES} from "../../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import {totalToPay} from "../../utils/helperFunctions";
-import GatewayInfo from "../../components/gateway-info";
+import GatewayInfo from "../../components/gateway-info/";
 
 const CARD_ELEMENT_OPTIONS = {
     style: {
@@ -39,24 +39,6 @@ const useStyles = makeStyles(() => ({
     total: {
         fontWeight: 'bold',
         color:'black'
-    },
-    title: {
-    },
-    sectionOne:{
-        width:'100%', display:'flex'
-    },
-    paddingManager:{
-        padding:'0 5px 0 5px'
-    },
-    key:{
-        fontWeight:'800',
-        color:'black'
-    },
-    value:{
-        fontWeight:'500'
-    },
-    totalBg:{
-        backgroundColor:'#F1F5F6',  borderRadius:5,
     },
     separator:{
         height:1,
