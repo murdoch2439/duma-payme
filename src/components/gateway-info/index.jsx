@@ -1,7 +1,6 @@
 import React from "react"
 import {Grid,Typography, List, ListItem, ListItemText, makeStyles} from "@material-ui/core";
 import {totalToPay} from "../../utils/helperFunctions";
-
 import {useTranslation} from "react-i18next";
 
 
