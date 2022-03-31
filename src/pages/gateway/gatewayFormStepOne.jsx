@@ -87,11 +87,7 @@ const GatewayFormStepOne =()=> {
         try{
             const ip = await getClientIpAddress()
             const paymentInfo = {  merchantKey, paymentRequestId, ip }
-            if(merchantKey){
 
-
-
-            }
         }catch(error){
 
         }
