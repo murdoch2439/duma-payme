@@ -12,7 +12,7 @@ import {
     EDIT_FORM_VALUES,
     PAYMENT_REQUEST_ID_STRING,
     CODE_500,
-    CODE_403,
+
     USD,
     EUR,
     GBP,
