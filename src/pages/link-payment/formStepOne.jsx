@@ -54,7 +54,7 @@ const FormStepOne =()=> {
 //
 //             }
 //         }else{
-//             console.log('Ip is not provided!!!!!!!!!!')
+
 //         }
 //     }catch(error){
 //         console.error('Error on payment initialization ==> : ',error)
