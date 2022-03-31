@@ -17,7 +17,6 @@ import {
     FRENCH_LANG_CODE, MERCHANT_KEY_STRING,
     OPTION_STRING
 } from "../constants/variableNames";
-
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
