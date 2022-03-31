@@ -18,7 +18,6 @@ import {
     OPTION_STRING
 } from "../constants/variableNames";
 
-
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
