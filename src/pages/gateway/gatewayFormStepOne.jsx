@@ -10,9 +10,6 @@ import {
 
 
     EDIT_FORM_VALUES,
-
-
-
     USD,
     EUR,
     GBP,
