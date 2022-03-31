@@ -88,7 +88,7 @@ const GatewayFormStepOne =()=> {
             const ip = await getClientIpAddress()
             const paymentInfo = {  merchantKey, paymentRequestId, ip }
             if(merchantKey){
-               const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
+
 
 
             }
