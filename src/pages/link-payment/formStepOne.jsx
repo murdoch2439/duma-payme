@@ -32,7 +32,7 @@ const FormStepOne =()=> {
 //     try{
 //         const ip = await getClientIpAddress()
 //         if(ip){
-//             const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
+
 //             if(merchantKey){
 //                 const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
 //                 setCurrency(responseFromBffPaymentInit.data.currency)
