@@ -14,30 +14,74 @@ import SuccessPage from "../pages/successPage";
 import FailurePage from "../pages/failurePage";
 import IssuesPage from "../pages/issuesPage";
 import NotFoundPage from "../pages/notFoundPage";
-import {PUBLIC_KEY} from "../constants/variableNames";
-// import {useStateValue} from "../context";
+import {
+    API_PAYMENT_INIT, CHANGE_MODAL_STATES,
+    CODE_403, CODE_500, EMPTY_STRING,
+    MERCHANT_KEY_STRING,
+    PAYMENT_REQUEST_ID_STRING,
+    PUBLIC_KEY, SHOW_ACCESS_DENIED_MODAL
+} from "../constants/variableNames";
+import {useStateValue} from "../context";
+import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
+import axios from "axios";
 
 const stripePromise = loadStripe(PUBLIC_KEY)
 
 
 const Wrapper = () =>{
-    // const [{ formValues }] = useStateValue();
-    const [loading, setLoading] = useState(true)
+    const [{ formValues }, dispatch] = useStateValue();
+    const [currency, setCurrency] = useState('')
+    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+
     useEffect(()=>{
-        starter()
-    },[])
-    const starter = () =>{
-        setTimeout(()=> {
-            setLoading(false)
-        }, 3000)
+        // eslint-disable-next-line no-undef
+        if(formValues.currency === EMPTY_STRING){
+            paymentInitWithBff().then()
+        }else{
+            setCurrency(formValues.currency)
+        }
+
+    },[formValues.currency,])
+
+    const paymentInitWithBff = async () =>{
+        try{
+            const ip = await getClientIpAddress()
+            if(ip){
+                const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
+                if(merchantKey){
+                    const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
+                    setCurrency(responseFromBffPaymentInit.data.currency)
+                    // setClientCurrency(responseFromBffPaymentInit.data.clientCurrency)
+
+                    if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
+                        console.log("response data from init ==> ", responseFromBffPaymentInit.data)
+                        dispatch({
+                            type: CHANGE_MODAL_STATES,
+                            key: SHOW_ACCESS_DENIED_MODAL,
+                            value: true
+                        })
+                    }else{
+                        console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
+                        responseManager({response :responseFromBffPaymentInit, formValues})
+                    }
+
+                }
+            }else{
+                console.log('Ip is not provided!!!!!!!!!!')
+            }
+        }catch(error){
+            console.error('Error on payment initialization ==> : ',error)
+        }
     }
+
 
 
     return(
         <>
             <Router>
                 {
-                    loading ?
+                     !currency ?
                         <div className='Loading'>
                             <LoadingComponent />
                         </div>:
