@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import {getClientIpAddress, getUrlParams, paymentMethods, responseManager} from '../../utils/helperFunctions';
 import {
     MERCHANT_KEY_STRING,
-    API_PAYMENT_INIT,
+
     EDIT_FORM_VALUES,
 
 
