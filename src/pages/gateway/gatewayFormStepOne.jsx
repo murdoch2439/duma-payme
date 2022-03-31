@@ -92,7 +92,7 @@ const GatewayFormStepOne =()=> {
             const paymentInfo = {  merchantKey, paymentRequestId, ip }
             if(merchantKey){
                const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
-                console.log('response Data ====>', responseFromBffPaymentInit.data)
+
                 setCurrency(responseFromBffPaymentInit.data.currency)
                 setAmount(responseFromBffPaymentInit.data.amount)
                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || responseFromBffPaymentInit.data.code === CODE_500){
