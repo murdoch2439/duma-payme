@@ -18,7 +18,7 @@ import {
     OPTION_STRING
 } from "../constants/variableNames";
 // import LoadingComponent from "../components/loadingComponent";
-// import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
+
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
