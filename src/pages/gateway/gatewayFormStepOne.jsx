@@ -72,7 +72,7 @@ const GatewayFormStepOne =()=> {
         }if(currency === CAD){
             return `${parseInt(amount).toFixed(2)} ${CAD}`
         }else{
-                return STARS_FOR_NO_CONTENT
+            return STARS_FOR_NO_CONTENT
         }
     }
 
