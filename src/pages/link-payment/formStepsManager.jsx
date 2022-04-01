@@ -62,9 +62,9 @@ const steps = ['Sender details', 'Review and card details',];
 const GetStepContent = ({step}) => {
   switch (step) {
     case 0:
-      return <FormStepOne />;
+      return <FormStepOne />
     case 1:
-      return <FormStepTwo />;
+      return <FormStepTwo />
     default:
       throw new Error('Unknown step')
   }
