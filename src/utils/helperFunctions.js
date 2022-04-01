@@ -1,4 +1,4 @@
-import {CAD, currencies, DEBIT_CARD, EUR, IP_PROVIDER_API_KEY, } from "../constants/variableNames";
+import {CAD, currencies, DEBIT_CARD, IP_PROVIDER_API_KEY, } from "../constants/variableNames";
 import axios from "axios";
 
 const nameFormating = (string) =>{
