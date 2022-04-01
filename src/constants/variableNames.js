@@ -42,7 +42,7 @@ const currencies = {
 const USD = "USD"
 const EUR = "EUR"
 const GBP = "GBP"
-const CAD ="CAD"
+
 const CLIENT_FOR_MOBILE_PAYMENT = "ICASH_PAY"
 const STARS_FOR_NO_CONTENT = "*****"
 
