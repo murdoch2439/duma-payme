@@ -7,7 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 import { paymentMethods, } from '../../utils/helperFunctions';
 import {
     EDIT_FORM_VALUES,
-    CAD,
     STARS_FOR_NO_CONTENT, currencies
 } from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
