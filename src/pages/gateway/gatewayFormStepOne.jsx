@@ -66,7 +66,7 @@ const GatewayFormStepOne =()=> {
         }if(currency === currencies.GBP){
         return `${parseInt(amount).toFixed(2)} £`
         }if(currency === currencies.CAD){
-            return `${parseInt(amount).toFixed(2)} ${CAD}`
+            return `${parseInt(amount).toFixed(2)} ${currencies.CAD}`
         }else{
             return STARS_FOR_NO_CONTENT
         }
