@@ -16,7 +16,7 @@ import IssuesPage from "../pages/issuesPage";
 import NotFoundPage from "../pages/notFoundPage";
 import {
     API_PAYMENT_INIT, CHANGE_MODAL_STATES,
-    CODE_403, CODE_500, EMPTY_STRING,
+    CODE_403, CODE_500, currencies, EMPTY_STRING,
     MERCHANT_KEY_STRING, OPTION_STRING,
     PAYMENT_REQUEST_ID_STRING,
     PUBLIC_KEY, SHOW_ACCESS_DENIED_MODAL
@@ -38,6 +38,7 @@ const Wrapper = () =>{
     useEffect(()=>{
 
         if(formValues.currency === EMPTY_STRING){
+            console.log(currencies.USD)
             paymentInitWithBff().then()
         }else{
             setCurrency(formValues.currency)

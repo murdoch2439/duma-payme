@@ -33,12 +33,12 @@ const ENGLISH_LANG_CODE = "en"
 const FRENCH_LANG_CODE = "fr"
 const CODE_403 ="403"
 const CODE_500 ="500"
-const currencies = Object.freeze({
-    USD: Symbol("Currencies.USD"),
-    EUR: Symbol("Currencies.EUR"),
-    GBP: Symbol("Currencies.GBP"),
-    CAD: Symbol("Currencies.CAD"),
-})
+const currencies = {
+    USD: "USD",
+    EUR: "EUR",
+    GBP: "GBP",
+    CAD: "CAD",
+}
 const USD = "USD"
 const EUR = "EUR"
 const GBP = "GBP"

@@ -1,4 +1,4 @@
-import {CAD, DEBIT_CARD, EUR, GBP, IP_PROVIDER_API_KEY, USD} from "../constants/variableNames";
+import {CAD, currencies, DEBIT_CARD, EUR, GBP, IP_PROVIDER_API_KEY, USD} from "../constants/variableNames";
 import axios from "axios";
 
 const nameFormating = (string) =>{
@@ -10,25 +10,25 @@ const nameFormating = (string) =>{
 }
 
 const sendingAmount = ({currency, amount,}) =>{
-    if(currency === USD){
+    if(currency === currencies.USD){
         return `$ ${parseInt(amount).toFixed(2)}`
-    }if(currency === EUR){
+    }if(currency === currencies.EUR){
         return `€ ${parseInt(amount).toFixed(2)}`
-    }if(currency === GBP){
+    }if(currency === currencies.GBP){
         return `£ ${parseInt(amount).toFixed(2)}`
-    }if(currency === CAD){
+    }if(currency === currencies.CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
     }
 }
 
 const totalToPay = ({currency, amount, }) =>{
-    if(currency === USD){
+    if(currency === currencies.USD){
         return `$ ${parseInt(amount).toFixed(2)} ${currency}`
-    }if(currency === EUR){
+    }if(currency === currencies.EUR){
         return `€ ${parseInt(amount).toFixed(2)} ${currency}`
-    }if(currency === GBP){
+    }if(currency === currencies.GBP){
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
-    }if(currency === CAD){
+    }if(currency === currencies.CAD){
         return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
     }
 
@@ -38,25 +38,25 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
         if(!currency){
             return `$ 00.00`
         }else{
-            if(currency === USD){
+            if(currency === currencies.USD){
                 if(currency === clientCurrency){
                     return `$ ${parseInt(amount).toFixed(2)}`
                 }else{
                     return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                 }
-            }if(currency === EUR){
+            }if(currency === currencies.EUR){
                   if(currency === clientCurrency){
                       return `€ ${parseInt(amount).toFixed(2)}`
                   }else{
                       return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                   }
-            }if(currency === GBP){
+            }if(currency === currencies.GBP){
                 if(currency === clientCurrency){
                     return `£ ${parseInt(amount).toFixed(2)}`
                 }else{
                     return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                 }
-            }if(currency === CAD){
+            }if(currency === currencies.CAD){
                 if(currency === clientCurrency){
                     return `CA$ ${parseInt(amount).toFixed(2)}`
                 }else{
@@ -70,7 +70,7 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
 const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
         if(!currency){
             return `$ 00.00`
-        }if(currency !== clientCurrency && currency === USD){
+        }if(currency !== clientCurrency && currency === currencies.USD){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }if(currency === clientCurrency){
@@ -78,19 +78,19 @@ const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
             }else{
                   return `$ ${parseInt(amount).toFixed(2)}`
               }
-        }if(currency !== clientCurrency &&  currency === EUR){
+        }if(currency !== clientCurrency &&  currency === currencies.EUR){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
                   return  `€ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-        }if(currency !== clientCurrency && currency === GBP){
+        }if(currency !== clientCurrency && currency === currencies.GBP){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
                   return  `£ ${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
               }
-        }if(currency !== clientCurrency && currency === CAD){
+        }if(currency !== clientCurrency && currency === currencies.CAD){
               if(isNaN(amount) || amount === null || amount === undefined){
                   return `$ 00.00`
               }else{
@@ -121,13 +121,13 @@ const backgroundChanger = (loading) =>{
 }
 
 const currencyManager = (currency) =>{
-    if(currency === USD){
+    if(currency === currencies.USD){
         return  "$"
-    } if(currency === EUR){
+    } if(currency === currencies.EUR){
         return "€"
-    }if(currency === GBP){
+    }if(currency === currencies.GBP){
         return "£"
-    }if(currency === CAD){
+    }if(currency === currencies.CAD){
         return "CA$"
     }
 }
