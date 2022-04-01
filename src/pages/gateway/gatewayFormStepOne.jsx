@@ -65,7 +65,7 @@ const GatewayFormStepOne =()=> {
     const amountManager = () =>{
         if(currency === currencies.USD){
             return `${parseInt(amount).toFixed(2)} $`
-        }if(currency === EUR){
+        }if(currency === currencies.EUR){
             return `${parseInt(amount).toFixed(2)} €`
         }if(currency === GBP){
         return `${parseInt(amount).toFixed(2)} £`
