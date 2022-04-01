@@ -1,15 +1,15 @@
 import React,{useState} from 'react'
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js'
 import {List, Grid, makeStyles, ListItem, ListItemText, TextField, Typography} from '@material-ui/core'
-import { useStateValue } from '../context';
-import '../constants/styles/cardSectionStyles.css'
+import { useStateValue } from '../../context';
+import '../../constants/styles/cardSectionStyles.css'
 import {
     nameFormating,
     receivingAmount,
     sendingAmount,
     totalToPay
-} from '../utils/helperFunctions';
-import {DEBIT_CARD, EDIT_FORM_VALUES, STARS_FOR_NO_CONTENT} from "../constants/variableNames";
+} from '../../utils/helperFunctions';
+import {DEBIT_CARD, EDIT_FORM_VALUES, STARS_FOR_NO_CONTENT} from "../../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
 const CARD_ELEMENT_OPTIONS = {

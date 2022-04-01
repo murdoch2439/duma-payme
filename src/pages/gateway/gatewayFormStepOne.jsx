@@ -1,28 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios'
-import { useStateValue } from '../context';
+import { useStateValue } from '../../context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {getClientIpAddress, getUrlParams, paymentMethods, responseManager} from '../utils/helperFunctions';
+import { paymentMethods, } from '../../utils/helperFunctions';
 import {
-    MERCHANT_KEY_STRING,
-    API_PAYMENT_INIT,
     EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING,
-    CHANGE_MODAL_STATES,
-    SHOW_ACCESS_DENIED_MODAL,
-    CODE_500,
-    CODE_403,
     USD,
     EUR,
     GBP,
     CAD,
     STARS_FOR_NO_CONTENT
-} from '../constants/variableNames';
+} from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
+// import GatewayInfo from "../../components/gateway-info";
 
 
 const useStyles = makeStyles({
@@ -52,29 +45,21 @@ const GatewayFormStepOne =()=> {
     const [errorMessage, setErrorMessage] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const {t} = useTranslation()
-    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+    // const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
 
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     useEffect(()=>{
-        if(formValues.currency === ''){
-            paymentInitialization().then()
-        }else{
             setCurrency(formValues.currency)
             setAmount(formValues.amount)
-        }
-
     },[formValues.currency, formValues.amount])
 
     const currencyManager = () =>{
         if(currency){
             return currency
-
         }else{
             return STARS_FOR_NO_CONTENT
         }
-
     }
 
     const amountManager = () =>{
@@ -87,40 +72,16 @@ const GatewayFormStepOne =()=> {
         }if(currency === CAD){
             return `${parseInt(amount).toFixed(2)} ${CAD}`
         }else{
-                return STARS_FOR_NO_CONTENT
+            return STARS_FOR_NO_CONTENT
         }
     }
 
-    const paymentInitialization = async() =>{
-        try{
-            const ip = await getClientIpAddress()
-            const paymentInfo = {  merchantKey, paymentRequestId, ip }
-            if(merchantKey){
-               const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
-                console.log('response Data ====>', responseFromBffPaymentInit.data)
-                setCurrency(responseFromBffPaymentInit.data.currency)
-                setAmount(responseFromBffPaymentInit.data.amount)
-                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403) || responseFromBffPaymentInit.data.code === CODE_500){
-
-                    dispatch({
-                        type: CHANGE_MODAL_STATES,
-                        key: SHOW_ACCESS_DENIED_MODAL,
-                        value: true
-                    })
-                }else{
-                    responseManager({response:responseFromBffPaymentInit, formValues})
-                }
-            }
-        }catch(error){
-            console.error('Error on the gateway bff payment init : ',error)
-        }
-    }
 
     return (
-
         <Grid>
             <Grid item  xs={12} >
                 <Typography variant="h6">{t("Payment Information")}</Typography>
+                {/*<GatewayInfo currency={formValues.currency} businessObject={businessObject} />*/}
                 <List>
                     <ListItem className={classes.listItem} >
                         <ListItemText primary={t('Currency :')} className={classes.listItemText}  />

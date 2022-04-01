@@ -136,7 +136,7 @@ const getClientIpAddress = async() =>{
     try{
         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
         // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
-        //197.157.209.57
+
         return response.data.ip
     }catch(error){
         console.log("Couldn't get user Ip adress ==> :", error.response)
@@ -164,7 +164,7 @@ const paymentMethods =[
     // },
 ]
 
-const responseManager = ({response, formValues}) =>{
+const responseManager = ({response, formValues, option}) =>{
 
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
@@ -181,7 +181,9 @@ const responseManager = ({response, formValues}) =>{
     }if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
     }if(response.data.amount){
-        formValues.amount = response.data.amount
+        if(option){
+            formValues.amount = response.data.amount
+        }
     }
 }
 

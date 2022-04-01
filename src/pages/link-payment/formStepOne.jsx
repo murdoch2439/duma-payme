@@ -1,14 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Grid,Typography, TextField, FormControl, MenuItem  } from '@material-ui/core';
-import axios from 'axios'
-import { useStateValue } from '../context';
-import {getClientIpAddress, getUrlParams, paymentMethods, responseManager,} from '../utils/helperFunctions';
-import {
-    MERCHANT_KEY_STRING,
-    API_PAYMENT_INIT,
-    EDIT_FORM_VALUES,
-    PAYMENT_REQUEST_ID_STRING, CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL, CODE_403, CODE_500
-} from '../constants/variableNames';
+import { useStateValue } from '../../context';
+import { paymentMethods,} from '../../utils/helperFunctions';
+import {EDIT_FORM_VALUES,} from '../../constants/variableNames';
 import {useTranslation} from "react-i18next";
 
 
@@ -21,53 +15,37 @@ const FormStepOne =()=> {
     const [errorMessage, setErrorMessage] = useState('')
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const {t} = useTranslation()
-    const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
-    const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
-    if(paymentRequestId){
-        formValues.payerId = paymentRequestId
-    }
+
+    // if(paymentRequestId){
+    //     formValues.payerId = paymentRequestId
+    // }
 
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
   useEffect(()=>{
-      if(formValues.currency === ''){
-          paymentInitWithBff().then()
-      }else{
           setCurrency(formValues.currency)
           setPaymentMeth(formValues.paymentMethod)
           setClientCurrency(formValues.clientCurrency)
-      }
 
     },[formValues.currency, formValues.paymentMethod, formValues.clientCurrency])
 
-const paymentInitWithBff = async () =>{
-    try{
-        const ip = await getClientIpAddress()
-        if(ip){
-            const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
-            if(merchantKey){
-                const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
-                setCurrency(responseFromBffPaymentInit.data.currency)
-                setClientCurrency(responseFromBffPaymentInit.data.clientCurrency)
-
-                if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
-                    dispatch({
-                        type: CHANGE_MODAL_STATES,
-                        key: SHOW_ACCESS_DENIED_MODAL,
-                        value: true
-                    })
-                }else{
-                    // console.log('response Data ====>',responseFromBffPaymentInit)
-                    responseManager({response :responseFromBffPaymentInit, formValues})
-                }
-
-            }
-        }else{
-            console.log('Ip is not provided!!!!!!!!!!')
-        }
-    }catch(error){
-        console.error('Error on payment initialization ==> : ',error)
-        }
-}
+// const paymentInitWithBff = async () =>{
+//     try{
+//         if(ip){
+//             if(merchantKey){
+//                 const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
+//
+//                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
+//                     console.log("response data from init ==> ", responseFromBffPaymentInit.data)
+//                 }else{
+//                     console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
+//                     responseManager({response :responseFromBffPaymentInit, formValues})
+//                 }
+//
+//             }
+//         }
+//     }catch(error){
+//         }
+// }
 
   return (
       <Grid>
@@ -162,10 +140,7 @@ const paymentInitWithBff = async () =>{
                         })
                     }}
             >
-          <MenuItem value='USD'>{currency}</MenuItem>
-          <MenuItem value='EUR'>{currency}</MenuItem>
-          <MenuItem value='CAD'>{currency}</MenuItem>
-          <MenuItem value='GBP'>{currency}</MenuItem>
+          <MenuItem value={currency.toString()}>{currency}</MenuItem>
         </TextField>
       </FormControl>
         </Grid>

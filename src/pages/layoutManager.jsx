@@ -3,8 +3,8 @@ import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
-import FormStepsManager from './formStepsManager'
-import GatewayFormStepsManager from './gatewayFormStepsManager'
+import FormStepsManager from './link-payment/formStepsManager'
+import GatewayFormStepsManager from './gateway/gatewayFormStepsManager'
 import { useStateValue } from "../context";
 import cover from '../assets/Trip-assurances (4).png'
 import logDuma from '../assets/duma1.png'
@@ -17,8 +17,6 @@ import {
     FRENCH_LANG_CODE, MERCHANT_KEY_STRING,
     OPTION_STRING
 } from "../constants/variableNames";
-// import LoadingComponent from "../components/loadingComponent";
-// import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL, SHOW_PENDING_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
 
@@ -64,6 +62,7 @@ const useStyles = makeStyles(() => ({
         display:'flex',
         alignItems:'flex-end',
         marginBottom:20,
+        marginTop:20,
     }
 }));
 

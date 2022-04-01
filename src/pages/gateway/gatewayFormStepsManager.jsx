@@ -5,18 +5,18 @@ import {useStripe} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import GatewayFormStepOne from './gatewayFormStepOne';
 import GatewayFormStepTwo from './gatewayFormStepTwo';
-import Copyright from '../components/copyright';
-import { useStateValue } from '../context';
+import Copyright from '../../components/copyright';
+import { useStateValue } from '../../context';
 import {
     API_CREATE_PAYMENT_INTENT, API_MOBILE_MONEY_PAYMENT_INIT,
     API_VALIDATE_PAYMENT_INTENT, CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT, LOADING_MESSAGE,
     MOBILE_MONEY, Next_STEP, PAY_NOW, PREVIOUS_STEP, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL, SUCCEEDED, SUCCESS,
-} from '../constants/variableNames';
+} from '../../constants/variableNames';
 // import {  useHistory
 // } from "react-router-dom";
-import {backgroundChanger, firstThreeDigit} from "../utils/helperFunctions";
+import {backgroundChanger, firstThreeDigit} from "../../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
-import LogoAndLangSwitcher from "../components/logoAndLangSwitcher";
+import LogoAndLangSwitcher from "../../components/logoAndLangSwitcher";
 
 
 const useStyles = makeStyles(() => ({
@@ -233,7 +233,6 @@ const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
         }catch(error){
             console.error('error from the catch in the gateway', error.message)
             setLoading(false);
-
         }
 
         // dispatch({ type: 'emptyFormValue'});

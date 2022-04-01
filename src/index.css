@@ -1,6 +1,6 @@
 
 body {
-  height:100%;
+  /*height:85vh;*/
   background: url("./assets/gig1.gif") no-repeat top fixed ;
   background-size: cover;
   /*display: flex;*/
@@ -8,12 +8,13 @@ body {
   /*align-items: center;*/
   /*text-align: center;*/
   /*display:flex;*/
+  font-family: 'Poppins', sans-serif;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",*/
+  /*  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",*/
+  /*  sans-serif;*/
+  /*-webkit-font-smoothing: antialiased;*/
+  /*-moz-osx-font-smoothing: grayscale;*/
 
   /*justify-content: center;*/
 

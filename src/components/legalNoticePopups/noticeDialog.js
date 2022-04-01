@@ -27,7 +27,7 @@ const NoticeDialog = ({separator}) => {
         legal: {
             name: "legal",
             title: t("Legal Notice"),
-            description: () => <>This website is owned and operated by Duma Solutions.<br /><br />To contact us:<br />Name<br />Address line<br />postcode city<br />country<br /><br />Phone: ___________</>
+            description: () => <>This website is owned and operated by Duma Solutions.<br /><br />To contact us:<br />Name<br />Address line<br />postcode city<br />country<br /><br />Phone: ___________ <br />Email address:________</>
         },
         privacy: {
             name: "privacy",

@@ -22,7 +22,7 @@ const LoadingComponent = () =>{
           color="white"
           height={100}
           width={100}
-          timeout={5000}
+          // timeout={5000}
         />
 
     </Container>
