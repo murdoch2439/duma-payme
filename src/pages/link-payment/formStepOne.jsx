@@ -142,7 +142,7 @@ const FormStepOne =()=> {
             >
           <MenuItem value={currency.toString()}>{currency}</MenuItem>
           {/*<MenuItem value='EUR'>{currency}</MenuItem>*/}
-          {/*<MenuItem value='CAD'>{currency}</MenuItem>*/}
+
 
         </TextField>
       </FormControl>
