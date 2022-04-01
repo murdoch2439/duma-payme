@@ -17,7 +17,7 @@ import NotFoundPage from "../pages/notFoundPage";
 import {
     API_PAYMENT_INIT, CHANGE_MODAL_STATES,
     CODE_403, CODE_500, EMPTY_STRING,
-    MERCHANT_KEY_STRING,
+    MERCHANT_KEY_STRING, OPTION_STRING,
     PAYMENT_REQUEST_ID_STRING,
     PUBLIC_KEY, SHOW_ACCESS_DENIED_MODAL
 } from "../constants/variableNames";
@@ -33,6 +33,7 @@ const Wrapper = () =>{
     const [currency, setCurrency] = useState('')
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
+    const option= getUrlParams()[OPTION_STRING]
 
     useEffect(()=>{
 
@@ -63,7 +64,7 @@ const Wrapper = () =>{
                         })
                     }else{
                         console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
-                        responseManager({response :responseFromBffPaymentInit, formValues})
+                        responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
 
                 }

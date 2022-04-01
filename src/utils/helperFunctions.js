@@ -164,7 +164,7 @@ const paymentMethods =[
     // },
 ]
 
-const responseManager = ({response, formValues}) =>{
+const responseManager = ({response, formValues, option}) =>{
 
     formValues.currency = response.data.currency
     formValues.transactionReference = response.data.reference
@@ -181,7 +181,9 @@ const responseManager = ({response, formValues}) =>{
     }if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
     }if(response.data.amount){
-        formValues.amount = response.data.amount
+        if(option){
+            formValues.amount = response.data.amount
+        }
     }
 }
 
