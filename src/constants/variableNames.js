@@ -40,7 +40,6 @@ const currencies = {
     CAD: "CAD",
 }
 const USD = "USD"
-const EUR = "EUR"
 
 
 const CLIENT_FOR_MOBILE_PAYMENT = "ICASH_PAY"
