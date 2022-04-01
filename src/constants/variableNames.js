@@ -39,7 +39,6 @@ const currencies = {
     GBP: "GBP",
     CAD: "CAD",
 }
-const USD = "USD"
 
 const CLIENT_FOR_MOBILE_PAYMENT = "ICASH_PAY"
 const STARS_FOR_NO_CONTENT = "*****"
