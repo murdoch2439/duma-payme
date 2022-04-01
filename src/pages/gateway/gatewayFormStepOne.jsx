@@ -7,11 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { paymentMethods, } from '../../utils/helperFunctions';
 import {
     EDIT_FORM_VALUES,
-    USD,
-    EUR,
-    GBP,
-    CAD,
-    STARS_FOR_NO_CONTENT
+    STARS_FOR_NO_CONTENT, currencies
 } from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
@@ -63,14 +59,14 @@ const GatewayFormStepOne =()=> {
     }
 
     const amountManager = () =>{
-        if(currency === USD){
+        if(currency === currencies.USD){
             return `${parseInt(amount).toFixed(2)} $`
-        }if(currency === EUR){
+        }if(currency === currencies.EUR){
             return `${parseInt(amount).toFixed(2)} €`
-        }if(currency === GBP){
+        }if(currency === currencies.GBP){
         return `${parseInt(amount).toFixed(2)} £`
-        }if(currency === CAD){
-            return `${parseInt(amount).toFixed(2)} ${CAD}`
+        }if(currency === currencies.CAD){
+            return `${parseInt(amount).toFixed(2)} ${currencies.CAD}`
         }else{
             return STARS_FOR_NO_CONTENT
         }
