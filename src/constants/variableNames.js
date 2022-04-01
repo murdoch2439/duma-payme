@@ -33,12 +33,12 @@ const ENGLISH_LANG_CODE = "en"
 const FRENCH_LANG_CODE = "fr"
 const CODE_403 ="403"
 const CODE_500 ="500"
-const currencies = {
+const currencies = Object.freeze({
     USD: "USD",
     EUR: "EUR",
     GBP: "GBP",
     CAD: "CAD",
-}
+})
 
 const CLIENT_FOR_MOBILE_PAYMENT = "ICASH_PAY"
 const STARS_FOR_NO_CONTENT = "*****"
