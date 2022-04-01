@@ -66,6 +66,7 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
         }
 }
 
+
 const businessLogicManager = ({currency, amount, clientCurrency, rate}) =>{
         if(!currency){
             return `$ 00.00`
