@@ -11,7 +11,7 @@ import {
     EUR,
     GBP,
     CAD,
-    STARS_FOR_NO_CONTENT
+    STARS_FOR_NO_CONTENT, currencies
 } from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
@@ -63,7 +63,7 @@ const GatewayFormStepOne =()=> {
     }
 
     const amountManager = () =>{
-        if(currency === USD){
+        if(currency === currencies.USD){
             return `${parseInt(amount).toFixed(2)} $`
         }if(currency === EUR){
             return `${parseInt(amount).toFixed(2)} €`
