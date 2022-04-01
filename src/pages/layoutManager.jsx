@@ -54,7 +54,6 @@ const useStyles = makeStyles(() => ({
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-
     },
     clientLogo:{
         width:250,
