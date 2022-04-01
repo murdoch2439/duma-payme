@@ -8,7 +8,6 @@ import { paymentMethods, } from '../../utils/helperFunctions';
 import {
     EDIT_FORM_VALUES,
     USD,
-    EUR,
     CAD,
     STARS_FOR_NO_CONTENT, currencies
 } from '../../constants/variableNames';
