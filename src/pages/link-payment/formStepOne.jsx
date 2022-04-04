@@ -17,7 +17,6 @@ const FormStepOne =()=> {
     const {t} = useTranslation()
 
 
-
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
   useEffect(()=>{
           setCurrency(formValues.currency)
