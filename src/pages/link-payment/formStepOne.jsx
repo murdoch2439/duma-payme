@@ -36,7 +36,7 @@ const FormStepOne =()=> {
 
 //                     console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
 //                     responseManager({response :responseFromBffPaymentInit, formValues})
-//                 }
+
 //         }
 //     }catch(error){
 //         }
