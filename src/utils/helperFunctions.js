@@ -192,4 +192,5 @@ export {
     backgroundChanger,
     nameFormating,
     languages,
-    paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress, firstThreeDigit }
+    paymentMethods,
+    getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress, firstThreeDigit }
