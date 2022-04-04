@@ -200,4 +200,5 @@ export {
     sendingAmount,
     currencyManager,
     getClientIpAddress,
-    firstThreeDigit }
+    firstThreeDigit
+}
