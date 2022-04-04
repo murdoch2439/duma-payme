@@ -200,7 +200,7 @@ const FormStepOne =()=> {
                 }
                 }
             />
-            {/*<FormHelperText>{`${t("To")} ${currency}`}</FormHelperText>*/}
+            {/*<FormHelperText>{`${t("To")} $`}</FormHelperText>*/}
         </Grid>
        </Grid>
    </Grid>
