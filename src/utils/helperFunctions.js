@@ -199,4 +199,5 @@ export {
     totalToPay,
     sendingAmount,
     currencyManager,
-    getClientIpAddress, firstThreeDigit }
+    getClientIpAddress,
+    firstThreeDigit }
