@@ -17,7 +17,7 @@ const FormStepOne =()=> {
     const {t} = useTranslation()
 
     // if(paymentRequestId){
-    //     formValues.payerId = paymentRequestId
+
 
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
   useEffect(()=>{
