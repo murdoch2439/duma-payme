@@ -187,4 +187,7 @@ const responseManager = ({response, formValues, option}) =>{
     }
 }
 
-export {responseManager, backgroundChanger, nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress, firstThreeDigit}
+export {
+    responseManager,
+    backgroundChanger,
+    nameFormating, languages, paymentMethods,  getUrlParams, businessLogicManager, receivingAmount, totalToPay, sendingAmount, currencyManager, getClientIpAddress, firstThreeDigit }
