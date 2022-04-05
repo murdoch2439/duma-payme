@@ -1,7 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Container } from '@material-ui/core';
 import Loader from "react-loader-spinner";
-import { Container, } from "@material-ui/core";
+// import { Container, } from "@material-ui/core";
+import {CHANGE_MODAL_STATES, SHOW_ACCESS_DENIED_MODAL} from "../constants/variableNames";
 
 
 const useStyles = makeStyles(() => ({
@@ -12,8 +13,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LoadingComponent = () =>{
+const LoadingComponent = ({currency}) =>{
   const classes = useStyles();
+  const contentManager =()=>{
+      if(!currency){
+          // dispatch({
+          //     type: CHANGE_MODAL_STATES,
+          //     key: SHOW_ACCESS_DENIED_MODAL,
+          //     value: true
+          // })
+      }
+  }
   return(
     <Container className={classes.root}>
 
