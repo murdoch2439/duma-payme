@@ -36,7 +36,6 @@ const Wrapper = () =>{
     const option= getUrlParams()[OPTION_STRING]
 
     useEffect(()=>{
-
         if(formValues.currency === EMPTY_STRING){
 
             paymentInitWithBff().then()
