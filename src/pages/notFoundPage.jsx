@@ -57,10 +57,6 @@ const NotFoundPage =()=>{
                         <p style={{fontWeight:'bold', fontSize:25, color:'black'}} >{t("Not found")}</p>
                     </Grid>
 
-                    {/*<Grid  item className={classes.boxIcon}>*/}
-                    {/*    <CloudOffIcon style={{fontSize:60, color:'black'}}/>*/}
-                    {/*    /!*<img src={picture} alt="f0f" style={{width:100}} />*!/*/}
-                    {/*</Grid>*/}
                     <p style={{textAlign:'center', fontSize:25}}>
                         {t("Oups!!, something just went wrong!")} <br />
                     </p>
