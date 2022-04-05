@@ -83,7 +83,7 @@ const Wrapper = () =>{
                 {
                      !currency ?
                         <div className='Loading'>
-                            <LoadingComponent currency={currency} />
+                            <LoadingComponent />
                         </div>:
                         <Elements stripe={stripePromise}>
                             <Switch>
