@@ -17,7 +17,7 @@ const initialState = {
         transactionReference:"",
         paymentIntent:"",
         rate:"",
-        ip:'',
+        ip:"",
         card:null,
         receiverLogo:"",
         fees:4,

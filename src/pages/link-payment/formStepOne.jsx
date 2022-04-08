@@ -16,9 +16,6 @@ const FormStepOne =()=> {
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const {t} = useTranslation()
 
-    // if(paymentRequestId){
-    //     formValues.payerId = paymentRequestId
-    // }
 
   const receivingAmount = (formValues.clientCurrency === formValues.currency ? formValues.amount : (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2))
   useEffect(()=>{
@@ -36,12 +33,9 @@ const FormStepOne =()=> {
 //
 //                 if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
 //                     console.log("response data from init ==> ", responseFromBffPaymentInit.data)
-//                 }else{
+
 //                     console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
 //                     responseManager({response :responseFromBffPaymentInit, formValues})
-//                 }
-//
-//             }
 //         }
 //     }catch(error){
 //         }
@@ -206,7 +200,7 @@ const FormStepOne =()=> {
                 }
                 }
             />
-            {/*<FormHelperText>{`${t("To")} ${currency}`}</FormHelperText>*/}
+            {/*<FormHelperText>{`${t("To")} `}</FormHelperText>*/}
         </Grid>
        </Grid>
    </Grid>
