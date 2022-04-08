@@ -76,7 +76,6 @@ const NotFoundPage =()=>{
                     </Grid>
                 </Paper>
             </Container>
-
     )
 }
 
