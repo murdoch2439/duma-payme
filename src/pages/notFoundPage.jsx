@@ -74,7 +74,6 @@ const NotFoundPage =()=>{
                             {t("Go back")}
                         </Button>
                     </Grid>
-
                 </Paper>
             </Container>
 
