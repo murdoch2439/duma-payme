@@ -42,7 +42,7 @@ const Wrapper = () =>{
             setCurrency(formValues.currency)
         }
 
-    },[formValues.currency, ])
+    },[formValues.currency,])
 
 
 
