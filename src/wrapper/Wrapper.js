@@ -69,7 +69,6 @@ const Wrapper = () =>{
                         // stripePromise = loadStripe(responseFromBffPaymentInit.data.clientKey)
 
 
-
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
 
