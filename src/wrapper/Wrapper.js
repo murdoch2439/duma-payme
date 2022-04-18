@@ -67,7 +67,6 @@ const Wrapper = () =>{
                         })
                     }else{
 
-
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
 
