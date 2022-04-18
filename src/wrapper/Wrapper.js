@@ -70,7 +70,6 @@ const Wrapper = () =>{
 
 
 
-
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
 
