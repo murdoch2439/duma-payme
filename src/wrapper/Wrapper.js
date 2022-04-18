@@ -67,7 +67,6 @@ const Wrapper = () =>{
                         })
                     }else{
                         // stripePromise = loadStripe(responseFromBffPaymentInit.data.clientKey)
-                        // console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
 
 
 
