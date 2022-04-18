@@ -38,7 +38,6 @@ const Wrapper = () =>{
     useEffect(()=>{
         if(formValues.currency === EMPTY_STRING){
             paymentInitWithBff().then()
-
         }else{
             setCurrency(formValues.currency)
         }
