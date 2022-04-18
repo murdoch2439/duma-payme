@@ -33,7 +33,7 @@ let stripePromise = null
 const Wrapper = () =>{
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-    // const [publicKey, setPublicKey] = useState(PUBLIC_KEY)
+    const [publicKey, setPublicKey] = useState(null)
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
     const option= getUrlParams()[OPTION_STRING]
@@ -59,7 +59,8 @@ const Wrapper = () =>{
                 if(merchantKey){
                     const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                     setCurrency(responseFromBffPaymentInit.data.currency)
-                    stripePromise = loadStripe(responseFromBffPaymentInit.data.clientKey)
+                    setPublicKey(loadStripe(responseFromBffPaymentInit.data.clientKey))
+
 
                     if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
 
@@ -70,6 +71,7 @@ const Wrapper = () =>{
                             value: true
                         })
                     }else{
+                        // stripePromise = loadStripe(responseFromBffPaymentInit.data.clientKey)
                         // console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
 
 
@@ -90,7 +92,7 @@ const Wrapper = () =>{
 
 
     // const stripePromise = loadStripe(publicKey)
-    // console.log("public ==>", publicKey)
+
 
 
 
@@ -102,7 +104,7 @@ const Wrapper = () =>{
                         <div className='Loading'>
                             <LoadingComponent />
                         </div>:
-                        <Elements stripe={stripePromise}>
+                        <Elements stripe={publicKey}>
                             <Switch>
                                 <Route path="/" exact component={LayoutManager} />
                                 <Route path="/duma-pay" exact component={MerchantApplication} />
