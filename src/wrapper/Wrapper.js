@@ -80,7 +80,7 @@ const Wrapper = () =>{
     }
 
 
-    // const stripePromise = loadStripe(publicKey)
+
 
 
 
