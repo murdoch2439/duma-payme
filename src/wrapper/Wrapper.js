@@ -70,7 +70,7 @@ const Wrapper = () =>{
                         // console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
 
 
-                        // console.log("public key after ===> :", publicKey)
+
                         // console.log("public key response ===> :", responseFromBffPaymentInit.data.clientKey)
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
