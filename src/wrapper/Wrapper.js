@@ -27,7 +27,7 @@ import axios from "axios";
 
 // const stripePromise = loadStripe(PUBLIC_KEY)
 
-let stripePromise = null
+
 
 
 const Wrapper = () =>{
