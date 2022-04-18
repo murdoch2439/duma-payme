@@ -25,12 +25,15 @@ import {useStateValue} from "../context";
 import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
 import axios from "axios";
 
-const stripePromise = loadStripe(PUBLIC_KEY)
+// const stripePromise = loadStripe(PUBLIC_KEY)
+
+let stripePromise = null
 
 
 const Wrapper = () =>{
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
+    const [publicKey, setPublicKey] = useState(PUBLIC_KEY)
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
     const option= getUrlParams()[OPTION_STRING]
@@ -38,11 +41,15 @@ const Wrapper = () =>{
     useEffect(()=>{
         if(formValues.currency === EMPTY_STRING){
             paymentInitWithBff().then()
+
         }else{
             setCurrency(formValues.currency)
         }
 
-    },[formValues.currency])
+    },[formValues.currency, ])
+
+
+
 
     const paymentInitWithBff = async () =>{
         try{
@@ -52,6 +59,7 @@ const Wrapper = () =>{
                 if(merchantKey){
                     const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                     setCurrency(responseFromBffPaymentInit.data.currency)
+                    stripePromise = loadStripe(responseFromBffPaymentInit.data.clientKey)
 
                     if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
 
@@ -62,7 +70,12 @@ const Wrapper = () =>{
                             value: true
                         })
                     }else{
-                        console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
+                        // console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
+
+
+                        // stripeP =  loadStripe(publicKey)
+                        // console.log("public key after ===> :", publicKey)
+                        // console.log("public key response ===> :", responseFromBffPaymentInit.data.clientKey)
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
 
@@ -74,6 +87,10 @@ const Wrapper = () =>{
             console.error('Error on payment initialization ==> : ',error)
         }
     }
+
+
+    // const stripePromise = loadStripe(publicKey)
+    // console.log("public ==>", publicKey)
 
 
 

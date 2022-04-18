@@ -141,6 +141,8 @@ const  FormStepsManager =() => {
                 receipt_email: formValues.receiverEmail
             })
 
+            console.log("Secret Key ===> from bff:", clientSecret)
+
             const paymentMethodReq = await stripe.createPaymentMethod({
                 type: 'card',
                 card: formValues.card,
