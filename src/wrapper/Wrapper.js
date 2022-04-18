@@ -70,7 +70,7 @@ const Wrapper = () =>{
 
 
 
-                        // console.log("public key response ===> :", responseFromBffPaymentInit.data.clientKey)
+
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
                     }
 
