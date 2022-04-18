@@ -25,7 +25,7 @@ import {useStateValue} from "../context";
 import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
 import axios from "axios";
 
-// const stripePromise = loadStripe(PUBLIC_KEY)
+
 
 
 
