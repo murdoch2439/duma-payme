@@ -19,7 +19,7 @@ import {
     CODE_403, CODE_500, EMPTY_STRING,
     MERCHANT_KEY_STRING, OPTION_STRING,
     PAYMENT_REQUEST_ID_STRING,
-    PUBLIC_KEY, SHOW_ACCESS_DENIED_MODAL
+    SHOW_ACCESS_DENIED_MODAL
 } from "../constants/variableNames";
 import {useStateValue} from "../context";
 import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
@@ -33,7 +33,7 @@ let stripePromise = null
 const Wrapper = () =>{
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
-    const [publicKey, setPublicKey] = useState(PUBLIC_KEY)
+    // const [publicKey, setPublicKey] = useState(PUBLIC_KEY)
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
     const option= getUrlParams()[OPTION_STRING]
