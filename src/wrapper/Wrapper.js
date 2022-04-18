@@ -46,7 +46,6 @@ const Wrapper = () =>{
 
 
 
-
     const paymentInitWithBff = async () =>{
         try{
             const ip = await getClientIpAddress()
