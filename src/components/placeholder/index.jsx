@@ -12,11 +12,7 @@ const PlaceholderComponent =()=>{
     useEffect(()=>{
         setTimeout(()=>{
             setLocalLoading(false)
-            // dispatch({
-            //     type: CHANGE_MODAL_STATES,
-            //     key: SHOW_LOADING_COMPONENT,
-            //     value:
-            // })
+
             console.log('Happened')
 
         },3000)
