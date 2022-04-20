@@ -70,7 +70,6 @@ const Wrapper = () =>{
                             value: true
                         })
                     }
-
                 }
             }else{
                 console.log('Ip is not provided!!!!!!!!!!')
