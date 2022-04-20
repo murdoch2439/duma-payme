@@ -23,13 +23,13 @@ const sendingAmount = ({currency, amount,}) =>{
 
 const totalToPay = ({currency, amount, }) =>{
     if(currency === currencies.USD){
-        return `$ ${parseInt(amount).toFixed(2)} ${currency}`
+        return `$ ${parseInt(amount).toFixed(2)}`
     }if(currency === currencies.EUR){
         return `€ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === currencies.GBP){
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === currencies.CAD){
-        return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
+        return `CA$ ${parseInt(amount).toFixed(2)}`
     }
 
 }
