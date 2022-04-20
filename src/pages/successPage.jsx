@@ -23,13 +23,13 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:10
     },
     boxTitle:{
-      backgroundColor:'green',
+      backgroundColor:'rgba(17, 182, 102, 0.14)',
       borderTopLeftRadius:10,
       borderTopRightRadius:10
     },
     boxIcon:{
-      height:100,
-      width:100,
+      height:80,
+      width:80,
       backgroundColor:'rgba(17, 182, 102, 0.20)',
       margin:'auto',
       borderRadius:100,
@@ -90,7 +90,7 @@ const SuccessPage =()=>{
             <Container  className={classes.boxWrapper}>
               <Paper className={classes.paper}>
                 <Grid container  justifyContent='center' className={classes.boxTitle}>
-                    <p style={{fontWeight:'bold', fontSize:20, color:'white'}} >{t("Confirmation")}</p>
+                    <p style={{fontWeight:'bold', fontSize:20, color:'green'}} >{t("Confirmation")}</p>
                 </Grid>
                 <div style={{height:10}} />
                 <Grid  item className={classes.boxIcon}>
