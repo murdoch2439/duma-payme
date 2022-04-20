@@ -12,8 +12,6 @@ const PlaceholderComponent =()=>{
     useEffect(()=>{
         setTimeout(()=>{
             setLocalLoading(false)
-
-
         },3000)
 
 
