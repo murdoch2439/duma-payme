@@ -14,16 +14,15 @@ const PlaceholderComponent =()=>{
             setLocalLoading(false)
         },3000)
 
-
     }, [])
 
     return(
-        <div>
+        <>
             {
                 localLoading ? <LoadingComponent />: <IssuesPage />
             }
 
-        </div>
+        </>
     )
 }
 
