@@ -13,7 +13,6 @@ const PlaceholderComponent =()=>{
         setTimeout(()=>{
             setLocalLoading(false)
 
-            console.log('Happened')
 
         },3000)
 
