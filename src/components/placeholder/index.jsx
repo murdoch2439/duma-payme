@@ -25,5 +25,4 @@ const PlaceholderComponent =()=>{
     )
 }
 
-
 export default PlaceholderComponent
