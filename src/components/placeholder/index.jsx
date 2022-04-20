@@ -21,7 +21,6 @@ const PlaceholderComponent =()=>{
             {
                 localLoading ? <LoadingComponent />: <IssuesPage />
             }
-
         </>
     )
 }
