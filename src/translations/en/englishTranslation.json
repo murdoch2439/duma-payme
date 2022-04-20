@@ -26,7 +26,9 @@
   "Trademarks":"Trademarks",
   "Payment Details":"Payment Details",
   "Sender :":"Sender :",
+  "Sender":"Sender",
   "Receiver :":"Receiver :",
+  "Receiver":"Receiver",
   "Amount to send :":"Amount to send:",
   "Fees :":"Fees :",
   "Total :":"Total :",
@@ -54,6 +56,10 @@
   "Payment passed successfully:":"Payment passed successfully",
   "Amount :": "Amount :",
   "Organization :": "Organization :",
-  "Reference code :": "Reference code :"
+  "Organization": "Organization",
+  "Reference code :": "Reference code",
+  "Reference code": "Reference code",
+  "Receiving": "Receiving",
+  "Paid amount": "Paid amount"
 
 }

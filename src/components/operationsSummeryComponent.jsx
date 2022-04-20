@@ -98,7 +98,7 @@ const OperationsSummeryComponent = () =>{
                 {/*    </Typography>*/}
                 {/*</ListItem>*/}
                 <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Amount')} style={{fontWeight:'700', color:'grey', }}   />
+                    <ListItemText primary={t('Paid amount')} style={{fontWeight:'700', color:'grey', }}   />
 
                         <Typography  variant="body1" className={classes.total}>{totalToPay({
                             currency:formValues
