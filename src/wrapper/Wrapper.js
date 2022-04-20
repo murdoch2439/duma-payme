@@ -56,7 +56,6 @@ const Wrapper = () =>{
                     setPublicKey(loadStripe(responseFromBffPaymentInit.data.clientKey))
 
                     if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
-
                         console.log("response data from init ==> ", responseFromBffPaymentInit.data)
                         dispatch({
                             type: CHANGE_MODAL_STATES,
