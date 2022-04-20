@@ -7,7 +7,6 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import LoadingComponent from "../components/loadingComponent";
 import LayoutManager from "../pages/layoutManager";
 import MerchantApplication from "../pages/merchantApplication";
 import SuccessPage from "../pages/successPage";
@@ -19,11 +18,12 @@ import {
     CODE_403, CODE_500, EMPTY_STRING,
     MERCHANT_KEY_STRING, OPTION_STRING,
     PAYMENT_REQUEST_ID_STRING,
-    SHOW_ACCESS_DENIED_MODAL
+    SHOW_ACCESS_DENIED_MODAL, SHOW_LOADING_COMPONENT
 } from "../constants/variableNames";
 import {useStateValue} from "../context";
 import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
 import axios from "axios";
+import PlaceholderComponent from "../components/placeholder";
 
 
 
@@ -65,6 +65,12 @@ const Wrapper = () =>{
                     }else{
 
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
+                        formValues.loading = true
+                        dispatch({
+                            type: CHANGE_MODAL_STATES,
+                            key: SHOW_LOADING_COMPONENT,
+                            value: true
+                        })
                     }
 
                 }
@@ -72,7 +78,7 @@ const Wrapper = () =>{
                 console.log('Ip is not provided!!!!!!!!!!')
             }
         }catch(error){
-            console.error('Error on payment initialization ==> : ',error)
+            console.error('Error on payment initialization ==> : ',error.response.data)
         }
     }
 
@@ -84,7 +90,7 @@ const Wrapper = () =>{
                 {
                      !currency ?
                         <div className='Loading'>
-                            <LoadingComponent />
+                            <PlaceholderComponent />
                         </div>:
                         <Elements stripe={publicKey}>
                             <Switch>
