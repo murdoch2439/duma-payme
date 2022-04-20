@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     },
     text:{
         textAlign:'center',
-        fontSize:25
+        fontSize:20
     }
 }));
 
@@ -67,7 +67,7 @@ const IssuesPage =()=>{
                 </Grid>
                 <div style={{height:40}} />
                 <p className={classes.text}>
-                    {t("Oups!!, something just went wrong!")}<br />
+                    {t("Oups!!, something just went wrong on the server!")}<br />
                 </p>
                 <p style={{textAlign:'center',}}>
                     <img src={picture} alt="f0f" style={{width:250}} />
