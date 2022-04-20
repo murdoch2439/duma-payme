@@ -3,6 +3,8 @@ import {
     Container, Paper, Grid, Button,
 } from "@material-ui/core";
 import UpdateIcon from '@material-ui/icons/Update';
+// import {  useHistory
+// } from "react-router-dom";
 import { makeStyles, } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
@@ -51,6 +53,7 @@ const useStyles = makeStyles(() => ({
 
 const PendingPage =()=>{
     const [ dispatch] = useStateValue();
+    // const history = useHistory()
     const [loading, setLoading] = useState(false)
     const {t}=useTranslation()
     const classes = useStyles()

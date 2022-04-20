@@ -6,7 +6,6 @@ const OPTION_STRING = "op"
 // export const BFF_IP = "18.200.191.178"
 // const ONLINE_BACK_END_PORT = "54.154.208.240"
 const ONLINE_BACK_END_PORT = "192.168.1.101"
-// export const CURRENCY = "currency"
 const API_PAYMENT_INIT =  `http://${ONLINE_BACK_END_PORT}:3001/api/payment-init`
 const IP_PROVIDER_API_KEY = "44f0e7d529f599f5285f2bb5c8642eefbd77c2dd8cc187a61fca9a0d"
 const API_VALIDATE_PAYMENT_INTENT = `http://${ONLINE_BACK_END_PORT}:3001/api/validate`
