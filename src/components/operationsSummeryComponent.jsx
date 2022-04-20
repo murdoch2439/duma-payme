@@ -43,9 +43,10 @@ const useStyles = makeStyles(() => ({
         fontSize:25,
     },
     total: {
-        fontWeight: 'bold',
-        // color:'#11B666',
-        fontSize:16
+        fontWeight: '500',
+        color:'gray',
+        fontSize:16,
+
     },
 }));
 
@@ -111,9 +112,9 @@ const OperationsSummeryComponent = () =>{
                 </ListItem>
                 <ListItem className={classes.listItem} >
                     <ListItemText primary={t('Receiving')} style={{fontWeight:'700', color:'grey'}} />
-                    <div style={{backgroundColor:'rgba(17, 182, 102, 0.07)', padding:"10px 10px", borderRadius:100, color:'#11B666', fontWeight:"bold"}}>
+                    <div style={{backgroundColor:'rgba(17, 182, 102, 0.06)', borderRadius:100, color:'#11B666', fontWeight:"bold"}}>
 
-                    <Typography variant="body1" style={{fontWeight:'bold'}}>{receivingAmount(businessObject)}</Typography>
+                    <Typography variant="body1" style={{fontWeight:'bold', padding:"7px 10px"}}>{receivingAmount(businessObject)}</Typography>
                     </div>
                 </ListItem>
             </List>
