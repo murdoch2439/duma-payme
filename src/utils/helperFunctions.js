@@ -133,6 +133,7 @@ const currencyManager = (currency) =>{
 }
 
 const firstThreeDigit = string => string.substring(0,3)
+
 const getClientIpAddress = async() =>{
     try{
         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
