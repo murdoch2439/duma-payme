@@ -24,6 +24,7 @@ import {useStateValue} from "../context";
 import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
 import axios from "axios";
 import PlaceholderComponent from "../components/placeholder";
+import {Payment} from "../api";
 
 
 
@@ -46,7 +47,8 @@ const Wrapper = () =>{
 
     const paymentInitWithBff = async () =>{
         try{
-            const ip = await getClientIpAddress()
+            const ip = await Payment.getClientIpAddress()
+            console.log("This is IP", ip)
             if(ip){
                 const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
                 if(merchantKey){
