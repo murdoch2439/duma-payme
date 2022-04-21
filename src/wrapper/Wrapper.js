@@ -47,8 +47,8 @@ const Wrapper = () =>{
 
     const paymentInitWithBff = async () =>{
         try{
-            const ip = await Payment.getClientIpAddress()
-            console.log("This is IP", ip)
+            const ip =  await Payment.getClientIpAddress()
+
             if(ip){
                 const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
                 if(merchantKey){
