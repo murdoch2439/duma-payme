@@ -21,7 +21,7 @@ import {
     SHOW_ACCESS_DENIED_MODAL, SHOW_LOADING_COMPONENT
 } from "../constants/variableNames";
 import {useStateValue} from "../context";
-import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
+import { getUrlParams, responseManager} from "../utils/helperFunctions";
 import axios from "axios";
 import PlaceholderComponent from "../components/placeholder";
 import {Payment} from "../api";
