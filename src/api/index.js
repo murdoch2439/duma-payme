@@ -10,7 +10,6 @@ export const Payment={
     getClientIpAddress: async function (){
         try{
             const {data:{ip}} = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
-
             return ip
         }catch(error){
             console.log("Did not get the Ip address ==>", error)
