@@ -7,7 +7,6 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import LoadingComponent from "../components/loadingComponent";
 import LayoutManager from "../pages/layoutManager";
 import MerchantApplication from "../pages/merchantApplication";
 import SuccessPage from "../pages/successPage";
@@ -19,18 +18,20 @@ import {
     CODE_403, CODE_500, EMPTY_STRING,
     MERCHANT_KEY_STRING, OPTION_STRING,
     PAYMENT_REQUEST_ID_STRING,
-    PUBLIC_KEY, SHOW_ACCESS_DENIED_MODAL
+    SHOW_ACCESS_DENIED_MODAL, SHOW_LOADING_COMPONENT
 } from "../constants/variableNames";
 import {useStateValue} from "../context";
-import {getClientIpAddress, getUrlParams, responseManager} from "../utils/helperFunctions";
+import { getUrlParams, responseManager} from "../utils/helperFunctions";
 import axios from "axios";
+import PlaceholderComponent from "../components/placeholder";
+import {Payment} from "../api";
 
-const stripePromise = loadStripe(PUBLIC_KEY)
 
 
 const Wrapper = () =>{
     const [{ formValues }, dispatch] = useStateValue();
     const [currency, setCurrency] = useState('')
+    const [publicKey, setPublicKey] = useState(null)
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
     const  paymentRequestId = getUrlParams()[PAYMENT_REQUEST_ID_STRING]
     const option= getUrlParams()[OPTION_STRING]
@@ -41,20 +42,21 @@ const Wrapper = () =>{
         }else{
             setCurrency(formValues.currency)
         }
+    },[formValues.currency,])
 
-    },[formValues.currency])
 
     const paymentInitWithBff = async () =>{
         try{
-            const ip = await getClientIpAddress()
+            const ip =  await Payment.getClientIpAddress()
+
             if(ip){
                 const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
                 if(merchantKey){
                     const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
                     setCurrency(responseFromBffPaymentInit.data.currency)
+                    setPublicKey(loadStripe(responseFromBffPaymentInit.data.clientKey))
 
                     if((responseFromBffPaymentInit.data.error && responseFromBffPaymentInit.data.code === CODE_403)|| responseFromBffPaymentInit.data.code === CODE_500){
-
                         console.log("response data from init ==> ", responseFromBffPaymentInit.data)
                         dispatch({
                             type: CHANGE_MODAL_STATES,
@@ -62,16 +64,20 @@ const Wrapper = () =>{
                             value: true
                         })
                     }else{
-                        console.log('initialization succeed ====>', responseFromBffPaymentInit.data)
                         responseManager({response :responseFromBffPaymentInit, formValues, option})
+                        formValues.loading = true
+                        dispatch({
+                            type: CHANGE_MODAL_STATES,
+                            key: SHOW_LOADING_COMPONENT,
+                            value: true
+                        })
                     }
-
                 }
             }else{
                 console.log('Ip is not provided!!!!!!!!!!')
             }
         }catch(error){
-            console.error('Error on payment initialization ==> : ',error)
+            console.error('Error on payment initialization ==> : ',error.response.data)
         }
     }
 
@@ -83,9 +89,9 @@ const Wrapper = () =>{
                 {
                      !currency ?
                         <div className='Loading'>
-                            <LoadingComponent />
+                            <PlaceholderComponent />
                         </div>:
-                        <Elements stripe={stripePromise}>
+                        <Elements stripe={publicKey}>
                             <Switch>
                                 <Route path="/" exact component={LayoutManager} />
                                 <Route path="/duma-pay" exact component={MerchantApplication} />
@@ -98,9 +104,7 @@ const Wrapper = () =>{
                 }
             </Router>
         </>
-
     )
 }
-
 
 export default Wrapper

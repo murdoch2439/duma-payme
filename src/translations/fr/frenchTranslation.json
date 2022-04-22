@@ -24,7 +24,9 @@
   "Trademarks":"Marque de fabrique",
   "Payment Details":"Détails de payement",
   "Sender :":"Expéditeur :",
+  "Sender":"Expéditeur",
   "Receiver :":"Destinataire :",
+  "Receiver":"Destinataire",
   "Amount to send:":"Montant à envoyer:",
   "Fees :":"Frais :",
   "Receiving amount :": "Montant à recevoir :",
@@ -54,6 +56,10 @@
   "Payment passed successfully:":"Payement effectué avec succès:",
   "Amount :": "Montant :",
   "Organization :": "Organisation :",
-  "Reference code :": "No Référence :"
+  "Organization": "Organisation",
+  "Reference code :": "No Référence :",
+  "Reference code": "No Référence",
+  "Receiving": "A Recevoir",
+  "Paid amount": "Montant payé"
 
 }

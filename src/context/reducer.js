@@ -25,14 +25,16 @@ const initialState = {
         error:false,
         code:"",
         clientCurrency:"",
-        clientKey:""
+        clientKey:"",
+        loading:true,
 
     },
     modalStates:{
         showsuccessmodal:false,
         showfailmodal:false,
         showpendingmodal:false,
-        showaccessdeniedmodal:false
+        showaccessdeniedmodal:false,
+        showloadingcomponent:false,
     }
 };
 

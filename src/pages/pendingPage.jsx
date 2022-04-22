@@ -109,7 +109,7 @@ const PendingPage =()=>{
                             }}
                             disabled={loading}
                         >
-                            {loading? t('Refreshing Status...'): t('Refresh')}
+                            { loading ? t('Refreshing Status...') : t('Refresh') }
                         </Button>
                     </Grid>
                 </Paper>

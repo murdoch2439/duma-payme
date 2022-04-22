@@ -23,14 +23,14 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:10
     },
     boxTitle:{
-      backgroundColor:'green',
+      backgroundColor:'rgba(17, 182, 102, 0.14)',
       borderTopLeftRadius:10,
       borderTopRightRadius:10
     },
     boxIcon:{
-      height:100,
-      width:100,
-      backgroundColor:'green',
+      height:80,
+      width:80,
+      backgroundColor:'rgba(17, 182, 102, 0.20)',
       margin:'auto',
       borderRadius:100,
       display:'flex',
@@ -90,13 +90,13 @@ const SuccessPage =()=>{
             <Container  className={classes.boxWrapper}>
               <Paper className={classes.paper}>
                 <Grid container  justifyContent='center' className={classes.boxTitle}>
-                    <p style={{fontWeight:'bold', fontSize:25, color:'white'}} >{t("Confirmation")}</p>
+                    <p style={{fontWeight:'bold', fontSize:20, color:'green'}} >{t("Confirmation")}</p>
                 </Grid>
                 <div style={{height:10}} />
                 <Grid  item className={classes.boxIcon}>
-                  <CheckIcon style={{fontSize:60, color:'white'}}/>
+                  <CheckIcon style={{fontSize:60, color:'green'}}/>
                 </Grid>
-                  <p style={{textAlign:'center', fontSize:22}}>
+                  <p style={{textAlign:'center', fontSize:18}}>
                       {t("Payment passed successfully:")} <br />
                   </p>
                 <OperationsSummeryComponent />

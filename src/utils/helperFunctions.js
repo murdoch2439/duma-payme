@@ -23,13 +23,13 @@ const sendingAmount = ({currency, amount,}) =>{
 
 const totalToPay = ({currency, amount, }) =>{
     if(currency === currencies.USD){
-        return `$ ${parseInt(amount).toFixed(2)} ${currency}`
+        return `$ ${parseInt(amount).toFixed(2)}`
     }if(currency === currencies.EUR){
         return `€ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === currencies.GBP){
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === currencies.CAD){
-        return `CA$ ${parseInt(amount).toFixed(2)} ${currency}`
+        return `CA$ ${parseInt(amount).toFixed(2)}`
     }
 
 }
@@ -133,6 +133,7 @@ const currencyManager = (currency) =>{
 }
 
 const firstThreeDigit = string => string.substring(0,3)
+
 const getClientIpAddress = async() =>{
     try{
         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)

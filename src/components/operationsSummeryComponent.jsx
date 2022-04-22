@@ -4,7 +4,7 @@ import {  List, makeStyles, ListItem, ListItemText, Typography
 } from "@material-ui/core";
 import {useTranslation} from "react-i18next";
 import {useStateValue} from "../context";
-import {nameFormating, totalToPay} from "../utils/helperFunctions";
+import {nameFormating, receivingAmount, totalToPay} from "../utils/helperFunctions";
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         // width:800,
@@ -44,46 +44,38 @@ const useStyles = makeStyles(() => ({
     },
     total: {
         fontWeight: '500',
-        color:'white',
-        fontSize:18
+        color:'gray',
+        fontSize:16,
+
     },
 }));
 
 const OperationsSummeryComponent = () =>{
     const [{ formValues }] = useStateValue();
     const {t} = useTranslation()
+    const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
     const classes = useStyles()
     return(
         <div>
             <List   disablePadding >
-                <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Amount :')} style={{fontWeight:'700', color:'grey', }}   />
-                    <div style={{backgroundColor:'green', padding:5, borderRadius:5}}>
-                        <Typography  variant="body1" className={classes.total}>{totalToPay({
-                            currency:formValues
-                                .currency,
-                            amount:formValues
-                                .amount
-                        })}</Typography>
-                    </div>
 
+                <ListItem className={classes.listItem} >
+                    <ListItemText primary={t('Sender')} style={{fontWeight:'700', color:'grey'}}  />
+                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.name ? nameFormating(formValues.name):'*****'}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Sender :')} style={{fontWeight:'700', color:'grey'}}  />
-                    <Typography variant="body1" style={{fontWeight:'500', fontSize:18}}>{formValues.name ? nameFormating(formValues.name):'*****'}</Typography>
+                    <ListItemText primary={t('Receiver')} style={{fontWeight:'700', color:'grey'}}  />
+                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Receiver :')} style={{fontWeight:'700', color:'grey'}}  />
-                    <Typography variant="body1" style={{fontWeight:'500', fontSize:18}}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
+                    <ListItemText primary={t('Organization')} style={{fontWeight:'700', color:'grey'}} />
+                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.clientName ? nameFormating(formValues.clientName):'*****'}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Organization :')} style={{fontWeight:'700', color:'grey'}} />
-                    <Typography variant="body1" style={{fontWeight:'500', fontSize:18}}>{formValues.clientName ? nameFormating(formValues.clientName):'*****'}</Typography>
+                    <ListItemText primary={t('Reference code')} style={{fontWeight:'700', color:'grey'}} />
+                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.transactionReference ? formValues.transactionReference:'*****'}</Typography>
                 </ListItem>
-                <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Reference code :')} style={{fontWeight:'700', color:'grey'}} />
-                    <Typography variant="body1" style={{fontWeight:'500', fontSize:18}}>{formValues.transactionReference ? formValues.transactionReference:'*****'}</Typography>
-                </ListItem>
+                <div style={{height:1, backgroundColor:'#E7E7E7', margin: "0 15px"}} />
 
                 {/*<ListItem className={classes.listItem} >*/}
                 {/*    <ListItemText primary={t('Fees :')} style={{fontWeight:'700', color:'grey'}} />*/}
@@ -106,6 +98,25 @@ const OperationsSummeryComponent = () =>{
                 {/*        {` ${businessLogicManager(formValues.currency, total )} ${formValues.currency}`}*/}
                 {/*    </Typography>*/}
                 {/*</ListItem>*/}
+                <ListItem className={classes.listItem} >
+                    <ListItemText primary={t('Paid amount')} style={{fontWeight:'700', color:'grey', }}   />
+
+                        <Typography  variant="body1" className={classes.total}>{totalToPay({
+                            currency:formValues
+                                .currency,
+                            amount:formValues
+                                .amount
+                        })}</Typography>
+
+
+                </ListItem>
+                <ListItem className={classes.listItem} >
+                    <ListItemText primary={t('Receiving')} style={{fontWeight:'700', color:'grey'}} />
+                    <div style={{backgroundColor:'rgba(17, 182, 102, 0.06)', borderRadius:100, color:'#11B666', fontWeight:"bold"}}>
+
+                    <Typography variant="body1" style={{fontWeight:'bold', padding:"7px 10px"}}>{receivingAmount(businessObject)}</Typography>
+                    </div>
+                </ListItem>
             </List>
 
         </div>
