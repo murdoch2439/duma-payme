@@ -181,6 +181,9 @@ const responseManager = ({response, formValues, option}) =>{
         formValues.rate = response.data.rate
     }if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
+    }if(response.data.errorCallbackUrl){
+        formValues.errorCallbackUrl = response.data.errorCallbackUrl
+
     }if(response.data.amount){
         if(option){
             formValues.amount = response.data.amount
