@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import LoadingComponent from "../loadingComponent";
 import {useStateValue} from "../../context";
 import IssuesPage from "../../pages/issuesPage";
+import MerchantApplication from "../../pages/merchantApplication";
 
 
 
@@ -18,7 +19,7 @@ const PlaceholderComponent =()=>{
     return(
         <>
             {
-                localLoading ? <LoadingComponent />: <IssuesPage />
+                localLoading ? <LoadingComponent />: <MerchantApplication />
             }
         </>
     )

@@ -22,7 +22,7 @@ const initialState = {
         receiverLogo:"",
         fees:4,
         successCallBackUrl:"",
-        errorCallbackUrl:"",
+        errorCallBackUrl:"",
         error:false,
         code:"",
         clientCurrency:"",
