@@ -71,21 +71,19 @@ const FailurePage =()=>{
 
 
 
-
   const handleChange = () => {
     setChecked(true);
   };
 
     const onClick =() =>{
         if(formValues.callBackUrl){
-
                 window.location.href = `${formValues.callBackUrl}?failed=true`
         }else{
-            // dispatch({
-            //     type: CHANGE_MODAL_STATES,
-            //     key: SHOW_FAIL_MODAL,
-            //     value: false,
-            // })
+            dispatch({
+                type: CHANGE_MODAL_STATES,
+                key: SHOW_FAIL_MODAL,
+                value: false,
+            })
         }
 
     }
