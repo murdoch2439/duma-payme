@@ -50,9 +50,37 @@ const FailurePage =()=>{
   const {t} = useTranslation()
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
+  const [countDown, setCountDown] = useState(5)
   useEffect(()=>{
-    handleChange()
-  },[])
+
+      handleChange()
+      const myInterval =  setInterval(()=>{setCountDown(countDown -1)}, 1000)
+      if(countDown === 0){
+          clearInterval(myInterval)
+          if(formValues.callBackUrl){
+              window.location.href = `${formValues.callBackUrl}?failed=true`
+          }
+      }
+      return ()=> clearInterval(myInterval)
+      // if(formValues.callBackUrl){
+      //     setTimeout(()=>{
+      //         window.location.href = `${formValues.callBackUrl}?failed=true`
+      //     }, 5000)
+      // }
+  },[countDown])
+
+    // useEffect(()=>{
+    //     const myInterval =  setInterval(()=>{setCountDown(countDown -1)}, 1000)
+    //     if(countDown === 0){
+    //         clearInterval(myInterval)
+    //         if(formValues.callBackUrl){
+    //
+    //                 window.location.href = `${formValues.callBackUrl}?failed=true`
+    //
+    //         }
+    //     }
+    // },[countDown])
+
 
 
   const handleChange = () => {
@@ -60,11 +88,17 @@ const FailurePage =()=>{
   };
 
     const onClick =() =>{
-        dispatch({
-            type: CHANGE_MODAL_STATES,
-            key: SHOW_FAIL_MODAL,
-            value: false,
-        })
+        if(formValues.callBackUrl){
+
+                window.location.href = `${formValues.callBackUrl}?failed=true`
+        }else{
+            // dispatch({
+            //     type: CHANGE_MODAL_STATES,
+            //     key: SHOW_FAIL_MODAL,
+            //     value: false,
+            // })
+        }
+
     }
 
   return(
@@ -82,14 +116,23 @@ const FailurePage =()=>{
                     {t("Your payment to:")} <br />
                     <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
                     <br />
-                    {t("has failed, please check informations and retry.")}
+                    {
+                        formValues.callBackUrl ?
+                            t(`has failed, You will be redirected in ${countDown} secs.`):
+                            t("has failed, please check informations and retry.")
+                    }
+
                 </p>
             <Grid container item justifyContent='center' style={{marginTop:30}}>
                 <Button
                     onClick={onClick}
                     className={classes.button}
                 >
-                    {t("Retry")}
+                    {
+                        formValues.callBackUrl ?
+                            t("Go back shopping"):
+                            t("Retry")
+                    }
                 </Button>
             </Grid>
           </Paper>
