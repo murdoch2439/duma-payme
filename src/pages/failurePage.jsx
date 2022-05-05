@@ -69,17 +69,6 @@ const FailurePage =()=>{
       // }
   },[countDown])
 
-    // useEffect(()=>{
-    //     const myInterval =  setInterval(()=>{setCountDown(countDown -1)}, 1000)
-    //     if(countDown === 0){
-    //         clearInterval(myInterval)
-    //         if(formValues.callBackUrl){
-    //
-    //                 window.location.href = `${formValues.callBackUrl}?failed=true`
-    //
-    //         }
-    //     }
-    // },[countDown])
 
 
 
