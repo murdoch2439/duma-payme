@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Grid,Typography, TextField, FormControl, MenuItem } from '@material-ui/core';
+import {Grid,Typography, TextField, FormControl, MenuItem, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useStateValue } from '../../context';
 import List from '@material-ui/core/List';
@@ -29,6 +29,13 @@ const useStyles = makeStyles({
         fontWeight: 'bold',
         color:'black'
     },
+    header:{
+        display:"flex",
+        justifyContent:"space-between",
+        // alignItems:'center',
+        paddingTop:0,
+        marginTop:0,
+    }
 });
 
 
@@ -58,6 +65,14 @@ const GatewayFormStepOne =()=> {
         }
     }
 
+    const handleCancel =()=>{
+        if(formValues.callBackUrl){
+            setTimeout(()=>{
+                window.location.href = `${formValues.callBackUrl}?cancelled=true`
+            }, 3000)
+        }
+    }
+
     const amountManager = () =>{
         if(currency === currencies.USD){
             return `${parseInt(amount).toFixed(2)} $`
@@ -82,7 +97,11 @@ const GatewayFormStepOne =()=> {
     return (
         <Grid>
             <Grid item  xs={12} >
-                <Typography variant="h6">{t("Payment Information")}</Typography>
+                <Grid item xs={12} className={classes.header}>
+                    <Typography variant="h6">{t("Payment Information")}</Typography>
+                    <Button style={{borderRadius:100, backgroundColor:'#e0e0e0'}} onClick={handleCancel}>Cancel</Button>
+                </Grid>
+
                 {/*<GatewayInfo currency={formValues.currency} businessObject={businessObject} />*/}
                 <List>
                     <ListItem className={classes.listItem} >
