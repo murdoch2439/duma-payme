@@ -5,7 +5,6 @@ import IssuesPage from "../../pages/issuesPage";
 // import MerchantApplication from "../../pages/merchantApplication";
 
 
-
 const PlaceholderComponent =()=>{
     const [{   formValues   }, ] = useStateValue();
     const [localLoading, setLocalLoading] = useState(formValues.loading)
@@ -14,15 +13,15 @@ const PlaceholderComponent =()=>{
         setTimeout(()=>{
             setLocalLoading(false)
         },5000)
+        return ()=> setLocalLoading(false)
     }, [])
 
     return(
         <>
             {
-                localLoading ? <LoadingComponent />: <IssuesPage />
+                localLoading ? <LoadingComponent /> : <IssuesPage />
             }
         </>
     )
 }
-
 export default PlaceholderComponent
