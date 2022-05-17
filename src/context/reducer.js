@@ -21,13 +21,14 @@ const initialState = {
         card:null,
         receiverLogo:"",
         fees:4,
-        successCallBackUrl:"",
-        errorCallBackUrl:"",
+        callBackUrl:"",
+        // errorCallBackUrl:"",
         error:false,
         code:"",
         clientCurrency:"",
         clientKey:"",
         loading:true,
+        paymentProcessStarted:false,
 
     },
     modalStates:{
@@ -36,6 +37,7 @@ const initialState = {
         showpendingmodal:false,
         showaccessdeniedmodal:false,
         showloadingcomponent:false,
+        showcancelledmodal:false,
     }
 };
 
