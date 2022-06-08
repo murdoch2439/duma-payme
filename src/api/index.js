@@ -17,7 +17,8 @@ export const Payment={
         return await this.baseUrl.post("/payment-init", paymentInfo )
     },
     stripeInit: async function(initInfo){
-         return await this.baseUrl.post("/create-payment-intent", initInfo )
+         const {data:clientSecret} = await this.baseUrl.post("/create-payment-intent", initInfo )
+        return clientSecret
     },
     validate: async function(validateThis){
         return await this.baseUrl.post("/validate", validateThis )
