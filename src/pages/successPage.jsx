@@ -6,7 +6,7 @@ import Zoom from '@material-ui/core/Zoom';
 import {useTranslation} from "react-i18next";
 import OperationsSummeryComponent from "../components/operationsSummeryComponent";
 import {getUrlParams} from "../utils/helperFunctions";
-import {OPTION_STRING} from "../constants/variableNames";
+import {OPTION_STRING, STATUS, SUCCESS} from "../constants/variableNames";
 import {useStateValue} from "../context";
 
 const useStyles = makeStyles(() => ({
@@ -69,7 +69,7 @@ const SuccessPage =()=>{
           if(countDown === 0){
               clearInterval(myInterval)
               if(formValues.callBackUrl){
-                  window.location.href = `${formValues.callBackUrl}?status=success`
+                  window.location.href = `${formValues.callBackUrl}?${STATUS}=${SUCCESS}`
               }
           }
           return ()=> clearInterval(myInterval)
