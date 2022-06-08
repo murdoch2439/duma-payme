@@ -6,7 +6,7 @@ import { makeStyles, } from '@material-ui/core/styles';
 import FormStepsManager from './link-payment/formStepsManager'
 import GatewayFormStepsManager from './gateway/gatewayFormStepsManager'
 import { useStateValue } from "../context";
-import cover from '../assets/Trip-assurances (4).png'
+import cover from '../assets/Icash.jpg'
 import logDuma from '../assets/duma1.png'
 import SuccessModal from "./successPage";
 import FailureModal from "./failurePage";
@@ -19,21 +19,26 @@ import {
 } from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
+import CancelledPage from "./cancelledPage";
 
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor:'white',
-        // backgroundImage:`url(https://cdn.goodao.net/easypetgarden/H6dd2a1363c0042738024ab6ee5ffb470G.jpg)`,
+        // backgroundSize:'cover',
+        // backgroundPosition:'top',
+        // backgroundImage:`url(https://th.bing.com/th/id/OIP.tvW-pseWnAcTUZENUQ7VrAHaEe?pid=ImgDet&rs=1)`,
         borderRadius:10,
         display:'flex',
     },
     leftContainerWrapper:{
       width:'75%',
         // backgroundImage:`url(${cover})` ,
-      // textAlign:'center',
+        // backgroundImage:`url(https://th.bing.com/th/id/OIP.tvW-pseWnAcTUZENUQ7VrAHaEe?pid=ImgDet&rs=1)`,
+
     },
     imagesBox:{
         // backgroundImage:`url(${cover})`,
+
         height:'90%',
         borderBottomLeftRadius:10,
         display:'flex',
@@ -44,6 +49,7 @@ const useStyles = makeStyles(() => ({
     dumaLogoAndLangContainer:{
         display:'flex',
         justifyContent:'space-between'
+
     },
     logoDuma: {
         width:50,
@@ -96,6 +102,7 @@ const LayoutManager = () => {
           {
               modalStates.showsuccessmodal ? <SuccessModal />:
               modalStates.showfailmodal ? <FailureModal />:
+              modalStates.showcancelledmodal ? <CancelledPage />:
               modalStates.showpendingmodal ? <PendingModal />:
               modalStates.showaccessdeniedmodal ? <IssuesPage />:
                   <Box  mt={10}>
