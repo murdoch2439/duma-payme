@@ -5,17 +5,17 @@ import CheckIcon from '@material-ui/icons/Check';
 import Zoom from '@material-ui/core/Zoom';
 import {useTranslation} from "react-i18next";
 import OperationsSummeryComponent from "../components/operationsSummeryComponent";
-// import {CHANGE_MODAL_STATES, SHOW_PENDING_MODAL, SHOW_SUCCESS_MODAL} from "../constants/variableNames";
+import {getUrlParams} from "../utils/helperFunctions";
+import {OPTION_STRING} from "../constants/variableNames";
+import {useStateValue} from "../context";
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
-        // width:800,
         marginBottom:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
     },
     paper: {
-        // height:500,
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
@@ -52,34 +52,26 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-
 const SuccessPage =()=>{
+    const [{ formValues }] = useStateValue();
 
   const {t} = useTranslation()
-
-  // const onClick =() =>{
-  //     // dispatch({
-  //     //     type: 'emptyFormValue',
-  //     // })
-  //     window.location.reload()
-  //     // dispatch({
-  //     //     type: CHANGE_MODAL_STATES,
-  //     //     key: SHOW_SUCCESS_MODAL,
-  //     //     value: false
-  //     // })
-  //     // dispatch({
-  //     //     type: CHANGE_MODAL_STATES,
-  //     //     key: SHOW_PENDING_MODAL,
-  //     //     value: false
-  //     // })
-  //     // history.replace('/')
-  // }
+    const option= getUrlParams()[OPTION_STRING]
 
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
+    const [countDown, setCountDown] = useState(5)
   useEffect(()=>{
     handleChange()
-  },[])
+      const myInterval =  setInterval(()=>{setCountDown(prevValue => prevValue -1)}, 1000)
+      if(countDown === 0){
+          clearInterval(myInterval)
+          if(formValues.callBackUrl){
+              window.location.href = `${formValues.callBackUrl}?status=success`
+          }
+      }
+      return ()=> clearInterval(myInterval)
+  },[countDown])
 
   const handleChange = () => {
     setChecked(true);
@@ -96,19 +88,23 @@ const SuccessPage =()=>{
                 <Grid  item className={classes.boxIcon}>
                   <CheckIcon style={{fontSize:60, color:'green'}}/>
                 </Grid>
-                  <p style={{textAlign:'center', fontSize:18}}>
-                      {t("Payment passed successfully:")} <br />
-                  </p>
-                <OperationsSummeryComponent />
+                  {
+                      option ?
+                          <div>
+                              <p style={{textAlign:'center', fontSize:18, paddingLeft:10, paddingRight:10}}>
 
-                {/*<Grid container item justify='center' style={{marginTop:30}}>*/}
-                {/*    <Button*/}
-                {/*        onClick={onClick}*/}
-                {/*        style={{backgroundColor:  'green', color:'white', height:50, width:220, }}*/}
-                {/*    >*/}
-                {/*        FINISH*/}
-                {/*    </Button>*/}
-                {/*</Grid>*/}
+                                  {t(`Payment passed successfully, you are being redirected in `) }
+                                  <br />
+                              </p>
+                              <p style={{fontWeight:'bold', fontSize:30, textAlign:'center'}}>0{countDown} secs</p>
+                          </div>
+                           :
+                          <p style={{textAlign:'center', fontSize:18}}>
+
+                              {t("Payment passed successfully:")} <br />
+                          </p>
+                  }
+                <OperationsSummeryComponent />
               </Paper>
             </Container>
         </Zoom>
