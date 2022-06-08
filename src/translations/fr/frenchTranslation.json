@@ -66,6 +66,8 @@
   "Do you really wanna stop this operation?": "Voulez-vous vraiment arrêter cette opération?",
   "Yes": "Oui",
   "No": "Non",
-  "Payment passed successfully, you are being redirected in ": "Paiement réussi, vous serez redirigé dans "
+  "Payment passed successfully, you are being redirected in ": "Paiement réussi, vous serez redirigé dans ",
+  "Was cancelled, You are being redirected in": "A été annulé, vous serez redirigé dans"
+
 
 }
