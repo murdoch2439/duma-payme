@@ -2,7 +2,6 @@ import {
     currencies, DEBIT_CARD, MOBILE_MONEY,
     // IP_PROVIDER_API_KEY,
 } from "../constants/variableNames";
-// import axios from "axios";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
