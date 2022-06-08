@@ -1,5 +1,8 @@
-import {currencies, DEBIT_CARD, IP_PROVIDER_API_KEY, } from "../constants/variableNames";
-import axios from "axios";
+import {
+    currencies, DEBIT_CARD, MOBILE_MONEY,
+    // IP_PROVIDER_API_KEY,
+} from "../constants/variableNames";
+// import axios from "axios";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
@@ -18,6 +21,12 @@ const sendingAmount = ({currency, amount,}) =>{
         return `£ ${parseInt(amount).toFixed(2)}`
     }if(currency === currencies.CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.ZAR){
+        return `ZAR ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.CHF){
+        return `CHF ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.SEK){
+        return `SEK ${parseInt(amount).toFixed(2)}`
     }
 }
 
@@ -30,9 +39,15 @@ const totalToPay = ({currency, amount, }) =>{
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === currencies.CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.ZAR){
+        return `ZAR ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.CHF){
+        return `CHF ${parseInt(amount).toFixed(2)} `
+    }if(currency === currencies.SEK){
+        return `SEK ${parseInt(amount).toFixed(2)}`
     }
-
 }
+
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
         if(!currency){
@@ -59,6 +74,26 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
             }if(currency === currencies.CAD){
                 if(currency === clientCurrency){
                     return `CA$ ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
+                }
+            }if(currency === currencies.ZAR){
+                if(currency === clientCurrency){
+                    return `ZAR ${parseInt(amount).toFixed(2)} `
+                }else{
+                    //add ${clientCurrency}  in the template string before amount
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+
+                }
+            }if(currency === currencies.SEK){
+                if(currency === clientCurrency){
+                     return `SEK ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
+                }
+            }if(currency === currencies.CHF){
+                if(currency === clientCurrency){
+                    return `CHF ${parseInt(amount).toFixed(2)}`
                 }else{
                     return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                 }
@@ -106,11 +141,7 @@ const  getUrlParams =()=> {
     });
     return vars;
 }
-// export const getUrlPath =()=>{
-//     // home = home.substr(0, home.lastIndexOf('/'))
-//     // console.log('path ==>',path)
-//     return window.location.pathname.split('/')[1]
-// }
+
 
 const backgroundChanger = (loading) =>{
     if(!loading){
@@ -129,20 +160,22 @@ const currencyManager = (currency) =>{
         return "£"
     }if(currency === currencies.CAD){
         return "CA$"
+    }if(currency === currencies.ZAR){
+        return "ZAR"
     }
 }
 
 const firstThreeDigit = string => string.substring(0,3)
 
-const getClientIpAddress = async() =>{
-    try{
-        const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
-        // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
-        return response.data.ip
-    }catch(error){
-        console.log("Couldn't get user Ip adress ==> :", error.response)
-    }
-}
+// const getClientIpAddress = async() =>{
+//     try{
+//         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
+//         // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
+//         return response.data.ip
+//     }catch(error){
+//         console.log("Couldn't get user Ip adress ==> :", error.response)
+//     }
+// }
 
 const languages=[
     {
@@ -159,10 +192,10 @@ const paymentMethods =[
         value:DEBIT_CARD,
         label:'Debit card',
     },
-    // {
-    //     value:MOBILE_MONEY,
-    //     label:'Mobile Money',
-    // },
+    {
+        value:MOBILE_MONEY,
+        label:'Mobile Money',
+    },
 ]
 
 const responseManager = ({response, formValues, option}) =>{
@@ -181,9 +214,6 @@ const responseManager = ({response, formValues, option}) =>{
         formValues.rate = response.data.rate
     }if(response.data.callBackUrl){
         formValues.callBackUrl = response.data.callBackUrl
-    }if(response.data.errorCallbackUrl){
-        formValues.errorCallbackUrl = response.data.errorCallbackUrl
-
     }if(response.data.amount){
         if(option){
             formValues.amount = response.data.amount
@@ -203,6 +233,5 @@ export {
     totalToPay,
     sendingAmount,
     currencyManager,
-    getClientIpAddress,
     firstThreeDigit
 }
