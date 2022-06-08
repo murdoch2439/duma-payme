@@ -60,6 +60,11 @@
   "Reference code :": "No Référence :",
   "Reference code": "No Référence",
   "Receiving": "A Recevoir",
-  "Paid amount": "Montant payé"
+  "Paid amount": "Montant payé",
+  "Cancel": "Annuler",
+  "You're about to cancel this payment": "Vous êtes sur le point d'annuler ce payement",
+  "Do you really wanna stop this operation?": "Voulez-vous vraiment arrêter cette opération?",
+  "Yes": "Oui",
+  "No": "Non"
 
 }

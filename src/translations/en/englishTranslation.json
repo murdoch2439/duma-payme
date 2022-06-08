@@ -60,6 +60,11 @@
   "Reference code :": "Reference code",
   "Reference code": "Reference code",
   "Receiving": "Receiving",
-  "Paid amount": "Paid amount"
+  "Paid amount": "Paid amount",
+  "Cancel": "Cancel",
+  "You're about to cancel this payment": "You're about to cancel this payment",
+  "Do you really wanna stop this operation?": "Do you really wanna stop this operation?",
+  "Yes": "Yes",
+  "No": "No"
 
 }
