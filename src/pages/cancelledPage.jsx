@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import {Container, Paper, Grid, Button} from "@material-ui/core";
+import {Container, Paper, Grid} from "@material-ui/core";
 // import ClearIcon from '@material-ui/icons/Clear';
 import CloudOffIcon from '@mui/icons-material/CloudOff';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
-// import {CHANGE_MODAL_STATES, SHOW_CANCELLED_MODAL, SHOW_FAIL_MODAL} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import {CANCELLED, STATUS} from "../constants/variableNames";
 
@@ -71,24 +69,6 @@ const CancelledPage =()=>{
         setChecked(true);
     };
 
-    // const onClick =() =>{
-    //     if(formValues.callBackUrl){
-    //         window.location.href = `${formValues.callBackUrl}?cancelled=true`
-    //     }else{
-    //         dispatch({
-    //             type: CHANGE_MODAL_STATES,
-    //             key: SHOW_CANCELLED_MODAL,
-    //             value: false,
-    //         })
-    //     }
-    //
-    // }
-    // const checker =()=>{
-    //     return(
-    //         <p style={{fontWeight:'bold', fontSize:30}}>{countDown}</p>
-    //     )
-    // }
-
     return(
         <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
             <Container className={classes.boxWrapper}>
@@ -116,16 +96,7 @@ const CancelledPage =()=>{
 
                     </p>
                     <Grid container item justifyContent='center' style={{marginTop:30}}>
-                        {/*<Button*/}
-                        {/*    onClick={onClick}*/}
-                        {/*    className={classes.button}*/}
-                        {/*>*/}
-                        {/*    {*/}
-                        {/*        formValues.callBackUrl ?*/}
-                        {/*            t("Go back shopping"):*/}
-                        {/*            t("Retry")*/}
-                        {/*    }*/}
-                        {/*</Button>*/}
+
                     </Grid>
                 </Paper>
             </Container>
