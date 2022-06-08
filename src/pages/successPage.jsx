@@ -54,28 +54,28 @@ const useStyles = makeStyles(() => ({
 
 const SuccessPage =()=>{
     const [{ formValues }] = useStateValue();
-
-  const {t} = useTranslation()
+    const {t} = useTranslation()
     const option= getUrlParams()[OPTION_STRING]
-
-  const classes = useStyles()
-  const [checked, setChecked] = useState(false);
+    const classes = useStyles()
+    const [checked, setChecked] = useState(false);
     const [countDown, setCountDown] = useState(5)
-  useEffect(()=>{
-    handleChange()
-      const myInterval =  setInterval(()=>{setCountDown(prevValue => prevValue -1)}, 1000)
-      if(countDown === 0){
-          clearInterval(myInterval)
-          if(formValues.callBackUrl){
-              window.location.href = `${formValues.callBackUrl}?status=success`
-          }
-      }
-      return ()=> clearInterval(myInterval)
-  },[countDown])
 
-  const handleChange = () => {
-    setChecked(true);
-  };
+    const handleChange = () => {
+        setChecked(true);
+    };
+    useEffect(()=>{
+        handleChange()
+          const myInterval =  setInterval(()=>{setCountDown(prevValue => prevValue -1)}, 1000)
+          if(countDown === 0){
+              clearInterval(myInterval)
+              if(formValues.callBackUrl){
+                  window.location.href = `${formValues.callBackUrl}?status=success`
+              }
+          }
+          return ()=> clearInterval(myInterval)
+    },[countDown])
+
+
 
   return(
          <Zoom maxWidth="xs" in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
