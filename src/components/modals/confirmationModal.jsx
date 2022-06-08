@@ -6,7 +6,6 @@ import {
     DialogContentText,
     DialogTitle,
     Button,
-    // Link,
     Typography,
 } from "@material-ui/core";
 import {useTranslation} from "react-i18next";
@@ -58,8 +57,8 @@ const ConfirmationDialog = () => {
             </DialogTitle>
             <DialogContent>
                 <DialogContentText id="dialog-description" style={{textAlign:'center', color:"black"}}>
-                    You're about to cancel this payment<br />
-                    Do you really wanna stop this operation?<br />
+                    {t("You're about to cancel this payment")}<br />
+                    {t("Do you really wanna stop this operation?")}<br />
                 </DialogContentText>
             </DialogContent>
             <DialogActions style={{display:'flex', justifyContent:'center'}}>
