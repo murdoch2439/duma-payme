@@ -1,7 +1,7 @@
 import axios from "axios"
 import {IP_PROVIDER_API_KEY, ONLINE_BACK_END_PORT} from "../constants/variableNames";
 
-export const Payment={
+export const PaymentGatewayService={
     baseUrl:axios.create({
         baseURL:`http://${ONLINE_BACK_END_PORT}:3001/api`
     }),
