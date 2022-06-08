@@ -4,7 +4,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
-import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
+import {CHANGE_MODAL_STATES, FAILED, SHOW_FAIL_MODAL, STATUS} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(() => ({
@@ -52,21 +52,15 @@ const FailurePage =()=>{
   const [checked, setChecked] = useState(false);
   const [countDown, setCountDown] = useState(5)
   useEffect(()=>{
-
       handleChange()
       const myInterval =  setInterval(()=>{setCountDown(countDown -1)}, 1000)
       if(countDown === 0){
           clearInterval(myInterval)
           if(formValues.callBackUrl){
-              window.location.href = `${formValues.callBackUrl}?failed=true`
+              window.location.href = `${formValues.callBackUrl}?${STATUS}=${FAILED}`
           }
       }
       return ()=> clearInterval(myInterval)
-      // if(formValues.callBackUrl){
-      //     setTimeout(()=>{
-      //         window.location.href = `${formValues.callBackUrl}?failed=true`
-      //     }, 5000)
-      // }
   },[countDown])
 
 
@@ -77,7 +71,7 @@ const FailurePage =()=>{
 
     const onClick =() =>{
         if(formValues.callBackUrl){
-                window.location.href = `${formValues.callBackUrl}?failed=true`
+                window.location.href = `${formValues.callBackUrl}?${STATUS}=${FAILED}`
         }else{
             dispatch({
                 type: CHANGE_MODAL_STATES,
@@ -101,7 +95,7 @@ const FailurePage =()=>{
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Your payment to:")} <br />
-                    <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
+                    <span style={{fontWeight:'bold'}}>{formValues.clientName}, </span>
                     <br />
                     {
                         formValues.callBackUrl ?
