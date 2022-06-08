@@ -65,6 +65,7 @@
   "You're about to cancel this payment": "You're about to cancel this payment",
   "Do you really wanna stop this operation?": "Do you really wanna stop this operation?",
   "Yes": "Yes",
-  "No": "No"
+  "No": "No",
+  "Payment passed successfully, you are being redirected in ": "Payment passed successfully, you are being redirected in "
 
 }
