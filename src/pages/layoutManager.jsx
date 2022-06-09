@@ -1,4 +1,4 @@
-import React, {useState,} from "react";
+import React, {useEffect, useState,} from "react";
 import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
@@ -74,15 +74,28 @@ const useStyles = makeStyles(() => ({
 
 const LayoutManager = () => {
     const classes = useStyles();
-    const [{  modalStates  }] = useStateValue();
-    const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
+    const [{  modalStates  }] = useStateValue();
+    const [currentLanguage, setLanguage] = useState(ENGLISH_LANG_CODE)
+
     const history = useHistory()
     const option= getUrlParams()[OPTION_STRING]
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
 
+    useEffect(()=>{
+       setLanguage(i18n.language)
+    },[])
+
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
+    }
+    const onSelecHandler =(e)=>{
+        setLanguage(e.target.value)
+        if(currentLanguage === FRENCH_LANG_CODE){
+            onClickHandler(ENGLISH_LANG_CODE)
+        }else{
+            onClickHandler(FRENCH_LANG_CODE)
+        }
     }
     const cardsLogo = [
         "amex",
@@ -119,15 +132,10 @@ const LayoutManager = () => {
                                         <TextField
                                             select
                                             name={"language"}
-                                            value={language}
-                                            onChange={(e)=>{
-                                                setLanguage(e.target.value)
-                                                if(language === FRENCH_LANG_CODE){
-                                                    onClickHandler(ENGLISH_LANG_CODE)
-                                                }else{
-                                                    onClickHandler(FRENCH_LANG_CODE)
-                                                }
-                                            }}
+                                            value={currentLanguage}
+                                            onChange={
+                                                onSelecHandler
+                                            }
                                         >
                                             {languages.map((option) => (
                                                 <MenuItem key={option.value} value={option.value}>
