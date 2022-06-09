@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Grid,Typography, TextField, FormControl, MenuItem, Button } from '@material-ui/core';
+import {Grid,Typography, TextField, FormControl, MenuItem,  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useStateValue } from '../../context';
 import List from '@material-ui/core/List';
@@ -7,11 +7,11 @@ import ListItem from '@material-ui/core/ListItem';
 import { paymentMethods, } from '../../utils/helperFunctions';
 import {
     EDIT_FORM_VALUES,
-    STARS_FOR_NO_CONTENT, currencies
+    STARS_FOR_NO_CONTENT, currencies,
 } from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
-// import GatewayInfo from "../../components/gateway-info";
+import ConfirmationDialog from "../../components/modals/confirmationModal";
 
 
 const useStyles = makeStyles({
@@ -48,7 +48,6 @@ const GatewayFormStepOne =()=> {
     const [errorMessage, setErrorMessage] = useState('')
     const [paymentMeth, setPaymentMeth] = useState('')
     const {t} = useTranslation()
-    // const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
 
     const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -65,13 +64,6 @@ const GatewayFormStepOne =()=> {
         }
     }
 
-    const handleCancel =()=>{
-        if(formValues.callBackUrl){
-            setTimeout(()=>{
-                window.location.href = `${formValues.callBackUrl}?cancelled=true`
-            }, 3000)
-        }
-    }
 
     const amountManager = () =>{
         if(currency === currencies.USD){
@@ -83,7 +75,7 @@ const GatewayFormStepOne =()=> {
         }if(currency === currencies.CAD){
             return `${parseInt(amount).toFixed(2)} ${currencies.CAD}`
         }if(currency === currencies.ZAR){
-            return `${parseInt(amount).toFixed(2)} ${currencies.ZAR}`
+            return `${currencies.ZAR} ${parseInt(amount).toFixed(2)}`
         }if(currency === currencies.SEK){
             return `${parseInt(amount).toFixed(2)} ${currencies.SEK}`
         }if(currency === currencies.CHF){
@@ -97,12 +89,16 @@ const GatewayFormStepOne =()=> {
     return (
         <Grid>
             <Grid item  xs={12} >
-                <Grid item xs={12} className={classes.header}>
-                    <Typography variant="h6">{t("Payment Information")}</Typography>
-                    <Button style={{borderRadius:100, backgroundColor:'#e0e0e0'}} onClick={handleCancel}>Cancel</Button>
+                <Grid item xs={12} sm={12} md={12} className={classes.header} display={{ xs: 'block',sm:'inline', md:'flex' }}>
+                    <Grid item  sm={6} md={6} xs={12}>
+                        <Typography variant="h6">{t("Payment Information")}</Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} style={{ display:'flex', justifyContent:"flex-end", }}>
+
+                        <ConfirmationDialog />
+                    </Grid>
                 </Grid>
 
-                {/*<GatewayInfo currency={formValues.currency} businessObject={businessObject} />*/}
                 <List>
                     <ListItem className={classes.listItem} >
                         <ListItemText primary={t('Currency :')} className={classes.listItemText}  />
@@ -116,11 +112,13 @@ const GatewayFormStepOne =()=> {
                 <div style={{height:0.1, marginTop:10, backgroundColor:'#C4C4C4'}}/>
             </Grid>
             <Grid container spacing={5} style={{ marginTop:0,marginBottom:0}}  >
-                <Grid item xs={12} sm={4} md={6} >
+                <Grid item xs={12} sm={6} md={6} >
                     <TextField
                         label={t("Name on the card")}
                         name="name"
+                        type={"text"}
                         variant="outlined"
+                        maxLength={10}
                         required
                         fullWidth
                         value={formValues.name}
@@ -134,7 +132,7 @@ const GatewayFormStepOne =()=> {
                         }
                     />
                 </Grid>
-                <Grid item xs={12} sm={4} md={6}>
+                <Grid item xs={12} sm={6} md={6}>
                     <TextField
                         label={t("Email address")}
                         name="email"
@@ -142,6 +140,7 @@ const GatewayFormStepOne =()=> {
                         type="email"
                         required
                         fullWidth
+                        maxLength={"25"}
                         error={errorName}
                         helperText={ errorName ? `${errorMessage}`:null}
                         value={formValues.email}
@@ -161,12 +160,13 @@ const GatewayFormStepOne =()=> {
                         }
                     />
                 </Grid>
-                <Grid item xs={12} sm={4} md={6}>
+                <Grid item xs={12} sm={6} md={6}>
                     <TextField
                         label={t("Phone Number")}
                         name="phone"
                         variant="outlined"
                         type="tel"
+                        maxLength="20"
                         required
                         fullWidth
                         value={formValues.phone}
