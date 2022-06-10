@@ -93,13 +93,14 @@ const  GatewayFormStepTwo =()=> {
                                         name="receiver"
                                         variant="outlined"
                                         type="tel"
+                                        maxLength="20"
                                         required
                                         fullWidth
-                                        value={formValues.receiver}
+                                        value={formValues.phone}
                                         onChange={e =>
                                             dispatch({
                                                 type: EDIT_FORM_VALUES,
-                                                key: "receiver",
+                                                key: "phone",
                                                 value: e.target.value
                                             })
                                         }

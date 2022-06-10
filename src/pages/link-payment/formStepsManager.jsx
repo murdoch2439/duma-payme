@@ -71,12 +71,12 @@ const  FormStepsManager =() => {
   const classes = useStyles()
   const stripe = useStripe();
   const [activeStep, setActiveStep] = useState(0);
-  const [{ formValues,  }, dispatch] = useStateValue();
+  const [{ formValues }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false)
   const [disabled, setDisabled] = useState(false);
-  const {t,} = useTranslation()
+  const {t} = useTranslation()
 
-  const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
+  const businessObject = { currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate }
 
 
   const handleNext = () => {
@@ -98,7 +98,7 @@ const  FormStepsManager =() => {
 
    const capture = async () => {
         setLoading(true)
-       formValues.paymentProcessStarted = true
+        formValues.paymentProcessStarted = true
 
         const billingDetails = {
         email:formValues.email,
@@ -135,7 +135,12 @@ const  FormStepsManager =() => {
                         // }, 3000)
                     }if(response.data.status === FAILED){
                         setLoading(false);
-                        console.log("Response when status is failed : ",response.data)
+                        console.log("Response when mobile money status is failed : ",response.data)
+                        dispatch({
+                            type: CHANGE_MODAL_STATES,
+                            key: SHOW_FAIL_MODAL,
+                            value: true
+                        })
                     }else{
                         setLoading(false);
                         console.log(response.data)
