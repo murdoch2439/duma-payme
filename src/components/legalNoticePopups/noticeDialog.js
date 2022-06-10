@@ -161,6 +161,9 @@ const NoticeDialog = ({separator}) => {
                 <Button onClick={() => toggleOpen(false)} color="primary" autoFocus>
                     {t("Close")}
                 </Button>
+                {/*<Button onClick={() => toggleOpen(false)} color="primary" autoFocus>*/}
+                {/*    {t("Close")}*/}
+                {/*</Button>*/}
             </DialogActions>
         </Dialog>
     </Typography>
