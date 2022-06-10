@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
         borderTopRightRadius:15,
     },
     paper: {
-        height:530,
+        // height:530,
         backgroundColor:'white',
         marginTop:80,
         alignItems:'center',
