@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { paymentMethods, } from '../../utils/helperFunctions';
 import {
     EDIT_FORM_VALUES,
-    STARS_FOR_NO_CONTENT, currencies,
+    NO_CONTENT, currencies,
 } from '../../constants/variableNames';
 import ListItemText from "@material-ui/core/ListItemText";
 import {useTranslation} from "react-i18next";
@@ -60,7 +60,7 @@ const GatewayFormStepOne =()=> {
         if(currency){
             return currency
         }else{
-            return STARS_FOR_NO_CONTENT
+            return NO_CONTENT
         }
     }
 
@@ -81,7 +81,7 @@ const GatewayFormStepOne =()=> {
         }if(currency === currencies.CHF){
             return `${parseInt(amount).toFixed(2)} ${currencies.CHF}`
         }else{
-            return STARS_FOR_NO_CONTENT
+            return NO_CONTENT
         }
     }
 
