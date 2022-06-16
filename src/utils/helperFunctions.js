@@ -1,7 +1,17 @@
 import {
-    currencies, DEBIT_CARD, MOBILE_MONEY,
+    CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT,
+    currencies,
+    DEBIT_CARD,
+    FAILED,
+    MOBILE_MONEY,
+    SHOW_FAIL_MODAL,
+    SHOW_PENDING_MODAL,
+    SHOW_SUCCESS_MODAL,
+    SUCCEEDED,
+    SUCCESS,
     // IP_PROVIDER_API_KEY,
 } from "../constants/variableNames";
+import {PaymentGatewayService} from "../api";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
@@ -220,6 +230,117 @@ const responseManager = ({response, formValues, option}) =>{
     }
 }
 
+
+function userInterfaceBasedOnMobilePaymentResponseManager(infoCollection){
+    const {response, dispatch, setLoading} =infoCollection
+    if(response.data.status === SUCCESS){
+        setLoading(false);
+        // setTimeout(()=>{
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_PENDING_MODAL,
+            value: true
+        })
+
+        //     setLoading(false);
+        // }, 3000)
+
+    }if(response.data.status === FAILED){
+
+        setLoading(false);
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_FAIL_MODAL,
+            value: true
+        })
+        console.log("Response when mobile money status is failed  : ",response.data)
+
+    }else{
+        setLoading(false);
+        console.log(response.data)
+    }
+
+}
+
+
+
+async function bankCardsPaymentManager(infoCollection) {
+    const {paymentIntent, formValues, setLoading, setDisabled, dispatch, error} = infoCollection
+
+    if (paymentIntent && paymentIntent.status === SUCCEEDED) {
+        formValues.paymentIntent = paymentIntent.id
+        // dispatch({
+        //     type: CHANGE_MODAL_STATES,
+        //     key: SHOW_SUCCESS_MODAL,
+        //     value: true
+        // })
+        const paymentIntentObjet = {
+
+            reference: formValues.transactionReference,
+            receivingAmount: (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2),
+            sendingAmount: parseInt(formValues.amount),
+            paymentIntentId: paymentIntent.id,
+            paymentRequestId: formValues.paymentRequestId,
+            fee: formValues.fees,
+            name: formValues.name,
+            email: formValues.email,
+            phone: formValues.phone,
+        }
+
+
+        const responseFromBffValidation = await PaymentGatewayService.validate(paymentIntentObjet)
+
+        console.log('Payload for validation ===>', responseFromBffValidation.data)
+        if (responseFromBffValidation.data.status === SUCCESS) {
+            console.log('payment process succeeded')
+            setLoading(false);
+            setDisabled(true)
+            dispatch({
+                type: CHANGE_MODAL_STATES,
+                key: SHOW_SUCCESS_MODAL,
+                value: true
+            })
+
+
+        }
+
+    }
+    if (error) {
+        // setError(error.message);
+        console.log('Error on stripe payment confirmation ===>', error)
+
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_FAIL_MODAL,
+            value: true
+        })
+    }
+
+}
+
+
+function getPayloadForMobileMoney(formValues){
+    return  {
+        initials: formValues.name,
+        surname:formValues.name,
+        email:formValues.email,
+        phone:formValues.phone,
+        currency: formValues.currency,
+        amount: formValues.amount,
+        transfRefNo: formValues.transactionReference,
+        paymentRequestId: formValues.paymentRequestId,
+        service: firstThreeDigit(formValues.phone),
+        client: CLIENT_FOR_MOBILE_PAYMENT
+    }
+
+}
+
+
+
+
+
+
+
 export {
     responseManager,
     backgroundChanger,
@@ -232,5 +353,9 @@ export {
     totalToPay,
     sendingAmount,
     currencyManager,
-    firstThreeDigit
+    firstThreeDigit,
+    userInterfaceBasedOnMobilePaymentResponseManager,
+    bankCardsPaymentManager,
+    getPayloadForMobileMoney
+
 }
