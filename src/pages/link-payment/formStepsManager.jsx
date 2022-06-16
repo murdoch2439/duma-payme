@@ -7,17 +7,12 @@ import FormStepTwo from './formStepTwo';
 import Copyright from '../../components/copyright';
 import { useStateValue } from '../../context';
 import {
-    CLIENT_FOR_MOBILE_PAYMENT,
     LOADING_MESSAGE,
     MOBILE_MONEY,
     Next_STEP,
     PAY_NOW,
     PREVIOUS_STEP,
-    SHOW_PENDING_MODAL,
-    SUCCEEDED,
-    SHOW_SUCCESS_MODAL,
-    SUCCESS,
-    SHOW_FAIL_MODAL, FAILED, DEBIT_CARD,
+    DEBIT_CARD,
 } from '../../constants/variableNames';
 import {
     backgroundChanger, bankCardsPaymentManager,
