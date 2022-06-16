@@ -1,8 +1,6 @@
 const MERCHANT_KEY_STRING = "merchantKey"
 const PAYMENT_REQUEST_ID_STRING = "paymentRequestId"
 const OPTION_STRING = "op"
-// const PUBLIC_KEY = "pk_test_51HmTx0HCv5EZsojRR9OHO3ZjCtAdXHitItIwtpiglZIU5Pt890WkWyJldUuZcnXTLFnh03Tq7lDOIuqImfvymTNI00aA7pd1ox"
-// const PUBLIC_KEY = "pk_test_51J8ifiJQ1zXpJJ2OZ6BarkiBEUeCmARiEMx2cp3ZI4cDSTWJ15AHTy1HWREb7HrObRwXcsneRfbLXvo5IQKQWM2000bkx3L5tB"
 // export const BFF_IP = "18.200.191.178"
 // const ONLINE_BACK_END_PORT = "54.154.208.240"
 const ONLINE_BACK_END_PORT = "192.168.100.2"

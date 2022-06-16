@@ -7,7 +7,6 @@ import FormStepTwo from './formStepTwo';
 import Copyright from '../../components/copyright';
 import { useStateValue } from '../../context';
 import {
-    CHANGE_MODAL_STATES,
     CLIENT_FOR_MOBILE_PAYMENT,
     LOADING_MESSAGE,
     MOBILE_MONEY,
