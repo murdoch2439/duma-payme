@@ -101,12 +101,6 @@ const  GatewayFormStepsManager =() => {
         setLoading(true);
         formValues.paymentProcessStarted = true
 
-        // console.log({
-        //     name: formValues.name,
-        //     email: formValues.email,
-        //     phone: formValues.phone,
-        // })
-
         const billingDetails = {
             email:formValues.email,
             name:formValues.name,
@@ -163,10 +157,6 @@ const  GatewayFormStepsManager =() => {
             console.error('error from the catch in the gateway', error.message)
             setLoading(false);
         }
-
-        // dispatch({ type: 'emptyFormValue'});
-        // setLoading(false);
-        // onSuccessfulCheckout()
     }
 
     return (
