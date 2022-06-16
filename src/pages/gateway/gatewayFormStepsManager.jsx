@@ -66,7 +66,7 @@ const GetStepContent = ({step}) => {
     }
 }
 
-const  GatewayFormStepsManager =({ onFailedCheckout: onFailCheckout}) => {
+const  GatewayFormStepsManager =() => {
     const classes = useStyles()
     const stripe = useStripe()
     const [activeStep, setActiveStep] = useState(0);
