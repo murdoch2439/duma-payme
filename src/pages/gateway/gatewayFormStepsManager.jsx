@@ -74,8 +74,6 @@ const  GatewayFormStepsManager =() => {
     const [loading, setLoading] = useState(false)
     const [disabled, setDisabled] = useState(false);
     const {t,} = useTranslation()
-
-    // const serviceProvider = formValues.phone.substring(0,3)
     // const history = useHistory()
 
 
