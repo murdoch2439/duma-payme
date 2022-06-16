@@ -2,13 +2,11 @@ import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Box, Button, Grid} from '@material-ui/core'
 import {useStripe} from '@stripe/react-stripe-js';
-import axios from 'axios'
 import GatewayFormStepOne from './gatewayFormStepOne';
 import GatewayFormStepTwo from './gatewayFormStepTwo';
 import Copyright from '../../components/copyright';
 import { useStateValue } from '../../context';
 import {
-    API_CREATE_PAYMENT_INTENT,
     API_MOBILE_MONEY_PAYMENT_INIT,
     API_VALIDATE_PAYMENT_INTENT,
     CHANGE_MODAL_STATES,
