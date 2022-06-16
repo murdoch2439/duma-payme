@@ -11,7 +11,13 @@ const useStyles = makeStyles(() => ({
     },
     listItemText:{
         fontSize:25,
+        fontWeight:'700',
+        color:'grey'
     },
+    typography:{
+        fontWeight:'600',
+        fontSize:16
+    }
 }));
 
 
@@ -25,15 +31,15 @@ const ReceiverNameHandler=({formValues})=>{
                 formValues.clientName ?
                     (
                         <ListItem className={classes.listItem} >
-                            <ListItemText primary={t('Organization')} style={{fontWeight:'700', color:'grey'}}/>
-                            <Typography variant="body1" style={{fontWeight:'600', fontSize:16}}>{formValues.clientName ? nameFormating(formValues.clientName):'*****'}</Typography>
+                            <ListItemText primary={t('Organization')} className={classes.listItemText}/>
+                            <Typography variant="body1" className={classes.typography}>{formValues.clientName ? nameFormating(formValues.clientName):'*****'}</Typography>
                         </ListItem>
                     )
                     :
                     (
                         <ListItem className={classes.listItem} >
-                            <ListItemText primary={t('Receiver')} style={{fontWeight:'700', color:'grey'}}  />
-                            <Typography variant="body1" style={{fontWeight:'600', fontSize:16}}>{formValues.clientName ? nameFormating(formValues.receiverName):'*****'}</Typography>
+                            <ListItemText primary={t('Receiver')} className={classes.listItemText} />
+                            <Typography variant="body1" className={classes.typography}>{formValues.receiverName ? nameFormating(formValues.receiverName):'*****'}</Typography>
                         </ListItem>
                     )
             }
