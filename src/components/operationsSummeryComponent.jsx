@@ -4,6 +4,7 @@ import {  List, makeStyles, ListItem, ListItemText, Typography
 import {useTranslation} from "react-i18next";
 import {useStateValue} from "../context";
 import {nameFormating, receivingAmount, totalToPay} from "../utils/helperFunctions";
+import ReceiverNameHandler from "./ReceiverNameHandler";
 const useStyles = makeStyles(() => ({
     boxWrapper: {
         marginBottom:10,
@@ -52,21 +53,15 @@ const OperationsSummeryComponent = () =>{
     const {t} = useTranslation()
     const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
     const classes = useStyles()
+
     return(
         <div>
             <List   disablePadding >
                 <ListItem className={classes.listItem} >
                     <ListItemText primary={t('Sender')} style={{fontWeight:'700', color:'grey'}}  />
-                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.name ? nameFormating(formValues.name):'*****'}</Typography>
+                    <Typography variant="body1" style={{fontWeight:'600', fontSize:16}}>{formValues.name ? nameFormating(formValues.name):'*****'}</Typography>
                 </ListItem>
-                <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Receiver')} style={{fontWeight:'700', color:'grey'}}  />
-                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.clientName ? nameFormating(formValues.receiverName):'*****'}</Typography>
-                </ListItem>
-                <ListItem className={classes.listItem} >
-                    <ListItemText primary={t('Organization')} style={{fontWeight:'700', color:'grey'}} />
-                    <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.clientName ? nameFormating(formValues.clientName):'*****'}</Typography>
-                </ListItem>
+                <ReceiverNameHandler formValues={formValues} />
                 <ListItem className={classes.listItem} >
                     <ListItemText primary={t('Reference code')} style={{fontWeight:'700', color:'grey'}} />
                     <Typography variant="body1" style={{fontWeight:'400', fontSize:16}}>{formValues.transactionReference ? formValues.transactionReference:'*****'}</Typography>
