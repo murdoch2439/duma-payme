@@ -7,29 +7,18 @@ import GatewayFormStepTwo from './gatewayFormStepTwo';
 import Copyright from '../../components/copyright';
 import { useStateValue } from '../../context';
 import {
-    API_MOBILE_MONEY_PAYMENT_INIT,
-    API_VALIDATE_PAYMENT_INTENT,
-    CHANGE_MODAL_STATES,
-    CLIENT_FOR_MOBILE_PAYMENT,
-    CODE_500, DEBIT_CARD, FAILED,
-    FAILURE,
+    DEBIT_CARD,
     LOADING_MESSAGE,
     MOBILE_MONEY,
     Next_STEP,
     PAY_NOW,
     PREVIOUS_STEP,
-    SHOW_FAIL_MODAL,
-    SHOW_PENDING_MODAL,
-    SHOW_SUCCESS_MODAL,
-    SUCCEEDED,
-    SUCCESS,
 } from '../../constants/variableNames';
 // import {  useHistory
 // } from "react-router-dom";
 import {
     bankCardsPaymentManager,
     backgroundChanger,
-    firstThreeDigit,
     userInterfaceBasedOnMobilePaymentResponseManager, getPayloadForMobileMoney
 } from "../../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
