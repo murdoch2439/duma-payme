@@ -48,6 +48,7 @@ const Wrapper = () =>{
 
         try{
             const ip =  await PaymentGatewayService.getClientIpAddress()
+            // const ip = '41.174.136.243'
 
             if(ip){
                 const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
