@@ -66,7 +66,7 @@ const GetStepContent = ({step}) => {
   }
 }
 
-const  FormStepsManager =() => {
+const  MerchantIntegrationGatewayFormStepsManagerfrom =() => {
   const classes = useStyles()
   const stripe = useStripe();
   const [activeStep, setActiveStep] = useState(0);
@@ -186,4 +186,4 @@ const  FormStepsManager =() => {
   );
 }
 
-export default FormStepsManager
+export default MerchantIntegrationGatewayFormStepsManagerfrom
