@@ -51,9 +51,9 @@
   "Payment Information":"Information de paiement",
   "Payment waiting for validation": "Paiement en attente de validation",
   "is being processed, confirm the operation with your mobile phone, then click the button bellow to refresh the status :)":"s'effectue, confirmez l'operation avec votre téléphone ensuite cliquez sur le button pour actualiser le status :)",
-  "Refreshing Status...":"Actualisation du status...",
+  "Refreshing Status...": "Actualisation du status...",
   "Refresh":"Actualiser",
-  "Payment passed successfully:":"Paiement effectué avec succès:",
+  "Payment passed successfully:": "Paiement effectué avec succès:",
   "Amount :": "Montant :",
   "Organization :": "Organisation :",
   "Organization": "Organisation",
@@ -67,7 +67,13 @@
   "Yes": "Oui",
   "No": "Non",
   "Payment passed successfully, you are being redirected in ": "Paiement réussi, vous serez redirigé dans ",
-  "Was cancelled, You are being redirected in": "A été annulé, vous serez redirigé dans"
+  "Was cancelled, You are being redirected in": "A été annulé, vous serez redirigé dans",
+  "To contact us": "Nous contacter",
+  "Democratic republic of Congo": "République démocratique du Congo",
+  "Phone": "Téléphone",
+  "Payme is a product of": "Payme est un produit",
+  "A licensed, financial service provider. We’re allowing african Diaspora on daily basis to support financially families, friends and create business in Africa": "Un fournisseur de services de finances certifié. Chaque jour, nous permettons a la diaspora africaine de l'aider leur familles, leurs amis et leurs entreprises",
+  "Canada": "Canada"
 
 
 }
