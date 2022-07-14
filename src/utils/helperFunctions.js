@@ -269,11 +269,7 @@ async function bankCardsPaymentManager(infoCollection) {
 
     if (paymentIntent && paymentIntent.status === SUCCEEDED) {
         formValues.paymentIntent = paymentIntent.id
-        // dispatch({
-        //     type: CHANGE_MODAL_STATES,
-        //     key: SHOW_SUCCESS_MODAL,
-        //     value: true
-        // })
+
         const paymentIntentObjet = {
 
             reference: formValues.transactionReference,
@@ -306,7 +302,7 @@ async function bankCardsPaymentManager(infoCollection) {
 
     }
     if (error) {
-        // setError(error.message);
+
         console.log('Error on stripe payment confirmation ===>', error)
 
         dispatch({
@@ -327,7 +323,7 @@ function getPayloadForMobileMoney(formValues){
         phone:formValues.phone,
         currency: formValues.currency,
         amount: formValues.amount,
-        transfRefNo: formValues.transactionReference,
+        transRefNo: formValues.transactionReference,
         paymentRequestId: formValues.paymentRequestId,
         service: firstThreeDigit(formValues.phone),
         client: CLIENT_FOR_MOBILE_PAYMENT
