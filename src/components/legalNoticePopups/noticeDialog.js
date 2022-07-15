@@ -27,7 +27,16 @@ const NoticeDialog = ({separator}) => {
         legal: {
             name: "legal",
             title: t("Legal Notice"),
-            description: () => <>This website is owned and operated by Duma Solutions.<br /><br />To contact us:<br />Name<br />Address line<br />postcode city<br />country<br /><br />Phone: ___________ <br />Email address:________</>
+            description: () => <>
+                {t("Payme is a product of")}  <b>ICASH Business solutions Inc</b>. {t("A licensed, financial service provider. We’re allowing african Diaspora on daily basis to support financially families, friends and create business in Africa")}.
+                <br /><br />
+                {t("To contact us")}:<br />
+                Payme Ltd<br />
+                625 chateauguay, #303, Quebec, QC, G1N 2L2<br />
+                {t("Canada")}<br />
+                <br />{t("Phone")}: <a href={"tel:0024387659872"}>00243 987654322</a><br />
+                {t("Email address")}: <a href={"mailto:info@pay.me"}>info@pay.me</a>
+            </>
         },
         privacy: {
             name: "privacy",
@@ -161,6 +170,9 @@ const NoticeDialog = ({separator}) => {
                 <Button onClick={() => toggleOpen(false)} color="primary" autoFocus>
                     {t("Close")}
                 </Button>
+                {/*<Button onClick={() => toggleOpen(false)} color="primary" autoFocus>*/}
+                {/*    {t("Close")}*/}
+                {/*</Button>*/}
             </DialogActions>
         </Dialog>
     </Typography>

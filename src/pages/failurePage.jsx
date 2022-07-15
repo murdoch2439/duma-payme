@@ -4,7 +4,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { useStateValue } from '../context';
-import {CHANGE_MODAL_STATES, SHOW_FAIL_MODAL} from "../constants/variableNames";
+import {CHANGE_MODAL_STATES, FAILED, SHOW_FAIL_MODAL, STATUS} from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(() => ({
@@ -50,9 +50,19 @@ const FailurePage =()=>{
   const {t} = useTranslation()
   const classes = useStyles()
   const [checked, setChecked] = useState(false);
+  const [countDown, setCountDown] = useState(5)
   useEffect(()=>{
-    handleChange()
-  },[])
+      handleChange()
+      const myInterval =  setInterval(()=>{setCountDown(countDown -1)}, 1000)
+      if(countDown === 0){
+          clearInterval(myInterval)
+          if(formValues.callBackUrl){
+              window.location.href = `${formValues.callBackUrl}?${STATUS}=${FAILED}`
+          }
+      }
+      return ()=> clearInterval(myInterval)
+  },[countDown])
+
 
 
   const handleChange = () => {
@@ -60,11 +70,16 @@ const FailurePage =()=>{
   };
 
     const onClick =() =>{
-        dispatch({
-            type: CHANGE_MODAL_STATES,
-            key: SHOW_FAIL_MODAL,
-            value: false,
-        })
+        if(formValues.callBackUrl){
+                window.location.href = `${formValues.callBackUrl}?${STATUS}=${FAILED}`
+        }else{
+            dispatch({
+                type: CHANGE_MODAL_STATES,
+                key: SHOW_FAIL_MODAL,
+                value: false,
+            })
+        }
+
     }
 
   return(
@@ -80,16 +95,25 @@ const FailurePage =()=>{
                 </Grid>
                 <p style={{textAlign:'center', fontSize:25}}>
                     {t("Your payment to:")} <br />
-                    <span style={{fontWeight:'bold'}}>{formValues.receiverName}, </span>
+                    <span style={{fontWeight:'bold'}}>{formValues.clientName}, </span>
                     <br />
-                    {t("has failed, please check informations and retry.")}
+                    {
+                        formValues.callBackUrl ?
+                            t(`has failed, You will be redirected in ${countDown} secs.`):
+                            t("has failed, please check informations and retry.")
+                    }
+
                 </p>
             <Grid container item justifyContent='center' style={{marginTop:30}}>
                 <Button
                     onClick={onClick}
                     className={classes.button}
                 >
-                    {t("Retry")}
+                    {
+                        formValues.callBackUrl ?
+                            t("Go back shopping"):
+                            t("Retry")
+                    }
                 </Button>
             </Grid>
           </Paper>

@@ -9,7 +9,7 @@ import {
     sendingAmount,
     totalToPay
 } from '../../utils/helperFunctions';
-import {DEBIT_CARD, EDIT_FORM_VALUES, STARS_FOR_NO_CONTENT} from "../../constants/variableNames";
+import {DEBIT_CARD, EDIT_FORM_VALUES, NO_CONTENT} from "../../constants/variableNames";
 import {useTranslation} from "react-i18next";
 
 const CARD_ELEMENT_OPTIONS = {
@@ -44,12 +44,13 @@ const useStyles = makeStyles(() => ({
 
 const  FormStepTwo =()=> {
   const classes = useStyles();
+  const stripe = useStripe();
+  const elements = useElements();
   const [error, setError] = useState(null);
   const [{ formValues }, dispatch] = useStateValue();
   const {t} = useTranslation()
   const businessObject = {currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate}
-  const stripe = useStripe();
-  const elements = useElements();
+
 
   const handleChange = async(event) =>{
     // setDisabled(event.empty);
@@ -59,6 +60,8 @@ const  FormStepTwo =()=> {
   if (!stripe || !elements) {
       return ;
     }
+
+
 
 
   return (
@@ -75,7 +78,7 @@ const  FormStepTwo =()=> {
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Receiver :')} style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.receiverName ? nameFormating(formValues.receiverName):STARS_FOR_NO_CONTENT}</Typography>
+            <Typography variant="body1" style={{fontWeight:'500'}}>{formValues.clientName ? nameFormating(formValues.clientName):NO_CONTENT}</Typography>
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Sending amount :')} style={{fontWeight:'700', color:'grey'}} />
@@ -83,7 +86,7 @@ const  FormStepTwo =()=> {
           </ListItem>
           <ListItem className={classes.listItem} >
             <ListItemText primary={t('Receiving amount :')} style={{fontWeight:'700', color:'grey'}} />
-            <Typography variant="body1">{receivingAmount(businessObject)}</Typography>
+            <Typography variant="body1">{formValues.clientCurrency} {receivingAmount(businessObject)}</Typography>
           </ListItem>
          {
              formValues.clientCurrency !== formValues.currency
@@ -126,6 +129,7 @@ const  FormStepTwo =()=> {
                                 name="phone"
                                 variant="outlined"
                                 type="tel"
+                                maxLength="20"
                                 required
                                 fullWidth
                                 value={formValues.phone}

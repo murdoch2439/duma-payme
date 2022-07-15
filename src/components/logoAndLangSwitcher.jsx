@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Box, FormControl,  MenuItem, TextField} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import {useTranslation} from "react-i18next";
@@ -26,6 +26,9 @@ const LogoAndLangSwitcher = () =>{
     const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
+    useEffect(()=>{
+        setLanguage(i18n.language)
+    },[])
 
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()

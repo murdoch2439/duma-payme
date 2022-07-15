@@ -48,6 +48,7 @@ const MerchantApplication =()=>{
         setChecked(true);
     }
     const baseUrl = "http://3.248.233.61:8081/api/v1/icash/me/redirect"
+    // const baseUrl = "http://192.168.100.3:8081/api/v1/icash/me/redirect"
 
     return(
         <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
@@ -65,9 +66,9 @@ const MerchantApplication =()=>{
                         action={baseUrl}
                         method="get" id="duma"
                     >
-                        <input name="ip" value="169.255.204.4"/>
+                        <input name="ip" value="41.174.139.155"/>
                         <input name="merchantKey" value="624476442a83f01bd9c8b528"/>
-                        <input name="currency" value="USD"/>
+                        <input name="currency" value="ZAR"/>
                         <input name="amount" value="1000"/>
                         <input name="callBackUrl" value="https://collect.icash-congo.com/"/>
                         <input type="submit" value="Pay with duma"/>

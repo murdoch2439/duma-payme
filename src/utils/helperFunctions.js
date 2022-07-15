@@ -1,5 +1,17 @@
-import {currencies, DEBIT_CARD, IP_PROVIDER_API_KEY, } from "../constants/variableNames";
-import axios from "axios";
+import {
+    CHANGE_MODAL_STATES, CLIENT_FOR_MOBILE_PAYMENT,
+    currencies,
+    DEBIT_CARD,
+    FAILED,
+    MOBILE_MONEY,
+    SHOW_FAIL_MODAL,
+    SHOW_PENDING_MODAL,
+    SHOW_SUCCESS_MODAL,
+    SUCCEEDED,
+    SUCCESS,
+    // IP_PROVIDER_API_KEY,
+} from "../constants/variableNames";
+import {PaymentGatewayService} from "../api";
 
 const nameFormating = (string) =>{
     const splitted = string.split(' ')
@@ -18,6 +30,12 @@ const sendingAmount = ({currency, amount,}) =>{
         return `£ ${parseInt(amount).toFixed(2)}`
     }if(currency === currencies.CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.ZAR){
+        return `ZAR ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.CHF){
+        return `CHF ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.SEK){
+        return `SEK ${parseInt(amount).toFixed(2)}`
     }
 }
 
@@ -30,9 +48,15 @@ const totalToPay = ({currency, amount, }) =>{
         return `£ ${parseInt(amount).toFixed(2)} ${currency}`
     }if(currency === currencies.CAD){
         return `CA$ ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.ZAR){
+        return `ZAR ${parseInt(amount).toFixed(2)}`
+    }if(currency === currencies.CHF){
+        return `CHF ${parseInt(amount).toFixed(2)} `
+    }if(currency === currencies.SEK){
+        return `SEK ${parseInt(amount).toFixed(2)}`
     }
-
 }
+
 
 const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
         if(!currency){
@@ -59,6 +83,26 @@ const receivingAmount =({currency, amount, clientCurrency, rate}) =>{
             }if(currency === currencies.CAD){
                 if(currency === clientCurrency){
                     return `CA$ ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
+                }
+            }if(currency === currencies.ZAR){
+                if(currency === clientCurrency){
+                    return `ZAR ${parseInt(amount).toFixed(2)} `
+                }else{
+                    //add ${clientCurrency}  in the template string before amount
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)}`
+
+                }
+            }if(currency === currencies.SEK){
+                if(currency === clientCurrency){
+                     return `SEK ${parseInt(amount).toFixed(2)}`
+                }else{
+                    return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
+                }
+            }if(currency === currencies.CHF){
+                if(currency === clientCurrency){
+                    return `CHF ${parseInt(amount).toFixed(2)}`
                 }else{
                     return `${(parseInt(amount) * parseFloat(rate)).toFixed(2)} ${clientCurrency}`
                 }
@@ -106,11 +150,7 @@ const  getUrlParams =()=> {
     });
     return vars;
 }
-// export const getUrlPath =()=>{
-//     // home = home.substr(0, home.lastIndexOf('/'))
-//     // console.log('path ==>',path)
-//     return window.location.pathname.split('/')[1]
-// }
+
 
 const backgroundChanger = (loading) =>{
     if(!loading){
@@ -129,20 +169,22 @@ const currencyManager = (currency) =>{
         return "£"
     }if(currency === currencies.CAD){
         return "CA$"
+    }if(currency === currencies.ZAR){
+        return "ZAR"
     }
 }
 
 const firstThreeDigit = string => string.substring(0,3)
 
-const getClientIpAddress = async() =>{
-    try{
-        const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
-        // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
-        return response.data.ip
-    }catch(error){
-        console.log("Couldn't get user Ip adress ==> :", error.response)
-    }
-}
+// const getClientIpAddress = async() =>{
+//     try{
+//         const response = await axios.get(`https://api.ipdata.co/?api-key=${IP_PROVIDER_API_KEY}`)
+//         // const getGeoDB = await axios.get("https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0/197.157.209.57")
+//         return response.data.ip
+//     }catch(error){
+//         console.log("Couldn't get user Ip adress ==> :", error.response)
+//     }
+// }
 
 const languages=[
     {
@@ -159,10 +201,10 @@ const paymentMethods =[
         value:DEBIT_CARD,
         label:'Debit card',
     },
-    // {
-    //     value:MOBILE_MONEY,
-    //     label:'Mobile Money',
-    // },
+    {
+        value:MOBILE_MONEY,
+        label:'Mobile Money',
+    },
 ]
 
 const responseManager = ({response, formValues, option}) =>{
@@ -188,6 +230,113 @@ const responseManager = ({response, formValues, option}) =>{
     }
 }
 
+
+function userInterfaceBasedOnMobilePaymentResponseManager(infoCollection){
+    const {response, dispatch, setLoading} =infoCollection
+    if(response.data.status === SUCCESS){
+        setLoading(false);
+        // setTimeout(()=>{
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_PENDING_MODAL,
+            value: true
+        })
+
+        //     setLoading(false);
+        // }, 3000)
+
+    }if(response.data.status === FAILED){
+
+        setLoading(false);
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_FAIL_MODAL,
+            value: true
+        })
+        console.log("Response when mobile money status is failed  : ",response.data)
+
+    }else{
+        setLoading(false);
+        console.log(response.data)
+    }
+
+}
+
+
+
+async function bankCardsPaymentManager(infoCollection) {
+    const {paymentIntent, formValues, setLoading, setDisabled, dispatch, error} = infoCollection
+
+    if (paymentIntent && paymentIntent.status === SUCCEEDED) {
+        formValues.paymentIntent = paymentIntent.id
+
+        const paymentIntentObjet = {
+
+            reference: formValues.transactionReference,
+            receivingAmount: (parseInt(formValues.amount) * parseFloat(formValues.rate)).toFixed(2),
+            sendingAmount: parseInt(formValues.amount),
+            paymentIntentId: paymentIntent.id,
+            paymentRequestId: formValues.paymentRequestId,
+            fee: formValues.fees,
+            name: formValues.name,
+            email: formValues.email,
+            phone: formValues.phone,
+        }
+
+
+        const responseFromBffValidation = await PaymentGatewayService.validate(paymentIntentObjet)
+
+        console.log('Payload for validation ===>', responseFromBffValidation.data)
+        if (responseFromBffValidation.data.status === SUCCESS) {
+            console.log('payment process succeeded')
+            setLoading(false);
+            setDisabled(true)
+            dispatch({
+                type: CHANGE_MODAL_STATES,
+                key: SHOW_SUCCESS_MODAL,
+                value: true
+            })
+
+
+        }
+
+    }
+    if (error) {
+
+        console.log('Error on stripe payment confirmation ===>', error)
+
+        dispatch({
+            type: CHANGE_MODAL_STATES,
+            key: SHOW_FAIL_MODAL,
+            value: true
+        })
+    }
+
+}
+
+
+function getPayloadForMobileMoney(formValues){
+    return  {
+        initials: formValues.name,
+        surname:formValues.name,
+        email:formValues.email,
+        phone:formValues.phone,
+        currency: formValues.currency,
+        amount: formValues.amount,
+        transRefNo: formValues.transactionReference,
+        paymentRequestId: formValues.paymentRequestId,
+        service: firstThreeDigit(formValues.phone),
+        client: CLIENT_FOR_MOBILE_PAYMENT
+    }
+
+}
+
+
+
+
+
+
+
 export {
     responseManager,
     backgroundChanger,
@@ -200,6 +349,9 @@ export {
     totalToPay,
     sendingAmount,
     currencyManager,
-    getClientIpAddress,
-    firstThreeDigit
+    firstThreeDigit,
+    userInterfaceBasedOnMobilePaymentResponseManager,
+    bankCardsPaymentManager,
+    getPayloadForMobileMoney
+
 }

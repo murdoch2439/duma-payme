@@ -60,6 +60,20 @@
   "Reference code :": "Reference code",
   "Reference code": "Reference code",
   "Receiving": "Receiving",
-  "Paid amount": "Paid amount"
+  "Paid amount": "Paid amount",
+  "Cancel": "Cancel",
+  "You're about to cancel this payment": "You're about to cancel this payment",
+  "Do you really wanna stop this operation?": "Do you really wanna stop this operation?",
+  "Yes": "Yes",
+  "No": "No",
+  "Payment passed successfully, you are being redirected in ": "Payment passed successfully, you are being redirected in ",
+  "Was cancelled, You are being redirected in": "Was cancelled, You are being redirected in",
+  "To contact us": "To contact us",
+  "Democratic republic of Congo": "Democratic republic of Congo",
+  "Phone": "Phone",
+  "Payme is a product of": "Payme is a product of",
+  "A licensed, financial service provider. We’re allowing african Diaspora on daily basis to support financially families, friends and create business in Africa": "A licensed, financial service provider. We’re allowing african Diaspora on daily basis to support financially families, friends and create business in Africa",
+  "Canada": "Canada"
+
 
 }

@@ -14,7 +14,7 @@ import FailurePage from "../pages/failurePage";
 import IssuesPage from "../pages/issuesPage";
 import NotFoundPage from "../pages/notFoundPage";
 import {
-    API_PAYMENT_INIT, CHANGE_MODAL_STATES,
+    CHANGE_MODAL_STATES,
     CODE_403, CODE_500, EMPTY_STRING,
     MERCHANT_KEY_STRING, OPTION_STRING,
     PAYMENT_REQUEST_ID_STRING,
@@ -22,9 +22,8 @@ import {
 } from "../constants/variableNames";
 import {useStateValue} from "../context";
 import { getUrlParams, responseManager} from "../utils/helperFunctions";
-import axios from "axios";
 import PlaceholderComponent from "../components/placeholder";
-import {Payment} from "../api";
+import {PaymentGatewayService} from "../api";
 
 
 
@@ -46,13 +45,16 @@ const Wrapper = () =>{
 
 
     const paymentInitWithBff = async () =>{
+
         try{
-            const ip =  await Payment.getClientIpAddress()
+            const ip =  await PaymentGatewayService.getClientIpAddress()
+            // const ip = '41.174.136.243'
 
             if(ip){
                 const paymentInfo =   {   merchantKey,  paymentRequestId, ip  }
                 if(merchantKey){
-                    const responseFromBffPaymentInit = await axios.post(API_PAYMENT_INIT, paymentInfo)
+
+                    const responseFromBffPaymentInit = await PaymentGatewayService.init(paymentInfo)
                     setCurrency(responseFromBffPaymentInit.data.currency)
                     setPublicKey(loadStripe(responseFromBffPaymentInit.data.clientKey))
 
@@ -71,13 +73,14 @@ const Wrapper = () =>{
                             key: SHOW_LOADING_COMPONENT,
                             value: true
                         })
+
                     }
                 }
             }else{
                 console.log('Ip is not provided!!!!!!!!!!')
             }
         }catch(error){
-            console.error('Error on payment initialization ==> : ',error.response.data)
+            console.error('Error on payment initialization ==> : ',error)
         }
     }
 

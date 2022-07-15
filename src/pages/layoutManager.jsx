@@ -1,12 +1,12 @@
-import React, {useState,} from "react";
+import React, {useEffect, useState,} from "react";
 import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
-import FormStepsManager from './link-payment/formStepsManager'
-import GatewayFormStepsManager from './gateway/gatewayFormStepsManager'
+import MerchantIntegrationGatewayFormStepsManager from './link-payment/formStepsManager'
+import GatewayFormStepsManager  from './gateway/gatewayFormStepsManager'
 import { useStateValue } from "../context";
-import cover from '../assets/Trip-assurances (4).png'
+import cover from '../assets/Icash.jpg'
 import logDuma from '../assets/duma1.png'
 import SuccessModal from "./successPage";
 import FailureModal from "./failurePage";
@@ -19,21 +19,26 @@ import {
 } from "../constants/variableNames";
 import {useTranslation} from "react-i18next";
 import IssuesPage from "./issuesPage";
+import CancelledPage from "./cancelledPage";
 
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor:'white',
-        // backgroundImage:`url(https://cdn.goodao.net/easypetgarden/H6dd2a1363c0042738024ab6ee5ffb470G.jpg)`,
+        // backgroundSize:'cover',
+        // backgroundPosition:'top',
+        // backgroundImage:`url(https://th.bing.com/th/id/OIP.tvW-pseWnAcTUZENUQ7VrAHaEe?pid=ImgDet&rs=1)`,
         borderRadius:10,
         display:'flex',
     },
     leftContainerWrapper:{
       width:'75%',
         // backgroundImage:`url(${cover})` ,
-      // textAlign:'center',
+        // backgroundImage:`url(https://th.bing.com/th/id/OIP.tvW-pseWnAcTUZENUQ7VrAHaEe?pid=ImgDet&rs=1)`,
+
     },
     imagesBox:{
         // backgroundImage:`url(${cover})`,
+
         height:'90%',
         borderBottomLeftRadius:10,
         display:'flex',
@@ -44,6 +49,7 @@ const useStyles = makeStyles(() => ({
     dumaLogoAndLangContainer:{
         display:'flex',
         justifyContent:'space-between'
+
     },
     logoDuma: {
         width:50,
@@ -68,15 +74,28 @@ const useStyles = makeStyles(() => ({
 
 const LayoutManager = () => {
     const classes = useStyles();
-    const [{  modalStates  }] = useStateValue();
-    const [language, setLanguage] = useState(ENGLISH_LANG_CODE)
     const {t, i18n} = useTranslation()
+    const [{  modalStates  }] = useStateValue();
+    const [currentLanguage, setLanguage] = useState(ENGLISH_LANG_CODE)
+
     const history = useHistory()
     const option= getUrlParams()[OPTION_STRING]
     const merchantKey = getUrlParams()[MERCHANT_KEY_STRING]
 
+    useEffect(()=>{
+       setLanguage(i18n.language)
+    },[])
+
     const onClickHandler =(lang)=>{
         i18n.changeLanguage(lang).then()
+    }
+    const onSelecHandler =(e)=>{
+        setLanguage(e.target.value)
+        if(currentLanguage === FRENCH_LANG_CODE){
+            onClickHandler(ENGLISH_LANG_CODE)
+        }else{
+            onClickHandler(FRENCH_LANG_CODE)
+        }
     }
     const cardsLogo = [
         "amex",
@@ -96,6 +115,7 @@ const LayoutManager = () => {
           {
               modalStates.showsuccessmodal ? <SuccessModal />:
               modalStates.showfailmodal ? <FailureModal />:
+              modalStates.showcancelledmodal ? <CancelledPage />:
               modalStates.showpendingmodal ? <PendingModal />:
               modalStates.showaccessdeniedmodal ? <IssuesPage />:
                   <Box  mt={10}>
@@ -112,15 +132,10 @@ const LayoutManager = () => {
                                         <TextField
                                             select
                                             name={"language"}
-                                            value={language}
-                                            onChange={(e)=>{
-                                                setLanguage(e.target.value)
-                                                if(language === FRENCH_LANG_CODE){
-                                                    onClickHandler(ENGLISH_LANG_CODE)
-                                                }else{
-                                                    onClickHandler(FRENCH_LANG_CODE)
-                                                }
-                                            }}
+                                            value={currentLanguage}
+                                            onChange={
+                                                onSelecHandler
+                                            }
                                         >
                                             {languages.map((option) => (
                                                 <MenuItem key={option.value} value={option.value}>
@@ -165,7 +180,7 @@ const LayoutManager = () => {
                                 onFailedCheckout ={()=>history.replace('/failure')}
                                 onPendingCheckout={()=>history.replace('/payment-pending')}
                             />:
-                            <FormStepsManager
+                            <MerchantIntegrationGatewayFormStepsManager
                             onSuccessfulCheckout ={()=> history.replace('/success')}
                             onFailedCheckout ={()=>history.replace('/failure')}
                             onPendingCheckout={()=>history.replace('/payment-pending')}
