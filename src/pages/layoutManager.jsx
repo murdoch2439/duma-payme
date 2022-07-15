@@ -3,8 +3,8 @@ import {  useHistory
 } from "react-router-dom";
 import { Container, Paper, Box, Grid, FormControl, TextField, MenuItem } from "@material-ui/core";
 import { makeStyles, } from '@material-ui/core/styles';
-import FormStepsManager from './link-payment/formStepsManager'
-import GatewayFormStepsManager from './gateway/gatewayFormStepsManager'
+import MerchantIntegrationGatewayFormStepsManager from './link-payment/formStepsManager'
+import GatewayFormStepsManager  from './gateway/gatewayFormStepsManager'
 import { useStateValue } from "../context";
 import cover from '../assets/Icash.jpg'
 import logDuma from '../assets/duma1.png'
@@ -180,7 +180,7 @@ const LayoutManager = () => {
                                 onFailedCheckout ={()=>history.replace('/failure')}
                                 onPendingCheckout={()=>history.replace('/payment-pending')}
                             />:
-                            <FormStepsManager
+                            <MerchantIntegrationGatewayFormStepsManager
                             onSuccessfulCheckout ={()=> history.replace('/success')}
                             onFailedCheckout ={()=>history.replace('/failure')}
                             onPendingCheckout={()=>history.replace('/payment-pending')}

@@ -7,20 +7,19 @@ import FormStepTwo from './formStepTwo';
 import Copyright from '../../components/copyright';
 import { useStateValue } from '../../context';
 import {
-    CHANGE_MODAL_STATES,
-    CLIENT_FOR_MOBILE_PAYMENT,
     LOADING_MESSAGE,
     MOBILE_MONEY,
     Next_STEP,
     PAY_NOW,
     PREVIOUS_STEP,
-    SHOW_PENDING_MODAL,
-    SUCCEEDED,
-    SHOW_SUCCESS_MODAL,
-    SUCCESS,
-    SHOW_FAIL_MODAL, FAILED, DEBIT_CARD,
+    DEBIT_CARD,
 } from '../../constants/variableNames';
-import {backgroundChanger, firstThreeDigit, receivingAmount} from "../../utils/helperFunctions";
+import {
+    backgroundChanger, bankCardsPaymentManager,
+    getPayloadForMobileMoney,
+    userInterfaceBasedOnMobilePaymentResponseManager,
+
+} from "../../utils/helperFunctions";
 import {useTranslation} from "react-i18next";
 import LogoAndLangSwitcher from "../../components/logoAndLangSwitcher";
 import {PaymentGatewayService} from "../../api";
@@ -67,7 +66,7 @@ const GetStepContent = ({step}) => {
   }
 }
 
-const  FormStepsManager =() => {
+const  MerchantIntegrationGatewayFormStepsManagerfrom =() => {
   const classes = useStyles()
   const stripe = useStripe();
   const [activeStep, setActiveStep] = useState(0);
@@ -75,8 +74,6 @@ const  FormStepsManager =() => {
   const [loading, setLoading] = useState(false)
   const [disabled, setDisabled] = useState(false);
   const {t} = useTranslation()
-
-  const businessObject = { currency:formValues.currency, clientCurrency:formValues.clientCurrency, amount: formValues.amount, rate:formValues.rate }
 
 
   const handleNext = () => {
@@ -108,57 +105,24 @@ const  FormStepsManager =() => {
 
         try{
                 if(formValues.paymentMethod === MOBILE_MONEY ){
-                    const payloadForMobileMoney ={
-                    initials: formValues.name,
-                    surname:formValues.name,
-                    email:formValues.email,
-                    phone:formValues.phone,
-                    amount: formValues.amount,
-                    currency:formValues.currency,
-                    transRefNo: formValues.transactionReference,
-                    paymentRequestId: formValues.paymentRequestId,
-                    service: firstThreeDigit(formValues.phone),
-                    client: CLIENT_FOR_MOBILE_PAYMENT
-                }
-
-                    const response =  await PaymentGatewayService.mobileMoney(payloadForMobileMoney)
-
-                    if(response.data.status === SUCCESS){
-                            setLoading(false);
-                        // setTimeout(()=>{
-                            dispatch({
-                                type: CHANGE_MODAL_STATES,
-                                key: SHOW_PENDING_MODAL,
-                                value: true
-                            })
-                        //     setLoading(false);
-                        // }, 3000)
-                    }if(response.data.status === FAILED){
-                        setLoading(false);
-                        console.log("Response when mobile money status is failed : ",response.data)
-                        dispatch({
-                            type: CHANGE_MODAL_STATES,
-                            key: SHOW_FAIL_MODAL,
-                            value: true
-                        })
-                    }else{
-                        setLoading(false);
-                        console.log(response.data)
-                    }
+                    const payload = getPayloadForMobileMoney(formValues)
+                    const response =  await PaymentGatewayService.mobileMoney(payload)
+                    const infoCollection = {response, dispatch, setLoading}
+                    userInterfaceBasedOnMobilePaymentResponseManager(infoCollection)
 
             }
                 if(formValues.paymentMethod === DEBIT_CARD){
-                    const clientSecret = await PaymentGatewayService.stripeInit( {
-                        amount: formValues.amount,
-                        currency: formValues.currency,
-                        receipt_email: formValues.receiverEmail
-                    })
+                        const clientSecret = await PaymentGatewayService.stripeInit( {
+                            amount: formValues.amount,
+                            currency: formValues.currency,
+                            receipt_email: formValues.receiverEmail
+                        })
 
-                    const paymentMethodReq = await stripe.createPaymentMethod({
-                        type: 'card',
-                        card: formValues.card,
-                        billing_details: billingDetails,
-                    })
+                        const paymentMethodReq = await stripe.createPaymentMethod({
+                            type: 'card',
+                            card: formValues.card,
+                            billing_details: billingDetails,
+                        })
 
                 if(paymentMethodReq.error) {
                         console.error('paymentMethods Error  ===>', paymentMethodReq.error.message)
@@ -176,54 +140,10 @@ const  FormStepsManager =() => {
                         })
 
                         setDisabled(true)
-                        if(paymentIntent && paymentIntent.status === SUCCEEDED) {
-                            formValues.paymentIntent = paymentIntent.id
-                            dispatch({
-                            type: CHANGE_MODAL_STATES,
-                            key: SHOW_SUCCESS_MODAL,
-                            value: true
-                        })
-                            const paymentIntentObjetForBffValidation = {
-                            reference: formValues.transactionReference,
-                            receivingAmount: receivingAmount(businessObject),
-                            sendingAmount: parseInt(formValues.amount),
-                            paymentIntentId: paymentIntent.id,
-                            paymentRequestId: formValues.paymentRequestId,
-                            fee: formValues.fees,
-                            name: formValues.name,
-                            email:formValues.email,
-                            phone:formValues.phone,
-                        }
+                        const infoCollection = {paymentIntent, formValues,setLoading, setDisabled, dispatch, error}
+                        await bankCardsPaymentManager(infoCollection)
 
-                            // console.log('Payload to verification ====>', paymentIntentObjetForBffValidation)
-
-                            const responseFromBffValidation = await PaymentGatewayService.validate( paymentIntentObjetForBffValidation)
-
-                            if(responseFromBffValidation.data.status === SUCCESS){
-                                    console.log('payment processed and verified successfully')
-                                    setLoading(false);
-                                    setDisabled(true)
-
-                                    dispatch({
-                                        type: CHANGE_MODAL_STATES,
-                                        key: SHOW_SUCCESS_MODAL,
-                                        value: true
-                                    })
-                            }else{
-                                console.log('Something happened during validation with Bff ===>', responseFromBffValidation.data )
-                                // onFailCheckout()
-                            }
-                    } else if(error) {
-                        console.log('Error on stripe payment confirmation ===>', error)
-                        // setError(error.message);
-                        // onFailCheckout()
-                        dispatch({
-                            type: CHANGE_MODAL_STATES,
-                            key: SHOW_FAIL_MODAL,
-                            value: true
-                        })
-                    }
-                    handleReset()
+                        handleReset()
                 }
             }
         }catch(error){
@@ -266,4 +186,4 @@ const  FormStepsManager =() => {
   );
 }
 
-export default FormStepsManager
+export default MerchantIntegrationGatewayFormStepsManagerfrom
